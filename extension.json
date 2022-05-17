@@ -1,57 +1,57 @@
 {
-    "manifest_version": 2,
-    "name": "Phonos",
-    "author": [
+	"manifest_version": 2,
+	"name": "Phonos",
+	"author": [
 		"[https://meta.wikimedia.org/wiki/Community_Tech#Team Wikimedia Community Tech Team]"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:Phonos",
-    "version": "0.1.0",
-    "license-name": "GPL-2.0-or-later",
-    "namemsg": "phonos",
-    "descriptionmsg": "phonos-desc",
-    "type": "parserhook",
-    "requires": {
+	"version": "0.1.0",
+	"license-name": "GPL-2.0-or-later",
+	"namemsg": "phonos",
+	"descriptionmsg": "phonos-desc",
+	"type": "parserhook",
+	"requires": {
 		"MediaWiki": ">= 1.38.0"
 	},
-    "config": {
+	"config": {
 		"PhonosTTSBackend": {
 			"value": "example",
 			"description": "Backend TTS provider to use"
 		}
 	},
-    "MessagesDirs": {
-        "Phonos": [ "i18n" ]
-    },
-    "ResourceFileModulePaths": {
-        "localBasePath": "modules",
-        "remoteExtPath": "Phonos/modules"
-    },
-    "ResourceModules": {
-        "ext.phonos": {
-            "scripts": [
-                "ext.phonos.js"
-            ],
-            "styles": [
-                "ext.phonos.css"
-            ],
-            "messages": [
-                "phonos",
-                "phonos-desc"
-            ],
-            "dependencies": [
+	"MessagesDirs": {
+		"Phonos": [ "i18n" ]
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "modules",
+		"remoteExtPath": "Phonos/modules"
+	},
+	"ResourceModules": {
+		"ext.phonos": {
+			"scripts": [
+				"ext.phonos.js"
+			],
+			"styles": [
+				"ext.phonos.css"
+			],
+			"messages": [
+				"phonos",
+				"phonos-desc"
+			],
+			"dependencies": [
 				"mediawiki.api"
 			]
-        }
-    },
-    "ExtensionMessagesFiles": {
+		}
+	},
+	"ExtensionMessagesFiles": {
 		"PhonosMagic": "Phonos.i18n.php"
 	},
-    "Hooks": {
+	"Hooks": {
 		"ParserFirstCallInit": [
 			"MediaWiki\\Extension\\Phonos\\Phonos::onParserFirstCallInit"
 		]
 	},
-    "AutoloadNamespaces": {
+	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\Phonos\\": "includes/"
 	}
 }
