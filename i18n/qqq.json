@@ -1,7 +1,7 @@
 {
-    "@metadata": {
-        "authors": []
-    },
-    "phonos": "The name of the extension",
-    "phonos-desc": "{{desc|name=Phonos|url=}}"
+	"@metadata": {
+		"authors": []
+	},
+	"phonos": "The name of the extension",
+	"phonos-desc": "{{desc|name=Phonos|url=}}"
 }
