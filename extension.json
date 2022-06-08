@@ -47,9 +47,12 @@
 		"PhonosMagic": "Phonos.i18n.php"
 	},
 	"Hooks": {
-		"ParserFirstCallInit": [
-			"MediaWiki\\Extension\\Phonos\\Phonos::onParserFirstCallInit"
-		]
+		"ParserFirstCallInit": "PhonosHooks"
+	},
+	"HookHandlers": {
+		"PhonosHooks": {
+			"class": "MediaWiki\\Extension\\Phonos\\Phonos"
+		}
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\Phonos\\": "includes/"

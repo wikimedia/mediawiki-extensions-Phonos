@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Extension\Phonos;
 
+use MediaWiki\Hook\ParserFirstCallInitHook;
 use Parser;
 
 /**
@@ -10,13 +11,13 @@ use Parser;
  * @ingroup Extensions
  * @license GPL-2.0-or-later
  */
-class Phonos {
+class Phonos implements ParserFirstCallInitHook {
 	/**
 	 * Bind the renderPhonos function to the phonos magic word
 	 * @param Parser $parser
 	 */
-	public static function onParserFirstCallInit( Parser $parser ) {
-		$parser->setFunctionHook( 'phonos', [ self::class, 'renderPhonos' ] );
+	public function onParserFirstCallInit( $parser ) {
+		$parser->setFunctionHook( 'phonos', [ $this, 'renderPhonos' ] );
 	}
 
 	/**
@@ -26,7 +27,7 @@ class Phonos {
 	 * @param Parser $parser
 	 * @return string
 	 */
-	public static function renderPhonos( Parser $parser ) {
+	public function renderPhonos( Parser $parser ) {
 		// Add the CSS and JS
 		$parser->getOutput()->addModules( [ 'ext.phonos' ] );
 
@@ -60,7 +61,7 @@ class Phonos {
 	 * @param array $options
 	 * @return array $results
 	 */
-	private static function extractOptions( array $options ) {
+	private function extractOptions( array $options ) {
 		$results = [];
 		foreach ( $options as $option ) {
 			$pair = array_map( 'trim', explode( '=', $option, 2 ) );
