@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Extension\Phonos;
 
+use Html;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use Parser;
 
@@ -31,12 +32,18 @@ class Phonos implements ParserFirstCallInitHook {
 		// Add the CSS and JS
 		$parser->getOutput()->addModules( [ 'ext.phonos' ] );
 
-		// Get the named parameters
-		$options = self::extractOptions( array_slice( func_get_args(), 1 ) );
+		// Get the named parameters and merge with defaults.
+		$defaultOptions = [
+			'lang' => $parser->getContentLanguage()->getCode(),
+			'type' => 'ipa',
+			'word' => '',
+		];
+		$suppliedOptions = self::extractOptions( array_slice( func_get_args(), 1 ) );
+		$options = array_merge( $defaultOptions, $suppliedOptions );
 
-		// Explicitly set a default type if none is given
-		if ( !isset( $options['type'] ) ) {
-			$options['type'] = 'ipa';
+		// Require at least something to display.
+		if ( !isset( $options['ipa'] ) ) {
+			return '';
 		}
 
 		// Using a switch() so that future types can be added
@@ -45,9 +52,15 @@ class Phonos implements ParserFirstCallInitHook {
 				// Fall through
 			default:
 				// For now, default to IPA
-				$html = "<span class='mw-phonos' data-phonos-lang='{$options['lang']}'
-                        data-ssml-sub-alias='{$options['word']}' data-ssml-phoneme-alphabet='ipa'
-                        data-ssml-phoneme-ph='{$options['ipa']}'>{$options['ipa']}</span>";
+				$html = Html::element( 'span', [
+					'class' => 'ext-phonos',
+					'data-phonos-lang' => $options['lang'],
+					'data-ssml-sub-alias' => $options['word'],
+					'data-ssml-phoneme-alphabet' => 'ipa',
+					'data-ssml-phoneme-ph' => $options['ipa']
+				],
+				$options['ipa']
+			);
 		}
 
 		return $html;
@@ -68,7 +81,7 @@ class Phonos implements ParserFirstCallInitHook {
 			if ( count( $pair ) === 2 ) {
 				$results[ $pair[0] ] = $pair[1];
 			}
-			if ( count( $pair ) === 1 ) {
+			if ( count( $pair ) === 1 && $pair[0] !== '' ) {
 				$results[ $pair[0] ] = true;
 			}
 		}

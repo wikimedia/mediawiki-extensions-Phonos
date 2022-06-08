@@ -1,0 +1,19 @@
+!! Version 2
+
+!! test
+Empty parser function
+!! wikitext
+Phonos{{#phonos:}}END
+!! html
+<p>PhonosEND
+</p>
+!! end
+
+!! test
+Only the ipa parameter (with a quotation mark)
+!! wikitext
+Phonos{{#phonos:ipa=həˈləʊ"}}END
+!! html
+<p>Phonos<span class="ext-phonos" data-phonos-lang="en" data-ssml-sub-alias="" data-ssml-phoneme-alphabet="ipa" data-ssml-phoneme-ph="həˈləʊ&quot;">həˈləʊ"</span>END
+</p>
+!! end
