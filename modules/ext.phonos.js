@@ -1,6 +1,6 @@
 ( function () {
 	function init( $content ) {
-		$content.find( '.mw-phonos' ).each( function () {
+		$content.find( '.ext-phonos' ).each( function () {
 			// TODO: Do things
 		} );
 	}
