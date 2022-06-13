@@ -4,5 +4,6 @@
 			"Verdy p"
 		]
 	},
+	"phonos": "Phonos",
 	"phonos-desc": "Fournit la fonctionnalité de vocalisation du texte pour une gamme de langues"
 }
