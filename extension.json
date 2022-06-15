@@ -14,13 +14,13 @@
 		"MediaWiki": ">= 1.38.0"
 	},
 	"config": {
-		"PhonosTTSBackend": {
-			"value": "example",
+		"PhonosEngine": {
+			"value": "espeak",
 			"description": "Backend TTS provider to use"
 		}
 	},
 	"MessagesDirs": {
-		"Phonos": [ "i18n" ]
+		"Phonos": [ "i18n", "i18n/api" ]
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "modules",
@@ -56,5 +56,16 @@
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\Phonos\\": "includes/"
-	}
+	},
+	"APIModules": {
+		"phonos": {
+			"class": "MediaWiki\\Extension\\Phonos\\PhonosApi",
+			"services": [
+				"Phonos.Engine"
+			]
+		}
+	},
+	"ServiceWiringFiles": [
+		"includes/ServiceWiring.php"
+	]
 }
