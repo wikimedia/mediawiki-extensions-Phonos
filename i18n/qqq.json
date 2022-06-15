@@ -3,5 +3,7 @@
 		"authors": []
 	},
 	"phonos": "The name of the extension",
-	"phonos-desc": "{{desc|name=Phonos|url=}}"
+	"phonos-desc": "{{desc|name=Phonos|url=https://www.mediawiki.org/wiki/Extension:Phonos}}",
+	"phonos-tracking-category": "{{tracking category name}}\nName of [[mw:Help:Tracking categories|tracking category]] to list pages which use the Phonos parser function.",
+	"phonos-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|phonos-tracking-category}} tracking category."
 }

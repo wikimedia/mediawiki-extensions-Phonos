@@ -63,6 +63,8 @@ class Phonos implements ParserFirstCallInitHook {
 			);
 		}
 
+		$parser->addTrackingCategory( 'phonos-tracking-category' );
+
 		return $html;
 	}
 
