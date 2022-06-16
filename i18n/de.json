@@ -2,5 +2,7 @@
 	"@metadata": {
 		"authors": []
 	},
-	"phonos-desc": "Bereitstellung von Text-to-Speech-Funktionen für eine Reihe von Sprachen"
+	"phonos-desc": "Bereitstellung von Text-to-Speech-Funktionen für eine Reihe von Sprachen",
+	"phonos-tracking-category": "Seiten, die Phonos verwenden",
+	"phonos-tracking-category-desc": "Diese Seiten verwenden die Erweiterung [[:mw:Extension:Phonos|Phonos]]."
 }
