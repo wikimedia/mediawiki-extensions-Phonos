@@ -4,5 +4,8 @@
 			"Bjankuloski06"
 		]
 	},
-	"phonos-desc": "Дава можност за гласовен читач на текст за разни јазици"
+	"phonos": "Фонос",
+	"phonos-desc": "Дава можност за гласовен читач на текст за разни јазици",
+	"phonos-tracking-category": "Страници со Фонос",
+	"phonos-tracking-category-desc": "Страницата го користи додатокот [[:mw:Extension:Phonos|Фонос]]."
 }
