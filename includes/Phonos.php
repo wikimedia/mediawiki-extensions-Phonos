@@ -23,7 +23,7 @@ class Phonos implements ParserFirstCallInitHook {
 
 	/**
 	 * Convert phonos magic word to HTML
-	 * {{#phonos: word=hello | ipa=/həˈləʊ/ | type=ipa | lang=en}}
+	 * {{#phonos: text=hello | ipa=/həˈləʊ/ | type=ipa | lang=en}}
 	 * @todo Error handling for missing required parameters
 	 * @param Parser $parser
 	 * @return string
@@ -36,7 +36,7 @@ class Phonos implements ParserFirstCallInitHook {
 		$defaultOptions = [
 			'lang' => $parser->getContentLanguage()->getCode(),
 			'type' => 'ipa',
-			'word' => '',
+			'text' => '',
 		];
 		$suppliedOptions = self::extractOptions( array_slice( func_get_args(), 1 ) );
 		$options = array_merge( $defaultOptions, $suppliedOptions );
@@ -54,10 +54,9 @@ class Phonos implements ParserFirstCallInitHook {
 				// For now, default to IPA
 				$html = Html::element( 'span', [
 					'class' => 'ext-phonos',
-					'data-phonos-lang' => $options['lang'],
-					'data-ssml-sub-alias' => $options['word'],
-					'data-ssml-phoneme-alphabet' => 'ipa',
-					'data-ssml-phoneme-ph' => $options['ipa']
+					'data-phonos-ipa' => $options['ipa'],
+					'data-phonos-text' => $options['text'],
+					'data-phonos-lang' => $options['lang']
 				],
 				$options['ipa']
 			);
