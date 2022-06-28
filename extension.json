@@ -17,6 +17,10 @@
 		"PhonosEngine": {
 			"value": "espeak",
 			"description": "Backend TTS provider to use"
+		},
+		"PhonosApiEndpointLarynx": {
+			"value": "https://larynx-tts.wmcloud.org/api/tts",
+			"description": "API endpoint for the Larynx engine"
 		}
 	},
 	"MessagesDirs": {
