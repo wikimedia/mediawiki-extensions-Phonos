@@ -4,7 +4,7 @@
 		]
 	},
 	"apihelp-phonos-summary": "Render IPA to audio.",
-	"apihelp-phonos-param-ipa": "The IPA phenome to render.",
+	"apihelp-phonos-param-ipa": "The IPA phoneme to render.",
 	"apihelp-phonos-param-text": "The human-readable text, as a fallback.",
 	"apihelp-phonos-param-lang": "The language that the word should be pronounced in.",
 	"apihelp-phonos-example-1": "Get the pronunciation of 'hello' in English."
