@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\Phonos\Engine;
 
 use Config;
-use ConfigException;
 use DOMDocument;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
@@ -22,13 +21,7 @@ class LarynxEngine implements EngineInterface {
 	 */
 	public function __construct( HttpRequestFactory $requestFactory, Config $config ) {
 		$this->requestFactory = $requestFactory;
-
-		$configName = 'PhonosApiEndpointLarynx';
-		if ( $config->has( $configName ) ) {
-			$this->apiEndpoint = $config->get( $configName );
-		} else {
-			throw new ConfigException( "$configName must be set for the LarynxEngine" );
-		}
+		$this->apiEndpoint = $config->get( 'PhonosApiEndpointLarynx' );
 	}
 
 	/**
