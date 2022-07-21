@@ -1,5 +1,3 @@
-/* eslint-env es6 */
-/* eslint strict:0 */
 ( function () {
 	function init( $content ) {
 		$content.find( '.ext-phonos' ).each( function () {

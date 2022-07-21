@@ -40,6 +40,7 @@
 	},
 	"ResourceModules": {
 		"ext.phonos": {
+			"es6": true,
 			"scripts": [
 				"ext.phonos.js"
 			],
