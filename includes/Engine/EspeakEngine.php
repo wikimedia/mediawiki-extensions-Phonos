@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\Phonos\Engine;
 
 use DOMDocument;
-use MediaWiki\Shell\Shell;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @link http://espeak.sourceforge.net/
@@ -23,18 +23,24 @@ class EspeakEngine implements EngineInterface {
 			// Write speech output to stdout
 			'--stdout',
 		];
-		$cmd = Shell::command( $cmdArgs );
-		// Espeak has its own syntax for phonemes: http://espeak.sourceforge.net/phonemes.html
-		// It is supposed to also support SSML, but seems to ignore the phoneme 'ph' attribute
-		// and just uses the text.
-		$cmd->input( $this->getSsml( $ipa, $text, $lang ) );
-		$cmd->disableNetwork();
-		$out = $cmd->execute();
+		$cmd = MediaWikiServices::getInstance()->getShellCommandFactory()
+			->createBoxed( 'phonos' )
+			->disableNetwork()
+			->firejailDefaultSeccomp()
+			->routeName( 'phonos-espeak' );
+		$cmd->params( $cmdArgs )
+			->stdin( $this->getSsml( $ipa, $text, $lang ) );
+		$out = $cmd->params( $cmdArgs )
+			->execute();
 		return $out->getStdout();
 	}
 
 	/**
 	 * @inheritDoc
+	 *
+	 * Espeak has its own syntax for phonemes: http://espeak.sourceforge.net/phonemes.html
+	 * It is supposed to also support SSML, but seems to ignore the phoneme 'ph' attribute
+	 * and just uses the text.
 	 */
 	public function getSsml( string $ipa, string $text, string $lang ): string {
 		$ssmlDoc = new DOMDocument( '1.0' );
