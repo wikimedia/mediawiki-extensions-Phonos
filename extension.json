@@ -21,6 +21,14 @@
 		"PhonosApiEndpointLarynx": {
 			"value": "https://larynx-tts.wmcloud.org/api/tts",
 			"description": "API endpoint for the Larynx engine"
+		},
+		"PhonosApiEndpointGoogle": {
+			"value": "https://texttospeech.googleapis.com/v1/text:synthesize",
+			"description": "API endpoint for the Google engine"
+		},
+		"PhonosApiKeyGoogle": {
+			"value": "",
+			"description": "API key for the Google Cloud Text-to-speech API"
 		}
 	},
 	"MessagesDirs": {
