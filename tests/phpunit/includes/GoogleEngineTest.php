@@ -21,9 +21,8 @@ class GoogleEngineTest extends TestCase {
 			$services->getMainConfig()
 		);
 		$this->assertSame(
-			"<?xml version=\"1.0\"?>\n<speak><lang xml:lang=\"en\"><phoneme alphabet=\"ipa\" " .
-				"ph=\"h&#x259;&#x2C8;v&#xE6;n&#x259;\">Havana</phoneme></lang></speak>\n",
-			$engine->getSsml( 'həˈvænə', 'Havana', 'en' )
+			"<speak><phoneme alphabet=\"ipa\" ph=\"h&#x259;&#x2C8;v&#xE6;n&#x259;\">Havana</phoneme></speak>",
+			$engine->getSsml( '/həˈvænə/', 'Havana', 'en' )
 		);
 	}
 

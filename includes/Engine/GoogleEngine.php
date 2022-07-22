@@ -69,21 +69,22 @@ class GoogleEngine implements EngineInterface {
 	 * @inheritDoc
 	 */
 	public function getSsml( string $ipa, string $text, string $lang ): string {
-		$ssmlDoc = new DOMDocument( '1.0' );
+		$ssmlDoc = new DOMDocument();
 
 		$speakNode = $ssmlDoc->createElement( 'speak' );
 		$ssmlDoc->appendChild( $speakNode );
 
-		$langNode = $ssmlDoc->createElement( 'lang' );
-		$langNode->setAttribute( 'xml:lang', $lang );
-
 		$phonemeNode = $ssmlDoc->createElement( 'phoneme', $text );
 		$phonemeNode->setAttribute( 'alphabet', 'ipa' );
+
+		// Trim slashes from IPA; see T313497
+		$ipa = trim( $ipa, '/' );
 		$phonemeNode->setAttribute( 'ph', $ipa );
 
-		$langNode->appendChild( $phonemeNode );
-		$speakNode->appendChild( $langNode );
+		$speakNode->appendChild( $phonemeNode );
 
-		return $ssmlDoc->saveXML();
+		// Return the documentElement (omitting the <?xml> tag) since it is not
+		// needed and Google charges by the number of characters in the payload.
+		return $ssmlDoc->saveXML( $ssmlDoc->documentElement );
 	}
 }
