@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lakejason0"
+		]
+	},
+	"phonos-desc": "为多种语言提供文本转语音功能",
+	"phonos-tracking-category": "使用Phonos的页面",
+	"phonos-tracking-category-desc": "页面使用了[[:mw:Extension:Phonos|Phonos]]扩展。"
+}
