@@ -3,7 +3,9 @@ namespace MediaWiki\Extension\Phonos;
 
 use Html;
 use MediaWiki\Hook\ParserFirstCallInitHook;
+use MediaWiki\Linker\LinkRenderer;
 use Parser;
+use RepoGroup;
 
 /**
  * Phonos extension
@@ -13,6 +15,20 @@ use Parser;
  * @license GPL-2.0-or-later
  */
 class Phonos implements ParserFirstCallInitHook {
+
+	/** @var RepoGroup */
+	protected $repoGroup;
+
+	/** @var LinkRenderer */
+	protected $linkRenderer;
+
+	/**
+	 * @param RepoGroup $repoGroup
+	 */
+	public function __construct( RepoGroup $repoGroup ) {
+		$this->repoGroup = $repoGroup;
+	}
+
 	/**
 	 * Bind the renderPhonos function to the phonos magic word
 	 * @param Parser $parser
@@ -23,20 +39,20 @@ class Phonos implements ParserFirstCallInitHook {
 
 	/**
 	 * Convert phonos magic word to HTML
-	 * {{#phonos: text=hello | ipa=/həˈləʊ/ | type=ipa | lang=en}}
+	 * {{#phonos: text=hello | ipa=/həˈləʊ/ | audio=foo.ogg | lang=en}}
 	 * @todo Error handling for missing required parameters
 	 * @param Parser $parser
 	 * @return string
 	 */
-	public function renderPhonos( Parser $parser ) {
+	public function renderPhonos( Parser $parser ): string {
 		// Add the CSS and JS
 		$parser->getOutput()->addModules( [ 'ext.phonos' ] );
 
 		// Get the named parameters and merge with defaults.
 		$defaultOptions = [
 			'lang' => $parser->getContentLanguage()->getCode(),
-			'type' => 'ipa',
 			'text' => '',
+			'file' => '',
 		];
 		$suppliedOptions = self::extractOptions( array_slice( func_get_args(), 1 ) );
 		$options = array_merge( $defaultOptions, $suppliedOptions );
@@ -46,25 +62,31 @@ class Phonos implements ParserFirstCallInitHook {
 			return '';
 		}
 
-		// Using a switch() so that future types can be added
-		switch ( $options['type'] ) {
-			case 'ipa':
-				// Fall through
-			default:
-				// For now, default to IPA
-				$html = Html::element( 'span', [
-					'class' => 'ext-phonos',
-					'data-phonos-ipa' => $options['ipa'],
-					'data-phonos-text' => $options['text'],
-					'data-phonos-lang' => $options['lang']
-				],
-				$options['ipa']
-			);
+		$afterSpan = '';
+		$spanAttrs = [
+			'class' => 'ext-phonos-ipa',
+			'data-phonos-ipa' => $options['ipa'],
+			'data-phonos-text' => $options['text'],
+			'data-phonos-lang' => $options['lang'],
+		];
+
+		// If an audio file has been provided, fetch the upload URL.
+		if ( $options['file'] ) {
+			$file = $this->repoGroup->findFile( $options['file'] );
+			if ( $file && $file->getMediaType() === MEDIATYPE_AUDIO ) {
+				$spanAttrs['data-phonos-file'] = $file->getUrl();
+			} else {
+				// TODO: to be handled better somehow, but this at least makes
+				//   it clear to the user that the file is missing (or not playable),
+				//   and still allows the IPA to still be rendered by the Engine.
+				$afterSpan = '&nbsp;[[' . $options['file'] . ']]';
+			}
 		}
 
 		$parser->addTrackingCategory( 'phonos-tracking-category' );
 
-		return $html;
+		$innerSpan = Html::element( 'span', $spanAttrs, $options['ipa'] );
+		return Html::rawElement( 'span', [ 'class' => 'ext-phonos' ], $innerSpan . $afterSpan );
 	}
 
 	/**
@@ -75,7 +97,7 @@ class Phonos implements ParserFirstCallInitHook {
 	 * @param array $options
 	 * @return array $results
 	 */
-	private function extractOptions( array $options ) {
+	private function extractOptions( array $options ): array {
 		$results = [];
 		foreach ( $options as $option ) {
 			$pair = array_map( 'trim', explode( '=', $option, 2 ) );

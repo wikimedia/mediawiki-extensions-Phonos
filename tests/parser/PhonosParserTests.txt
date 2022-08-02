@@ -14,6 +14,15 @@ Only the ipa parameter (with a quotation mark)
 !! wikitext
 Phonos{{#phonos:ipa=həˈləʊ"}}END
 !! html
-<p>Phonos<span class="ext-phonos" data-phonos-ipa="həˈləʊ&quot;" data-phonos-text="" data-phonos-lang="en">həˈləʊ"</span>END
+<p>Phonos<span class="ext-phonos"><span class="ext-phonos-ipa" data-phonos-ipa="həˈləʊ&quot;" data-phonos-text="" data-phonos-lang="en">həˈləʊ"</span></span>END
+</p>
+!! end
+
+!! test
+Given the ipa, file and text parameters
+!! wikitext
+Phonos{{#phonos:ipa=hɛˈloʊ|text=Hello|file=does-not-exist.ogg}}END
+!! html
+<p>Phonos<span class="ext-phonos"><span class="ext-phonos-ipa" data-phonos-ipa="hɛˈloʊ" data-phonos-text="Hello" data-phonos-lang="en">hɛˈloʊ</span>&#160;<a href="/index.php?title=Does-not-exist.ogg&amp;action=edit&amp;redlink=1" class="new" title="Does-not-exist.ogg (page does not exist)">does-not-exist.ogg</a></span>END
 </p>
 !! end

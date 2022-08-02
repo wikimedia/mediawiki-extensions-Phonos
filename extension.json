@@ -64,7 +64,8 @@
 	},
 	"HookHandlers": {
 		"PhonosHooks": {
-			"class": "MediaWiki\\Extension\\Phonos\\Phonos"
+			"class": "MediaWiki\\Extension\\Phonos\\Phonos",
+			"services": [ "RepoGroup" ]
 		}
 	},
 	"AutoloadNamespaces": {
