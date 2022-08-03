@@ -18,6 +18,9 @@ class GoogleEngine implements EngineInterface {
 	/** @var string */
 	protected $apiKey;
 
+	/** @var string */
+	protected $apiProxy;
+
 	/**
 	 * @param HttpRequestFactory $requestFactory
 	 * @param Config $config
@@ -26,6 +29,7 @@ class GoogleEngine implements EngineInterface {
 		$this->requestFactory = $requestFactory;
 		$this->apiEndpoint = $config->get( 'PhonosApiEndpointGoogle' );
 		$this->apiKey = $config->get( 'PhonosApiKeyGoogle' );
+		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 	}
 
 	/**
@@ -44,12 +48,18 @@ class GoogleEngine implements EngineInterface {
 				'languageCode' => $lang,
 			],
 		];
+		$options = [
+			'method' => 'POST',
+			'postData' => json_encode( $postData )
+		];
+
+		if ( $this->apiProxy ) {
+			$options['proxy'] = $this->apiProxy;
+		}
+
 		$request = $this->requestFactory->create(
 			$this->apiEndpoint . '?key=' . $this->apiKey,
-			[
-				'method' => 'POST',
-				'postData' => json_encode( $postData ),
-			],
+			$options,
 			__METHOD__
 		);
 		$request->setHeader( 'Content-Type', 'application/json; charset=utf-8' );

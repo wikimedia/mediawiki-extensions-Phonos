@@ -29,6 +29,10 @@
 		"PhonosApiKeyGoogle": {
 			"value": "",
 			"description": "API key for the Google Cloud Text-to-speech API"
+		},
+		"PhonosApiProxy": {
+			"value": false,
+			"description": "HTTP proxy to use for API requests"
 		}
 	},
 	"MessagesDirs": {

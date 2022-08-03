@@ -15,6 +15,9 @@ class LarynxEngine implements EngineInterface {
 	/** @var string */
 	protected $apiEndpoint;
 
+	/** @var string */
+	protected $apiProxy;
+
 	/**
 	 * @param HttpRequestFactory $requestFactory
 	 * @param Config $config
@@ -22,6 +25,7 @@ class LarynxEngine implements EngineInterface {
 	public function __construct( HttpRequestFactory $requestFactory, Config $config ) {
 		$this->requestFactory = $requestFactory;
 		$this->apiEndpoint = $config->get( 'PhonosApiEndpointLarynx' );
+		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 	}
 
 	/**
@@ -36,7 +40,19 @@ class LarynxEngine implements EngineInterface {
 			'voice' => 'en-us/blizzard_lessac-glow_tts',
 			'text' => $ssml,
 		] );
-		$request = $this->requestFactory->create( $url, [ 'method' => 'GET' ], __METHOD__ );
+		$options = [
+			'method' => 'GET'
+		];
+
+		if ( $this->apiProxy ) {
+			$options['proxy'] = $this->apiProxy;
+		}
+
+		$request = $this->requestFactory->create(
+			$url,
+			$options,
+			__METHOD__
+		);
 		$status = $request->execute();
 
 		if ( !$status->isOK() ) {
