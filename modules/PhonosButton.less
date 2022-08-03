@@ -1,0 +1,41 @@
+@import 'resources/lib/ooui/wikimedia-ui-base.less';
+
+// Make the button look better as an inline text component.
+// We have to override a bunch of OOUI button styles, but it's worth it because
+// we also *don't* have to add a bunch of button behaviour and styles ourselves.
+.ext-phonos-PhonosButton {
+	margin: 0;
+	vertical-align: bottom;
+
+	&.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button {
+		padding: 0 6px;
+		min-height: 0;
+		min-width: 0;
+		user-select: auto;
+
+		&:hover {
+			background-color: @wmui-color-accent90;
+		}
+
+		&:focus {
+			box-shadow: none;
+			border-color: transparent;
+		}
+
+		.oo-ui-iconElement-icon {
+			position: relative;
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			min-width: 16px;
+			min-height: 16px;
+			margin-right: 8px;
+			left: 0;
+			vertical-align: inherit;
+		}
+
+		.oo-ui-labelElement-label {
+			font-weight: normal;
+		}
+	}
+}

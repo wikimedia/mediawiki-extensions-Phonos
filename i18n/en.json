@@ -5,5 +5,6 @@
 	"phonos": "Phonos",
 	"phonos-desc": "Provide text-to-speech functionality for a range of languages",
 	"phonos-tracking-category": "Pages that use Phonos",
-	"phonos-tracking-category-desc": "The page uses the [[:mw:Extension:Phonos|Phonos]] extension."
+	"phonos-tracking-category-desc": "The page uses the [[:mw:Extension:Phonos|Phonos]] extension.",
+	"phonos-file-not-found": "Audio file \"$1\" not found. Please try again."
 }

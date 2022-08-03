@@ -45,18 +45,23 @@
 	"ResourceModules": {
 		"ext.phonos": {
 			"es6": true,
-			"scripts": [
-				"ext.phonos.js"
+			"packageFiles": [
+				"ext.phonos.js",
+				"PhonosButton.js"
 			],
 			"styles": [
-				"ext.phonos.css"
+				"ext.phonos.css",
+				"PhonosButton.less"
 			],
 			"messages": [
 				"phonos",
-				"phonos-desc"
+				"phonos-desc",
+				"phonos-file-not-found"
 			],
 			"dependencies": [
-				"mediawiki.api"
+				"mediawiki.api",
+				"oojs-ui-widgets",
+				"oojs-ui.styles.icons-media"
 			]
 		}
 	},

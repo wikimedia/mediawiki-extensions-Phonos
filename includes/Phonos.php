@@ -62,9 +62,8 @@ class Phonos implements ParserFirstCallInitHook {
 			return '';
 		}
 
-		$afterSpan = '';
 		$spanAttrs = [
-			'class' => 'ext-phonos-ipa',
+			'class' => 'ext-phonos',
 			'data-phonos-ipa' => $options['ipa'],
 			'data-phonos-text' => $options['text'],
 			'data-phonos-lang' => $options['lang'],
@@ -74,19 +73,17 @@ class Phonos implements ParserFirstCallInitHook {
 		if ( $options['file'] ) {
 			$file = $this->repoGroup->findFile( $options['file'] );
 			if ( $file && $file->getMediaType() === MEDIATYPE_AUDIO ) {
-				$spanAttrs['data-phonos-file'] = $file->getUrl();
+				$spanAttrs['data-phonos-file'] = $file->getTitle()->getText();
+				$spanAttrs['data-phonos-src'] = $file->getUrl();
 			} else {
-				// TODO: to be handled better somehow, but this at least makes
-				//   it clear to the user that the file is missing (or not playable),
-				//   and still allows the IPA to still be rendered by the Engine.
-				$afterSpan = '&nbsp;[[File:' . $options['file'] . ']]';
+				$spanAttrs['data-phonos-file'] = $options['file'];
+				$spanAttrs['data-phonos-error'] = 'phonos-file-not-found';
 			}
 		}
 
 		$parser->addTrackingCategory( 'phonos-tracking-category' );
 
-		$innerSpan = Html::element( 'span', $spanAttrs, $options['ipa'] );
-		return Html::rawElement( 'span', [ 'class' => 'ext-phonos' ], $innerSpan . $afterSpan );
+		return Html::element( 'span', $spanAttrs, $options['ipa'] );
 	}
 
 	/**
