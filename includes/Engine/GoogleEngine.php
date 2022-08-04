@@ -30,6 +30,7 @@ class GoogleEngine implements EngineInterface {
 
 	/**
 	 * @inheritDoc
+	 * @codeCoverageIgnore
 	 */
 	public function getAudioData( string $ipa, string $text, string $lang ): string {
 		$postData = [

@@ -26,6 +26,7 @@ class LarynxEngine implements EngineInterface {
 
 	/**
 	 * @inheritDoc
+	 * @codeCoverageIgnore
 	 */
 	public function getAudioData( string $ipa, string $text, string $lang ): string {
 		$ssml = trim( $this->getSsml( $ipa, $text, $lang ) );
