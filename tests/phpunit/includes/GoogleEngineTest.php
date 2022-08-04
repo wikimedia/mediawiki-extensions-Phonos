@@ -8,12 +8,10 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group Phonos
+ * @covers \MediaWiki\Extension\Phonos\Engine\GoogleEngine
  */
 class GoogleEngineTest extends TestCase {
 
-	/**
-	 * @covers GoogleEngine::getSsml
-	 */
 	public function testGetSsml(): void {
 		$services = MediaWikiServices::getInstance();
 		$engine = new GoogleEngine(

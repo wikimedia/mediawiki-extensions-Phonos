@@ -7,13 +7,11 @@ use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @covers \MediaWiki\Extension\Phonos\Engine\LarynxEngine
  * @group Phonos
  */
 class LarynxEngineTest extends TestCase {
 
-	/**
-	 * @covers \MediaWiki\Extension\Phonos\Engine\LarynxEngine::getSsml
-	 */
 	public function testGetSsml(): void {
 		$services = MediaWikiServices::getInstance();
 		$engine = new LarynxEngine(
