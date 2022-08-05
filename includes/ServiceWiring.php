@@ -12,6 +12,10 @@ return [
 		if ( !class_exists( $className ) ) {
 			throw new ConfigException( "$engineName is not a valid engine" );
 		}
-		return new $className( $services->getHttpRequestFactory(), $config );
+		return new $className(
+			$services->getHttpRequestFactory(),
+			$services->getFileBackendGroup(),
+			$config
+		);
 	},
 ];

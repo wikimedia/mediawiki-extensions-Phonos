@@ -4,26 +4,26 @@ namespace MediaWiki\Extension\Phonos\Engine;
 
 use Config;
 use DOMDocument;
+use FileBackendGroup;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
 
-class LarynxEngine implements EngineInterface {
-
-	/** @var HttpRequestFactory */
-	protected $requestFactory;
+class LarynxEngine extends Engine {
 
 	/** @var string */
 	protected $apiEndpoint;
 
-	/** @var string */
-	protected $apiProxy;
-
 	/**
 	 * @param HttpRequestFactory $requestFactory
+	 * @param FileBackendGroup $fileBackendGroup
 	 * @param Config $config
 	 */
-	public function __construct( HttpRequestFactory $requestFactory, Config $config ) {
-		$this->requestFactory = $requestFactory;
+	public function __construct(
+		HttpRequestFactory $requestFactory,
+		FileBackendGroup $fileBackendGroup,
+		Config $config
+	) {
+		parent::__construct( $requestFactory, $fileBackendGroup, $config );
 		$this->apiEndpoint = $config->get( 'PhonosApiEndpointLarynx' );
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 	}
@@ -33,6 +33,11 @@ class LarynxEngine implements EngineInterface {
 	 * @codeCoverageIgnore
 	 */
 	public function getAudioData( string $ipa, string $text, string $lang ): string {
+		$cachedAudio = $this->getCachedAudio( $ipa, $text, $lang );
+		if ( $cachedAudio ) {
+			return $cachedAudio;
+		}
+
 		$ssml = trim( $this->getSsml( $ipa, $text, $lang ) );
 		$url = $this->apiEndpoint . '?' . http_build_query( [
 			'ssml' => true,
@@ -61,6 +66,8 @@ class LarynxEngine implements EngineInterface {
 				'Unable to retrieve audio using the Larynx engine: ' . $error
 			);
 		}
+
+		$this->cacheAudio( $ipa, $text, $lang, $request->getContent() );
 
 		return $request->getContent();
 	}

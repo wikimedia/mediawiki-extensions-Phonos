@@ -4,13 +4,11 @@ namespace MediaWiki\Extension\Phonos\Engine;
 
 use Config;
 use DOMDocument;
+use FileBackendGroup;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
 
-class GoogleEngine implements EngineInterface {
-
-	/** @var HttpRequestFactory */
-	protected $requestFactory;
+class GoogleEngine extends Engine {
 
 	/** @var string */
 	protected $apiEndpoint;
@@ -18,18 +16,19 @@ class GoogleEngine implements EngineInterface {
 	/** @var string */
 	protected $apiKey;
 
-	/** @var string */
-	protected $apiProxy;
-
 	/**
 	 * @param HttpRequestFactory $requestFactory
+	 * @param FileBackendGroup $fileBackendGroup
 	 * @param Config $config
 	 */
-	public function __construct( HttpRequestFactory $requestFactory, Config $config ) {
-		$this->requestFactory = $requestFactory;
+	public function __construct(
+		HttpRequestFactory $requestFactory,
+		FileBackendGroup $fileBackendGroup,
+		Config $config
+	) {
+		parent::__construct( $requestFactory, $fileBackendGroup, $config );
 		$this->apiEndpoint = $config->get( 'PhonosApiEndpointGoogle' );
 		$this->apiKey = $config->get( 'PhonosApiKeyGoogle' );
-		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 	}
 
 	/**
@@ -37,6 +36,11 @@ class GoogleEngine implements EngineInterface {
 	 * @codeCoverageIgnore
 	 */
 	public function getAudioData( string $ipa, string $text, string $lang ): string {
+		$cachedAudio = $this->getCachedAudio( $ipa, $text, $lang );
+		if ( $cachedAudio ) {
+			return $cachedAudio;
+		}
+
 		$postData = [
 			'audioConfig' => [
 				'audioEncoding' => 'LINEAR16',
@@ -73,7 +77,10 @@ class GoogleEngine implements EngineInterface {
 			);
 		}
 
-		return base64_decode( json_decode( $request->getContent() )->audioContent );
+		$audio = base64_decode( json_decode( $request->getContent() )->audioContent );
+		$this->cacheAudio( $ipa, $text, $lang, $audio );
+
+		return $audio;
 	}
 
 	/**

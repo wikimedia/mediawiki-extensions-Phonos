@@ -8,13 +8,18 @@ use MediaWiki\MediaWikiServices;
 /**
  * @link http://espeak.sourceforge.net/
  */
-class EspeakEngine implements EngineInterface {
+class EspeakEngine extends Engine {
 
 	/**
 	 * @inheritDoc
 	 * @codeCoverageIgnore
 	 */
 	public function getAudioData( string $ipa, string $text, string $lang ): string {
+		$cachedAudio = $this->getCachedAudio( $ipa, $text, $lang );
+		if ( $cachedAudio ) {
+			return $cachedAudio;
+		}
+
 		$cmdArgs = [
 			'espeak',
 			// Read text input from stdin instead of a file
@@ -33,6 +38,9 @@ class EspeakEngine implements EngineInterface {
 			->stdin( $this->getSsml( $ipa, $text, $lang ) );
 		$out = $cmd->params( $cmdArgs )
 			->execute();
+
+		$this->cacheAudio( $ipa, $text, $lang, $out->getStdout() );
+
 		return $out->getStdout();
 	}
 

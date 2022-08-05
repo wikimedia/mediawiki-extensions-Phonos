@@ -33,6 +33,14 @@
 		"PhonosApiProxy": {
 			"value": false,
 			"description": "HTTP proxy to use for API requests"
+		},
+		"PhonosFileBackend": {
+			"value": false,
+			"description": "Which backend to use for file caching"
+		},
+		"PhonosFileBackendDirectory": {
+			"value": false,
+			"description": "Custom directory to store cached Phonos audio"
 		}
 	},
 	"MessagesDirs": {

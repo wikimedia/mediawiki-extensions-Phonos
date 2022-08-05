@@ -14,7 +14,11 @@ class EspeakEngineTest extends TestCase {
 
 	public function testGetSsml(): void {
 		$services = MediaWikiServices::getInstance();
-		$engine = new EspeakEngine();
+		$engine = new EspeakEngine(
+			$services->getHttpRequestFactory(),
+			$services->getFileBackendGroup(),
+			$services->getMainConfig()
+		);
 		$this->assertSame(
 			"<?xml version=\"1.0\"?>\n" .
 				"<speak xmlns=\"http://www.w3.org/2001/10/synthesis\" version=\"1.1\" xml:lang=\"en\">" .

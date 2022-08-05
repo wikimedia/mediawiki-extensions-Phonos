@@ -16,6 +16,7 @@ class LarynxEngineTest extends TestCase {
 		$services = MediaWikiServices::getInstance();
 		$engine = new LarynxEngine(
 			$services->getHttpRequestFactory(),
+			$services->getFileBackendGroup(),
 			$services->getMainConfig()
 		);
 		$this->assertSame(
