@@ -39,7 +39,7 @@ class Phonos implements ParserFirstCallInitHook {
 
 	/**
 	 * Convert phonos magic word to HTML
-	 * {{#phonos: text=hello | ipa=/həˈləʊ/ | audio=foo.ogg | lang=en}}
+	 * {{#phonos: text=hello | ipa=/həˈləʊ/ | file=foo.ogg | lang=en}}
 	 * @todo Error handling for missing required parameters
 	 * @param Parser $parser
 	 * @return string
@@ -79,7 +79,7 @@ class Phonos implements ParserFirstCallInitHook {
 				// TODO: to be handled better somehow, but this at least makes
 				//   it clear to the user that the file is missing (or not playable),
 				//   and still allows the IPA to still be rendered by the Engine.
-				$afterSpan = '&nbsp;[[' . $options['file'] . ']]';
+				$afterSpan = '&nbsp;[[File:' . $options['file'] . ']]';
 			}
 		}
 

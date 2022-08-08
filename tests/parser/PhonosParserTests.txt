@@ -23,6 +23,6 @@ Given the ipa, file and text parameters
 !! wikitext
 Phonos{{#phonos:ipa=hɛˈloʊ|text=Hello|file=does-not-exist.ogg}}END
 !! html
-<p>Phonos<span class="ext-phonos"><span class="ext-phonos-ipa" data-phonos-ipa="hɛˈloʊ" data-phonos-text="Hello" data-phonos-lang="en">hɛˈloʊ</span>&#160;<a href="/index.php?title=Does-not-exist.ogg&amp;action=edit&amp;redlink=1" class="new" title="Does-not-exist.ogg (page does not exist)">does-not-exist.ogg</a></span>END
+<p>Phonos<span class="ext-phonos"><span class="ext-phonos-ipa" data-phonos-ipa="hɛˈloʊ" data-phonos-text="Hello" data-phonos-lang="en">hɛˈloʊ</span>&#160;<a href="/index.php?title=Special:Upload&amp;wpDestFile=Does-not-exist.ogg" class="new" title="File:Does-not-exist.ogg">File:Does-not-exist.ogg</a></span>END
 </p>
 !! end
