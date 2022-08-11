@@ -6,5 +6,6 @@
 	},
 	"phonos-desc": "Bereitstellung von Text-to-Speech-Funktionen für eine Reihe von Sprachen",
 	"phonos-tracking-category": "Seiten, die Phonos verwenden",
-	"phonos-tracking-category-desc": "Diese Seite verwendet die Erweiterung [[:mw:Extension:Phonos|Phonos]]."
+	"phonos-tracking-category-desc": "Diese Seite verwendet die Erweiterung [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-file-not-found": "Audiodatei „$1“ nicht gefunden. Bitte versuche es erneut."
 }
