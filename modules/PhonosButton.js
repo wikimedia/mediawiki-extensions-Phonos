@@ -31,8 +31,8 @@ function PhonosButton( phonosData ) {
 	// Create a popup for error messages.
 	this.popup = null;
 	if ( this.phonosData.errorMsg === 'phonos-file-not-found' ) {
-		// @todo Handle other error messages. The idea is that the errorMsg
-		this.setFlags( [ 'destructive' ] );
+		// @todo Handle other error messages.
+		this.setDisabled( true );
 		this.setIcon( 'volumeOff' );
 		const error = mw.message( 'phonos-file-not-found', [ this.phonosData.file ] ).parse();
 		this.popup = new OO.ui.PopupWidget( {
