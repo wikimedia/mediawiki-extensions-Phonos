@@ -90,8 +90,12 @@ class GoogleEngine implements EngineInterface {
 
 		// Trim slashes from IPA; see T313497
 		$ipa = trim( $ipa, '/' );
-		$phonemeNode->setAttribute( 'ph', $ipa );
+		// Replace apostrophes with U+02C8; see T313711
+		$ipa = str_replace( "'", "ˈ", $ipa );
+		// Google doesn't like the parentheses, which we understand aren't important anyway.
+		$ipa = str_replace( [ '(', ')' ], '', $ipa );
 
+		$phonemeNode->setAttribute( 'ph', $ipa );
 		$speakNode->appendChild( $phonemeNode );
 
 		// Return the documentElement (omitting the <?xml> tag) since it is not

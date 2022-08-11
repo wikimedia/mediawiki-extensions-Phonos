@@ -19,8 +19,10 @@ class GoogleEngineTest extends TestCase {
 			$services->getMainConfig()
 		);
 		$this->assertSame(
-			"<speak><phoneme alphabet=\"ipa\" ph=\"h&#x259;&#x2C8;v&#xE6;n&#x259;\">Havana</phoneme></speak>",
-			$engine->getSsml( '/həˈvænə/', 'Havana', 'en' )
+			"<speak><phoneme alphabet=\"ipa\" " .
+				"ph=\"&#x2C8;h&#x28C;s&#x259;n &#x2C8;m&#x26A;nh&#x251;&#x2D0;d&#x292;\">" .
+				"Hasan Minhaj</phoneme></speak>",
+			$engine->getSsml( "/'hʌsən 'mɪnhɑː(d)ʒ/", 'Hasan Minhaj', 'en' )
 		);
 	}
 
