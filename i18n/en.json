@@ -17,5 +17,8 @@
 	"phonos-file-not-found": "Audio file \"$1\" not found.",
 	"phonos-file-not-audio": "File \"$1\" is not an audio file.",
 	"phonos-player-aria-description": "Listen to the IPA pronunciation of $1.",
-	"phonos-ipa-too-long": "IPA too long to render."
+	"phonos-ipa-too-long": "IPA too long to render.",
+	"phonos-wikibase-api-error": "Unable to retrieve entity from Wikibase: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Invalid entity or lexeme: $1",
+	"phonos-wikibase-not-found": "No audio found for Wikibase item: $1"
 }

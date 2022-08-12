@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\Phonos;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Extension\Phonos\Engine\Engine;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
+use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Linker\LinkRenderer;
 use OutputPage;
@@ -30,19 +31,23 @@ class Phonos implements ParserFirstCallInitHook {
 
 	/** @var StatsdDataFactoryInterface */
 	private $statsdDataFactory;
+	/** @var WikibaseEntityAndLexemeFetcher */
+	protected $wikibaseEntityAndLexemeFetcher;
 
 	/**
 	 * @param RepoGroup $repoGroup
 	 * @param Engine $engine
+	 * @param WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher
 	 * @param StatsdDataFactoryInterface $statsdDataFactory
 	 */
-	public function __construct(
-		RepoGroup $repoGroup,
+	public function __construct( RepoGroup $repoGroup,
 		Engine $engine,
+		WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher,
 		StatsdDataFactoryInterface $statsdDataFactory
 	) {
 		$this->repoGroup = $repoGroup;
 		$this->engine = $engine;
+		$this->wikibaseEntityAndLexemeFetcher = $wikibaseEntityAndLexemeFetcher;
 		$this->statsdDataFactory = $statsdDataFactory;
 	}
 
@@ -56,7 +61,7 @@ class Phonos implements ParserFirstCallInitHook {
 
 	/**
 	 * Convert phonos magic word to HTML
-	 * <phonos ipa="/həˈləʊ/" text="hello" file="foo.ogg" language="en">Hello!</phonos>
+	 * <phonos ipa="/həˈləʊ/" text="hello" file="foo.ogg" language="en" wikibase="Q23501">Hello!</phonos>
 	 *
 	 * @param string|null $label
 	 * @param array $args
@@ -75,6 +80,7 @@ class Phonos implements ParserFirstCallInitHook {
 			'file' => '',
 			'label' => $label ?: '',
 			'ipa' => '',
+			'wikibase' => '',
 		];
 		$options = array_merge( $defaultOptions, $args );
 
@@ -84,13 +90,13 @@ class Phonos implements ParserFirstCallInitHook {
 		}
 
 		$parser->addTrackingCategory( 'phonos-tracking-category' );
-
 		$buttonConfig = [
 			'label' => $label ?: $options['ipa'],
 			'data' => [
 				'ipa' => $options['ipa'],
 				'text' => $options['text'],
 				'lang' => $options['lang'],
+				'wikibase' => $options['wikibase']
 			],
 		];
 
@@ -115,6 +121,19 @@ class Phonos implements ParserFirstCallInitHook {
 					}
 				} else {
 					$buttonConfig['data']['error'] = 'phonos-file-not-found';
+				}
+			} elseif ( $options['wikibase'] ) {
+				// If a wikibase has been provided, fetch from Wikibase.
+				$phonosWikibaseAudio = $this->wikibaseEntityAndLexemeFetcher->fetchPhonosWikibaseAudio(
+					$options['wikibase'],
+					$options['text'],
+					$options['lang']
+				);
+
+				if ( $phonosWikibaseAudio ) {
+					$buttonConfig['href'] = $phonosWikibaseAudio->getCommonsAudioFileUrl();
+				} else {
+					throw new PhonosException( 'phonos-wikibase-not-found', [ $options['wikibase'] ] );
 				}
 			} else {
 				$isPersisted = $this->engine->isPersisted( $options['ipa'], $options['text'], $options['lang'] );
