@@ -16,6 +16,7 @@ class GoogleEngineTest extends TestCase {
 		$services = MediaWikiServices::getInstance();
 		$engine = new GoogleEngine(
 			$services->getHttpRequestFactory(),
+			$services->getShellCommandFactory(),
 			$services->getFileBackendGroup(),
 			$services->getMainConfig()
 		);

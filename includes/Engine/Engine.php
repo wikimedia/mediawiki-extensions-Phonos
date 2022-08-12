@@ -10,6 +10,7 @@ use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Shell\CommandFactory;
 use NullLockManager;
 use ReflectionClass;
 use Status;
@@ -26,25 +27,35 @@ abstract class Engine implements EngineInterface {
 	/** @var HttpRequestFactory */
 	protected $requestFactory;
 
+	/** @var CommandFactory */
+	protected $commandFactory;
+
 	/** @var FileBackend */
 	protected $fileBackend;
 
 	/** @var string */
 	protected $apiProxy;
 
+	/** @var string */
+	protected $lamePath;
+
 	/**
 	 * @param HttpRequestFactory $requestFactory
+	 * @param CommandFactory $commandFactory
 	 * @param FileBackendGroup $fileBackendGroup
 	 * @param Config $config
 	 */
 	public function __construct(
 		HttpRequestFactory $requestFactory,
+		CommandFactory $commandFactory,
 		FileBackendGroup $fileBackendGroup,
 		Config $config
 	) {
 		$this->requestFactory = $requestFactory;
+		$this->commandFactory = $commandFactory;
 		$this->fileBackend = self::getFileBackend( $fileBackendGroup, $config );
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
+		$this->lamePath = $config->get( 'PhonosLame' );
 	}
 
 	/**
@@ -128,6 +139,24 @@ abstract class Engine implements EngineInterface {
 	}
 
 	/**
+	 * Convert the given WAV data into MP3.
+	 *
+	 * @param string $data
+	 * @return string
+	 */
+	final protected function convertWavToMp3( string $data ): string {
+		$out = $this->commandFactory
+			->createBoxed( 'phonos' )
+			->disableNetwork()
+			->firejailDefaultSeccomp()
+			->routeName( 'phonos-mp3-convert' )
+			->params( $this->lamePath, '-', '-' )
+			->stdin( $data )
+			->execute();
+		return $out->getStdout();
+	}
+
+	/**
 	 * Get the full path to the cached file, whether it exists or not.
 	 *
 	 * @param string $ipa
@@ -139,7 +168,7 @@ abstract class Engine implements EngineInterface {
 		// Using ReflectionClass to get the unqualified class name is actually faster than doing string operations.
 		$engineName = ( new ReflectionClass( get_class( $this ) ) )->getShortName();
 		$cacheKey = md5( implode( '|', [ $engineName, $ipa, $text, $lang, self::CACHE_VERSION ] ) );
-		return $this->getStoragePath() . "/$cacheKey.wav";
+		return $this->getStoragePath() . "/$cacheKey.mp3";
 	}
 
 	/**

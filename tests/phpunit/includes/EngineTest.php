@@ -16,6 +16,7 @@ class EngineTest extends TestCase {
 		$services = MediaWikiServices::getInstance();
 		$engine = new EspeakEngine(
 			$services->getHttpRequestFactory(),
+			$services->getShellCommandFactory(),
 			$services->getFileBackendGroup(),
 			$services->getMainConfig()
 		);

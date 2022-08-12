@@ -89,14 +89,14 @@ PhonosButton.prototype.onClick = function () {
 			text: this.phonosData.text,
 			lang: this.phonosData.lang
 		} ).done( ( response ) => {
-			const srcData = 'data:audio/wav;base64,' + response.phonos.audioData;
+			const srcData = 'data:audio/mp3;base64,' + response.phonos.audioData;
 			this.audio = this.getAudioEl( srcData );
 			// Play once after loading.
 			this.audio.addEventListener( 'canplaythrough', () => {
 				this.audio.play();
 			}, { once: true } );
 		} ).fail( ( err ) => {
-			mw.error( err );
+			mw.log.error( err );
 			// @todo Add error popup and button state.
 		} ).always( () => {
 			this.popPending();

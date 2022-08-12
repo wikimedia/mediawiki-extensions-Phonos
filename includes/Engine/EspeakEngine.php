@@ -2,13 +2,35 @@
 
 namespace MediaWiki\Extension\Phonos\Engine;
 
+use Config;
 use DOMDocument;
-use MediaWiki\MediaWikiServices;
+use FileBackendGroup;
+use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Shell\CommandFactory;
 
 /**
  * @link http://espeak.sourceforge.net/
  */
 class EspeakEngine extends Engine {
+
+	/** @var string */
+	protected $espeakPath;
+
+	/**
+	 * @param HttpRequestFactory $requestFactory
+	 * @param CommandFactory $commandFactory
+	 * @param FileBackendGroup $fileBackendGroup
+	 * @param Config $config
+	 */
+	public function __construct(
+		HttpRequestFactory $requestFactory,
+		CommandFactory $commandFactory,
+		FileBackendGroup $fileBackendGroup,
+		Config $config
+	) {
+		parent::__construct( $requestFactory, $commandFactory, $fileBackendGroup, $config );
+		$this->espeakPath = $config->get( 'PhonosEspeak' );
+	}
 
 	/**
 	 * @inheritDoc
@@ -21,7 +43,7 @@ class EspeakEngine extends Engine {
 		}
 
 		$cmdArgs = [
-			'espeak',
+			$this->espeakPath,
 			// Read text input from stdin instead of a file
 			'--stdin',
 			// Interpret SSML markup, and ignore other < > tags
@@ -29,19 +51,20 @@ class EspeakEngine extends Engine {
 			// Write speech output to stdout
 			'--stdout',
 		];
-		$cmd = MediaWikiServices::getInstance()->getShellCommandFactory()
-			->createBoxed( 'phonos' )
+		$out = $this->commandFactory->createBoxed( 'phonos' )
 			->disableNetwork()
 			->firejailDefaultSeccomp()
-			->routeName( 'phonos-espeak' );
-		$cmd->params( $cmdArgs )
-			->stdin( $this->getSsml( $ipa, $text, $lang ) );
-		$out = $cmd->params( $cmdArgs )
+			->routeName( 'phonos-espeak' )
+			->params( $cmdArgs )
+			->stdin( $this->getSsml( $ipa, $text, $lang ) )
 			->execute();
 
-		$this->cacheAudio( $ipa, $text, $lang, $out->getStdout() );
+		// TODO: The above and Engine::convertWavToMp3() should ideally be refactored into
+		//   a single shell script so that there's only one round trip to Shellbox.
+		$out = $this->convertWavToMp3( $out->getStdout() );
+		$this->cacheAudio( $ipa, $text, $lang, $out );
 
-		return $out->getStdout();
+		return $out;
 	}
 
 	/**

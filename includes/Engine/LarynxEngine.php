@@ -7,6 +7,7 @@ use DOMDocument;
 use FileBackendGroup;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Shell\CommandFactory;
 
 class LarynxEngine extends Engine {
 
@@ -15,15 +16,17 @@ class LarynxEngine extends Engine {
 
 	/**
 	 * @param HttpRequestFactory $requestFactory
+	 * @param CommandFactory $commandFactory
 	 * @param FileBackendGroup $fileBackendGroup
 	 * @param Config $config
 	 */
 	public function __construct(
 		HttpRequestFactory $requestFactory,
+		CommandFactory $commandFactory,
 		FileBackendGroup $fileBackendGroup,
 		Config $config
 	) {
-		parent::__construct( $requestFactory, $fileBackendGroup, $config );
+		parent::__construct( $requestFactory, $commandFactory, $fileBackendGroup, $config );
 		$this->apiEndpoint = $config->get( 'PhonosApiEndpointLarynx' );
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 	}
@@ -67,7 +70,8 @@ class LarynxEngine extends Engine {
 			);
 		}
 
-		$this->cacheAudio( $ipa, $text, $lang, $request->getContent() );
+		$wavData = $this->convertWavToMp3( $request->getContent() );
+		$this->cacheAudio( $ipa, $text, $lang, $this->convertWavToMp3( $wavData ) );
 
 		return $request->getContent();
 	}

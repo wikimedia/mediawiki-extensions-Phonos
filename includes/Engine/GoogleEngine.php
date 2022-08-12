@@ -7,6 +7,7 @@ use DOMDocument;
 use FileBackendGroup;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Shell\CommandFactory;
 
 class GoogleEngine extends Engine {
 
@@ -18,15 +19,17 @@ class GoogleEngine extends Engine {
 
 	/**
 	 * @param HttpRequestFactory $requestFactory
+	 * @param CommandFactory $commandFactory
 	 * @param FileBackendGroup $fileBackendGroup
 	 * @param Config $config
 	 */
 	public function __construct(
 		HttpRequestFactory $requestFactory,
+		CommandFactory $commandFactory,
 		FileBackendGroup $fileBackendGroup,
 		Config $config
 	) {
-		parent::__construct( $requestFactory, $fileBackendGroup, $config );
+		parent::__construct( $requestFactory, $commandFactory, $fileBackendGroup, $config );
 		$this->apiEndpoint = $config->get( 'PhonosApiEndpointGoogle' );
 		$this->apiKey = $config->get( 'PhonosApiKeyGoogle' );
 	}
@@ -43,7 +46,7 @@ class GoogleEngine extends Engine {
 
 		$postData = [
 			'audioConfig' => [
-				'audioEncoding' => 'LINEAR16',
+				'audioEncoding' => 'MP3',
 			],
 			'input' => [
 				'ssml' => trim( $this->getSsml( $ipa, $text, $lang ) ),

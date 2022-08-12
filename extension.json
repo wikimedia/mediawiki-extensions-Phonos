@@ -41,6 +41,14 @@
 		"PhonosFileBackendDirectory": {
 			"value": false,
 			"description": "Custom directory to store cached Phonos audio"
+		},
+		"PhonosEspeak": {
+			"value": "/usr/bin/espeak",
+			"description": "Path to the eSpeak executable"
+		},
+		"PhonosLame": {
+			"value": "/usr/bin/lame",
+			"description": "Path to the Lame executable used for converting WAV to MP3"
 		}
 	},
 	"MessagesDirs": {

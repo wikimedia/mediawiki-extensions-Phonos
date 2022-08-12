@@ -14,6 +14,7 @@ return [
 		}
 		return new $className(
 			$services->getHttpRequestFactory(),
+			$services->getShellCommandFactory(),
 			$services->getFileBackendGroup(),
 			$config
 		);

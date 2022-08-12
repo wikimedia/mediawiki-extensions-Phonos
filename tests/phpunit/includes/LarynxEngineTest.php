@@ -16,6 +16,7 @@ class LarynxEngineTest extends TestCase {
 		$services = MediaWikiServices::getInstance();
 		$engine = new LarynxEngine(
 			$services->getHttpRequestFactory(),
+			$services->getShellCommandFactory(),
 			$services->getFileBackendGroup(),
 			$services->getMainConfig()
 		);
