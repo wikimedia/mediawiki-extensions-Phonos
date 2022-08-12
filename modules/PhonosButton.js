@@ -16,6 +16,12 @@ function PhonosButton( phonosData ) {
 		framed: false
 	} );
 
+	// Set an aria description attribute for the button.
+	this.$button.attr(
+		'aria-description',
+		mw.message( 'phonos-player-aria-description', [ this.phonosData.text ] ).parse()
+	);
+
 	// Mixin constructor.
 	OO.ui.mixin.PendingElement.call( this, { $pending: this.$button } );
 

@@ -64,7 +64,8 @@
 			"messages": [
 				"phonos",
 				"phonos-desc",
-				"phonos-file-not-found"
+				"phonos-file-not-found",
+				"phonos-player-aria-description"
 			],
 			"dependencies": [
 				"mediawiki.api",
