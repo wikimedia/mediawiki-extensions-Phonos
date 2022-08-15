@@ -8,5 +8,6 @@
 	"phonos-desc": "Дава можност за гласовен читач на текст за разни јазици",
 	"phonos-tracking-category": "Страници со Фонос",
 	"phonos-tracking-category-desc": "Страницата го користи додатокот [[:mw:Extension:Phonos|Фонос]].",
-	"phonos-file-not-found": "Не ја најдов звучната податотека „$1“. Обидете се повторно."
+	"phonos-file-not-found": "Не ја најдов звучната податотека „$1“. Обидете се повторно.",
+	"phonos-player-aria-description": "Чујте го изговорот на $1 по МФА."
 }

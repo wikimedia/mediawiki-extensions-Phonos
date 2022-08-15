@@ -8,5 +8,6 @@
 	"phonos-desc": "Fournit la fonctionnalité de vocalisation du texte pour une gamme de langues",
 	"phonos-tracking-category": "Pages utilisant Phonos",
 	"phonos-tracking-category-desc": "Ces pages utilisent l’extension [[:mw:Extension:Phonos|Phonos]].",
-	"phonos-file-not-found": "Fichier audio « $1 » introuvable. Veuillez réessayer."
+	"phonos-file-not-found": "Fichier audio « $1 » introuvable. Veuillez réessayer.",
+	"phonos-player-aria-description": "Écoutez la prononciation (notée avec l’alphabet phonétique international) de $1."
 }
