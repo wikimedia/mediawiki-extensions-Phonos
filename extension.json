@@ -58,7 +58,6 @@
 				"PhonosButton.js"
 			],
 			"styles": [
-				"ext.phonos.css",
 				"PhonosButton.less"
 			],
 			"messages": [

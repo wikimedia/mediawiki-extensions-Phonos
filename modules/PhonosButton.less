@@ -7,6 +7,11 @@
 	margin: 0;
 	vertical-align: bottom;
 
+	&.oo-ui-buttonElement-frameless.oo-ui-labelElement.oo-ui-iconElement:first-child {
+		// Avoid the default negative left margin on buttons.
+		margin-left: 0;
+	}
+
 	&.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button {
 		padding: 0 6px;
 		min-height: 0;
@@ -36,6 +41,8 @@
 
 		.oo-ui-labelElement-label {
 			font-weight: normal;
+			text-decoration: underline;
+			text-decoration-style: dotted;
 		}
 	}
 }
