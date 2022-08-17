@@ -62,6 +62,8 @@ class Phonos implements ParserFirstCallInitHook {
 			return '';
 		}
 
+		$parser->addTrackingCategory( 'phonos-tracking-category' );
+
 		$spanAttrs = [
 			'class' => 'ext-phonos',
 			'data-phonos-ipa' => $options['ipa'],
@@ -79,9 +81,11 @@ class Phonos implements ParserFirstCallInitHook {
 				$spanAttrs['data-phonos-file'] = $options['file'];
 				$spanAttrs['data-phonos-error'] = 'phonos-file-not-found';
 			}
+		} elseif ( !$parser->incrementExpensiveFunctionCount() ) {
+			// Return nothing. See T315483
+			// TODO: Once T315481 is resolved, check to see if there is a cached file.
+			return '';
 		}
-
-		$parser->addTrackingCategory( 'phonos-tracking-category' );
 
 		return Html::element( 'span', $spanAttrs, $options['ipa'] );
 	}
