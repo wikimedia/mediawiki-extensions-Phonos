@@ -65,7 +65,8 @@ class Phonos implements ParserFirstCallInitHook {
 		$parser->addTrackingCategory( 'phonos-tracking-category' );
 
 		$spanAttrs = [
-			'class' => 'ext-phonos',
+			// `.noexcerpt` is defined by TextExtracts
+			'class' => [ 'ext-phonos', 'noexcerpt' ],
 			'data-phonos-ipa' => $options['ipa'],
 			'data-phonos-text' => $options['text'],
 			'data-phonos-lang' => $options['lang'],
