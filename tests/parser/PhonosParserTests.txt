@@ -9,12 +9,15 @@ Phonos{{#phonos:}}END
 </p>
 !! end
 
+## FIXME: we can't seem to override $wgUploadPath using the onParserTestGlobals hook, so for now this test is disabled.
 !! test
 Only the ipa parameter (with a quotation mark)
+!! options
+disabled
 !! wikitext
 Phonos{{#phonos:ipa=həˈləʊ"}}END
 !! html
-<p>Phonos<span id="ooui-php-1" class="ext-phonos ext-phonos-PhonosButton noexcerpt oo-ui-widget oo-ui-widget-enabled oo-ui-buttonElement oo-ui-buttonElement-frameless oo-ui-iconElement oo-ui-labelElement oo-ui-buttonWidget" data-ooui="{&quot;_&quot;:&quot;mw.Phonos.PhonosButton&quot;,&quot;rel&quot;:[&quot;nofollow&quot;],&quot;framed&quot;:false,&quot;icon&quot;:&quot;volumeUp&quot;,&quot;label&quot;:&quot;h\u0259\u02c8l\u0259\u028a\&quot;&quot;,&quot;data&quot;:{&quot;ipa&quot;:&quot;h\u0259\u02c8l\u0259\u028a\&quot;&quot;,&quot;text&quot;:&quot;&quot;,&quot;lang&quot;:&quot;en&quot;},&quot;classes&quot;:[&quot;ext-phonos&quot;,&quot;ext-phonos-PhonosButton&quot;,&quot;noexcerpt&quot;]}"><a role="button" tabindex="0" rel="nofollow" class="oo-ui-buttonElement-button"><span class="oo-ui-iconElement-icon oo-ui-icon-volumeUp"></span><span class="oo-ui-labelElement-label">həˈləʊ&quot;</span><span class="oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator"></span></a></span>END
+<p>Phonos<span id="ooui-php-1" class="ext-phonos ext-phonos-PhonosButton noexcerpt oo-ui-widget oo-ui-widget-enabled oo-ui-buttonElement oo-ui-buttonElement-frameless oo-ui-iconElement oo-ui-labelElement oo-ui-buttonWidget" data-ooui="{&quot;_&quot;:&quot;mw.Phonos.PhonosButton&quot;,&quot;href&quot;:&quot;\/w\/images\/my_wiki-parsertest_-phonos\/77f3b1614cbbdcf57ae485d8a790d504.mp3&quot;,&quot;rel&quot;:[&quot;nofollow&quot;],&quot;framed&quot;:false,&quot;icon&quot;:&quot;volumeUp&quot;,&quot;label&quot;:&quot;h\u0259\u02c8l\u0259\u028a\&quot;&quot;,&quot;data&quot;:{&quot;ipa&quot;:&quot;h\u0259\u02c8l\u0259\u028a\&quot;&quot;,&quot;text&quot;:&quot;&quot;,&quot;lang&quot;:&quot;en&quot;},&quot;classes&quot;:[&quot;ext-phonos&quot;,&quot;ext-phonos-PhonosButton&quot;,&quot;noexcerpt&quot;]}"><a role="button" tabindex="0" href="/w/images/my_wiki-parsertest_-phonos/77f3b1614cbbdcf57ae485d8a790d504.mp3" rel="nofollow" class="oo-ui-buttonElement-button"><span class="oo-ui-iconElement-icon oo-ui-icon-volumeUp"></span><span class="oo-ui-labelElement-label">həˈləʊ&quot;</span><span class="oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator"></span></a></span>END
 </p>
 !! end
 
@@ -23,6 +26,6 @@ Given the ipa, file and text parameters
 !! wikitext
 Phonos{{#phonos:ipa=hɛˈloʊ|text=Hello|file=does-not-exist.ogg}}END
 !! html
-<p>Phonos<span id="ooui-php-2" class="ext-phonos ext-phonos-PhonosButton noexcerpt oo-ui-widget oo-ui-widget-enabled oo-ui-buttonElement oo-ui-buttonElement-frameless oo-ui-iconElement oo-ui-labelElement oo-ui-buttonWidget" data-ooui="{&quot;_&quot;:&quot;mw.Phonos.PhonosButton&quot;,&quot;rel&quot;:[&quot;nofollow&quot;],&quot;framed&quot;:false,&quot;icon&quot;:&quot;volumeUp&quot;,&quot;label&quot;:&quot;h\u025b\u02c8lo\u028a&quot;,&quot;data&quot;:{&quot;ipa&quot;:&quot;h\u025b\u02c8lo\u028a&quot;,&quot;text&quot;:&quot;Hello&quot;,&quot;lang&quot;:&quot;en&quot;,&quot;file&quot;:&quot;does-not-exist.ogg&quot;,&quot;error&quot;:&quot;phonos-file-not-found&quot;},&quot;classes&quot;:[&quot;ext-phonos&quot;,&quot;ext-phonos-PhonosButton&quot;,&quot;noexcerpt&quot;]}"><a role="button" tabindex="0" rel="nofollow" class="oo-ui-buttonElement-button"><span class="oo-ui-iconElement-icon oo-ui-icon-volumeUp"></span><span class="oo-ui-labelElement-label">hɛˈloʊ</span><span class="oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator"></span></a></span>END
+<p>Phonos<span id="ooui-php-1" class="ext-phonos ext-phonos-PhonosButton noexcerpt oo-ui-widget oo-ui-widget-enabled oo-ui-buttonElement oo-ui-buttonElement-frameless oo-ui-iconElement oo-ui-labelElement oo-ui-buttonWidget" data-ooui="{&quot;_&quot;:&quot;mw.Phonos.PhonosButton&quot;,&quot;rel&quot;:[&quot;nofollow&quot;],&quot;framed&quot;:false,&quot;icon&quot;:&quot;volumeUp&quot;,&quot;label&quot;:&quot;h\u025b\u02c8lo\u028a&quot;,&quot;data&quot;:{&quot;ipa&quot;:&quot;h\u025b\u02c8lo\u028a&quot;,&quot;text&quot;:&quot;Hello&quot;,&quot;lang&quot;:&quot;en&quot;,&quot;file&quot;:&quot;does-not-exist.ogg&quot;,&quot;error&quot;:&quot;phonos-file-not-found&quot;},&quot;classes&quot;:[&quot;ext-phonos&quot;,&quot;ext-phonos-PhonosButton&quot;,&quot;noexcerpt&quot;]}"><a role="button" tabindex="0" rel="nofollow" class="oo-ui-buttonElement-button"><span class="oo-ui-iconElement-icon oo-ui-icon-volumeUp"></span><span class="oo-ui-labelElement-label">hɛˈloʊ</span><span class="oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator"></span></a></span>END
 </p>
 !! end

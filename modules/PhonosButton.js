@@ -55,7 +55,7 @@ PhonosButton.prototype.onClick = function ( event ) {
 	// A popup exists, so no audio can be played.
 	if ( this.popup ) {
 		this.popup.toggle();
-		return '';
+		return;
 	}
 
 	// Already playing, so pause and reset to the beginning.
