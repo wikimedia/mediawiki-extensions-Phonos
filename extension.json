@@ -78,6 +78,10 @@
 				"mediawiki.api",
 				"oojs-ui-widgets",
 				"oojs-ui.styles.icons-media"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
 			]
 		}
 	},
