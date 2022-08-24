@@ -153,6 +153,9 @@ abstract class Engine implements EngineInterface {
 			->params( $this->lamePath, '-', '-' )
 			->stdin( $data )
 			->execute();
+		if ( $out->getExitCode() !== 0 ) {
+			throw new PhonosException( 'Unable to convert to MP3' );
+		}
 		return $out->getStdout();
 	}
 
