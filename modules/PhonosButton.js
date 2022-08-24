@@ -3,27 +3,22 @@
  * @constructor
  * @extends OO.ui.ButtonWidget
  * @mixin OO.ui.mixin.PendingElement
- * @param {Object} [phonosData] Phonos data parameters.
+ * @param {Object} [config] Configuration parameters.
  */
-function PhonosButton( phonosData ) {
-	this.phonosData = phonosData;
-
+function PhonosButton( config ) {
 	// Parent constructor.
-	PhonosButton.super.call( this, {
-		classes: [ 'ext-phonos-PhonosButton' ],
-		icon: 'volumeUp',
-		label: this.phonosData.ipa,
-		framed: false
-	} );
+	PhonosButton.super.call( this, config );
+
+	// Mixin constructor.
+	OO.ui.mixin.PendingElement.call( this, { $pending: this.$button } );
+
+	this.phonosData = this.getData();
 
 	// Set an aria description attribute for the button.
 	this.$button.attr(
 		'aria-description',
 		mw.message( 'phonos-player-aria-description', [ this.phonosData.text ] ).parse()
 	);
-
-	// Mixin constructor.
-	OO.ui.mixin.PendingElement.call( this, { $pending: this.$button } );
 
 	// This HTMLAudioElement will be instantiated once.
 	this.audio = null;
@@ -69,9 +64,9 @@ PhonosButton.prototype.onClick = function () {
 	}
 
 	// Not loaded yet, but has a src URL so use that.
-	if ( !this.audio && this.phonosData.src ) {
+	if ( !this.audio && this.getHref() ) {
 		this.pushPending();
-		this.audio = this.getAudioEl( this.phonosData.src );
+		this.audio = this.getAudioEl( this.getHref() );
 		// Play once after loading.
 		this.audio.addEventListener( 'canplaythrough', () => {
 			this.popPending();

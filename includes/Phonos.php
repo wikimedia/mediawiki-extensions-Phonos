@@ -1,9 +1,9 @@
 <?php
 namespace MediaWiki\Extension\Phonos;
 
-use Html;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Linker\LinkRenderer;
+use OutputPage;
 use Parser;
 use RepoGroup;
 
@@ -42,9 +42,9 @@ class Phonos implements ParserFirstCallInitHook {
 	 * {{#phonos: text=hello | ipa=/həˈləʊ/ | file=foo.ogg | lang=en}}
 	 * @todo Error handling for missing required parameters
 	 * @param Parser $parser
-	 * @return string
+	 * @return mixed[]
 	 */
-	public function renderPhonos( Parser $parser ): string {
+	public function renderPhonos( Parser $parser ): array {
 		// Add the CSS and JS
 		$parser->getOutput()->addModules( [ 'ext.phonos' ] );
 
@@ -59,36 +59,40 @@ class Phonos implements ParserFirstCallInitHook {
 
 		// Require at least something to display.
 		if ( !isset( $options['ipa'] ) ) {
-			return '';
+			return [];
 		}
 
 		$parser->addTrackingCategory( 'phonos-tracking-category' );
 
-		$spanAttrs = [
-			// `.noexcerpt` is defined by TextExtracts
-			'class' => [ 'ext-phonos', 'noexcerpt' ],
-			'data-phonos-ipa' => $options['ipa'],
-			'data-phonos-text' => $options['text'],
-			'data-phonos-lang' => $options['lang'],
+		$buttonConfig = [
+			'label' => $options['ipa'],
+			'data' => [
+				'ipa' => $options['ipa'],
+				'text' => $options['text'],
+				'lang' => $options['lang'],
+			],
 		];
 
 		// If an audio file has been provided, fetch the upload URL.
 		if ( $options['file'] ) {
 			$file = $this->repoGroup->findFile( $options['file'] );
 			if ( $file && $file->getMediaType() === MEDIATYPE_AUDIO ) {
-				$spanAttrs['data-phonos-file'] = $file->getTitle()->getText();
-				$spanAttrs['data-phonos-src'] = $file->getUrl();
+				$buttonConfig['data']['file'] = $file->getTitle()->getText();
+				$buttonConfig['href'] = $file->getUrl();
 			} else {
-				$spanAttrs['data-phonos-file'] = $options['file'];
-				$spanAttrs['data-phonos-error'] = 'phonos-file-not-found';
+				$buttonConfig['data']['file'] = $options['file'];
+				$buttonConfig['data']['error'] = 'phonos-file-not-found';
 			}
 		} elseif ( !$parser->incrementExpensiveFunctionCount() ) {
 			// Return nothing. See T315483
 			// TODO: Once T315481 is resolved, check to see if there is a cached file.
-			return '';
+			return [];
 		}
 
-		return Html::element( 'span', $spanAttrs, $options['ipa'] );
+		$parser->getOutput()->setEnableOOUI( true );
+		OutputPage::setupOOUI();
+		$button = new PhonosButton( $buttonConfig );
+		return [ 'isHTML' => true, 0 => $button->toString() ];
 	}
 
 	/**
