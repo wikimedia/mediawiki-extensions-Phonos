@@ -65,9 +65,6 @@
 				"ext.phonos.js",
 				"PhonosButton.js"
 			],
-			"styles": [
-				"PhonosButton.less"
-			],
 			"messages": [
 				"phonos",
 				"phonos-desc",
@@ -78,6 +75,15 @@
 				"mediawiki.api",
 				"oojs-ui-widgets",
 				"oojs-ui.styles.icons-media"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.phonos.styles": {
+			"styles": [
+				"PhonosButton.less"
 			],
 			"targets": [
 				"mobile",
