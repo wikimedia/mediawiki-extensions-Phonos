@@ -70,8 +70,8 @@ class LarynxEngine extends Engine {
 			);
 		}
 
-		$wavData = $this->convertWavToMp3( $request->getContent() );
-		$this->cacheAudio( $ipa, $text, $lang, $this->convertWavToMp3( $wavData ) );
+		$mp3Data = $this->convertWavToMp3( $request->getContent() );
+		$this->cacheAudio( $ipa, $text, $lang, $mp3Data );
 
 		return $request->getContent();
 	}
