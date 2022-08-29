@@ -19,6 +19,8 @@ class PhonosButton extends ButtonWidget {
 			// `.noexcerpt` is defined by TextExtracts
 			'noexcerpt'
 		];
+		// T315404: Wrap output element in data-nosnippet
+		$this->setAttributes( [ 'data-nosnippet' => '' ] );
 		parent::__construct( $config );
 
 		// Change display for errors.
