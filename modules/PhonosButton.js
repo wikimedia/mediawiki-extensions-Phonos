@@ -43,7 +43,15 @@ function PhonosButton( config ) {
 OO.inheritClass( PhonosButton, OO.ui.ButtonWidget );
 OO.mixinClass( PhonosButton, OO.ui.mixin.PendingElement );
 
-PhonosButton.prototype.onClick = function () {
+/**
+ * Click handler: play or pause the audio.
+ *
+ * @param {Event} event
+ * @return {void}
+ */
+PhonosButton.prototype.onClick = function ( event ) {
+	event.preventDefault();
+
 	// A popup exists, so no audio can be played.
 	if ( this.popup ) {
 		this.popup.toggle();
