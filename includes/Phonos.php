@@ -46,7 +46,7 @@ class Phonos implements ParserFirstCallInitHook {
 	 */
 	public function renderPhonos( Parser $parser ): array {
 		// Add the CSS and JS
-		$parser->getOutput()->addModuleStyles( [ 'ext.phonos.styles' ] );
+		$parser->getOutput()->addModuleStyles( [ 'ext.phonos.styles', 'ext.phonos.icons' ] );
 		$parser->getOutput()->addModules( [ 'ext.phonos' ] );
 
 		// Get the named parameters and merge with defaults.

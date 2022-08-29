@@ -73,8 +73,7 @@
 			],
 			"dependencies": [
 				"mediawiki.api",
-				"oojs-ui-widgets",
-				"oojs-ui.styles.icons-media"
+				"oojs-ui-widgets"
 			],
 			"targets": [
 				"mobile",
@@ -84,6 +83,18 @@
 		"ext.phonos.styles": {
 			"styles": [
 				"PhonosButton.less"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.phonos.icons": {
+			"class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
+			"icons": [ "volumeUp" ],
+			"dependencies": [
+				"oojs-ui-widgets.styles",
+				"oojs-ui.styles.icons-media"
 			],
 			"targets": [
 				"mobile",
