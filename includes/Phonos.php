@@ -45,8 +45,7 @@ class Phonos implements ParserFirstCallInitHook {
 
 	/**
 	 * Convert phonos magic word to HTML
-	 * {{#phonos: text=hello | ipa=/həˈləʊ/ | file=foo.ogg | lang=en}}
-	 * @todo Error handling for missing required parameters
+	 * {{#phonos: text=hello | ipa=/həˈləʊ/ | file=foo.ogg | label=Hello! | lang=en}}
 	 * @param Parser $parser
 	 * @return mixed[]
 	 */
@@ -65,16 +64,16 @@ class Phonos implements ParserFirstCallInitHook {
 		$options = array_merge( $defaultOptions, $suppliedOptions );
 
 		// Require at least something to display.
-		if ( !isset( $options['ipa'] ) ) {
+		if ( !isset( $options['ipa'] ) && !isset( $options['label'] ) ) {
 			return [];
 		}
 
 		$parser->addTrackingCategory( 'phonos-tracking-category' );
 
 		$buttonConfig = [
-			'label' => $options['ipa'],
+			'label' => $options['label'] ?? $options['ipa'],
 			'data' => [
-				'ipa' => $options['ipa'],
+				'ipa' => $options['ipa'] ?? '',
 				'text' => $options['text'],
 				'lang' => $options['lang'],
 			],
