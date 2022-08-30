@@ -74,7 +74,9 @@ class GoogleEngine extends Engine {
 		$status = $request->execute();
 
 		if ( !$status->isOK() ) {
-			$error = $status->getMessage()->text();
+			// See if the result contains error details.
+			$response = json_decode( $request->getContent() );
+			$error = $response->error->message ?? $status->getMessage()->text();
 			throw new PhonosException(
 				'Unable to retrieve audio using the Google engine: ' . $error
 			);
