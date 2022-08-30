@@ -39,6 +39,9 @@ abstract class Engine implements EngineInterface {
 	/** @var string */
 	protected $lamePath;
 
+	/** @var string */
+	protected $uploadPath;
+
 	/**
 	 * @param HttpRequestFactory $requestFactory
 	 * @param CommandFactory $commandFactory
@@ -56,6 +59,7 @@ abstract class Engine implements EngineInterface {
 		$this->fileBackend = self::getFileBackend( $fileBackendGroup, $config );
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 		$this->lamePath = $config->get( 'PhonosLame' );
+		$this->uploadPath = $config->get( 'PhonosPath' ) ?: $config->get( MainConfigNames::UploadPath );
 	}
 
 	/**
@@ -88,6 +92,37 @@ abstract class Engine implements EngineInterface {
 	}
 
 	/**
+	 * Get the relative URL to the cached file, or create one if it doesn't exist.
+	 *
+	 * @param string $ipa
+	 * @param string $text
+	 * @param string $lang
+	 * @return string
+	 */
+	public function getAudioUrl( string $ipa, string $text, string $lang ): string {
+		$fileDest = $this->getFileDest( $ipa, $text, $lang );
+		$exists = $this->fileBackend->fileExists( [
+			'src' => $fileDest,
+		] );
+
+		if ( !$exists ) {
+			// Generate the audio and store the file first.
+			$data = $this->getAudioData( $ipa, $text, $lang );
+			$this->cacheAudio( $ipa, $text, $lang, $data );
+		}
+
+		if ( $this->fileBackend instanceof FSFileBackend ) {
+			// FileBackend::getFileHttpUrl() is not supported by FSFileBackend
+			return "{$this->uploadPath}/" . WikiMap::getCurrentWikiId() .
+				"-phonos/" . $this->getFileName( $ipa, $text, $lang );
+		} else {
+			return $this->fileBackend->getFileHttpUrl( [
+				'src' => $fileDest,
+			] );
+		}
+	}
+
+	/**
 	 * Cache the given audio data using the configured storage backend.
 	 *
 	 * @param string $ipa
@@ -108,8 +143,8 @@ abstract class Engine implements EngineInterface {
 		}
 
 		// Create the file.
-		$status = $this->fileBackend->create( [
-			'dst' => $this->getCacheFileDest( $ipa, $text, $lang ),
+		$status = $this->fileBackend->quickCreate( [
+			'dst' => $this->getFileDest( $ipa, $text, $lang ),
 			'content' => $data,
 			'overwriteSame' => true,
 		] );
@@ -126,16 +161,29 @@ abstract class Engine implements EngineInterface {
 	 * @param string $ipa
 	 * @param string $text
 	 * @param string $lang
-	 * @return string|null
+	 * @return string|null base64 data, or null if the file doesn't exist.
 	 */
 	final public function getCachedAudio( string $ipa, string $text, string $lang ): ?string {
-		$params = [
-			'src' => $this->getCacheFileDest( $ipa, $text, $lang ),
-		];
-		if ( !$this->fileBackend->fileExists( $params ) ) {
+		if ( !$this->isCached( $ipa, $text, $lang ) ) {
 			return null;
 		}
-		return $this->fileBackend->getFileContents( $params );
+		return $this->fileBackend->getFileContents( [
+			'src' => $this->getFileDest( $ipa, $text, $lang ),
+		] );
+	}
+
+	/**
+	 * Is there a cached file for the given parameters?
+	 *
+	 * @param string $ipa
+	 * @param string $text
+	 * @param string $lang
+	 * @return bool
+	 */
+	final public function isCached( string $ipa, string $text, string $lang ): bool {
+		return $this->fileBackend->fileExists( [
+			'src' => $this->getFileDest( $ipa, $text, $lang ),
+		] );
 	}
 
 	/**
@@ -160,18 +208,30 @@ abstract class Engine implements EngineInterface {
 	}
 
 	/**
-	 * Get the full path to the cached file, whether it exists or not.
+	 * Get the full storage path to the cached file, whether it exists or not.
 	 *
 	 * @param string $ipa
 	 * @param string $text
 	 * @param string $lang
 	 * @return string
 	 */
-	private function getCacheFileDest( string $ipa, string $text, string $lang ): string {
+	private function getFileDest( string $ipa, string $text, string $lang ): string {
+		return $this->getStoragePath() . '/' . $this->getFileName( $ipa, $text, $lang );
+	}
+
+	/**
+	 * Get a unique filename for the given set of Phonos parameters, including the file extension.
+	 *
+	 * @param string $ipa
+	 * @param string $text
+	 * @param string $lang
+	 * @return string
+	 */
+	public function getFileName( string $ipa, string $text, string $lang ): string {
 		// Using ReflectionClass to get the unqualified class name is actually faster than doing string operations.
 		$engineName = ( new ReflectionClass( get_class( $this ) ) )->getShortName();
 		$cacheKey = md5( implode( '|', [ $engineName, $ipa, $text, $lang, self::CACHE_VERSION ] ) );
-		return $this->getStoragePath() . "/$cacheKey.mp3";
+		return "$cacheKey.mp3";
 	}
 
 	/**

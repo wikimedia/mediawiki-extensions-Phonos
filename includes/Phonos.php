@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Extension\Phonos;
 
+use MediaWiki\Extension\Phonos\Engine\Engine;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Linker\LinkRenderer;
 use OutputPage;
@@ -22,11 +23,16 @@ class Phonos implements ParserFirstCallInitHook {
 	/** @var LinkRenderer */
 	protected $linkRenderer;
 
+	/** @var Engine */
+	protected $engine;
+
 	/**
 	 * @param RepoGroup $repoGroup
+	 * @param Engine $engine
 	 */
-	public function __construct( RepoGroup $repoGroup ) {
+	public function __construct( RepoGroup $repoGroup, Engine $engine ) {
 		$this->repoGroup = $repoGroup;
+		$this->engine = $engine;
 	}
 
 	/**
@@ -84,10 +90,18 @@ class Phonos implements ParserFirstCallInitHook {
 				$buttonConfig['data']['file'] = $options['file'];
 				$buttonConfig['data']['error'] = 'phonos-file-not-found';
 			}
-		} elseif ( !$parser->incrementExpensiveFunctionCount() ) {
-			// Return nothing. See T315483
-			// TODO: Once T315481 is resolved, check to see if there is a cached file.
-			return [];
+		} else {
+			$isCached = $this->engine->isCached( $options['ipa'], $options['text'], $options['lang'] );
+			if ( !$isCached && !$parser->incrementExpensiveFunctionCount() ) {
+				// Return nothing. See T315483
+				return [];
+			}
+			// Otherwise generate the audio based on the given data, and pass the URL to the clientside.
+			$buttonConfig['href'] = $this->engine->getAudioUrl(
+				$options['ipa'],
+				$options['text'],
+				$options['lang']
+			);
 		}
 
 		$parser->getOutput()->setEnableOOUI( true );
