@@ -37,6 +37,7 @@ class GoogleEngine extends Engine {
 	/**
 	 * @inheritDoc
 	 * @codeCoverageIgnore
+	 * @throws PhonosException
 	 */
 	public function getAudioData( string $ipa, string $text, string $lang ): string {
 		$cachedAudio = $this->getCachedAudio( $ipa, $text, $lang );
@@ -77,9 +78,7 @@ class GoogleEngine extends Engine {
 			// See if the result contains error details.
 			$response = json_decode( $request->getContent() );
 			$error = $response->error->message ?? $status->getMessage()->text();
-			throw new PhonosException(
-				'Unable to retrieve audio using the Google engine: ' . $error
-			);
+			throw new PhonosException( 'phonos-engine-error', [ 'Google', $error ] );
 		}
 
 		$audio = base64_decode( json_decode( $request->getContent() )->audioContent );

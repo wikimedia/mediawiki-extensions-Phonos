@@ -24,27 +24,7 @@ function PhonosButton( config ) {
 	this.audio = null;
 
 	// Create a popup for error messages.
-	this.popup = null;
-	if ( this.phonosData.error ) {
-		// @todo Handle other error messages.
-		this.setDisabled( true );
-		this.setIcon( 'volumeOff' );
-		const fileTitle = new mw.Title( 'File:' + this.phonosData.file );
-		const $link = $( '<a>' )
-			.attr( 'href', fileTitle.getUrl() )
-			.text( fileTitle.getMainText() );
-		// Messages that can be used here:
-		// * phonos-file-not-found
-		// * phonos-file-not-audio
-		const error = mw.message( this.phonosData.error, [ $link.prop( 'outerHTML' ) ] ).text();
-		this.popup = new OO.ui.PopupWidget( {
-			classes: [ 'ext-phonos-error-popup' ],
-			$content: $( '<p>' ).append( error ),
-			padded: true
-		} );
-		PhonosButton.static.popups.unshift( this.popup );
-		this.$element.append( this.popup.$element );
-	}
+	this.popup = this.getErrorPopup();
 
 	// Add click handlers.
 	$( 'html' ).on( 'click', this.onHtmlClick );
@@ -162,6 +142,49 @@ PhonosButton.prototype.getAudioEl = function ( src ) {
 		this.setFlags( { progressive: false } );
 	} );
 	return audio;
+};
+
+/**
+ * Create an error popup if necessary.
+ *
+ * @return {null|string}
+ */
+PhonosButton.prototype.getErrorPopup = function () {
+	if ( !this.phonosData.error ) {
+		return null;
+	}
+
+	this.setDisabled( true );
+	this.setIcon( 'volumeOff' );
+
+	// Messages that can be used here:
+	// * phonos-audio-conversion-error
+	// * phonos-directory-error
+	// * phonos-engine-error
+	// * phonos-storage-error
+	let error = this.phonosData.error;
+
+	// If a file was given, we know this is an error specifically involving the file
+	// and we want to construct a link to the file page.
+	if ( this.phonosData.file ) {
+		const fileTitle = new mw.Title( 'File:' + this.phonosData.file );
+		const $link = $( '<a>' )
+			.attr( 'href', fileTitle.getUrl() )
+			.text( fileTitle.getMainText() );
+		// Messages that can be used here:
+		// * phonos-file-not-found
+		// * phonos-file-not-audio
+		error = mw.message( this.phonosData.error, [ $link.prop( 'outerHTML' ) ] ).text();
+	}
+
+	const popup = new OO.ui.PopupWidget( {
+		classes: [ 'ext-phonos-error-popup' ],
+		$content: $( '<p>' ).append( error ),
+		padded: true
+	} );
+	PhonosButton.static.popups.unshift( popup );
+	this.$element.append( popup.$element );
+	return popup;
 };
 
 module.exports = PhonosButton;

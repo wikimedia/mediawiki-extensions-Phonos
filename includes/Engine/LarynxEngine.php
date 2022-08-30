@@ -34,6 +34,7 @@ class LarynxEngine extends Engine {
 	/**
 	 * @inheritDoc
 	 * @codeCoverageIgnore
+	 * @throws PhonosException
 	 */
 	public function getAudioData( string $ipa, string $text, string $lang ): string {
 		$cachedAudio = $this->getCachedAudio( $ipa, $text, $lang );
@@ -65,9 +66,7 @@ class LarynxEngine extends Engine {
 
 		if ( !$status->isOK() ) {
 			$error = $status->getMessage()->text();
-			throw new PhonosException(
-				'Unable to retrieve audio using the Larynx engine: ' . $error
-			);
+			throw new PhonosException( 'phonos-engine-error', [ 'Larynx', $error ] );
 		}
 
 		$mp3Data = $this->convertWavToMp3( $request->getContent() );

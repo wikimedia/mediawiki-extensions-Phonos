@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\Phonos\Engine;
 use Config;
 use DOMDocument;
 use FileBackendGroup;
+use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Shell\CommandFactory;
 
@@ -35,6 +36,7 @@ class EspeakEngine extends Engine {
 	/**
 	 * @inheritDoc
 	 * @codeCoverageIgnore
+	 * @throws PhonosException
 	 */
 	public function getAudioData( string $ipa, string $text, string $lang ): string {
 		$cachedAudio = $this->getCachedAudio( $ipa, $text, $lang );
@@ -58,6 +60,10 @@ class EspeakEngine extends Engine {
 			->params( $cmdArgs )
 			->stdin( $this->getSsml( $ipa, $text, $lang ) )
 			->execute();
+
+		if ( $out->getExitCode() !== 0 ) {
+			throw new PhonosException( 'phonos-engine-error', [ 'eSpeak', $out->getStderr() ] );
+		}
 
 		// TODO: The above and Engine::convertWavToMp3() should ideally be refactored into
 		//   a single shell script so that there's only one round trip to Shellbox.

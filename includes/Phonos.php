@@ -1,7 +1,9 @@
 <?php
 namespace MediaWiki\Extension\Phonos;
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Extension\Phonos\Engine\Engine;
+use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Linker\LinkRenderer;
 use OutputPage;
@@ -26,13 +28,22 @@ class Phonos implements ParserFirstCallInitHook {
 	/** @var Engine */
 	protected $engine;
 
+	/** @var StatsdDataFactoryInterface */
+	private $statsdDataFactory;
+
 	/**
 	 * @param RepoGroup $repoGroup
 	 * @param Engine $engine
+	 * @param StatsdDataFactoryInterface $statsdDataFactory
 	 */
-	public function __construct( RepoGroup $repoGroup, Engine $engine ) {
+	public function __construct(
+		RepoGroup $repoGroup,
+		Engine $engine,
+		StatsdDataFactoryInterface $statsdDataFactory
+	) {
 		$this->repoGroup = $repoGroup;
 		$this->engine = $engine;
+		$this->statsdDataFactory = $statsdDataFactory;
 	}
 
 	/**
@@ -79,32 +90,38 @@ class Phonos implements ParserFirstCallInitHook {
 			],
 		];
 
-		// If an audio file has been provided, fetch the upload URL.
-		if ( $options['file'] ) {
-			$buttonConfig['data']['file'] = $options['file'];
-			$file = $this->repoGroup->findFile( $options['file'] );
-			if ( $file ) {
-				$buttonConfig['data']['file'] = $file->getTitle()->getText();
-				if ( $file->getMediaType() === MEDIATYPE_AUDIO ) {
-					$buttonConfig['href'] = $file->getUrl();
+		try {
+			// If an audio file has been provided, fetch the upload URL.
+			if ( $options['file'] ) {
+				$buttonConfig['data']['file'] = $options['file'];
+				$file = $this->repoGroup->findFile( $options['file'] );
+				if ( $file ) {
+					$buttonConfig['data']['file'] = $file->getTitle()->getText();
+					if ( $file->getMediaType() === MEDIATYPE_AUDIO ) {
+						$buttonConfig['href'] = $file->getUrl();
+					} else {
+						$buttonConfig['data']['error'] = 'phonos-file-not-audio';
+					}
 				} else {
-					$buttonConfig['data']['error'] = 'phonos-file-not-audio';
+					$buttonConfig['data']['error'] = 'phonos-file-not-found';
 				}
 			} else {
-				$buttonConfig['data']['error'] = 'phonos-file-not-found';
+				$isCached = $this->engine->isCached( $options['ipa'], $options['text'], $options['lang'] );
+				if ( !$isCached && !$parser->incrementExpensiveFunctionCount() ) {
+					// Return nothing. See T315483
+					return [];
+				}
+				// Otherwise generate the audio based on the given data, and pass the URL to the clientside.
+				$buttonConfig['href'] = $this->engine->getAudioUrl(
+					$options['ipa'],
+					$options['text'],
+					$options['lang']
+				);
 			}
-		} else {
-			$isCached = $this->engine->isCached( $options['ipa'], $options['text'], $options['lang'] );
-			if ( !$isCached && !$parser->incrementExpensiveFunctionCount() ) {
-				// Return nothing. See T315483
-				return [];
-			}
-			// Otherwise generate the audio based on the given data, and pass the URL to the clientside.
-			$buttonConfig['href'] = $this->engine->getAudioUrl(
-				$options['ipa'],
-				$options['text'],
-				$options['lang']
-			);
+		} catch ( PhonosException $e ) {
+			$this->recordError( $e );
+			$buttonConfig['data']['error'] = $e->toString();
+			$parser->addTrackingCategory( 'phonos-error-category' );
 		}
 
 		$parser->getOutput()->setEnableOOUI( true );
@@ -133,6 +150,17 @@ class Phonos implements ParserFirstCallInitHook {
 			}
 		}
 		return $results;
+	}
+
+	/**
+	 * Record exceptions that we capture and their types into statsd.
+	 *
+	 * @param PhonosException $e
+	 * @return void
+	 */
+	private function recordError( PhonosException $e ): void {
+		$key = $e->getStatsdKey();
+		$this->statsdDataFactory->increment( "phonos_error.$key" );
 	}
 
 }

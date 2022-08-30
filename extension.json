@@ -116,7 +116,7 @@
 	"HookHandlers": {
 		"PhonosHooks": {
 			"class": "MediaWiki\\Extension\\Phonos\\Phonos",
-			"services": [ "RepoGroup", "Phonos.Engine" ]
+			"services": [ "RepoGroup", "Phonos.Engine", "StatsdDataFactory" ]
 		}
 	},
 	"AutoloadNamespaces": {

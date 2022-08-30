@@ -4,15 +4,16 @@ namespace MediaWiki\Extension\Phonos;
 
 use MediaWiki\Extension\Phonos\Engine\EngineInterface;
 use MediaWiki\Extension\Phonos\Engine\EspeakEngine;
+use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\MediaWikiServices;
-use Monolog\Test\TestCase;
+use MediaWikiIntegrationTestCase;
 use WikiMap;
 
 /**
  * @group Phonos
  * @covers \MediaWiki\Extension\Phonos\Engine\Engine
  */
-class EngineTest extends TestCase {
+class EngineTest extends MediaWikiIntegrationTestCase {
 
 	/** @var EngineInterface */
 	private $engine;
@@ -55,5 +56,14 @@ class EngineTest extends TestCase {
 			"{$this->uploadPath}/" . WikiMap::getCurrentWikiId() . "-phonos/" . $this->engine->getFileName( ...$args ),
 			$this->engine->getAudioUrl( ...$args )
 		);
+	}
+
+	public function testPhonosExceptions(): void {
+		$this->overrideConfigValues( [
+			'PhonosLame' => '/invalid',
+		] );
+		$this->expectException( PhonosException::class );
+		$this->expectExceptionMessage( 'phonos-audio-conversion-error' );
+		$this->engine->convertWavToMp3( 'not valid binary data!' );
 	}
 }

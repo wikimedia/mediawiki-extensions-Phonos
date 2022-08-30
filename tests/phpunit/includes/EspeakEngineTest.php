@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\Phonos;
 
 use MediaWiki\Extension\Phonos\Engine\EspeakEngine;
 use MediaWiki\MediaWikiServices;
-use Monolog\Test\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group Phonos

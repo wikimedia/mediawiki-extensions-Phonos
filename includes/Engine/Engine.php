@@ -137,9 +137,9 @@ abstract class Engine implements EngineInterface {
 			'dir' => $this->getStoragePath(),
 		] );
 		if ( !$status->isOK() ) {
-			throw new PhonosException(
-				'Unable to create storage directory: ' . Status::wrap( $status )->getMessage()->text()
-			);
+			throw new PhonosException( 'phonos-directory-error', [
+				Status::wrap( $status )->getMessage()->text(),
+			] );
 		}
 
 		// Create the file.
@@ -149,9 +149,9 @@ abstract class Engine implements EngineInterface {
 			'overwriteSame' => true,
 		] );
 		if ( !$status->isOK() ) {
-			throw new PhonosException(
-				'Unable to create audio file: ' . Status::wrap( $status )->getMessage()->text()
-			);
+			throw new PhonosException( 'phonos-storage-error', [
+				Status::wrap( $status )->getMessage()->text()
+			] );
 		}
 	}
 
@@ -191,8 +191,9 @@ abstract class Engine implements EngineInterface {
 	 *
 	 * @param string $data
 	 * @return string
+	 * @throws PhonosException
 	 */
-	final protected function convertWavToMp3( string $data ): string {
+	final public function convertWavToMp3( string $data ): string {
 		$out = $this->commandFactory
 			->createBoxed( 'phonos' )
 			->disableNetwork()
@@ -202,7 +203,7 @@ abstract class Engine implements EngineInterface {
 			->stdin( $data )
 			->execute();
 		if ( $out->getExitCode() !== 0 ) {
-			throw new PhonosException( 'Unable to convert to MP3' );
+			throw new PhonosException( 'phonos-audio-conversion-error', [ $out->getStderr() ] );
 		}
 		return $out->getStdout();
 	}
