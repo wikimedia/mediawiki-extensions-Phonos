@@ -73,6 +73,7 @@
 				"phonos",
 				"phonos-desc",
 				"phonos-file-not-found",
+				"phonos-file-not-audio",
 				"phonos-player-aria-description"
 			],
 			"dependencies": [
@@ -95,7 +96,7 @@
 		},
 		"ext.phonos.icons": {
 			"class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
-			"icons": [ "volumeUp" ],
+			"icons": [ "volumeUp", "volumeOff" ],
 			"dependencies": [
 				"oojs-ui-widgets.styles",
 				"oojs-ui.styles.icons-media"

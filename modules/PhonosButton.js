@@ -25,23 +25,59 @@ function PhonosButton( config ) {
 
 	// Create a popup for error messages.
 	this.popup = null;
-	if ( this.phonosData.errorMsg === 'phonos-file-not-found' ) {
+	if ( this.phonosData.error ) {
 		// @todo Handle other error messages.
 		this.setDisabled( true );
 		this.setIcon( 'volumeOff' );
-		const error = mw.message( 'phonos-file-not-found', [ this.phonosData.file ] ).parse();
+		const fileTitle = new mw.Title( 'File:' + this.phonosData.file );
+		const $link = $( '<a>' )
+			.attr( 'href', fileTitle.getUrl() )
+			.text( fileTitle.getMainText() );
+		// Messages that can be used here:
+		// * phonos-file-not-found
+		// * phonos-file-not-audio
+		const error = mw.message( this.phonosData.error, [ $link.prop( 'outerHTML' ) ] ).text();
 		this.popup = new OO.ui.PopupWidget( {
+			classes: [ 'ext-phonos-error-popup' ],
 			$content: $( '<p>' ).append( error ),
 			padded: true
 		} );
+		PhonosButton.static.popups.unshift( this.popup );
 		this.$element.append( this.popup.$element );
 	}
 
+	// Add click handlers.
+	$( 'html' ).on( 'click', this.onHtmlClick );
 	this.connect( this, { click: this.onClick } );
 }
 
 OO.inheritClass( PhonosButton, OO.ui.ButtonWidget );
 OO.mixinClass( PhonosButton, OO.ui.mixin.PendingElement );
+
+/**
+ * @static
+ * @member {Array} All popups for all buttons.
+ */
+PhonosButton.static.popups = [];
+
+/**
+ * HTML element click handler: close all popups when clicking anywhere
+ * outside of any Phonos elements.
+ *
+ * @param {Event} event
+ * @return {void}
+ */
+PhonosButton.prototype.onHtmlClick = function ( event ) {
+	// Do nothing if we're clicking inside a button or popup.
+	const $parents = $( event.target ).closest( '.ext-phonos' );
+	if ( $parents.length > 0 ) {
+		return;
+	}
+	// Otherwise, close all popups.
+	PhonosButton.static.popups.forEach( ( popup ) => {
+		popup.toggle( false );
+	} );
+};
 
 /**
  * Click handler: play or pause the audio.
@@ -54,6 +90,13 @@ PhonosButton.prototype.onClick = function ( event ) {
 
 	// A popup exists, so no audio can be played.
 	if ( this.popup ) {
+		// First close other popups.
+		PhonosButton.static.popups.forEach( ( otherPopup ) => {
+			if ( otherPopup !== this.popup ) {
+				otherPopup.toggle( false );
+			}
+		} );
+		// Then show or hide this one.
 		this.popup.toggle();
 		return;
 	}

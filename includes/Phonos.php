@@ -81,12 +81,16 @@ class Phonos implements ParserFirstCallInitHook {
 
 		// If an audio file has been provided, fetch the upload URL.
 		if ( $options['file'] ) {
+			$buttonConfig['data']['file'] = $options['file'];
 			$file = $this->repoGroup->findFile( $options['file'] );
-			if ( $file && $file->getMediaType() === MEDIATYPE_AUDIO ) {
+			if ( $file ) {
 				$buttonConfig['data']['file'] = $file->getTitle()->getText();
-				$buttonConfig['href'] = $file->getUrl();
+				if ( $file->getMediaType() === MEDIATYPE_AUDIO ) {
+					$buttonConfig['href'] = $file->getUrl();
+				} else {
+					$buttonConfig['data']['error'] = 'phonos-file-not-audio';
+				}
 			} else {
-				$buttonConfig['data']['file'] = $options['file'];
 				$buttonConfig['data']['error'] = 'phonos-file-not-found';
 			}
 		} else {
