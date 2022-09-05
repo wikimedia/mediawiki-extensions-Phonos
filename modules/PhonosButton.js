@@ -154,9 +154,6 @@ PhonosButton.prototype.getErrorPopup = function () {
 		return null;
 	}
 
-	this.setDisabled( true );
-	this.setIcon( 'volumeOff' );
-
 	// Messages that can be used here:
 	// * phonos-audio-conversion-error
 	// * phonos-directory-error

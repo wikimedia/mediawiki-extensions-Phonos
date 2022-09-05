@@ -20,6 +20,12 @@ class PhonosButton extends ButtonWidget {
 			'noexcerpt'
 		];
 		parent::__construct( $config );
+
+		// Change display for errors.
+		if ( isset( $config['data']['error'] ) ) {
+			$this->setDisabled( true );
+			$this->setIcon( 'volumeOff' );
+		}
 	}
 
 	/**
