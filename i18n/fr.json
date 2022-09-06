@@ -6,8 +6,15 @@
 	},
 	"phonos": "Phonos",
 	"phonos-desc": "Fournit la fonctionnalité de vocalisation du texte pour une gamme de langues",
+	"phonos-error-category": "Pages avec des erreurs de rendu de Phonos",
+	"phonos-error-category-desc": "Une erreur s'est produite lors du rendu de Phonos.",
+	"phonos-audio-conversion-error": "Échec de conversion de l’audio en MP3 :\n$1",
+	"phonos-directory-error": "Échec de création du répertoire de stockage « $1 »",
+	"phonos-engine-error": "Échec de génération du fichier audio à l’aide du moteur « $1 » :\n$2",
+	"phonos-storage-error": "Échec de stockage du fichier audio dans sa destination finale :\n$1",
 	"phonos-tracking-category": "Pages utilisant Phonos",
 	"phonos-tracking-category-desc": "Ces pages utilisent l’extension [[:mw:Extension:Phonos|Phonos]].",
-	"phonos-file-not-found": "Fichier audio « $1 » introuvable. Veuillez réessayer.",
+	"phonos-file-not-found": "Fichier audio « $1 » introuvable.",
+	"phonos-file-not-audio": "Le fichier « $1 » n’est pas un fichier audio.",
 	"phonos-player-aria-description": "Écoutez la prononciation (notée avec l’alphabet phonétique international) de $1."
 }

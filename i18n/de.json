@@ -5,8 +5,15 @@
 		]
 	},
 	"phonos-desc": "Bereitstellung von Text-to-Speech-Funktionen für eine Reihe von Sprachen",
+	"phonos-error-category": "Seiten mit Phonos-Rendering-Fehlern",
+	"phonos-error-category-desc": "Beim Rendern von Phonos ist ein Fehler aufgetreten.",
+	"phonos-audio-conversion-error": "Konvertieren von Audio in MP3 fehlgeschlagen:\n$1",
+	"phonos-directory-error": "Speicherverzeichnis $1 konnte nicht erstellt werden",
+	"phonos-engine-error": "Fehler beim Generieren der Audiodatei mit der $1-Engine:\n$2",
+	"phonos-storage-error": "Audiodatei konnte nicht am endgültigen Zielort gespeichert werden:\n$1",
 	"phonos-tracking-category": "Seiten, die Phonos verwenden",
 	"phonos-tracking-category-desc": "Diese Seite verwendet die Erweiterung [[:mw:Extension:Phonos|Phonos]].",
-	"phonos-file-not-found": "Audiodatei „$1“ nicht gefunden. Bitte versuche es erneut.",
+	"phonos-file-not-found": "Audiodatei „$1“ nicht gefunden.",
+	"phonos-file-not-audio": "Die Datei „$1“ ist keine Audiodatei.",
 	"phonos-player-aria-description": "Höre dir die IPA-Aussprache von $1 an."
 }

@@ -1,10 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"GuoPC",
 			"Lakejason0"
 		]
 	},
 	"phonos-desc": "为多种语言提供文本转语音功能",
 	"phonos-tracking-category": "使用Phonos的页面",
-	"phonos-tracking-category-desc": "页面使用了[[:mw:Extension:Phonos|Phonos]]扩展。"
+	"phonos-tracking-category-desc": "页面使用了[[:mw:Extension:Phonos|Phonos]]扩展。",
+	"phonos-file-not-found": "找不到音频文件“$1”。",
+	"phonos-file-not-audio": "文件“$1”不是音频文件。"
 }

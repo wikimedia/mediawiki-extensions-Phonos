@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pacha Tchernof"
+		]
+	},
+	"phonos-file-not-found": "Аудиофайл «$1» не найден.",
+	"phonos-file-not-audio": "Файл «$1» не является аудиофайлом."
+}

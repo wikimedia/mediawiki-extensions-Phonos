@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"RebecaRwanda"
+		]
+	},
+	"phonos-file-not-found": "Amajwi \"$1\" ntabashije kuboneka",
+	"phonos-file-not-audio": "Impapuro \"$1\" ntago zibitse amajwi"
+}

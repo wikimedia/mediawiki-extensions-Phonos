@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tajamul9"
+		]
+	},
+	"phonos-file-not-found": "آیڈِیو فیل \"$1\" آیہِ نہٕ لبنہٕ",
+	"phonos-file-not-audio": "فیل \"$1\" چھؠنہٕ اکھ آیِڈیو فیل."
+}
