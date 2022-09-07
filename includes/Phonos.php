@@ -51,16 +51,18 @@ class Phonos implements ParserFirstCallInitHook {
 	 * @param Parser $parser
 	 */
 	public function onParserFirstCallInit( $parser ) {
-		$parser->setFunctionHook( 'phonos', [ $this, 'renderPhonos' ] );
+		$parser->setHook( 'phonos', [ $this, 'renderPhonos' ] );
 	}
 
 	/**
 	 * Convert phonos magic word to HTML
-	 * {{#phonos: text=hello | ipa=/həˈləʊ/ | file=foo.ogg | label=Hello! | lang=en}}
+	 * <phonos ipa="/həˈləʊ/" text="hello" file="foo.ogg" language="en">Hello!</phonos>
+	 * @param string|null $label
+	 * @param array $args
 	 * @param Parser $parser
-	 * @return mixed[]
+	 * @return string
 	 */
-	public function renderPhonos( Parser $parser ): array {
+	public function renderPhonos( ?string $label, array $args, Parser $parser ): string {
 		// Add the CSS and JS
 		$parser->getOutput()->addModuleStyles( [ 'ext.phonos.styles', 'ext.phonos.icons' ] );
 		$parser->getOutput()->addModules( [ 'ext.phonos' ] );
@@ -70,21 +72,22 @@ class Phonos implements ParserFirstCallInitHook {
 			'lang' => $parser->getContentLanguage()->getCode(),
 			'text' => '',
 			'file' => '',
+			'label' => $label ?: '',
+			'ipa' => '',
 		];
-		$suppliedOptions = self::extractOptions( array_slice( func_get_args(), 1 ) );
-		$options = array_merge( $defaultOptions, $suppliedOptions );
+		$options = array_merge( $defaultOptions, $args );
 
 		// Require at least something to display.
-		if ( !isset( $options['ipa'] ) && !isset( $options['label'] ) ) {
-			return [];
+		if ( !$options['ipa'] && !$options['label'] && !$options['file'] ) {
+			return '';
 		}
 
 		$parser->addTrackingCategory( 'phonos-tracking-category' );
 
 		$buttonConfig = [
-			'label' => $options['label'] ?? $options['ipa'],
+			'label' => $label ?: $options['ipa'],
 			'data' => [
-				'ipa' => $options['ipa'] ?? '',
+				'ipa' => $options['ipa'],
 				'text' => $options['text'],
 				'lang' => $options['lang'],
 			],
@@ -109,7 +112,7 @@ class Phonos implements ParserFirstCallInitHook {
 				$isCached = $this->engine->isCached( $options['ipa'], $options['text'], $options['lang'] );
 				if ( !$isCached && !$parser->incrementExpensiveFunctionCount() ) {
 					// Return nothing. See T315483
-					return [];
+					return '';
 				}
 				// Otherwise generate the audio based on the given data, and pass the URL to the clientside.
 				$buttonConfig['href'] = $this->engine->getAudioUrl(
@@ -127,29 +130,7 @@ class Phonos implements ParserFirstCallInitHook {
 		$parser->getOutput()->setEnableOOUI( true );
 		OutputPage::setupOOUI();
 		$button = new PhonosButton( $buttonConfig );
-		return [ 'isHTML' => true, 0 => $button->toString() ];
-	}
-
-	/**
-	 * Converts an array of values in form [0] => "name=value"
-	 * into a real associative array in form [name] => value
-	 * If no = is provided, true is assumed like this: [name] => true
-	 * @see https://www.mediawiki.org/wiki/Manual:Parser_functions#Named_parameters
-	 * @param array $options
-	 * @return array $results
-	 */
-	private function extractOptions( array $options ): array {
-		$results = [];
-		foreach ( $options as $option ) {
-			$pair = array_map( 'trim', explode( '=', $option, 2 ) );
-			if ( count( $pair ) === 2 ) {
-				$results[ $pair[0] ] = $pair[1];
-			}
-			if ( count( $pair ) === 1 && $pair[0] !== '' ) {
-				$results[ $pair[0] ] = true;
-			}
-		}
-		return $results;
+		return $button->toString();
 	}
 
 	/**
