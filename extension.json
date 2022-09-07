@@ -74,7 +74,9 @@
 				"phonos-desc",
 				"phonos-file-not-found",
 				"phonos-file-not-audio",
-				"phonos-player-aria-description"
+				"phonos-player-aria-description",
+				"phonos-purge-needed-error",
+				"phonos-purge-needed-error-link"
 			],
 			"dependencies": [
 				"mediawiki.api",
@@ -96,7 +98,7 @@
 		},
 		"ext.phonos.icons": {
 			"class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
-			"icons": [ "volumeUp", "volumeOff" ],
+			"icons": [ "volumeUp", "volumeOff", "reload" ],
 			"dependencies": [
 				"oojs-ui-widgets.styles",
 				"oojs-ui.styles.icons-media"

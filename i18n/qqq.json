@@ -10,6 +10,8 @@
 	"phonos-directory-error": "Error message displayed when Phonos failed to create the storage directory. Parameters:\n* $1 - the name of the directory.",
 	"phonos-engine-error": "Error message displayed when a Phonos engine was unable to generate audio. Parameters:\n* $1 - the name of the engine (not localizable)\n$2 - error message from the engine.",
 	"phonos-storage-error": "Error message displayed when Phonos failed to store audio file in its final destination. Parameters:\n$1 - result message which was returned by the backend.",
+	"phonos-purge-needed-error": "Error message displayed when audio playback failed. This is shown before the {{msg-mw|phonos-purge-needed-error-link}} message.",
+	"phonos-purge-needed-error-link": "Link shown next to the {{msg-mw|phonos-purge-needed-error}} message. This link will reload the page.",
 	"phonos-tracking-category": "{{tracking category name}}\nName of [[mw:Help:Tracking categories|tracking category]] to list pages which use the Phonos parser function.",
 	"phonos-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|phonos-tracking-category}} tracking category.",
 	"phonos-file-not-found": "Error message displayed when a manual filename is provided but it doesn't exist on the wiki.\n\nParameters:\n* $1 — HTML link to the file.",
