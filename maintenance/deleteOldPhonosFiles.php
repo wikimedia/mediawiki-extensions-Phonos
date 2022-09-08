@@ -69,7 +69,7 @@ class DeleteOldPhonosFiles extends Maintenance {
 			} else {
 				$status = Status::wrap( $ret );
 				$this->output( "Deleting old Phonos files errored.\n" );
-				$this->error( $status->getWikiText( false, false, 'en' ) );
+				$this->fatalError( $status->getWikiText( false, false, 'en' ) );
 			}
 		}
 

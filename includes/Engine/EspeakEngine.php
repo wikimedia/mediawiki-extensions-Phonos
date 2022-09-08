@@ -39,9 +39,9 @@ class EspeakEngine extends Engine {
 	 * @throws PhonosException
 	 */
 	public function getAudioData( string $ipa, string $text, string $lang ): string {
-		$cachedAudio = $this->getCachedAudio( $ipa, $text, $lang );
-		if ( $cachedAudio ) {
-			return $cachedAudio;
+		$persistedAudio = $this->getPersistedAudio( $ipa, $text, $lang );
+		if ( $persistedAudio ) {
+			return $persistedAudio;
 		}
 
 		$cmdArgs = [
@@ -68,7 +68,7 @@ class EspeakEngine extends Engine {
 		// TODO: The above and Engine::convertWavToMp3() should ideally be refactored into
 		//   a single shell script so that there's only one round trip to Shellbox.
 		$out = $this->convertWavToMp3( $out->getStdout() );
-		$this->cacheAudio( $ipa, $text, $lang, $out );
+		$this->persistAudio( $ipa, $text, $lang, $out );
 
 		return $out;
 	}

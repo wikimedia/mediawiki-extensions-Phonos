@@ -40,7 +40,7 @@
 		},
 		"PhonosFileBackendDirectory": {
 			"value": false,
-			"description": "Custom public directory to store cached Phonos audio"
+			"description": "Custom public directory to store persisted Phonos audio"
 		},
 		"PhonosEspeak": {
 			"value": "/usr/bin/espeak",

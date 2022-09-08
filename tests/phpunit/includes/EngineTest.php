@@ -33,21 +33,21 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 		$this->uploadPath = $services->getMainConfig()->get( 'UploadPath' );
 	}
 
-	public function testGetCachedAudio(): void {
+	public function testGetPersistedAudio(): void {
 		$args = [ '/həˈvænə/', 'Havana', 'en', 'foobar' ];
-		$this->engine->cacheAudio( ...$args );
+		$this->engine->persistAudio( ...$args );
 		$this->assertSame(
 			'foobar',
-			$this->engine->getCachedAudio( ...$args )
+			$this->engine->getPersistedAudio( ...$args )
 		);
 	}
 
-	public function testIsCached(): void {
+	public function testIsPersisted(): void {
 		$ipa = '/həˈvænə/';
 		$text = 'Havana';
 		$lang = 'en';
-		$this->engine->cacheAudio( $ipa, $text, $lang, 'foobar' );
-		$this->assertTrue( $this->engine->isCached( $ipa, $text, $lang ) );
+		$this->engine->persistAudio( $ipa, $text, $lang, 'foobar' );
+		$this->assertTrue( $this->engine->isPersisted( $ipa, $text, $lang ) );
 	}
 
 	public function testGetAudioUrl(): void {

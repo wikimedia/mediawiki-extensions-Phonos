@@ -92,7 +92,7 @@ abstract class Engine implements EngineInterface {
 	}
 
 	/**
-	 * Get the relative URL to the cached file, or create one if it doesn't exist.
+	 * Get the relative URL to the persisted file, or create one if it doesn't exist.
 	 *
 	 * @param string $ipa
 	 * @param string $text
@@ -108,7 +108,7 @@ abstract class Engine implements EngineInterface {
 		if ( !$exists ) {
 			// Generate the audio and store the file first.
 			$data = $this->getAudioData( $ipa, $text, $lang );
-			$this->cacheAudio( $ipa, $text, $lang, $data );
+			$this->persistAudio( $ipa, $text, $lang, $data );
 		}
 
 		if ( $this->fileBackend instanceof FSFileBackend ) {
@@ -123,7 +123,7 @@ abstract class Engine implements EngineInterface {
 	}
 
 	/**
-	 * Cache the given audio data using the configured storage backend.
+	 * Persist the given audio data using the configured storage backend.
 	 *
 	 * @param string $ipa
 	 * @param string $text
@@ -132,7 +132,7 @@ abstract class Engine implements EngineInterface {
 	 * @return void
 	 * @throws PhonosException
 	 */
-	final public function cacheAudio( string $ipa, string $text, string $lang, string $data ): void {
+	final public function persistAudio( string $ipa, string $text, string $lang, string $data ): void {
 		$status = $this->fileBackend->prepare( [
 			'dir' => $this->getStoragePath(),
 		] );
@@ -156,15 +156,15 @@ abstract class Engine implements EngineInterface {
 	}
 
 	/**
-	 * Fetch the contents of the cached file in the storage backend, or null if the file doesn't exist.
+	 * Fetch the contents of the persisted file in the storage backend, or null if the file doesn't exist.
 	 *
 	 * @param string $ipa
 	 * @param string $text
 	 * @param string $lang
 	 * @return string|null base64 data, or null if the file doesn't exist.
 	 */
-	final public function getCachedAudio( string $ipa, string $text, string $lang ): ?string {
-		if ( !$this->isCached( $ipa, $text, $lang ) ) {
+	final public function getPersistedAudio( string $ipa, string $text, string $lang ): ?string {
+		if ( !$this->isPersisted( $ipa, $text, $lang ) ) {
 			return null;
 		}
 		return $this->fileBackend->getFileContents( [
@@ -173,14 +173,14 @@ abstract class Engine implements EngineInterface {
 	}
 
 	/**
-	 * Is there a cached file for the given parameters?
+	 * Is there a persisted file for the given parameters?
 	 *
 	 * @param string $ipa
 	 * @param string $text
 	 * @param string $lang
 	 * @return bool
 	 */
-	final public function isCached( string $ipa, string $text, string $lang ): bool {
+	final public function isPersisted( string $ipa, string $text, string $lang ): bool {
 		return $this->fileBackend->fileExists( [
 			'src' => $this->getFileDest( $ipa, $text, $lang ),
 		] );
@@ -209,7 +209,7 @@ abstract class Engine implements EngineInterface {
 	}
 
 	/**
-	 * Get the full storage path to the cached file, whether it exists or not.
+	 * Get the full storage path to the persisted file, whether it exists or not.
 	 *
 	 * @param string $ipa
 	 * @param string $text
@@ -231,8 +231,8 @@ abstract class Engine implements EngineInterface {
 	public function getFileName( string $ipa, string $text, string $lang ): string {
 		// Using ReflectionClass to get the unqualified class name is actually faster than doing string operations.
 		$engineName = ( new ReflectionClass( get_class( $this ) ) )->getShortName();
-		$cacheKey = md5( implode( '|', [ $engineName, $ipa, $text, $lang, self::CACHE_VERSION ] ) );
-		return "$cacheKey.mp3";
+		$sha = sha1( implode( '|', [ $engineName, $ipa, $text, $lang, self::CACHE_VERSION ] ) );
+		return "$sha.mp3";
 	}
 
 	/**

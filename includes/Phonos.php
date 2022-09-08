@@ -109,8 +109,8 @@ class Phonos implements ParserFirstCallInitHook {
 					$buttonConfig['data']['error'] = 'phonos-file-not-found';
 				}
 			} else {
-				$isCached = $this->engine->isCached( $options['ipa'], $options['text'], $options['lang'] );
-				if ( !$isCached && !$parser->incrementExpensiveFunctionCount() ) {
+				$isPersisted = $this->engine->isPersisted( $options['ipa'], $options['text'], $options['lang'] );
+				if ( !$isPersisted && !$parser->incrementExpensiveFunctionCount() ) {
 					// Return nothing. See T315483
 					return '';
 				}

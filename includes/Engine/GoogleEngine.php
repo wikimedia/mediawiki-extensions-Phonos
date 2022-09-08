@@ -40,9 +40,9 @@ class GoogleEngine extends Engine {
 	 * @throws PhonosException
 	 */
 	public function getAudioData( string $ipa, string $text, string $lang ): string {
-		$cachedAudio = $this->getCachedAudio( $ipa, $text, $lang );
-		if ( $cachedAudio ) {
-			return $cachedAudio;
+		$persistedAudio = $this->getPersistedAudio( $ipa, $text, $lang );
+		if ( $persistedAudio ) {
+			return $persistedAudio;
 		}
 
 		$postData = [
@@ -82,7 +82,7 @@ class GoogleEngine extends Engine {
 		}
 
 		$audio = base64_decode( json_decode( $request->getContent() )->audioContent );
-		$this->cacheAudio( $ipa, $text, $lang, $audio );
+		$this->persistAudio( $ipa, $text, $lang, $audio );
 
 		return $audio;
 	}

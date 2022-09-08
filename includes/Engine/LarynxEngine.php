@@ -37,9 +37,9 @@ class LarynxEngine extends Engine {
 	 * @throws PhonosException
 	 */
 	public function getAudioData( string $ipa, string $text, string $lang ): string {
-		$cachedAudio = $this->getCachedAudio( $ipa, $text, $lang );
-		if ( $cachedAudio ) {
-			return $cachedAudio;
+		$persistedAudio = $this->getPersistedAudio( $ipa, $text, $lang );
+		if ( $persistedAudio ) {
+			return $persistedAudio;
 		}
 
 		$ssml = trim( $this->getSsml( $ipa, $text, $lang ) );
@@ -70,7 +70,7 @@ class LarynxEngine extends Engine {
 		}
 
 		$mp3Data = $this->convertWavToMp3( $request->getContent() );
-		$this->cacheAudio( $ipa, $text, $lang, $mp3Data );
+		$this->persistAudio( $ipa, $text, $lang, $mp3Data );
 
 		return $request->getContent();
 	}
