@@ -57,6 +57,7 @@ class Phonos implements ParserFirstCallInitHook {
 	/**
 	 * Convert phonos magic word to HTML
 	 * <phonos ipa="/həˈləʊ/" text="hello" file="foo.ogg" language="en">Hello!</phonos>
+	 *
 	 * @param string|null $label
 	 * @param array $args
 	 * @param Parser $parser
@@ -92,6 +93,13 @@ class Phonos implements ParserFirstCallInitHook {
 				'lang' => $options['lang'],
 			],
 		];
+
+		// Check length of IPA.
+		if ( strlen( $options['ipa'] ) > 300 ) {
+			// Don't send the very long IPA
+			$options['ipa'] = '';
+			$buttonConfig['data']['error'] = 'phonos-ipa-too-long';
+		}
 
 		try {
 			// If an audio file has been provided, fetch the upload URL.

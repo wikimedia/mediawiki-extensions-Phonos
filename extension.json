@@ -76,7 +76,8 @@
 				"phonos-file-not-audio",
 				"phonos-player-aria-description",
 				"phonos-purge-needed-error",
-				"phonos-purge-needed-error-link"
+				"phonos-purge-needed-error-link",
+				"phonos-ipa-too-long"
 			],
 			"dependencies": [
 				"mediawiki.api",

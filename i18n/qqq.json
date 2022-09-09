@@ -16,5 +16,6 @@
 	"phonos-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|phonos-tracking-category}} tracking category.",
 	"phonos-file-not-found": "Error message displayed when a manual filename is provided but it doesn't exist on the wiki.\n\nParameters:\n* $1 — HTML link to the file.",
 	"phonos-file-not-audio": "Error message displayed when a manual filename is provided but it is not an audio file.\n\nParameters:\n* $1 — HTML link to the file.",
-	"phonos-player-aria-description": "Aria description for the Phonos player."
+	"phonos-player-aria-description": "Aria description for the Phonos player.",
+	"phonos-ipa-too-long": "Error message displayed when the IPA is too long to render."
 }
