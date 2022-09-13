@@ -14,7 +14,6 @@ use MediaWiki\Shell\CommandFactory;
 use NullLockManager;
 use ReflectionClass;
 use Status;
-use WikiMap;
 
 /**
  * Contains logic common to all Engines.
@@ -23,6 +22,9 @@ abstract class Engine implements EngineInterface {
 
 	/** @var int Version for cache invalidation. */
 	private const CACHE_VERSION = 1;
+
+	/** @var string Prefix directory name when persisting files to storage. */
+	private const STORAGE_PREFIX = 'phonos';
 
 	/** @var HttpRequestFactory */
 	protected $requestFactory;
@@ -42,6 +44,9 @@ abstract class Engine implements EngineInterface {
 	/** @var string */
 	protected $uploadPath;
 
+	/** @var string */
+	private $engineName;
+
 	/**
 	 * @param HttpRequestFactory $requestFactory
 	 * @param CommandFactory $commandFactory
@@ -59,7 +64,10 @@ abstract class Engine implements EngineInterface {
 		$this->fileBackend = self::getFileBackend( $fileBackendGroup, $config );
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 		$this->lamePath = $config->get( 'PhonosLame' );
-		$this->uploadPath = $config->get( 'PhonosPath' ) ?: $config->get( MainConfigNames::UploadPath );
+		$this->uploadPath = $config->get( 'PhonosPath' ) ?:
+			$config->get( MainConfigNames::UploadPath ) . '/' . self::STORAGE_PREFIX;
+		// Using ReflectionClass to get the unqualified class name is actually faster than doing string operations.
+		$this->engineName = ( new ReflectionClass( get_class( $this ) ) )->getShortName();
 	}
 
 	/**
@@ -76,17 +84,28 @@ abstract class Engine implements EngineInterface {
 		}
 
 		$uploadDirectory = $config->get( 'PhonosFileBackendDirectory' ) ?:
-			$config->get( MainConfigNames::UploadDirectory );
+			$config->get( MainConfigNames::UploadDirectory ) . '/' . self::STORAGE_PREFIX;
 
 		return new FSFileBackend( [
 			'name' => 'phonos-backend',
 			'basePath' => $uploadDirectory,
-			'wikiId' => WikiMap::getCurrentWikiId(),
+			// NOTE: We intentionally use a blank 'domainId' since Phonos files with identical
+			// parameters (including language) won't differ cross-wiki and should be shared.
+			// Similarly we set the 'containerPaths', which effectively tells FileBackend to
+			// bypass using the 'domainId' when building paths. This is to prevent the asymmetry
+			// in path names used by FSFileBackend and others such as Swift. However, all files
+			// are under a dedicated directory with the name self::STORAGE_PREFIX, which should
+			// be enough to prevent collisions with other backends using the same storage system.
+			// If this is undesired, set $wgPhonosFileBackendDirectory and/or $wgPhonosFileBackend
+			// accordingly, along with the user-facing path specified by $wgPhonosPath.
+			'domainId' => '',
+			'containerPaths' => [ self::STORAGE_PREFIX => $uploadDirectory ],
 			'lockManager' => new NullLockManager( [] ),
 			'fileMode' => 0777,
 			'directoryMode' => 0777,
 			'obResetFunc' => 'wfResetOutputBuffers',
 			'streamMimeFunc' => [ 'StreamFile', 'contentTypeFromPath' ],
+			'statusWrapper' => [ 'Status', 'wrap' ],
 			'logger' => LoggerFactory::getInstance( 'phonos' ),
 		] );
 	}
@@ -99,8 +118,8 @@ abstract class Engine implements EngineInterface {
 	 * @param string $lang
 	 * @return string
 	 */
-	public function getAudioUrl( string $ipa, string $text, string $lang ): string {
-		$fileDest = $this->getFileDest( $ipa, $text, $lang );
+	public function getFileUrl( string $ipa, string $text, string $lang ): string {
+		$fileDest = $this->getFullFileStoragePath( $ipa, $text, $lang );
 		$exists = $this->fileBackend->fileExists( [
 			'src' => $fileDest,
 		] );
@@ -111,15 +130,7 @@ abstract class Engine implements EngineInterface {
 			$this->persistAudio( $ipa, $text, $lang, $data );
 		}
 
-		if ( $this->fileBackend instanceof FSFileBackend ) {
-			// FileBackend::getFileHttpUrl() is not supported by FSFileBackend
-			return "{$this->uploadPath}/" . WikiMap::getCurrentWikiId() .
-				"-phonos/" . $this->getFileName( $ipa, $text, $lang );
-		} else {
-			return $this->fileBackend->getFileHttpUrl( [
-				'src' => $fileDest,
-			] );
-		}
+		return $this->getFileProperties( $ipa, $text, $lang )['dest_url'];
 	}
 
 	/**
@@ -134,7 +145,7 @@ abstract class Engine implements EngineInterface {
 	 */
 	final public function persistAudio( string $ipa, string $text, string $lang, string $data ): void {
 		$status = $this->fileBackend->prepare( [
-			'dir' => $this->getStoragePath(),
+			'dir' => $this->getFileStoragePath( $ipa, $text, $lang ),
 		] );
 		if ( !$status->isOK() ) {
 			throw new PhonosException( 'phonos-directory-error', [
@@ -144,7 +155,7 @@ abstract class Engine implements EngineInterface {
 
 		// Create the file.
 		$status = $this->fileBackend->quickCreate( [
-			'dst' => $this->getFileDest( $ipa, $text, $lang ),
+			'dst' => $this->getFullFileStoragePath( $ipa, $text, $lang ),
 			'content' => $data,
 			'overwriteSame' => true,
 		] );
@@ -168,7 +179,7 @@ abstract class Engine implements EngineInterface {
 			return null;
 		}
 		return $this->fileBackend->getFileContents( [
-			'src' => $this->getFileDest( $ipa, $text, $lang ),
+			'src' => $this->getFullFileStoragePath( $ipa, $text, $lang ),
 		] );
 	}
 
@@ -182,7 +193,7 @@ abstract class Engine implements EngineInterface {
 	 */
 	final public function isPersisted( string $ipa, string $text, string $lang ): bool {
 		return $this->fileBackend->fileExists( [
-			'src' => $this->getFileDest( $ipa, $text, $lang ),
+			'src' => $this->getFullFileStoragePath( $ipa, $text, $lang ),
 		] );
 	}
 
@@ -209,39 +220,60 @@ abstract class Engine implements EngineInterface {
 	}
 
 	/**
-	 * Get the full storage path to the persisted file, whether it exists or not.
+	 * Get various storage properties about the persisted file.
+	 *
+	 * @param string $ipa
+	 * @param string $text
+	 * @param string $lang
+	 * @return string[] with keys 'dest_storage_path', 'dest_url', 'file_name'
+	 */
+	private function getFileProperties( string $ipa, string $text, string $lang ): array {
+		$baseStoragePath = $this->fileBackend->getRootStoragePath() . '/' . self::STORAGE_PREFIX;
+		$cacheOptions = [ $this->engineName, $ipa, $text, $lang, self::CACHE_VERSION ];
+		$fileCacheName = \Wikimedia\base_convert( sha1( implode( '|', $cacheOptions ) ), 16, 36, 31 );
+		$filePrefixEnd = "{$fileCacheName[0]}/{$fileCacheName[1]}";
+		$fileName = "$fileCacheName.mp3";
+		return [
+			'fileName' => $fileName,
+			'dest_storage_path' => "$baseStoragePath/$filePrefixEnd",
+			'dest_url' => "{$this->uploadPath}/$filePrefixEnd/{$fileName}",
+		];
+	}
+
+	/**
+	 * Get the internal storage path to the persisted file, whether it exists or not.
 	 *
 	 * @param string $ipa
 	 * @param string $text
 	 * @param string $lang
 	 * @return string
 	 */
-	private function getFileDest( string $ipa, string $text, string $lang ): string {
-		return $this->getStoragePath() . '/' . $this->getFileName( $ipa, $text, $lang );
+	private function getFileStoragePath( string $ipa, string $text, string $lang ): string {
+		return $this->getFileProperties( $ipa, $text, $lang )[ 'dest_storage_path' ];
 	}
 
 	/**
-	 * Get a unique filename for the given set of Phonos parameters, including the file extension.
+	 * Get the unique filename for the given set of Phonos parameters, including the file extension.
 	 *
 	 * @param string $ipa
 	 * @param string $text
 	 * @param string $lang
 	 * @return string
 	 */
-	public function getFileName( string $ipa, string $text, string $lang ): string {
-		// Using ReflectionClass to get the unqualified class name is actually faster than doing string operations.
-		$engineName = ( new ReflectionClass( get_class( $this ) ) )->getShortName();
-		$sha = sha1( implode( '|', [ $engineName, $ipa, $text, $lang, self::CACHE_VERSION ] ) );
-		return "$sha.mp3";
+	private function getFileName( string $ipa, string $text, string $lang ): string {
+		return $this->getFileProperties( $ipa, $text, $lang )['fileName'];
 	}
 
 	/**
-	 * Get the path to where Phonos files are stored.
-	 *
+	 * Get the full path to the
+	 * @param string $ipa
+	 * @param string $text
+	 * @param string $lang
 	 * @return string
 	 */
-	private function getStoragePath(): string {
-		return $this->fileBackend->getRootStoragePath() . '/phonos';
+	private function getFullFileStoragePath( string $ipa, string $text, string $lang ): string {
+		return $this->getFileStoragePath( $ipa, $text, $lang ) . '/' .
+			$this->getFileName( $ipa, $text, $lang );
 	}
 
 }

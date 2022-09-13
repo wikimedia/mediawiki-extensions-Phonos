@@ -115,7 +115,7 @@ class Phonos implements ParserFirstCallInitHook {
 					return '';
 				}
 				// Otherwise generate the audio based on the given data, and pass the URL to the clientside.
-				$buttonConfig['href'] = $this->engine->getAudioUrl(
+				$buttonConfig['href'] = $this->engine->getFileUrl(
 					$options['ipa'],
 					$options['text'],
 					$options['lang']
