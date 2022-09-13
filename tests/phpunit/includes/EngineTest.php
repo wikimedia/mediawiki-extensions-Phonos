@@ -7,7 +7,6 @@ use MediaWiki\Extension\Phonos\Engine\EspeakEngine;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
-use WikiMap;
 
 /**
  * @group Phonos
@@ -43,18 +42,17 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testIsPersisted(): void {
-		$ipa = '/həˈvænə/';
-		$text = 'Havana';
-		$lang = 'en';
-		$this->engine->persistAudio( $ipa, $text, $lang, 'foobar' );
-		$this->assertTrue( $this->engine->isPersisted( $ipa, $text, $lang ) );
+		$args = [ '/həˈvænə/', 'Havana', 'en', 'foobar' ];
+		$this->engine->persistAudio( ...$args );
+		$this->assertTrue( $this->engine->isPersisted( ...$args ) );
 	}
 
-	public function testGetAudioUrl(): void {
+	public function testGetFileUrl(): void {
 		$args = [ '/həˈvænə/', 'Havana', 'en' ];
+		// We know how the cache key is generated, so we know what the final URL should be.
 		$this->assertSame(
-			"{$this->uploadPath}/" . WikiMap::getCurrentWikiId() . "-phonos/" . $this->engine->getFileName( ...$args ),
-			$this->engine->getAudioUrl( ...$args )
+			"{$this->uploadPath}/phonos/0/8/08h2h100e3dgycsfj2my0oc8ll84q3a.mp3",
+			$this->engine->getFileUrl( ...$args )
 		);
 	}
 
