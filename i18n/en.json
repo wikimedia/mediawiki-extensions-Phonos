@@ -10,6 +10,8 @@
 	"phonos-directory-error": "Failed to create storage directory $1",
 	"phonos-engine-error": "Failed to generate audio file using the $1 engine:\n$2",
 	"phonos-storage-error": "Failed to store audio file in its final destination:\n$1",
+	"phonos-purge-needed-error": "Unable to play audio.",
+	"phonos-purge-needed-error-link": "Refresh the page and try again.",
 	"phonos-tracking-category": "Pages that use Phonos",
 	"phonos-tracking-category-desc": "The page uses the [[:mw:Extension:Phonos|Phonos]] extension.",
 	"phonos-file-not-found": "Audio file \"$1\" not found.",

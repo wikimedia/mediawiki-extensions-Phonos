@@ -106,33 +106,14 @@ PhonosButton.prototype.onClick = function ( event ) {
 			this.popPending();
 			this.audio.play();
 		}, { once: true } );
-		return;
-	}
-
-	// Not loaded yet, and needs to fetch audio from the action=phonos API.
-	if ( !this.audio ) {
-		this.pushPending();
-		( new mw.Api() ).get( {
-			action: 'phonos',
-			ipa: this.phonosData.ipa,
-			text: this.phonosData.text,
-			lang: this.phonosData.lang
-		} ).done( ( response ) => {
-			const srcData = 'data:audio/mp3;base64,' + response.phonos.audioData;
-			this.audio = this.getAudioEl( srcData );
-			// Play once after loading.
-			this.audio.addEventListener( 'canplaythrough', () => {
-				this.audio.play();
-			}, { once: true } );
-		} ).fail( ( err ) => {
-			mw.log.error( err );
-			// @todo Add error popup and button state.
-		} ).always( () => {
-			this.popPending();
-		} );
 	}
 };
 
+/**
+ * @private
+ * @param {string} src
+ * @return {HTMLAudioElement}
+ */
 PhonosButton.prototype.getAudioEl = function ( src ) {
 	const audio = new Audio( src );
 	audio.addEventListener( 'playing', () => {
@@ -144,13 +125,14 @@ PhonosButton.prototype.getAudioEl = function ( src ) {
 	audio.addEventListener( 'ended', () => {
 		this.setFlags( { progressive: false } );
 	} );
+	audio.onerror = this.handleMissingFile.bind( this );
 	return audio;
 };
 
 /**
- * Create an error popup if necessary.
+ * Create and return an error popup if necessary.
  *
- * @return {null|string}
+ * @return {null|OO.ui.PopupWidget}
  */
 PhonosButton.prototype.getErrorPopup = function () {
 	if ( !this.phonosData.error ) {
@@ -177,6 +159,17 @@ PhonosButton.prototype.getErrorPopup = function () {
 		error = mw.message( this.phonosData.error, [ $link.prop( 'outerHTML' ) ] ).text();
 	}
 
+	return this.getErrorPopupWidget( error );
+};
+
+/**
+ * Get an error popup widget with the given message.
+ *
+ * @param {string} error
+ * @return {OO.ui.PopupWidget}
+ * @private
+ */
+PhonosButton.prototype.getErrorPopupWidget = function ( error ) {
 	const popup = new OO.ui.PopupWidget( {
 		classes: [ 'ext-phonos-error-popup' ],
 		$content: $( '<p>' ).append( error ),
@@ -185,6 +178,44 @@ PhonosButton.prototype.getErrorPopup = function () {
 	PhonosButton.static.popups.unshift( popup );
 	this.$element.append( popup.$element );
 	return popup;
+};
+
+/**
+ * This is called when there's an error when attempting playback. We assume in this case
+ * the file somehow went missing. In any case, re-trying is probably the best advice for the user.
+ *
+ * @private
+ */
+PhonosButton.prototype.handleMissingFile = function () {
+	this.popPending();
+	this.setDisabled( true );
+	this.setIcon( 'volumeOff' );
+	const $link = $( '<a>' )
+		.attr( 'href', mw.util.getUrl( mw.config.get( 'wgPageName' ), { action: 'purge' } ) )
+		.text( mw.message( 'phonos-purge-needed-error-link' ) );
+	this.popup = this.getErrorPopupWidget(
+		$( '<span>' ).append(
+			mw.message( 'phonos-purge-needed-error' ).text() + '&nbsp;',
+			$link
+		)
+	);
+	this.popup.toggle( true );
+
+	// Set up click listener for the link so that users with JS
+	// aren't shown the action=purge confirmation screen.
+	$link.on( 'click', ( e ) => {
+		this.setIcon( 'reload' );
+		e.preventDefault();
+		mw.loader.using( 'mediawiki.api' ).done( () => {
+			new mw.Api().post( {
+				action: 'purge',
+				pageids: mw.config.get( 'wgArticleId' )
+			} ).always( () => {
+				// The browser *should* bring the user back to the same scroll position.
+				location.reload();
+			} );
+		} );
+	} );
 };
 
 module.exports = PhonosButton;
