@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Extension\Phonos\Engine\EngineInterface;
+use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
 use MediaWiki\MediaWikiServices;
 
 /** @phpcs-require-sorted-array */
@@ -16,6 +17,14 @@ return [
 			$services->getHttpRequestFactory(),
 			$services->getShellCommandFactory(),
 			$services->getFileBackendGroup(),
+			$config
+		);
+	},
+	'Phonos.Wikibase' => static function ( MediaWikiServices $services ): WikibaseEntityAndLexemeFetcher {
+		$config = $services->getMainConfig();
+		return new WikibaseEntityAndLexemeFetcher(
+			$services->getHttpRequestFactory(),
+			$services->getMainWANObjectCache(),
 			$config
 		);
 	},

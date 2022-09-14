@@ -53,6 +53,22 @@
 		"PhonosPath": {
 			"value": false,
 			"description": "Relative URL path to where Phonos files are publicly available"
+		},
+		"PhonosWikibaseUrl": {
+			"value": "https://www.wikidata.org/wiki/",
+			"description": "Wikibase URL"
+		},
+		"PhonosWikibaseProperties": {
+			"value":  {
+				"wikibasePronunciationAudioProp": "P443",
+				"wikibaseLangNameProp": "P407",
+				"wikibaseIETFLangTagProp": "P305"
+			},
+			"description": "Wikibase Properties for the Wikibase API"
+		},
+		"PhonosCommonsMediaUrl": {
+			"value":  "https://commons.wikimedia.org/wiki/Special:FilePath/",
+			"description": "Commons media URL"
 		}
 	},
 	"MessagesDirs": {
@@ -77,7 +93,10 @@
 				"phonos-player-aria-description",
 				"phonos-purge-needed-error",
 				"phonos-purge-needed-error-link",
-				"phonos-ipa-too-long"
+				"phonos-ipa-too-long",
+				"phonos-wikibase-api-error",
+				"phonos-wikibase-invalid-entity-lexeme",
+				"phonos-wikibase-not-found"
 			],
 			"dependencies": [
 				"mediawiki.api",
@@ -119,7 +138,7 @@
 	"HookHandlers": {
 		"PhonosHooks": {
 			"class": "MediaWiki\\Extension\\Phonos\\Phonos",
-			"services": [ "RepoGroup", "Phonos.Engine", "StatsdDataFactory" ]
+			"services": [ "RepoGroup", "Phonos.Engine", "Phonos.Wikibase", "StatsdDataFactory" ]
 		}
 	},
 	"AutoloadNamespaces": {
