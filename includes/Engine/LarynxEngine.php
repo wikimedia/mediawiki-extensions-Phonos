@@ -79,8 +79,16 @@ class LarynxEngine extends Engine {
 	 * @inheritDoc
 	 */
 	public function getSsml( string $ipa, string $text, string $lang ): string {
+		// T317431
+		// FIXME: Remove this `if` once we've upgraded to PHP 7.4 — mb_str_split is available there.
+		if ( function_exists( 'mb_str_split' ) ) {
+			// @phan-suppress-next-line PhanUndeclaredFunction
+			$ipa = trim( implode( ' ', mb_str_split( $ipa ) ) );
+		} else {
+			$ipa = trim( preg_replace( '/(.)/u', '$1 ', $ipa ) );
+		}
+
 		$ssmlDoc = new DOMDocument( '1.0' );
-		$ipaId = 'ipaInput';
 
 		$speakNode = $ssmlDoc->createElement( 'speak' );
 		$speakNode->setAttribute( 'xmlns', 'http://www.w3.org/2001/10/synthesis' );
@@ -90,7 +98,7 @@ class LarynxEngine extends Engine {
 
 		/**
 		 * Adds the following to the <speak> node:
-		 *   <lexicon xml:id="ipaInput" alphabet="ipa">
+		 *   <lexicon alphabet="ipa">
 		 *     <lexeme>
 		 *       <grapheme>{$text}</grapheme>
 		 *       <phoneme>{$ipa}</phoneme>
@@ -98,7 +106,6 @@ class LarynxEngine extends Engine {
 		 *   </lexicon>
 		 */
 		$lexiconNode = $ssmlDoc->createElement( 'lexicon' );
-		$lexiconNode->setAttribute( 'xml:id', $ipaId );
 		$lexiconNode->setAttribute( 'alphabet', 'ipa' );
 		$lexemeNode = $ssmlDoc->createElement( 'lexeme' );
 		$graphemeNode = $ssmlDoc->createElement( 'grapheme', $text );
@@ -110,15 +117,10 @@ class LarynxEngine extends Engine {
 
 		/**
 		 * Adds the following to the <speak> node:
-		 *   <lookup ref="ipaInput">
-		 *     <w>{$text}</w>
-		 *   </lookup>
+		 *   <w>{$text}</w>
 		 */
-		$lookupNode = $ssmlDoc->createElement( 'lookup' );
-		$lookupNode->setAttribute( 'ref', $ipaId );
 		$wNode = $ssmlDoc->createElement( 'w', $text );
-		$lookupNode->appendChild( $wNode );
-		$speakNode->appendChild( $lookupNode );
+		$speakNode->appendChild( $wNode );
 
 		return $ssmlDoc->saveXML();
 	}
