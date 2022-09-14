@@ -17,5 +17,6 @@
 	"phonos-tracking-category-desc": "Diese Seite verwendet die Erweiterung [[:mw:Extension:Phonos|Phonos]].",
 	"phonos-file-not-found": "Audiodatei „$1“ nicht gefunden.",
 	"phonos-file-not-audio": "Die Datei „$1“ ist keine Audiodatei.",
-	"phonos-player-aria-description": "Höre dir die IPA-Aussprache von $1 an."
+	"phonos-player-aria-description": "Höre dir die IPA-Aussprache von $1 an.",
+	"phonos-ipa-too-long": "IPA ist zu lang zum Rendern."
 }

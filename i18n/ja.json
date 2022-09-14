@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Funa-enpitu",
+			"MathXplore",
 			"Omotecho"
 		]
 	},
 	"phonos-desc": "特定の言語群を対象に、文章読み上げ機能を提供",
+	"phonos-purge-needed-error-link": "ページを更新して、もう一度お試しください。",
 	"phonos-tracking-category": "フォノスを使用しているページ",
 	"phonos-tracking-category-desc": "このページは[[:mw:Extension:Phonos|Phonos]]拡張機能を使用しています。"
 }
