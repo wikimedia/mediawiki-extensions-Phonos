@@ -78,9 +78,11 @@ class WikibaseEntityAndLexemeFetcher {
 			return null;
 		}
 
+		$audioFiles = [];
+
 		if ( $item->type === "lexeme" ) {
 			// If lexeme, we need the $text representation for the audio file
-			if ( empty( $text ) ) {
+			if ( $text === "" ) {
 				return null;
 			}
 			$itemForms = $item->forms;
@@ -105,7 +107,7 @@ class WikibaseEntityAndLexemeFetcher {
 		}
 
 		// Return if no audio files found
-		if ( empty( $audioFiles ) ) {
+		if ( $audioFiles === [] ) {
 			return null;
 		}
 
