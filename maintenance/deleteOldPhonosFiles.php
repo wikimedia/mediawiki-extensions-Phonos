@@ -36,7 +36,7 @@ class DeleteOldPhonosFiles extends Maintenance {
 			$services->getFileBackendGroup(),
 			$services->getMainConfig()
 		);
-		$dir = $backend->getRootStoragePath() . '/phonos';
+		$dir = $backend->getRootStoragePath() . '/' . Engine::STORAGE_PREFIX;
 
 		$filesToDelete = [];
 		$deleteDate = $this->getOption( 'date' );
@@ -74,6 +74,17 @@ class DeleteOldPhonosFiles extends Maintenance {
 		}
 
 		$this->output( "$deletedCount old Phonos files deleted.\n" );
+
+		// Remove empty directories.
+		$ret = $backend->clean( [
+			'dir' => $dir,
+			'recursive' => true,
+		] );
+		if ( !$ret->isOK() ) {
+			$status = Status::wrap( $ret );
+			$this->output( "Cleaning empty directories errored.\n" );
+			$this->fatalError( $status->getWikiText( false, false, 'en' ) );
+		}
 	}
 }
 
