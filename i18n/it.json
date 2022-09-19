@@ -7,5 +7,7 @@
 	"phonos-tracking-category": "Pagine che utilizzano Phonos",
 	"phonos-tracking-category-desc": "Pagine che utilizzano l'estensione [[:mw:Extension:Phonos|Phonos]].",
 	"phonos-file-not-found": "File audio \"$1\" non trovato.",
-	"phonos-file-not-audio": "Il file \"$1\" non è un file audio."
+	"phonos-file-not-audio": "Il file \"$1\" non è un file audio.",
+	"phonos-wikibase-api-error": "Impossibile recuperare l'entità da Wikibase: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Entità o lessema non valido: $1"
 }

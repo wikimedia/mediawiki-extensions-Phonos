@@ -19,5 +19,8 @@
 	"phonos-file-not-found": "Fichier audio « $1 » introuvable.",
 	"phonos-file-not-audio": "Le fichier « $1 » n’est pas un fichier audio.",
 	"phonos-player-aria-description": "Écoutez la prononciation (notée avec l’alphabet phonétique international) de $1.",
-	"phonos-ipa-too-long": "Transcription API trop longue à rendre."
+	"phonos-ipa-too-long": "Transcription API trop longue à rendre.",
+	"phonos-wikibase-api-error": "Impossible de récupérer l’entité de Wikibase : $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Entité ou lexème invalide : $1",
+	"phonos-wikibase-not-found": "Aucun audio trouvé pour l’élément Wikibase : $1"
 }
