@@ -36,14 +36,19 @@ class WikibaseEntityAndLexemeFetcher {
 	/** @var WANObjectCache */
 	private $wanCache;
 
+	/** @var string */
+	private $apiProxy;
+
 	/**
 	 * @param HttpRequestFactory $requestFactory
 	 * @param WANObjectCache $wanCache
 	 * @param Config $config
 	 */
-	public function __construct( HttpRequestFactory $requestFactory,
+	public function __construct(
+		HttpRequestFactory $requestFactory,
 		WANObjectCache $wanCache,
-		Config $config ) {
+		Config $config
+	) {
 		$this->requestFactory = $requestFactory;
 		$this->wikibaseUrl = $config->get( 'PhonosWikibaseUrl' );
 
@@ -54,6 +59,7 @@ class WikibaseEntityAndLexemeFetcher {
 
 		$this->commonsMediaUrl = $config->get( 'PhonosCommonsMediaUrl' );
 		$this->wanCache = $wanCache;
+		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 	}
 
 	/**
@@ -66,7 +72,8 @@ class WikibaseEntityAndLexemeFetcher {
 	public function fetchPhonosWikibaseAudio(
 		string $wikibaseEntity,
 		string $text,
-		string $lang ): ?PhonosWikibasePronunciationAudio {
+		string $lang
+	): ?PhonosWikibasePronunciationAudio {
 		if ( !$this->isValidEntityOrLexeme( $wikibaseEntity ) ) {
 			throw new PhonosException( 'phonos-wikibase-invalid-entity-lexeme',
 				[ $wikibaseEntity ] );
@@ -121,7 +128,8 @@ class WikibaseEntityAndLexemeFetcher {
 			if ( $langCode === $normalizedLang ) {
 				$pronunciationFile = new PhonosWikibasePronunciationAudio(
 					$audioFile,
-					$this->commonsMediaUrl );
+					$this->commonsMediaUrl
+				);
 				break;
 			}
 		}
@@ -157,6 +165,10 @@ class WikibaseEntityAndLexemeFetcher {
 		$options = [
 			'method' => 'GET'
 		];
+
+		if ( $this->apiProxy ) {
+			$options['proxy'] = $this->apiProxy;
+		}
 
 		$request = $this->requestFactory->create(
 			$url,
