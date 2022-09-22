@@ -6,8 +6,15 @@
 	},
 	"phonos": "Фонос",
 	"phonos-desc": "Дава можност за гласовен читач на текст за разни јазици",
+	"phonos-error-category": "Страници со грешки во изведбата на Фонос",
+	"phonos-error-category-desc": "Се појави грешка при изведбата на Фонос.",
+	"phonos-audio-conversion-error": "Не успеав да ја претворам снимката во MP3:\n$1",
+	"phonos-directory-error": "Не успеав да ја создадам складишната папка $1",
+	"phonos-engine-error": "Не успеав да создадам звучна податотека со погонот $1:\n$2",
+	"phonos-storage-error": "Не успеав да ја зачувам звучната податотека во нејзиното конечно одредиште:\n$1",
 	"phonos-tracking-category": "Страници со Фонос",
 	"phonos-tracking-category-desc": "Страницата го користи додатокот [[:mw:Extension:Phonos|Фонос]].",
-	"phonos-file-not-found": "Не ја најдов звучната податотека „$1“. Обидете се повторно.",
+	"phonos-file-not-found": "Не ја најдов звучната податотека „$1“.",
+	"phonos-file-not-audio": "Податотеката „$1“ не е звучна.",
 	"phonos-player-aria-description": "Чујте го изговорот на $1 по МФА."
 }

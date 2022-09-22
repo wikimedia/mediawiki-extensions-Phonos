@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Saurmandal"
+		]
+	},
+	"phonos-desc": "कई भाषाओं के लिए टेक्स्ट-से-स्वर कार्यक्षमता प्रदान करता है",
+	"phonos-error-category": "Phonos रेंडरिंग त्रुटियों वाले पृष्ठ",
+	"phonos-error-category-desc": "Phonos को रेंडर करते समय एक त्रुटि आई।",
+	"phonos-audio-conversion-error": "ऑडियो को MP3 में बदला न जा सका:\n$1",
+	"phonos-directory-error": "संग्रहण डिरेक्ट्री $1 न बनाई जा सकी",
+	"phonos-engine-error": "$1 इंजन की मदद से ऑडियो फ़ाइल न बनाया जा सका: $2",
+	"phonos-storage-error": "ऑडियो फ़ाइल को उसके लक्ष्य पर रखा न जा सका:\n$1",
+	"phonos-tracking-category": "Phonos का इस्तेमाल करने वाले पृष्ठ",
+	"phonos-tracking-category-desc": "पृष्ठ पर [[:mw:Extension:Phonos|Phonos]] एक्सटेंशन का इस्तेमाल किया जाता है।",
+	"phonos-file-not-found": "ऑडियो फ़ाइल \"$1\" नहीं मिला।",
+	"phonos-file-not-audio": "फ़ाइल \"$1\" कोई ऑडियो फ़ाइल नहीं मिला।",
+	"phonos-player-aria-description": "$1 का IPA उच्चारण सुनें।"
+}

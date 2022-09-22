@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"AnupamM"
+		]
+	},
+	"phonos-file-not-found": "Archivo de audio \" $1 \" no encontrado.",
+	"phonos-file-not-audio": "El archivo \" $1 \" no es un archivo de audio."
+}

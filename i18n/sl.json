@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"phonos-error-category": "Strani z napakami pri upodabljanju Phonos",
+	"phonos-error-category-desc": "Pri upodabljanju Phonosa je prišlo do napake.",
+	"phonos-audio-conversion-error": "Pretvorba zvoka v MP3 ni uspela:\n$1",
+	"phonos-directory-error": "Imenika shrambe $1 ni bilo mogoče ustvariti",
+	"phonos-storage-error": "Zvočne datoteke ni bilo mogoče shraniti na končni cilj:\n$1"
+}

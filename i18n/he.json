@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"מקף"
+		]
+	},
+	"phonos-desc": "אספקת יכולת המרת טקסט לדיבור במגוון שפות",
+	"phonos-error-category": "דפים עם שגיאות בהכנת פלט פונוס",
+	"phonos-error-category-desc": "אירעה שגיאה בעת הכנת פלט פונוס.",
+	"phonos-audio-conversion-error": "המרת שמע ל־MP3 נכשלה:\n$1",
+	"phonos-directory-error": "לא היה אפשר ליצור את תיקיית הפלט $1",
+	"phonos-engine-error": "יצירת קובץ שמע באמצעות מנוע $1 נכשלה:\n$2",
+	"phonos-storage-error": "אחסון קובץ השמע ביעד הסופי נכשל:\n$1",
+	"phonos-tracking-category": "דפים המשתמשים בפונוס",
+	"phonos-tracking-category-desc": "הדפים האלה משתמשים בהרחבה [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-file-not-found": "קובץ השמע \"$1\" לא נמצא.",
+	"phonos-file-not-audio": "הקובץ \"$1\" אינו קובץ שמע.",
+	"phonos-player-aria-description": "האזנה להגיית יפ\"א של $1."
+}

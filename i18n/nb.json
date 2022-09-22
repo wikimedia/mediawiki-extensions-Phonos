@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"EdoAug",
+			"Gabriel Kielland"
+		]
+	},
+	"phonos-file-not-found": "Fant ikke lydfilen \"$1\".",
+	"phonos-file-not-audio": "\"$1\" er ikke en lydfil."
+}
