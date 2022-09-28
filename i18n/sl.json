@@ -11,6 +11,7 @@
 	"phonos-storage-error": "Zvočne datoteke ni bilo mogoče shraniti na končni cilj:\n$1",
 	"phonos-purge-needed-error": "Zvoka ni mogoče predvajati.",
 	"phonos-purge-needed-error-link": "Osvežite stran in poskusite znova.",
+	"phonos-tracking-category": "Strani s Phonos",
 	"phonos-ipa-too-long": "Transkripcija IPA je predolga za prikaz.",
 	"phonos-wikibase-api-error": "Ni mogoče pridobiti entitete iz Wikibaze: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Neveljavna entiteta ali leksem: $1",
