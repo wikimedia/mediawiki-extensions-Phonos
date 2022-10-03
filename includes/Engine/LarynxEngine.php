@@ -82,7 +82,6 @@ class LarynxEngine extends Engine {
 		// T317431
 		// FIXME: Remove this `if` once we've upgraded to PHP 7.4 — mb_str_split is available there.
 		if ( function_exists( 'mb_str_split' ) ) {
-			// @phan-suppress-next-line PhanUndeclaredFunction
 			$ipa = trim( implode( ' ', mb_str_split( $ipa ) ) );
 		} else {
 			$ipa = trim( preg_replace( '/(.)/u', '$1 ', $ipa ) );
