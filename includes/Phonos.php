@@ -85,7 +85,7 @@ class Phonos implements ParserFirstCallInitHook {
 		$options = array_merge( $defaultOptions, $args );
 
 		// Require at least something to display.
-		if ( !$options['ipa'] && !$options['label'] && !$options['file'] ) {
+		if ( !$options['ipa'] && !$options['label'] && !$options['file'] && !$options['wikibase'] ) {
 			return '';
 		}
 
