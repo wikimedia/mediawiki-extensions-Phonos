@@ -142,7 +142,7 @@
 	"HookHandlers": {
 		"PhonosHooks": {
 			"class": "MediaWiki\\Extension\\Phonos\\Phonos",
-			"services": [ "RepoGroup", "Phonos.Engine", "Phonos.Wikibase", "StatsdDataFactory" ]
+			"services": [ "RepoGroup", "Phonos.Engine", "Phonos.Wikibase", "StatsdDataFactory", "JobQueueGroup", "MainConfig"]
 		}
 	},
 	"AutoloadNamespaces": {
