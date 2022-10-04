@@ -145,19 +145,35 @@ class Phonos implements ParserFirstCallInitHook {
 					$buttonConfig['data']['error'] = 'phonos-file-not-found';
 				}
 			} elseif ( $options['wikibase'] ) {
-				// If a wikibase has been provided, fetch from Wikibase.
-				$phonosWikibaseAudio = $this->wikibaseEntityAndLexemeFetcher->fetchPhonosWikibaseAudio(
+				// If a wikibase attribute has been provided, fetch from Wikibase.
+				$wikibaseEntity = $this->wikibaseEntityAndLexemeFetcher->fetch(
 					$options['wikibase'],
 					$options['text'],
 					$options['lang']
 				);
-
-				if ( $phonosWikibaseAudio ) {
-					$buttonConfig['href'] = $phonosWikibaseAudio->getCommonsAudioFileUrl();
-				} else {
-					throw new PhonosException( 'phonos-wikibase-not-found', [ $options['wikibase'] ] );
+				// Set file URL if available.
+				if ( $wikibaseEntity->getAudioFile() ) {
+					$buttonConfig['href'] = $wikibaseEntity->getCommonsAudioFileUrl();
 				}
-			} else {
+				// Set the IPA option and button config, if available.
+				if ( !$options['ipa'] ) {
+					if ( $wikibaseEntity->getIPATranscription() ) {
+						$options['ipa'] = $wikibaseEntity->getIPATranscription();
+						$buttonConfig['data']['ipa'] = $options['ipa'];
+						if ( !$buttonConfig['label'] ) {
+							$buttonConfig['label'] = $options['ipa'];
+						}
+					} else {
+						// If a Wikibase item is provided, but it doesn't have IPA (in the correct language).
+						throw new PhonosException( 'phonos-wikibase-no-ipa' );
+					}
+				}
+			}
+
+			// If there's not yet an audio file, and no error, fetch audio from the engine.
+			if ( !isset( $buttonConfig['href'] ) && !isset( $buttonConfig['data']['error'] )
+				&& is_string( $options['ipa'] ) && $options['ipa']
+			) {
 				$isPersisted = $this->engine->isPersisted( $options['ipa'], $options['text'], $options['lang'] );
 				if ( !$isPersisted ) {
 					if ( $this->isCommandLineMode || !$parser->incrementExpensiveFunctionCount() ) {

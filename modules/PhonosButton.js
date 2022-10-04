@@ -165,6 +165,7 @@ PhonosButton.prototype.getErrorPopup = function () {
 	// * phonos-wikibase-api-error
 	// * phonos-wikibase-invalid-entity-lexeme
 	// * phonos-wikibase-not-found
+	// * phonos-wikibase-no-ipa
 	let error = this.phonosData.error;
 
 	// If a file was given, we know this is an error specifically involving the file

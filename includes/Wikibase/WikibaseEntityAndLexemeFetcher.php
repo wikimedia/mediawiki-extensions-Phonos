@@ -28,6 +28,9 @@ class WikibaseEntityAndLexemeFetcher {
 	private $wikibaseIETFLangTagProp;
 
 	/** @var string */
+	private $wikibaseIPATranscriptionProp;
+
+	/** @var string */
 	private $commonsMediaUrl;
 
 	/** @var HttpRequestFactory */
@@ -56,6 +59,7 @@ class WikibaseEntityAndLexemeFetcher {
 		$this->wikibasePronunciationAudioProp = $phonosWikibaseProperties['wikibasePronunciationAudioProp'];
 		$this->wikibaseLangNameProp = $phonosWikibaseProperties['wikibaseLangNameProp'];
 		$this->wikibaseIETFLangTagProp = $phonosWikibaseProperties['wikibaseIETFLangTagProp'];
+		$this->wikibaseIPATranscriptionProp = $phonosWikibaseProperties['wikibaseIPATranscriptionProp'];
 
 		$this->commonsMediaUrl = $config->get( 'PhonosCommonsMediaUrl' );
 		$this->wanCache = $wanCache;
@@ -66,79 +70,81 @@ class WikibaseEntityAndLexemeFetcher {
 	 * @param string $wikibaseEntity
 	 * @param string $text
 	 * @param string $lang
-	 * @return PhonosWikibasePronunciationAudio|null
+	 * @return Entity
 	 * @throws PhonosException
 	 */
-	public function fetchPhonosWikibaseAudio(
+	public function fetch(
 		string $wikibaseEntity,
 		string $text,
 		string $lang
-	): ?PhonosWikibasePronunciationAudio {
+	): Entity {
+		// Validate Wikibase ID.
 		if ( !$this->isValidEntityOrLexeme( $wikibaseEntity ) ) {
 			throw new PhonosException( 'phonos-wikibase-invalid-entity-lexeme',
 				[ $wikibaseEntity ] );
 		}
 
+		// Fetch entity data.
 		$item = $this->fetchWikibaseItem( $wikibaseEntity );
 
+		// Entity not found.
 		if ( $item === null ) {
-			return null;
+			throw new PhonosException( 'phonos-wikibase-not-found', [ $wikibaseEntity ] );
 		}
 
+		$entity = new Entity( $this->commonsMediaUrl );
 		$audioFiles = [];
+		$ipaTranscriptions = [];
 
 		if ( $item->type === "lexeme" ) {
 			// If lexeme, we need the $text representation for the audio file
 			if ( $text === "" ) {
-				return null;
+				return $entity;
 			}
 			$itemForms = $item->forms;
-			$wordFound = false;
 			foreach ( $itemForms as $form ) {
-				if ( $wordFound ) {
-					break;
-				}
 				$formRepresentations = $form->representations;
 				foreach ( $formRepresentations as $representation ) {
 					// check if $text value is found in representation
 					if ( $representation->value === $text ) {
 						$audioFiles = $form->claims->{$this->wikibasePronunciationAudioProp} ?? [];
-						$wordFound = true;
-						break;
+						$ipaTranscriptions = $form->claims->{$this->wikibaseIPATranscriptionProp} ?? [];
+						break 2;
 					}
 				}
 			}
 		} else {
-			$audioFiles = $item
-				->claims->{$this->wikibasePronunciationAudioProp} ?? [];
+			$audioFiles = $item->claims->{$this->wikibasePronunciationAudioProp} ?? [];
+			$ipaTranscriptions = $item->claims->{$this->wikibaseIPATranscriptionProp} ?? [];
 		}
 
-		// Return if no audio files found
-		if ( $audioFiles === [] ) {
-			return null;
-		}
+		$entity->setIPATranscription( $this->getClaimValueByLang( $ipaTranscriptions, $lang ) );
+		$entity->setAudioFile( $this->getClaimValueByLang( $audioFiles, $lang ) );
 
-		$pronunciationFile = null;
+		return $entity;
+	}
+
+	/**
+	 * Look through a set of claims to find the first value in the specified language.
+	 * @param mixed[] $claims Set of claims.
+	 * @param string $lang User-provided IETF language code.
+	 * @return string|null
+	 */
+	private function getClaimValueByLang( array $claims, string $lang ): ?string {
 		$normalizedLang = LanguageCode::bcp47( $lang );
-		foreach ( $audioFiles as $audioFile ) {
-			$langNameId = $audioFile
-				->qualifiers->{$this->wikibaseLangNameProp}[0]
-				->datavalue->value->id ?? false;
-			// Check if audio has language name prop
-			if ( !$langNameId ) {
-				continue;
-			}
-
-			$langCode = $this->getCachedLanguageEntityCode( $langNameId );
-			if ( $langCode === $normalizedLang ) {
-				$pronunciationFile = new PhonosWikibasePronunciationAudio(
-					$audioFile,
-					$this->commonsMediaUrl
-				);
-				break;
+		foreach ( $claims as $claim ) {
+			$qualLangs = $claim->qualifiers->{$this->wikibaseLangNameProp} ?? [];
+			foreach ( $qualLangs as $qualLang ) {
+				$langId = $qualLang->datavalue->value->id ?? false;
+				if ( $langId ) {
+					$langCode = $this->getCachedLanguageEntityCode( $langId );
+					if ( $langCode === $normalizedLang ) {
+						return $claim->mainsnak->datavalue->value;
+					}
+				}
 			}
 		}
-		return $pronunciationFile;
+		return null;
 	}
 
 	/**
