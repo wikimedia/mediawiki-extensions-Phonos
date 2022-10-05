@@ -79,13 +79,7 @@ class LarynxEngine extends Engine {
 	 * @inheritDoc
 	 */
 	public function getSsml( string $ipa, string $text, string $lang ): string {
-		// T317431
-		// FIXME: Remove this `if` once we've upgraded to PHP 7.4 — mb_str_split is available there.
-		if ( function_exists( 'mb_str_split' ) ) {
-			$ipa = trim( implode( ' ', mb_str_split( $ipa ) ) );
-		} else {
-			$ipa = trim( preg_replace( '/(.)/u', '$1 ', $ipa ) );
-		}
+		$ipa = trim( implode( ' ', mb_str_split( $ipa ) ) );
 
 		$ssmlDoc = new DOMDocument( '1.0' );
 
