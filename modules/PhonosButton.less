@@ -7,13 +7,13 @@
 	margin: 0;
 	vertical-align: bottom;
 
-	&.oo-ui-buttonElement-frameless.oo-ui-labelElement.oo-ui-iconElement:first-child {
+	&.oo-ui-buttonElement-frameless.oo-ui-buttonWidget.oo-ui-iconElement:first-child {
 		// Avoid the default negative left margin on buttons.
 		margin-left: 0;
 	}
 
-	&.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button {
-		padding: 0 6px 0 28px;
+	&.oo-ui-buttonElement-frameless.oo-ui-buttonWidget > .oo-ui-buttonElement-button {
+		padding: 0 0 0 28px;
 		min-height: 0;
 		min-width: 0;
 		user-select: auto;
@@ -37,10 +37,17 @@
 		}
 
 		.oo-ui-labelElement-label {
+			display: inline-block;
 			font-weight: normal;
 			text-decoration: underline;
 			text-decoration-style: dotted;
 		}
+	}
+
+	// When there is a label, add a bit of space after it.
+	/* stylelint-disable-next-line no-descending-specificity */
+	&.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button {
+		padding-right: 6px;
 	}
 
 	// An error means the button is disabled, and we want to show it with a solid background.
