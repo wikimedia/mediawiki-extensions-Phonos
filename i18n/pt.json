@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"phonos-desc": "Fornecer funcionalidade de conversão de texto em fala para uma variedade de línguas",
+	"phonos-error-category": "Páginas com erros de composição do Phonos",
+	"phonos-error-category-desc": "Ocorreu um erro ao fazer a composição do Phonos.",
+	"phonos-audio-conversion-error": "Falha na conversão de áudio para MP3:\n$1",
+	"phonos-directory-error": "Não foi possível criar o diretório de armazenamento $1",
+	"phonos-engine-error": "Não foi possível gerar o ficheiro de áudio usando o motor $1:\n$2",
+	"phonos-storage-error": "Não foi possível armazenar o ficheiro de áudio no seu destino final:\n$1",
+	"phonos-purge-needed-error": "Não é possível reproduzir o áudio.",
+	"phonos-purge-needed-error-link": "Refresque a página e tente novamente.",
+	"phonos-tracking-category": "Páginas que usam Phonos",
+	"phonos-tracking-category-desc": "A página usa a extensão [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-file-not-found": "O ficheiro de áudio \"$1\" não foi encontrado.",
+	"phonos-file-not-audio": "O ficheiro \"$1\" não é um ficheiro de áudio.",
+	"phonos-player-aria-description": "Ouça a pronunciação AFI (transcrição com o alfabeto fonético internacional) de $1.",
+	"phonos-ipa-too-long": "A transcrição AFI é demasiado longa para fazer a composição.",
+	"phonos-wikibase-api-error": "Não foi possível obter a entidade da wiki Wikibase: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Entidade ou lexema inválidos: $1",
+	"phonos-wikibase-not-found": "Não foi encontrado nenhum áudio para o elemento Wikibase: $1"
+}
