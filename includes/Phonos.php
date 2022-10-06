@@ -100,14 +100,14 @@ class Phonos implements ParserFirstCallInitHook {
 			],
 		];
 
-		// Check length of IPA.
-		if ( strlen( $options['ipa'] ) > 300 ) {
-			// Don't send the very long IPA
-			$options['ipa'] = '';
-			$buttonConfig['data']['error'] = 'phonos-ipa-too-long';
-		}
-
 		try {
+			// Check length of IPA.
+			if ( strlen( $options['ipa'] ) > 300 ) {
+				// Don't send the very long IPA, then throw
+				$options['ipa'] = '';
+				throw new PhonosException( 'phonos-ipa-too-long' );
+			}
+
 			// If an audio file has been provided, fetch the upload URL.
 			if ( $options['file'] ) {
 				$buttonConfig['data']['file'] = $options['file'];
