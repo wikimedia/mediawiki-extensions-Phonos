@@ -22,8 +22,13 @@
 			background-color: @wmui-color-accent90;
 		}
 
+		// Make button focus match the default link focus styles.
 		&:focus {
 			box-shadow: none;
+			border-color: transparent;
+			// Fall back to currentColor as 'invert' is not supported by many browsers.
+			outline: medium auto currentcolor;
+			outline: medium auto invert;
 		}
 
 		.oo-ui-iconElement-icon {
