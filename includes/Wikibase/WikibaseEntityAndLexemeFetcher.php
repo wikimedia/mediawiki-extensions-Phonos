@@ -102,7 +102,7 @@ class WikibaseEntityAndLexemeFetcher {
 				foreach ( $formRepresentations as $representation ) {
 					// check if $text value is found in representation
 					if ( $representation->value === $text ) {
-						$audioFiles = $form->claims->{$this->wikibasePronunciationAudioProp} ?? null;
+						$audioFiles = $form->claims->{$this->wikibasePronunciationAudioProp} ?? [];
 						$wordFound = true;
 						break;
 					}
@@ -110,7 +110,7 @@ class WikibaseEntityAndLexemeFetcher {
 			}
 		} else {
 			$audioFiles = $item
-				->claims->{$this->wikibasePronunciationAudioProp} ?? null;
+				->claims->{$this->wikibasePronunciationAudioProp} ?? [];
 		}
 
 		// Return if no audio files found
@@ -121,10 +121,15 @@ class WikibaseEntityAndLexemeFetcher {
 		$pronunciationFile = null;
 		$normalizedLang = LanguageCode::bcp47( $lang );
 		foreach ( $audioFiles as $audioFile ) {
-			$IETFLangTagEntity = $audioFile
+			$langNameId = $audioFile
 				->qualifiers->{$this->wikibaseLangNameProp}[0]
-				->datavalue->value->id;
-			$langCode = $this->getCachedLanguageEntityCode( $IETFLangTagEntity );
+				->datavalue->value->id ?? false;
+			// Check if audio has language name prop
+			if ( !$langNameId ) {
+				continue;
+			}
+
+			$langCode = $this->getCachedLanguageEntityCode( $langNameId );
 			if ( $langCode === $normalizedLang ) {
 				$pronunciationFile = new PhonosWikibasePronunciationAudio(
 					$audioFile,
