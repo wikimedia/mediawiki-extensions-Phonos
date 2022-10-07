@@ -10,6 +10,7 @@ use MediaWiki\Extension\Phonos\Job\PhonosIPAFilePersistJob;
 use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Linker\LinkRenderer;
+use OOUI\HtmlSnippet;
 use OutputPage;
 use Parser;
 use RepoGroup;
@@ -106,9 +107,13 @@ class Phonos implements ParserFirstCallInitHook {
 			return '';
 		}
 
+		$buttonLabel = $options['ipa'];
+		if ( $options['label'] ) {
+			$buttonLabel = new HtmlSnippet( $parser->recursiveTagParse( $options['label'] ) );
+		}
 		$parser->addTrackingCategory( 'phonos-tracking-category' );
 		$buttonConfig = [
-			'label' => $label ?: $options['ipa'],
+			'label' => $buttonLabel,
 			'data' => [
 				'ipa' => $options['ipa'],
 				'text' => $options['text'],
