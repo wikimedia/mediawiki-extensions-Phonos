@@ -156,6 +156,9 @@
 			]
 		}
 	},
+	"JobClasses": {
+		"phonosIPAFilePersist": "MediaWiki\\Extension\\Phonos\\Job\\PhonosIPAFilePersistJob"
+	},
 	"ServiceWiringFiles": [
 		"includes/ServiceWiring.php"
 	]
