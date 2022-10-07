@@ -1,9 +1,12 @@
 <?php
 namespace MediaWiki\Extension\Phonos;
 
+use Config;
+use JobQueueGroup;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Extension\Phonos\Engine\Engine;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
+use MediaWiki\Extension\Phonos\Job\PhonosIPAFilePersistJob;
 use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Linker\LinkRenderer;
@@ -29,26 +32,40 @@ class Phonos implements ParserFirstCallInitHook {
 	/** @var Engine */
 	protected $engine;
 
-	/** @var StatsdDataFactoryInterface */
-	private $statsdDataFactory;
 	/** @var WikibaseEntityAndLexemeFetcher */
 	protected $wikibaseEntityAndLexemeFetcher;
+
+	/** @var StatsdDataFactoryInterface */
+	private $statsdDataFactory;
+
+	/** @var JobQueueGroup */
+	private $jobQueueGroup;
+
+	/** @var bool */
+	private $isCommandLineMode;
 
 	/**
 	 * @param RepoGroup $repoGroup
 	 * @param Engine $engine
 	 * @param WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher
 	 * @param StatsdDataFactoryInterface $statsdDataFactory
+	 * @param JobQueueGroup $jobQueueGroup
+	 * @param Config $config
 	 */
-	public function __construct( RepoGroup $repoGroup,
+	public function __construct(
+		RepoGroup $repoGroup,
 		Engine $engine,
 		WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher,
-		StatsdDataFactoryInterface $statsdDataFactory
+		StatsdDataFactoryInterface $statsdDataFactory,
+		JobQueueGroup $jobQueueGroup,
+		Config $config
 	) {
 		$this->repoGroup = $repoGroup;
 		$this->engine = $engine;
 		$this->wikibaseEntityAndLexemeFetcher = $wikibaseEntityAndLexemeFetcher;
 		$this->statsdDataFactory = $statsdDataFactory;
+		$this->jobQueueGroup = $jobQueueGroup;
+		$this->isCommandLineMode = $config->get( 'CommandLineMode' );
 	}
 
 	/**
@@ -137,11 +154,15 @@ class Phonos implements ParserFirstCallInitHook {
 				}
 			} else {
 				$isPersisted = $this->engine->isPersisted( $options['ipa'], $options['text'], $options['lang'] );
-				if ( !$isPersisted && !$parser->incrementExpensiveFunctionCount() ) {
-					// Return nothing. See T315483
-					return '';
+				if ( !$isPersisted ) {
+					if ( $this->isCommandLineMode || !$parser->incrementExpensiveFunctionCount() ) {
+						// generate audio file in a job
+						$this->pushJob( $options['ipa'], $options['text'], $options['lang'] );
+					} else {
+						$this->engine->getAudioData( $options['ipa'], $options['text'], $options['lang'] );
+					}
 				}
-				// Otherwise generate the audio based on the given data, and pass the URL to the clientside.
+				// Pass the URL to the clientside even if audio file is not ready
 				$buttonConfig['href'] = $this->engine->getFileUrl(
 					$options['ipa'],
 					$options['text'],
@@ -161,6 +182,26 @@ class Phonos implements ParserFirstCallInitHook {
 	}
 
 	/**
+	 * Push a job into the job queue
+	 *
+	 * @param string $ipa
+	 * @param string $text
+	 * @param string $lang
+	 *
+	 * @return void
+	 */
+	private function pushJob( string $ipa, string $text, string $lang ): void {
+		$jobParams = [
+			'ipa' => $ipa,
+			'text' => $text,
+			'lang' => $lang,
+		];
+
+		$job = new PhonosIPAFilePersistJob( $jobParams );
+		$this->jobQueueGroup->push( $job );
+	}
+
+	/**
 	 * Record exceptions that we capture and their types into statsd.
 	 *
 	 * @param PhonosException $e
@@ -170,5 +211,4 @@ class Phonos implements ParserFirstCallInitHook {
 		$key = $e->getStatsdKey();
 		$this->statsdDataFactory->increment( "phonos_error.$key" );
 	}
-
 }

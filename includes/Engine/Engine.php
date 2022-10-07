@@ -115,7 +115,7 @@ abstract class Engine implements EngineInterface {
 	}
 
 	/**
-	 * Get the relative URL to the persisted file, or create one if it doesn't exist.
+	 * Get the relative URL to the persisted file.
 	 *
 	 * @param string $ipa
 	 * @param string $text
@@ -123,17 +123,6 @@ abstract class Engine implements EngineInterface {
 	 * @return string
 	 */
 	public function getFileUrl( string $ipa, string $text, string $lang ): string {
-		$fileDest = $this->getFullFileStoragePath( $ipa, $text, $lang );
-		$exists = $this->fileBackend->fileExists( [
-			'src' => $fileDest,
-		] );
-
-		if ( !$exists ) {
-			// Generate the audio and store the file first.
-			$data = $this->getAudioData( $ipa, $text, $lang );
-			$this->persistAudio( $ipa, $text, $lang, $data );
-		}
-
 		return $this->getFileProperties( $ipa, $text, $lang )['dest_url'];
 	}
 
