@@ -30,6 +30,7 @@ function PhonosButton( config ) {
 	this.popup = this.getErrorPopup();
 
 	// Add click handlers.
+	// eslint-disable-next-line no-jquery/no-global-selector
 	$( 'html' ).on( 'click', this.onHtmlClick );
 	this.connect( this, { click: this.onClick } );
 }
