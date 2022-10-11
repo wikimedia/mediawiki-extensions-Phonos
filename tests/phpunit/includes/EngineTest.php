@@ -51,7 +51,7 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 		$args = [ '/həˈvænə/', 'Havana', 'en' ];
 		// We know how the cache key is generated, so we know what the final URL should be.
 		$this->assertSame(
-			"{$this->uploadPath}/phonos/0/8/08h2h100e3dgycsfj2my0oc8ll84q3a.mp3",
+			"{$this->uploadPath}/phonos-render/0/8/08h2h100e3dgycsfj2my0oc8ll84q3a.mp3",
 			$this->engine->getFileUrl( ...$args )
 		);
 	}

@@ -24,7 +24,7 @@ abstract class Engine implements EngineInterface {
 	private const CACHE_VERSION = 1;
 
 	/** @var string Prefix directory name when persisting files to storage. */
-	public const STORAGE_PREFIX = 'phonos';
+	public const STORAGE_PREFIX = 'phonos-render';
 
 	/** @var HttpRequestFactory */
 	protected $requestFactory;
