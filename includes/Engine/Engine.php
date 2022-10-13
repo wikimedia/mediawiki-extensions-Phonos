@@ -20,7 +20,16 @@ use Status;
  */
 abstract class Engine implements EngineInterface {
 
-	/** @var int Version for cache invalidation. */
+	/**
+	 * Version for cache invalidation.
+	 *
+	 * WARNING: Changing this value will cause *all* Phonos files to be regenerated!
+	 *
+	 * After changing, please also run the deleteOldPhonosFiles.php script
+	 * with the appropriate timestamp to delete old orphaned files.
+	 *
+	 * @var int
+	 */
 	private const CACHE_VERSION = 1;
 
 	/** @var string Prefix directory name when persisting files to storage. */
