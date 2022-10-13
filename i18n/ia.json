@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"phonos-desc": "Forni le functionalitate de vocalisation de texto pro un gamma de linguas",
+	"phonos-error-category": "Paginas con errores de rendition de Phonos",
+	"phonos-error-category-desc": "Un error occurreva durante le rendition de Phonos.",
+	"phonos-audio-conversion-error": "Error de conversion del audio in MP3:\n$1",
+	"phonos-directory-error": "Le creation del directorio de immagazinage $1 ha fallite.",
+	"phonos-engine-error": "Non poteva generar le file audio usante le motor $1:\n$2",
+	"phonos-storage-error": "Non poteva immagazinar le file audio in su destination final:\n$1",
+	"phonos-tracking-category": "Paginas que usa Phonos",
+	"phonos-tracking-category-desc": "Le pagina usa le extension [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-file-not-found": "File audio \"$1\" non trovate.",
+	"phonos-file-not-audio": "Le file \"$1\" non es un file audio.",
+	"phonos-player-aria-description": "Ascoltar le pronunciation IPA de $1."
+}
