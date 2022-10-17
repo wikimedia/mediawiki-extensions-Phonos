@@ -1,7 +1,6 @@
 {
 	"@metadata": {
-		"authors": [
-		]
+		"authors": []
 	},
 	"apihelp-phonos-summary": "{{doc-apihelp-summary|phonos}}",
 	"apihelp-phonos-param-ipa": "{{doc-apihelp-param|phonos|ipa}}",

@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Verdy p"
+		]
+	},
+	"apihelp-phonos-summary": "Rendu audio de la transcription en alphabet phonétique international.",
+	"apihelp-phonos-param-ipa": "Le phonème de l’alphabet phonétique international à rendre.",
+	"apihelp-phonos-param-text": "Le texte lisible par un humain, comme solution de repli.",
+	"apihelp-phonos-param-lang": "La langue dans laquelle le mot doit être prononcé.",
+	"apihelp-phonos-example-1": "Obtenir la prononciation de « hello » en anglais."
+}

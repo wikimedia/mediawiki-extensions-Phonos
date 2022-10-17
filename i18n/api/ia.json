@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"apihelp-phonos-summary": "Synthetisar IPA in audio.",
+	"apihelp-phonos-param-ipa": "Le phonema IPA a synthetisar.",
+	"apihelp-phonos-param-text": "Le texto legibile per humanos, como recurso.",
+	"apihelp-phonos-param-lang": "Le lingua in le qual le parola debe esser pronunciate.",
+	"apihelp-phonos-example-1": "Obtener le pronunciation de 'hello' in anglese."
+}

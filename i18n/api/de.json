@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"apihelp-phonos-summary": "IPA in Ton umwandeln.",
+	"apihelp-phonos-param-ipa": "Das wiederzugebende IPA-Phonem.",
+	"apihelp-phonos-param-text": "Der menschenlesbare Text als Fallback.",
+	"apihelp-phonos-param-lang": "Die Sprache, in der das Wort ausgesprochen werden soll.",
+	"apihelp-phonos-example-1": "Die Aussprache von „hello“ auf Englisch."
+}

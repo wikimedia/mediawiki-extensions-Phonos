@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"apihelp-phonos-summary": "Zvočna poustvaritev IPE.",
+	"apihelp-phonos-param-ipa": "Fonem IPA za poustvaritev.",
+	"apihelp-phonos-param-text": "Človeško berljivo besedilo kot rezerva.",
+	"apihelp-phonos-param-lang": "Jezik, v katerem naj bo beseda izgovorjena.",
+	"apihelp-phonos-example-1": "Izgovarjava »hello« v angleščini."
+}
