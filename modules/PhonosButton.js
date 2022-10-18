@@ -72,8 +72,21 @@ PhonosButton.prototype.onHtmlClick = function ( event ) {
 PhonosButton.prototype.onClick = function ( event ) {
 	event.preventDefault();
 
+	const dbName = mw.config.get( 'wgDBname' );
+	const lang = mw.config.get( 'wgContentLanguage' );
+	const startedAt = mw.now();
+	const metrics = [
+		`MediaWiki.extension.Phonos.IPA.click.by_wiki.${dbName}`,
+		`MediaWiki.extension.Phonos.IPA.click.by_lang.${lang}`
+	];
+
+	mw.track( 'counter.' + metrics[ 0 ], 1 );
+	mw.track( 'counter.' + metrics[ 1 ], 1 );
+
 	// A popup exists, so no audio can be played.
 	if ( this.popup ) {
+		mw.track( 'counter.' + metrics[ 0 ] + '.error', 1 );
+		mw.track( 'counter.' + metrics[ 1 ] + '.error', 1 );
 		// First close other popups.
 		PhonosButton.static.popups.forEach( ( otherPopup ) => {
 			if ( otherPopup !== this.popup ) {
@@ -108,6 +121,10 @@ PhonosButton.prototype.onClick = function ( event ) {
 			this.audio.play();
 		}, { once: true } );
 	}
+	// Track completion time
+	const finishedAt = mw.now() - startedAt;
+	mw.track( 'timing.' + metrics[ 0 ], finishedAt );
+	mw.track( 'timing.' + metrics[ 1 ], finishedAt );
 };
 
 /**
