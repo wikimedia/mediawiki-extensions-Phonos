@@ -72,21 +72,12 @@ PhonosButton.prototype.onHtmlClick = function ( event ) {
 PhonosButton.prototype.onClick = function ( event ) {
 	event.preventDefault();
 
-	const dbName = mw.config.get( 'wgDBname' );
-	const lang = mw.config.get( 'wgContentLanguage' );
 	const startedAt = mw.now();
-	const metrics = [
-		`MediaWiki.extension.Phonos.IPA.click.by_wiki.${dbName}`,
-		`MediaWiki.extension.Phonos.IPA.click.by_lang.${lang}`
-	];
-
-	mw.track( 'counter.' + metrics[ 0 ], 1 );
-	mw.track( 'counter.' + metrics[ 1 ], 1 );
+	this.track( 'counter.MediaWiki.extension.Phonos.IPA.click', 1 );
 
 	// A popup exists, so no audio can be played.
 	if ( this.popup ) {
-		mw.track( 'counter.' + metrics[ 0 ] + '.error', 1 );
-		mw.track( 'counter.' + metrics[ 1 ] + '.error', 1 );
+		this.track( 'counter.MediaWiki.extension.Phonos.IPA.error', 1 );
 		// First close other popups.
 		PhonosButton.static.popups.forEach( ( otherPopup ) => {
 			if ( otherPopup !== this.popup ) {
@@ -108,6 +99,8 @@ PhonosButton.prototype.onClick = function ( event ) {
 	if ( this.audio ) {
 		this.audio.currentTime = 0;
 		this.audio.play();
+		// Track replay clicks
+		this.track( 'counter.MediaWiki.extension.Phonos.IPA.replay', 1 );
 		return;
 	}
 
@@ -119,12 +112,11 @@ PhonosButton.prototype.onClick = function ( event ) {
 		this.audio.addEventListener( 'canplaythrough', () => {
 			this.popPending();
 			this.audio.play();
+			// Track completion time
+			const finishedAt = mw.now() - startedAt;
+			this.track( 'timing.MediaWiki.extension.Phonos.IPA.can_play_through', finishedAt );
 		}, { once: true } );
 	}
-	// Track completion time
-	const finishedAt = mw.now() - startedAt;
-	mw.track( 'timing.' + metrics[ 0 ], finishedAt );
-	mw.track( 'timing.' + metrics[ 1 ], finishedAt );
 };
 
 /**
@@ -237,6 +229,21 @@ PhonosButton.prototype.handleMissingFile = function () {
 			} );
 		} );
 	} );
+};
+
+/**
+ * This is called when we need to track a metric by wiki and by lang
+ * through statsv
+ *
+ * @param {string} baseMetricName
+ * @param {int} value
+ * @private
+ */
+PhonosButton.prototype.track = function ( baseMetricName, value ) {
+	const dbName = mw.config.get( 'wgDBname' );
+	const lang = mw.config.get( 'wgContentLanguage' );
+	mw.track( `${baseMetricName}.by_wiki.${dbName}`, value );
+	mw.track( `${baseMetricName}.by_lang.${lang}`, value );
 };
 
 module.exports = PhonosButton;
