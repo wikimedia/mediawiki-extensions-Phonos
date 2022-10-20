@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"apihelp-phonos-summary": "המרת יפא לאודיו.",
+	"apihelp-phonos-param-ipa": "פונמת יפא להמרה.",
+	"apihelp-phonos-param-text": "טקסט קריא לאנשים בתור גיבוי.",
+	"apihelp-phonos-param-lang": "השפה שבה יש לבטא את המילה.",
+	"apihelp-phonos-example-1": "קבלת ההגייה של \"hello\" באנגלית"
+}

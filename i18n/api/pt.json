@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"apihelp-phonos-summary": "Sintetizar AFI em áudio.",
+	"apihelp-phonos-param-ipa": "O fonema AFI a ser sintetizado.",
+	"apihelp-phonos-param-text": "O texto escrito, para recurso.",
+	"apihelp-phonos-param-lang": "A língua na qual a palavra deve ser pronunciada.",
+	"apihelp-phonos-example-1": "Obter a pronúncia de 'hello' em inglês."
+}

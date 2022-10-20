@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"apihelp-phonos-summary": "Претвори МФА во звук.",
+	"apihelp-phonos-param-ipa": "МФА-фонемата за претворање.",
+	"apihelp-phonos-param-text": "Човечки литлив текст како резерва.",
+	"apihelp-phonos-param-lang": "На кој јазик се изговара зборот.",
+	"apihelp-phonos-example-1": "Дај го изговорот на „hello“ на англиски."
+}
