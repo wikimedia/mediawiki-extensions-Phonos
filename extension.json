@@ -76,7 +76,7 @@
 		}
 	},
 	"MessagesDirs": {
-		"Phonos": [ "i18n", "i18n/api" ]
+		"Phonos": [ "i18n" ]
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "modules",
@@ -147,14 +147,6 @@
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\Phonos\\": "includes/"
-	},
-	"APIModules": {
-		"phonos": {
-			"class": "MediaWiki\\Extension\\Phonos\\PhonosApi",
-			"services": [
-				"Phonos.Engine"
-			]
-		}
 	},
 	"JobClasses": {
 		"phonosIPAFilePersist": "MediaWiki\\Extension\\Phonos\\Job\\PhonosIPAFilePersistJob"
