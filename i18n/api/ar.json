@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Meno25"
+		]
+	},
+	"apihelp-phonos-summary": "جعل IPA للصوت.",
+	"apihelp-phonos-param-ipa": "صوت IPA المطلوب تقديمه.",
+	"apihelp-phonos-param-text": "النص الذي يمكن للبشر قراءته كخيار احتياطي.",
+	"apihelp-phonos-param-lang": "اللغة التي يجب أن تنطق بها الكلمة.",
+	"apihelp-phonos-example-1": "احصل على نطق \"hello\" في اللغة الإنجليزية."
+}

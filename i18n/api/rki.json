@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cakkaparla",
+			"YaThaWinTha"
+		]
+	},
+	"apihelp-phonos-summary": "IPAကို အသံဖိုင်ရို့ ပြန်ပီးပါ။",
+	"apihelp-phonos-param-ipa": "တင်ဆက်ဖို့ IPA ဖုန်း။",
+	"apihelp-phonos-param-text": "နောက်ကထောက်ပံ့ရေအဖြစ် လူသားတိ ဖတ်နိုင်ရေစာသား။",
+	"apihelp-phonos-param-lang": "စကားလုံးကို အသံထွက်ရဖို့ ဘာသာစကား။",
+	"apihelp-phonos-example-1": "အင်္ဂလိပ်တိပိုင် 'ဟဲလို' အသံထွက်ကို ရယူပါ။"
+}

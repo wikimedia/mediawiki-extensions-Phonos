@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"apihelp-phonos-summary": "{{doc-apihelp-summary|phonos}}",
+	"apihelp-phonos-param-ipa": "{{doc-apihelp-param|phonos|ipa}}",
+	"apihelp-phonos-param-text": "{{doc-apihelp-param|phonos|text}}",
+	"apihelp-phonos-param-lang": "{{doc-apihelp-param|phonos|lang}}",
+	"apihelp-phonos-example-1": "{{doc-apihelp-example|phonos}}"
+}
