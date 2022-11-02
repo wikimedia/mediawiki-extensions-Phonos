@@ -194,7 +194,7 @@ abstract class Engine implements EngineInterface {
 	 * @return bool
 	 */
 	final public function isPersisted( string $ipa, string $text, string $lang ): bool {
-		return $this->fileBackend->fileExists( [
+		return (bool)$this->fileBackend->fileExists( [
 			'src' => $this->getFullFileStoragePath( $ipa, $text, $lang ),
 		] );
 	}
