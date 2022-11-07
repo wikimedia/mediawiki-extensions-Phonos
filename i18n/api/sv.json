@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sabelöga"
+		]
+	},
+	"apihelp-phonos-summary": "Återge IPA som ljud.",
+	"apihelp-phonos-param-ipa": "IPA-fonem att återge.",
+	"apihelp-phonos-param-text": "Den av människor läsbara texten, som reserv.",
+	"apihelp-phonos-param-lang": "Språket som ordet ska uttalas på.",
+	"apihelp-phonos-example-1": "Hämta uttalet av \"hello\" på engelska."
+}
