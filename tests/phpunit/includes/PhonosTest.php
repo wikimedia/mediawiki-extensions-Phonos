@@ -49,11 +49,11 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 				'getContentLanguage',
 				'addTrackingCategory',
 				'incrementExpensiveFunctionCount',
-				'recursiveTagParse',
+				'recursiveTagParseFully',
 		] )->getMock();
 		$parser->method( 'getOutput' )->willReturn( $parserOutput );
 		$parser->method( 'getContentLanguage' )->willReturn( $parserLanguage );
-		$parser->method( 'recursiveTagParse' )->willReturn( '' );
+		$parser->method( 'recursiveTagParseFully' )->willReturn( '' );
 
 		return $parser;
 	}
