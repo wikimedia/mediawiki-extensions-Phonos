@@ -21,5 +21,6 @@
 	"phonos-ipa-too-long": "IPA ist zu lang zum Rendern.",
 	"phonos-wikibase-api-error": "Eintrag kann nicht von Wikibase abgerufen werden: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Ungültiges Objekt oder Lexem: $1",
-	"phonos-wikibase-not-found": "Kein Audio für Wikibase-Objekt gefunden: $1"
+	"phonos-wikibase-not-found": "Kein Audio für Wikibase-Objekt gefunden: $1",
+	"phonos-wikibase-no-ipa": "Keine IPA-Transkription gefunden."
 }
