@@ -27,6 +27,7 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 			$services->getHttpRequestFactory(),
 			$services->getShellCommandFactory(),
 			$services->getFileBackendGroup(),
+			$services->getMainWANObjectCache(),
 			$services->getMainConfig()
 		);
 		$this->uploadPath = $services->getMainConfig()->get( 'UploadPath' );
@@ -63,5 +64,23 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( PhonosException::class );
 		$this->expectExceptionMessage( 'phonos-audio-conversion-error' );
 		$this->engine->convertWavToMp3( 'not valid binary data!' );
+	}
+
+	/**
+	 * @dataProvider provideCheckLanguageSupport()
+	 */
+	public function testCheckLanguageSupport( $langs, $inLang, $outLang ) {
+		$engine = $this->createPartialMock( EspeakEngine::class, [ 'getSupportedLanguages' ] );
+		$engine->method( 'getSupportedLanguages' )->willReturn( $langs );
+		$this->assertSame( $outLang, $engine->checkLanguageSupport( $inLang ) );
+	}
+
+	public function provideCheckLanguageSupport(): array {
+		return [
+			'existing' => [ [ 'en', 'de' ], 'de', 'de' ],
+			'existing, case normalized' => [ [ 'aa', 'bb' ], 'BB', 'bb' ],
+			'existing, underscore normalized' => [ [ 'aa-BB', 'bb-gg' ], 'aa_bb', 'aa-BB' ],
+			'no supported langs' => [ null, 'de', 'de' ],
+		];
 	}
 }

@@ -10,10 +10,12 @@ use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\CommandFactory;
 use NullLockManager;
 use ReflectionClass;
 use Status;
+use WANObjectCache;
 
 /**
  * Contains logic common to all Engines.
@@ -65,21 +67,27 @@ abstract class Engine implements EngineInterface {
 	/** @var int Time in days we want to persist the file for */
 	protected $fileExpiry;
 
+	/** @var WANObjectCache */
+	protected $wanCache;
+
 	/**
 	 * @param HttpRequestFactory $requestFactory
 	 * @param CommandFactory $commandFactory
 	 * @param FileBackendGroup $fileBackendGroup
+	 * @param WANObjectCache $wanCache
 	 * @param Config $config
 	 */
 	public function __construct(
 		HttpRequestFactory $requestFactory,
 		CommandFactory $commandFactory,
 		FileBackendGroup $fileBackendGroup,
+		WANObjectCache $wanCache,
 		Config $config
 	) {
 		$this->requestFactory = $requestFactory;
 		$this->commandFactory = $commandFactory;
 		$this->fileBackend = self::getFileBackend( $fileBackendGroup, $config );
+		$this->wanCache = $wanCache;
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 		$this->lamePath = $config->get( 'PhonosLame' );
 		$this->uploadPath = $config->get( 'PhonosPath' ) ?:
@@ -236,6 +244,41 @@ abstract class Engine implements EngineInterface {
 	}
 
 	/**
+	 * For a given language, check that it's supported by the engine.
+	 * @param string $lang Language code to check. Will be returned if valid.
+	 * @return string The normalized language code.
+	 * @throws PhonosException If the language is not supported.
+	 */
+	public function checkLanguageSupport( string $lang ): string {
+		// If an engine doesn't provide a list of supported languages, assume this one is supported.
+		$supportedLangs = $this->getSupportedLanguages();
+		if ( $supportedLangs === null ) {
+			return $lang;
+		}
+
+		// Normalize and check for the requested language, returning it if it's supported.
+		$normalizedLang = strtolower( strtr( $lang, '_', '-' ) );
+		$normalizedLangs = array_map( static function ( $l ) {
+			return strtolower( strtr( $l, '_', '-' ) );
+		}, $supportedLangs );
+		$supportedLangKey = array_search( $normalizedLang, $normalizedLangs );
+		if ( $supportedLangKey !== false ) {
+			return $supportedLangs[$supportedLangKey];
+		}
+
+		// Make a list of supported languages that are a superstring of the given one.
+		$suggestions = array_filter( $supportedLangs, static function ( $sl ) use ( $lang ) {
+			return stripos( $sl, $lang ) !== false;
+		} );
+		if ( count( $suggestions ) === 0 ) {
+			throw new PhonosException( 'phonos-unsupported-language', [ $lang ] );
+		} else {
+			$suggestionList = MediaWikiServices::getInstance()->getContentLanguage()->listToText( $suggestions );
+			throw new PhonosException( 'phonos-unsupported-language-with-suggestions', [ $lang, $suggestionList ] );
+		}
+	}
+
+	/**
 	 * Convert the given WAV data into MP3.
 	 *
 	 * @param string $data
@@ -323,5 +366,12 @@ abstract class Engine implements EngineInterface {
 		// convert days to seconds
 		$ttl = $this->fileExpiry * 86400;
 		return time() + rand( intval( $ttl * 0.8 ), $ttl );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getSupportedLanguages(): ?array {
+		return null;
 	}
 }

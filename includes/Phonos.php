@@ -176,6 +176,7 @@ class Phonos implements ParserFirstCallInitHook {
 			if ( !isset( $buttonConfig['href'] ) && !isset( $buttonConfig['data']['error'] )
 				&& is_string( $options['ipa'] ) && $options['ipa']
 			) {
+				$options['lang'] = $this->engine->checkLanguageSupport( $options['lang'] );
 				$isPersisted = $this->engine->isPersisted( $options['ipa'], $options['text'], $options['lang'] );
 				if ( !$isPersisted ) {
 					if ( $this->isCommandLineMode || !$parser->incrementExpensiveFunctionCount() ) {

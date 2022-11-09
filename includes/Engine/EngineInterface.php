@@ -24,4 +24,10 @@ interface EngineInterface {
 	 */
 	public function getAudioData( string $ipa, string $text, string $lang ): string;
 
+	/**
+	 * Get a list of languages supported by this engine.
+	 *
+	 * @return string[]|null Array of IETF language codes, or null if any language is supported.
+	 */
+	public function getSupportedLanguages(): ?array;
 }

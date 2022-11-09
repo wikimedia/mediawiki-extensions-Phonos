@@ -8,6 +8,7 @@ use FileBackendGroup;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Shell\CommandFactory;
+use WANObjectCache;
 
 class LarynxEngine extends Engine {
 
@@ -18,15 +19,17 @@ class LarynxEngine extends Engine {
 	 * @param HttpRequestFactory $requestFactory
 	 * @param CommandFactory $commandFactory
 	 * @param FileBackendGroup $fileBackendGroup
+	 * @param WANObjectCache $wanCache
 	 * @param Config $config
 	 */
 	public function __construct(
 		HttpRequestFactory $requestFactory,
 		CommandFactory $commandFactory,
 		FileBackendGroup $fileBackendGroup,
+		WANObjectCache $wanCache,
 		Config $config
 	) {
-		parent::__construct( $requestFactory, $commandFactory, $fileBackendGroup, $config );
+		parent::__construct( $requestFactory, $commandFactory, $fileBackendGroup, $wanCache, $config );
 		$this->apiEndpoint = $config->get( 'PhonosApiEndpointLarynx' );
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 	}

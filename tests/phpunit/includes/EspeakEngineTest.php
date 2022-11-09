@@ -18,6 +18,7 @@ class EspeakEngineTest extends TestCase {
 			$services->getHttpRequestFactory(),
 			$services->getShellCommandFactory(),
 			$services->getFileBackendGroup(),
+			$services->getMainWANObjectCache(),
 			$services->getMainConfig()
 		);
 		$this->assertSame(
@@ -26,5 +27,34 @@ class EspeakEngineTest extends TestCase {
 				"<phoneme alphabet=\"ipa\" ph=\"/h&#x259;&#x2C8;v&#xE6;n&#x259;/\">Havana</phoneme></speak>\n",
 			$engine->getSsml( '/həˈvænə/', 'Havana', 'en' )
 		);
+	}
+
+	/**
+	 * @dataProvider provideGetLangsFromOutput
+	 */
+	public function testGetLangsFromOutput( string $output, array $result ) {
+		$services = MediaWikiServices::getInstance();
+		$engine = new EspeakEngine(
+			$services->getHttpRequestFactory(),
+			$services->getShellCommandFactory(),
+			$services->getFileBackendGroup(),
+			$services->getMainWANObjectCache(),
+			$services->getMainConfig()
+		);
+		$this->assertSame( $result, $engine->getLangsFromOutput( $output ) );
+	}
+
+	public function provideGetLangsFromOutput() {
+		return [
+			[
+				'
+Pty Language Age/Gender VoiceName          File          Other Languages
+ 5  af             M  afrikaans            other/af
+ 5  an             M  aragonese            europe/an
+ 5  bg             -  bulgarian            europe/bg
+',
+				[ 'af', 'an', 'bg' ],
+			]
+		];
 	}
 }

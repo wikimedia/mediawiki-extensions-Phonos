@@ -23,7 +23,7 @@
 			"description": "API endpoint for the Larynx engine"
 		},
 		"PhonosApiEndpointGoogle": {
-			"value": "https://texttospeech.googleapis.com/v1/text:synthesize",
+			"value": "https://texttospeech.googleapis.com/v1/",
 			"description": "API endpoint for the Google engine"
 		},
 		"PhonosApiKeyGoogle": {
@@ -148,7 +148,7 @@
 	"HookHandlers": {
 		"PhonosHooks": {
 			"class": "MediaWiki\\Extension\\Phonos\\Phonos",
-			"services": [ "RepoGroup", "Phonos.Engine", "Phonos.Wikibase", "StatsdDataFactory", "JobQueueGroup", "MainConfig"]
+			"services": [ "RepoGroup", "Phonos.Engine", "Phonos.Wikibase", "StatsdDataFactory", "JobQueueGroup", "MainConfig" ]
 		}
 	},
 	"AutoloadNamespaces": {

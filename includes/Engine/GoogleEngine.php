@@ -8,6 +8,8 @@ use FileBackendGroup;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Shell\CommandFactory;
+use stdClass;
+use WANObjectCache;
 
 class GoogleEngine extends Engine {
 
@@ -27,17 +29,39 @@ class GoogleEngine extends Engine {
 	 * @param HttpRequestFactory $requestFactory
 	 * @param CommandFactory $commandFactory
 	 * @param FileBackendGroup $fileBackendGroup
+	 * @param WANObjectCache $wanCache
 	 * @param Config $config
 	 */
 	public function __construct(
 		HttpRequestFactory $requestFactory,
 		CommandFactory $commandFactory,
 		FileBackendGroup $fileBackendGroup,
+		WANObjectCache $wanCache,
 		Config $config
 	) {
-		parent::__construct( $requestFactory, $commandFactory, $fileBackendGroup, $config );
+		parent::__construct( $requestFactory, $commandFactory, $fileBackendGroup, $wanCache, $config );
 		$this->apiEndpoint = $config->get( 'PhonosApiEndpointGoogle' );
 		$this->apiKey = $config->get( 'PhonosApiKeyGoogle' );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getSupportedLanguages(): ?array {
+		$langs = $this->wanCache->getWithSetCallback(
+			$this->wanCache->makeKey( 'phonos-google-langs' ),
+			WANObjectCache::TTL_MONTH,
+			function () {
+				$response = $this->makeGoogleRequest( 'voices', [] );
+				$langs = [];
+				foreach ( $response->voices as $voice ) {
+					$langs = array_merge( $langs, $voice->languageCodes );
+				}
+				// Remove duplicates and re-index the array.
+				return array_values( array_unique( $langs ) );
+			}
+		);
+		return $langs;
 	}
 
 	/**
@@ -67,12 +91,27 @@ class GoogleEngine extends Engine {
 			'postData' => json_encode( $postData )
 		];
 
+		$response = $this->makeGoogleRequest( 'text:synthesize', $options );
+		$audio = base64_decode( $response->audioContent );
+		$this->persistAudio( $ipa, $text, $lang, $audio );
+
+		return $audio;
+	}
+
+	/**
+	 * Make a request to the Google Cloud Text-to-Speech API.
+	 * @param string $method The API method name.
+	 * @param mixed[] $options HTTP request options.
+	 * @return stdClass
+	 * @throws PhonosException If the request is not successful.
+	 */
+	private function makeGoogleRequest( string $method, array $options ): stdClass {
 		if ( $this->apiProxy ) {
 			$options['proxy'] = $this->apiProxy;
 		}
 
 		$request = $this->requestFactory->create(
-			$this->apiEndpoint . '?key=' . $this->apiKey,
+			$this->apiEndpoint . $method . '?key=' . $this->apiKey,
 			$options,
 			__METHOD__
 		);
@@ -87,10 +126,7 @@ class GoogleEngine extends Engine {
 			throw new PhonosException( 'phonos-engine-error', [ 'Google', $error ] );
 		}
 
-		$audio = base64_decode( json_decode( $request->getContent() )->audioContent );
-		$this->persistAudio( $ipa, $text, $lang, $audio );
-
-		return $audio;
+		return json_decode( $request->getContent() );
 	}
 
 	/**

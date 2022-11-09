@@ -25,5 +25,7 @@
 	"phonos-wikibase-not-found": "Error message displayed when a Wikibase item ID provided is not found.\n\nParameters:\n* $1 — Wikibase item ID",
 	"phonos-wikibase-no-ipa": "Error message displayed when a Wikibase item is found but no IPA transcription is available in the current language.",
 	"phonos-empty-file-error": "Error message displayed when a file is very small and assumed to be empty.\n\nParameters:\n* $1 — a name of a parameter (not localizable).",
-	"phonos-param-error": "Error message displayed when Phonos was not given the minimum parameters it needs."
+	"phonos-param-error": "Error message displayed when Phonos was not given the minimum parameters it needs.",
+	"phonos-unsupported-language": "Error message displayed when a given language is not supported by Phonos.\n\nParameters:\n* $1 — Language code",
+	"phonos-unsupported-language-with-suggestions": "Error message displayed when a given language is not supported by Phonos and other languages are suggested.\n\nParameters:\n* $1 — Language code\n* $2 — List of possibly related language codes"
 }

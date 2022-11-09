@@ -15,6 +15,7 @@ use MediaWiki\Shell\CommandFactory;
 use MediaWikiIntegrationTestCase;
 use Parser;
 use ParserOutput;
+use WANObjectCache;
 
 /**
  * @group Phonos
@@ -30,7 +31,8 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 				$this->createMock( HttpRequestFactory::class ),
 				$this->createMock( CommandFactory::class ),
 				$this->createMock( FileBackendGroup::class ),
-				MediaWikiServices::getInstance()->getMainConfig()
+				WANObjectCache::newEmpty(),
+				MediaWikiServices::getInstance()->getMainConfig(),
 			] )->onlyMethods( [ 'getAudioData', 'getFileUrl' ] )
 			->getMock();
 	}

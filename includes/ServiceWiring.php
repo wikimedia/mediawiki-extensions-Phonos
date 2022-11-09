@@ -17,6 +17,7 @@ return [
 			$services->getHttpRequestFactory(),
 			$services->getShellCommandFactory(),
 			$services->getFileBackendGroup(),
+			$services->getMainWANObjectCache(),
 			$config
 		);
 	},
