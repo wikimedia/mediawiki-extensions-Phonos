@@ -66,9 +66,10 @@
 			"value":  {
 				"wikibasePronunciationAudioProp": "P443",
 				"wikibaseLangNameProp": "P407",
-				"wikibaseIETFLangTagProp": "P305"
+				"wikibaseIETFLangTagProp": "P305",
+				"wikibaseIPATranscriptionProp": "P898"
 			},
-			"description": "Wikibase Properties for the Wikibase API"
+			"description": "Wikibase properties for the Wikibase API"
 		},
 		"PhonosCommonsMediaUrl": {
 			"value":  "https://commons.wikimedia.org/wiki/Special:FilePath/",
@@ -100,7 +101,8 @@
 				"phonos-ipa-too-long",
 				"phonos-wikibase-api-error",
 				"phonos-wikibase-invalid-entity-lexeme",
-				"phonos-wikibase-not-found"
+				"phonos-wikibase-not-found",
+				"phonos-wikibase-no-ipa"
 			],
 			"dependencies": [
 				"mediawiki.api",
