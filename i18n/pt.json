@@ -21,5 +21,6 @@
 	"phonos-ipa-too-long": "A transcrição AFI é demasiado longa para fazer a composição.",
 	"phonos-wikibase-api-error": "Não foi possível obter a entidade da wiki Wikibase: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Entidade ou lexema inválidos: $1",
-	"phonos-wikibase-not-found": "Não foi encontrado nenhum áudio para o elemento Wikibase: $1"
+	"phonos-wikibase-not-found": "Não foi encontrado nenhum áudio para o elemento Wikibase: $1",
+	"phonos-wikibase-no-ipa": "Não foi encontrada nenhuma transcrição AFI."
 }

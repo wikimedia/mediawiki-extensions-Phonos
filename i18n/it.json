@@ -9,5 +9,6 @@
 	"phonos-file-not-found": "File audio \"$1\" non trovato.",
 	"phonos-file-not-audio": "Il file \"$1\" non è un file audio.",
 	"phonos-wikibase-api-error": "Impossibile recuperare l'entità da Wikibase: $1",
-	"phonos-wikibase-invalid-entity-lexeme": "Entità o lessema non valido: $1"
+	"phonos-wikibase-invalid-entity-lexeme": "Entità o lessema non valido: $1",
+	"phonos-wikibase-no-ipa": "Nessuna trascrizione IPA trovata."
 }

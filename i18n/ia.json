@@ -21,5 +21,6 @@
 	"phonos-ipa-too-long": "IPA troppo longe pro visualisar.",
 	"phonos-wikibase-api-error": "Non pote recuperar le entitate de Wikibase: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Entitate o lexema non valide: $1",
-	"phonos-wikibase-not-found": "Nulle audio trovate pro le objecto Wikibase: $1"
+	"phonos-wikibase-not-found": "Nulle audio trovate pro le objecto Wikibase: $1",
+	"phonos-wikibase-no-ipa": "Necun transcription IPA trovate."
 }

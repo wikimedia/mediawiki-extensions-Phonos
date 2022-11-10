@@ -15,5 +15,6 @@
 	"phonos-ipa-too-long": "Transkripcija IPA je predolga za prikaz.",
 	"phonos-wikibase-api-error": "Ni mogoče pridobiti entitete iz Wikibaze: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Neveljavna entiteta ali leksem: $1",
-	"phonos-wikibase-not-found": "Ni najdenega zvoka za element Wikibaze: $1"
+	"phonos-wikibase-not-found": "Ni najdenega zvoka za element Wikibaze: $1",
+	"phonos-wikibase-no-ipa": "Prepis IPA ni bil najden."
 }
