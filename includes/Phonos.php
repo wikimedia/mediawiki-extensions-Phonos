@@ -163,7 +163,7 @@ class Phonos implements ParserFirstCallInitHook {
 						if ( !$buttonConfig['label'] ) {
 							$buttonConfig['label'] = $options['ipa'];
 						}
-					} else {
+					} elseif ( !isset( $buttonConfig['href'] ) ) {
 						// If a Wikibase item is provided, but it doesn't have IPA (in the correct language).
 						throw new PhonosException( 'phonos-wikibase-no-ipa' );
 					}
