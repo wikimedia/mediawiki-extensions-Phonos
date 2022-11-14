@@ -22,5 +22,6 @@
 	"phonos-ipa-too-long": "הכנת פלט יפ\"א לקחה יותר מדי זמן.",
 	"phonos-wikibase-api-error": "לא ניתן לאחזר ישות מוויקיבייס: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "ישות או יחידה לא בלתי־תקינה: $1",
-	"phonos-wikibase-not-found": "לא נמצא שמע עבור פריט ויקיבייס: $1"
+	"phonos-wikibase-not-found": "לא נמצא שמע עבור פריט ויקיבייס: $1",
+	"phonos-wikibase-no-ipa": "לא נמצא תעתיק IPA."
 }
