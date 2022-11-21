@@ -7,7 +7,13 @@
  */
 function PhonosButton( config ) {
 	// Parent constructor.
-	PhonosButton.super.call( this, config );
+	PhonosButton.super.call( this, $.extend( {
+		$overlay: true,
+		popup: {
+			classes: [ 'ext-phonos-error-popup' ],
+			padded: true
+		}
+	}, config ) );
 
 	// Mixin constructor.
 	OO.ui.mixin.PendingElement.call( this, { $pending: this.$button } );
@@ -26,8 +32,8 @@ function PhonosButton( config ) {
 	// This HTMLAudioElement will be instantiated once.
 	this.audio = null;
 
-	// Create a popup for error messages.
-	this.popup = this.getErrorPopup();
+	// Add any error message to the popup.
+	this.getPopup().$body.append( $( '<p>' ).append( this.getErrorMessage() ) );
 
 	// Add click handlers.
 	// eslint-disable-next-line no-jquery/no-global-selector
@@ -35,33 +41,8 @@ function PhonosButton( config ) {
 	this.connect( this, { click: this.onClick } );
 }
 
-OO.inheritClass( PhonosButton, OO.ui.ButtonWidget );
+OO.inheritClass( PhonosButton, OO.ui.PopupButtonWidget );
 OO.mixinClass( PhonosButton, OO.ui.mixin.PendingElement );
-
-/**
- * @static
- * @member {Array} All popups for all buttons.
- */
-PhonosButton.static.popups = [];
-
-/**
- * HTML element click handler: close all popups when clicking anywhere
- * outside of any Phonos elements.
- *
- * @param {Event} event
- * @return {void}
- */
-PhonosButton.prototype.onHtmlClick = function ( event ) {
-	// Do nothing if we're clicking inside a button or popup.
-	const $parents = $( event.target ).closest( '.ext-phonos' );
-	if ( $parents.length > 0 ) {
-		return;
-	}
-	// Otherwise, close all popups.
-	PhonosButton.static.popups.forEach( ( popup ) => {
-		popup.toggle( false );
-	} );
-};
 
 /**
  * Click handler: play or pause the audio.
@@ -75,17 +56,10 @@ PhonosButton.prototype.onClick = function ( event ) {
 	const startedAt = mw.now();
 	this.track( 'counter.MediaWiki.extension.Phonos.IPA.click', 1 );
 
-	// A popup exists, so no audio can be played.
-	if ( this.popup ) {
+	// Popup content exists, so no audio can be played.
+	if ( this.getPopup().$body.text() !== '' ) {
 		this.track( 'counter.MediaWiki.extension.Phonos.IPA.error', 1 );
-		// First close other popups.
-		PhonosButton.static.popups.forEach( ( otherPopup ) => {
-			if ( otherPopup !== this.popup ) {
-				otherPopup.toggle( false );
-			}
-		} );
-		// Then show or hide this one.
-		this.popup.toggle();
+		this.getPopup().toggle();
 		return;
 	}
 
@@ -140,11 +114,11 @@ PhonosButton.prototype.getAudioEl = function ( src ) {
 };
 
 /**
- * Create and return an error popup if necessary.
+ * Create and return an error message if necessary.
  *
- * @return {null|OO.ui.PopupWidget}
+ * @return {null|string}
  */
-PhonosButton.prototype.getErrorPopup = function () {
+PhonosButton.prototype.getErrorMessage = function () {
 	if ( !this.phonosData.error ) {
 		return null;
 	}
@@ -173,25 +147,7 @@ PhonosButton.prototype.getErrorPopup = function () {
 		error = mw.message( this.phonosData.error, [ $link.prop( 'outerHTML' ) ] ).text();
 	}
 
-	return this.getErrorPopupWidget( error );
-};
-
-/**
- * Get an error popup widget with the given message.
- *
- * @param {string} error
- * @return {OO.ui.PopupWidget}
- * @private
- */
-PhonosButton.prototype.getErrorPopupWidget = function ( error ) {
-	const popup = new OO.ui.PopupWidget( {
-		classes: [ 'ext-phonos-error-popup' ],
-		$content: $( '<p>' ).append( error ),
-		padded: true
-	} );
-	PhonosButton.static.popups.unshift( popup );
-	this.$element.append( popup.$element );
-	return popup;
+	return error;
 };
 
 /**
@@ -207,13 +163,13 @@ PhonosButton.prototype.handleMissingFile = function () {
 	const $link = $( '<a>' )
 		.attr( 'href', mw.util.getUrl( mw.config.get( 'wgPageName' ), { action: 'purge' } ) )
 		.text( mw.message( 'phonos-purge-needed-error-link' ) );
-	this.popup = this.getErrorPopupWidget(
-		$( '<span>' ).append(
+	this.getPopup().$body.append(
+		$( '<p>' ).append(
 			mw.message( 'phonos-purge-needed-error' ).text() + '&nbsp;',
 			$link
 		)
 	);
-	this.popup.toggle( true );
+	this.getPopup().toggle( true );
 
 	// Set up click listener for the link so that users with JS
 	// aren't shown the action=purge confirmation screen.
