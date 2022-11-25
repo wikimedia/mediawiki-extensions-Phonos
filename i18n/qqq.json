@@ -1,8 +1,10 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Umherirrender"
+		]
 	},
-	"phonos": "The name of the extension",
+	"phonos": "{{name}}",
 	"phonos-desc": "{{desc|name=Phonos|url=https://www.mediawiki.org/wiki/Extension:Phonos}}",
 	"phonos-error-category": "{{tracking category name}}\nName of [[mw:Help:Tracking categories|tracking category]] to list pages that contain Phonos rendering errors.",
 	"phonos-error-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|phonos-error-category}} tracking category.",
