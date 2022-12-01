@@ -1,8 +1,10 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Umherirrender"
+		]
 	},
-	"phonos": "The name of the extension",
+	"phonos": "{{name}}",
 	"phonos-desc": "{{desc|name=Phonos|url=https://www.mediawiki.org/wiki/Extension:Phonos}}",
 	"phonos-error-category": "{{tracking category name}}\nName of [[mw:Help:Tracking categories|tracking category]] to list pages that contain Phonos rendering errors.",
 	"phonos-error-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|phonos-error-category}} tracking category.",
@@ -12,7 +14,7 @@
 	"phonos-storage-error": "Error message displayed when Phonos failed to store audio file in its final destination. Parameters:\n$1 - result message which was returned by the backend.",
 	"phonos-tracking-category": "{{tracking category name}}\nName of [[mw:Help:Tracking categories|tracking category]] to list pages which use the Phonos parser function.",
 	"phonos-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|phonos-tracking-category}} tracking category.",
-	"phonos-file-not-audio": "Error message displayed when a manual filename is provided but it is not an audio file.\n\nParameters:\n* $1 — HTML link to the file.",
 	"phonos-file-not-found": "Error message displayed when a manual filename is provided but it doesn't exist on the wiki.\n\nParameters:\n* $1 — HTML link to the file.",
+	"phonos-file-not-audio": "Error message displayed when a manual filename is provided but it is not an audio file.\n\nParameters:\n* $1 — HTML link to the file.",
 	"phonos-player-aria-description": "Aria description for the Phonos player."
 }
