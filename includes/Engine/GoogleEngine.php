@@ -18,6 +18,12 @@ class GoogleEngine extends Engine {
 	protected $apiKey;
 
 	/**
+	 * @var int
+	 * @override
+	 */
+	protected const MIN_FILE_SIZE = 1200;
+
+	/**
 	 * @param HttpRequestFactory $requestFactory
 	 * @param CommandFactory $commandFactory
 	 * @param FileBackendGroup $fileBackendGroup

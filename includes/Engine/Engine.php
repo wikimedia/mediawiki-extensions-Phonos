@@ -32,6 +32,9 @@ abstract class Engine implements EngineInterface {
 	 */
 	private const CACHE_VERSION = 1;
 
+	/** @var int|null Minimum file size in bytes. Null for no minimum. See T324239 */
+	protected const MIN_FILE_SIZE = null;
+
 	/** @var string Prefix directory name when persisting files to storage. */
 	public const STORAGE_PREFIX = 'phonos-render';
 
@@ -146,6 +149,10 @@ abstract class Engine implements EngineInterface {
 	 * @throws PhonosException
 	 */
 	final public function persistAudio( string $ipa, string $text, string $lang, string $data ): void {
+		if ( static::MIN_FILE_SIZE && strlen( $data ) < static::MIN_FILE_SIZE ) {
+			throw new PhonosException( 'phonos-empty-file-error', [ 'text' ] );
+		}
+
 		$status = $this->fileBackend->prepare( [
 			'dir' => $this->getFileStoragePath( $ipa, $text, $lang ),
 		] );
