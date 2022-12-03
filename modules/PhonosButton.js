@@ -20,9 +20,9 @@ function PhonosButton( config ) {
 
 	this.phonosData = this.getData();
 
-	// Set an aria description attribute for the button.
+	// Set an aria label attribute for the button.
 	this.$button.attr(
-		'aria-description',
+		'aria-label',
 		mw.message( 'phonos-player-aria-description', [ this.phonosData.text ] ).parse()
 	);
 
