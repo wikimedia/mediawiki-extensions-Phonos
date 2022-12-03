@@ -193,7 +193,7 @@ PhonosButton.prototype.handleMissingFile = function () {
  * through statsv
  *
  * @param {string} baseMetricName
- * @param {int} value
+ * @param {number} value
  * @private
  */
 PhonosButton.prototype.track = function ( baseMetricName, value ) {

@@ -4,5 +4,8 @@
 		"wikimedia/client-es6",
 		"wikimedia/mediawiki",
 		"wikimedia/jquery"
-	]
+	],
+	"rules": {
+		"jsdoc/no-undefined-types": "error"
+	}
 }
