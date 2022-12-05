@@ -16,5 +16,6 @@
 	"phonos-wikibase-api-error": "Ni mogoče pridobiti entitete iz Wikibaze: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Neveljavna entiteta ali leksem: $1",
 	"phonos-wikibase-not-found": "Ni najdenega zvoka za element Wikibaze: $1",
-	"phonos-wikibase-no-ipa": "Prepis IPA ni bil najden."
+	"phonos-wikibase-no-ipa": "Prepis IPA ni bil najden.",
+	"phonos-empty-file-error": "Zdi se, da je generirani zvok prazen. Navedena transkripcija IPA je morda neveljavna ali pa je motor ne more interpretirati. Morda lahko pomaga uporaba parametra »$1«."
 }

@@ -22,5 +22,6 @@
 	"phonos-wikibase-api-error": "Eintrag kann nicht von Wikibase abgerufen werden: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Ungültiges Objekt oder Lexem: $1",
 	"phonos-wikibase-not-found": "Kein Audio für Wikibase-Objekt gefunden: $1",
-	"phonos-wikibase-no-ipa": "Keine IPA-Transkription gefunden."
+	"phonos-wikibase-no-ipa": "Keine IPA-Transkription gefunden.",
+	"phonos-empty-file-error": "Das generierte Audio scheint leer zu sein. Der angegebene IPA ist möglicherweise ungültig, oder die Engine kann ihn nicht interpretieren. Die Verwendung des Parameters „$1“ kann helfen."
 }

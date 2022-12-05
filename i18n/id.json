@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"DARMAS BUDI SANTOSO",
 			"Farras"
 		]
 	},
 	"phonos-tracking-category": "Halaman yang menggunakan Phonos",
-	"phonos-tracking-category-desc": "Halaman ini menggunakan ekstensi [[:mw:Extension:Phonos|Phonos]]."
+	"phonos-tracking-category-desc": "Halaman ini menggunakan ekstensi [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-empty-file-error": "The generated audio appears to be empty. The given IPA may be invalid, or the engine can't interpret it. Using the '$1' parameter may help."
 }
