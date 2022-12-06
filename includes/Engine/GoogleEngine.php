@@ -109,8 +109,6 @@ class GoogleEngine extends Engine {
 		$ipa = trim( $ipa, '/' );
 		// Replace apostrophes with U+02C8; see T313711
 		$ipa = str_replace( "'", "ˈ", $ipa );
-		// Google doesn't like the parentheses, which we understand aren't important anyway.
-		$ipa = str_replace( [ '(', ')' ], '', $ipa );
 
 		$phonemeNode->setAttribute( 'ph', $ipa );
 		$speakNode->appendChild( $phonemeNode );
