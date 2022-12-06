@@ -22,6 +22,6 @@
 	"phonos-wikibase-invalid-entity-lexeme": "Invalid entity or lexeme: $1",
 	"phonos-wikibase-not-found": "No audio found for Wikibase item: $1",
 	"phonos-wikibase-no-ipa": "No IPA transcription found.",
-	"phonos-empty-file-error": "The generated audio appears to be empty. The given IPA may be invalid, or the engine can't interpret it. Using the '$1' parameter may help.",
+	"phonos-empty-file-error": "The generated audio appears to be empty. The given IPA may be invalid, or is not supported by the engine. Using the '$1' parameter may help.",
 	"phonos-param-error": "Either IPA, a file, or a Wikibase item must be provided."
 }
