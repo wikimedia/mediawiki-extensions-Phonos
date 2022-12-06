@@ -232,6 +232,6 @@ class Phonos implements ParserFirstCallInitHook {
 	 */
 	private function recordError( PhonosException $e ): void {
 		$key = $e->getStatsdKey();
-		$this->statsdDataFactory->increment( "phonos_error.$key" );
+		$this->statsdDataFactory->increment( "extension.Phonos.error.$key" );
 	}
 }

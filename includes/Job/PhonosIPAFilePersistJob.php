@@ -57,7 +57,8 @@ class PhonosIPAFilePersistJob extends Job implements GenericParameterJob {
 			);
 		} catch ( PhonosException $e ) {
 			$statsdDataFactory = MediaWikiServices::getInstance()->get( 'StatsdDataFactory' );
-			$statsdDataFactory->increment( 'phonos_error.' . $e->getStatsdKey() );
+			$key = $e->getStatsdKey();
+			$statsdDataFactory->increment( "extension.Phonos.error.$key" );
 
 			throw $e;
 		}
