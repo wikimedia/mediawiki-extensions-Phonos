@@ -24,5 +24,6 @@
 	"phonos-wikibase-invalid-entity-lexeme": "Error messaged displayed when item provided is an invalid entity or lexeme. Parameters: \n * $1 - Wikibase item ID",
 	"phonos-wikibase-not-found": "Error message displayed when a Wikibase item ID provided is not found.\n\nParameters:\n* $1 — Wikibase item ID",
 	"phonos-wikibase-no-ipa": "Error message displayed when a Wikibase item is found but no IPA transcription is available in the current language.",
-	"phonos-empty-file-error": "Error message displayed when a file is very small and assumed to be empty.\n\nParameters:\n* $1 — a name of a parameter (not localizable)."
+	"phonos-empty-file-error": "Error message displayed when a file is very small and assumed to be empty.\n\nParameters:\n* $1 — a name of a parameter (not localizable).",
+	"phonos-param-error": "Error message displayed when Phonos was not given the minimum parameters it needs."
 }

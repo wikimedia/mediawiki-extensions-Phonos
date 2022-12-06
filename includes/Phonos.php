@@ -90,6 +90,7 @@ class Phonos implements ParserFirstCallInitHook {
 		// Add the CSS and JS
 		$parser->getOutput()->addModuleStyles( [ 'ext.phonos.styles', 'ext.phonos.icons' ] );
 		$parser->getOutput()->addModules( [ 'ext.phonos' ] );
+		$parser->addTrackingCategory( 'phonos-tracking-category' );
 
 		// Get the named parameters and merge with defaults.
 		$defaultOptions = [
@@ -102,18 +103,12 @@ class Phonos implements ParserFirstCallInitHook {
 		];
 		$options = array_merge( $defaultOptions, $args );
 
-		// Require at least something to display.
-		if ( !$options['ipa'] && !$options['label'] && !$options['file'] && !$options['wikibase'] ) {
-			return '';
-		}
-
 		$buttonLabel = $options['ipa'];
 		if ( $options['label'] ) {
 			$content = $parser->recursiveTagParseFully( $options['label'] );
 			// Strip out the <p> tag that might have been added by the parser.
 			$buttonLabel = new HtmlSnippet( Parser::stripOuterParagraph( $content ) );
 		}
-		$parser->addTrackingCategory( 'phonos-tracking-category' );
 		$buttonConfig = [
 			'label' => $buttonLabel,
 			'data' => [
@@ -125,6 +120,11 @@ class Phonos implements ParserFirstCallInitHook {
 		];
 
 		try {
+			// Require at least something to display generated from something other than just plain text (T322787).
+			if ( !$options['ipa'] && !$options['file'] && !$options['wikibase'] ) {
+				throw new PhonosException( 'phonos-param-error' );
+			}
+
 			// Check length of IPA.
 			if ( strlen( $options['ipa'] ) > 300 ) {
 				// Don't send the very long IPA, then throw
