@@ -374,4 +374,14 @@ abstract class Engine implements EngineInterface {
 	public function getSupportedLanguages(): ?array {
 		return null;
 	}
+
+	/**
+	 * Expose upload path for use in maintenance scripts.
+	 *
+	 * @return string
+	 */
+	final public function getUploadPath(): string {
+		return $this->uploadPath;
+	}
+
 }
