@@ -24,5 +24,6 @@
 	"phonos-wikibase-invalid-entity-lexeme": "Entité ou lexème invalide : $1",
 	"phonos-wikibase-not-found": "Aucun audio trouvé pour l’élément Wikibase : $1",
 	"phonos-wikibase-no-ipa": "Aucune transcription en alphabet phonétique international trouvée.",
-	"phonos-empty-file-error": "L’audio généré semble être vide. La transcription donnée en alphabet phonétique international (API) peut ne pas être valide ou le moteur ne peut pas l’interpréter. L’utilisation du paramètre « $1 » peut aider."
+	"phonos-empty-file-error": "L’audio généré semble être vide. La transcription donnée en alphabet phonétique international (API) peut ne pas être valide ou n’est pas prise en charge par le moteur. L’utilisation du paramètre « $1 » peut aider.",
+	"phonos-param-error": "Soit une transcription en alphabet phonétique international, soit un fichier, soit un élément Wikibase doit être fourni."
 }

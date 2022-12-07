@@ -23,5 +23,6 @@
 	"phonos-wikibase-invalid-entity-lexeme": "Entitate o lexema non valide: $1",
 	"phonos-wikibase-not-found": "Nulle audio trovate pro le objecto Wikibase: $1",
 	"phonos-wikibase-no-ipa": "Necun transcription IPA trovate.",
-	"phonos-empty-file-error": "Le audio generate pare esser vacue. Le IPA date pote esser invalide, o le motor non pote interpretar lo. Usar le parametro '$1' pote adjutar."
+	"phonos-empty-file-error": "Le audio generate pare esser vacue. Le IPA date pote esser invalide, o le motor non lo supporta. Usar le parametro '$1' pote adjutar.",
+	"phonos-param-error": "Un IPA, un file, o un elemento de Wikibase debe esser fornite."
 }
