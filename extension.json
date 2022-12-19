@@ -74,6 +74,10 @@
 		"PhonosCommonsMediaUrl": {
 			"value":  "https://commons.wikimedia.org/wiki/Special:FilePath/",
 			"description": "Commons media URL"
+		},
+		"PhonosFileExpiry": {
+			"value":  "30",
+			"description": "Time in days after which files should expire, if the backend supports the 'X-Delete-At' header."
 		}
 	},
 	"MessagesDirs": {

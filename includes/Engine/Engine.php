@@ -62,6 +62,9 @@ abstract class Engine implements EngineInterface {
 	/** @var bool */
 	protected $storeFilesAsMp3;
 
+	/** @var int Time in days we want to persist the file for */
+	protected $fileExpiry;
+
 	/**
 	 * @param HttpRequestFactory $requestFactory
 	 * @param CommandFactory $commandFactory
@@ -84,6 +87,9 @@ abstract class Engine implements EngineInterface {
 		// Using ReflectionClass to get the unqualified class name is actually faster than doing string operations.
 		$this->engineName = ( new ReflectionClass( get_class( $this ) ) )->getShortName();
 		$this->storeFilesAsMp3 = $config->get( 'PhonosStoreFilesAsMp3' );
+
+		// Only used if filebackend supports ATTR_METADATA
+		$this->fileExpiry = $config->get( 'PhonosFileExpiry' );
 	}
 
 	/**
@@ -167,7 +173,11 @@ abstract class Engine implements EngineInterface {
 			'dst' => $this->getFullFileStoragePath( $ipa, $text, $lang ),
 			'content' => $data,
 			'overwriteSame' => true,
+			'headers' => [
+				'X-Delete-At' => $this->generateExpiryTs()
+			],
 		] );
+
 		if ( !$status->isOK() ) {
 			throw new PhonosException( 'phonos-storage-error', [
 				Status::wrap( $status )->getMessage()->text()
@@ -204,6 +214,25 @@ abstract class Engine implements EngineInterface {
 		return (bool)$this->fileBackend->fileExists( [
 			'src' => $this->getFullFileStoragePath( $ipa, $text, $lang ),
 		] );
+	}
+
+	/**
+	 * Update file expiry when supported by the file backend
+	 *
+	 * @param string $ipa
+	 * @param string $text
+	 * @param string $lang
+	 * @return void
+	 */
+	final public function updateFileExpiry( string $ipa, string $text, string $lang ): void {
+		if ( $this->fileBackend->hasFeatures( FileBackend::ATTR_HEADERS ) ) {
+			$this->fileBackend->quickDescribe( [
+				'src' => $this->getFullFileStoragePath( $ipa, $text, $lang ),
+				'headers' => [
+					'X-Delete-At' => $this->generateExpiryTs(),
+				],
+			] );
+		}
 	}
 
 	/**
@@ -285,4 +314,14 @@ abstract class Engine implements EngineInterface {
 			$this->getFileName( $ipa, $text, $lang );
 	}
 
+	/**
+	 * Generate file expiry with some deviations
+	 * to minimize flooding on object expiration
+	 * @return int
+	 */
+	private function generateExpiryTs(): int {
+		// convert days to seconds
+		$ttl = $this->fileExpiry * 86400;
+		return time() + rand( intval( $ttl * 0.8 ), $ttl );
+	}
 }

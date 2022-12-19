@@ -184,6 +184,8 @@ class Phonos implements ParserFirstCallInitHook {
 					} else {
 						$this->engine->getAudioData( $options['ipa'], $options['text'], $options['lang'] );
 					}
+				} else {
+					$this->engine->updateFileExpiry( $options['ipa'], $options['text'], $options['lang'] );
 				}
 				// Pass the URL to the clientside even if audio file is not ready
 				$buttonConfig['href'] = $this->engine->getFileUrl(
