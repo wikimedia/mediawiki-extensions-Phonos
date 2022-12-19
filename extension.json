@@ -75,6 +75,10 @@
 			"value":  "https://commons.wikimedia.org/wiki/Special:FilePath/",
 			"description": "Commons media URL"
 		},
+		"PhonosIPARenderingEnabled": {
+			"value": true,
+			"description": "Enable rendering of IPA"
+		},
 		"PhonosFileExpiry": {
 			"value":  "30",
 			"description": "Time in days after which files should expire, if the backend supports the 'X-Delete-At' header."

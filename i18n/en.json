@@ -24,6 +24,7 @@
 	"phonos-wikibase-no-ipa": "No IPA transcription found.",
 	"phonos-empty-file-error": "The generated audio appears to be empty. The given IPA may be invalid, or is not supported by the engine. Using the '$1' parameter may help.",
 	"phonos-param-error": "Either IPA, a file, or a Wikibase item must be provided.",
+	"phonos-rendering-disabled": "IPA rendering is currently disabled.",
 	"phonos-unsupported-language": "Language $1 is not supported by Phonos.",
 	"phonos-unsupported-language-with-suggestions": "Language $1 is not supported by Phonos. The following possibly-related languages are supported: $2."
 }

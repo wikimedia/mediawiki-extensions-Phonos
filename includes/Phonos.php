@@ -45,6 +45,9 @@ class Phonos implements ParserFirstCallInitHook {
 	/** @var bool */
 	private $isCommandLineMode;
 
+	/** @var bool */
+	private $renderingEnabled;
+
 	/**
 	 * @param RepoGroup $repoGroup
 	 * @param Engine $engine
@@ -67,6 +70,7 @@ class Phonos implements ParserFirstCallInitHook {
 		$this->statsdDataFactory = $statsdDataFactory;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->isCommandLineMode = $config->get( 'CommandLineMode' );
+		$this->renderingEnabled = $config->get( 'PhonosIPARenderingEnabled' );
 	}
 
 	/**
@@ -166,11 +170,16 @@ class Phonos implements ParserFirstCallInitHook {
 		$isPersisted = $this->engine->isPersisted( $options['ipa'], $options['text'], $options['lang'] );
 		if ( $isPersisted ) {
 			$this->engine->updateFileExpiry( $options['ipa'], $options['text'], $options['lang'] );
-		} elseif ( $this->isCommandLineMode || !$parser->incrementExpensiveFunctionCount() ) {
-			// generate audio file in a job
-			$this->pushJob( $options['ipa'], $options['text'], $options['lang'] );
 		} else {
-			$this->engine->getAudioData( $options['ipa'], $options['text'], $options['lang'] );
+			if ( !$this->renderingEnabled ) {
+				throw new PhonosException( 'phonos-rendering-disabled' );
+			}
+			if ( $this->isCommandLineMode || !$parser->incrementExpensiveFunctionCount() ) {
+				// generate audio file in a job
+				$this->pushJob( $options['ipa'], $options['text'], $options['lang'] );
+			} else {
+				$this->engine->getAudioData( $options['ipa'], $options['text'], $options['lang'] );
+			}
 		}
 		// Pass the URL to the clientside even if audio file is not ready
 		$buttonConfig['href'] = $this->engine->getFileUrl(
