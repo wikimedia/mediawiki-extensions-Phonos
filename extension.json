@@ -13,6 +13,11 @@
 	"requires": {
 		"MediaWiki": ">= 1.38.0"
 	},
+	"suggests": {
+		"extensions": {
+			"TimedMediaHandler": ">= 0.6.0"
+		}
+	},
 	"config": {
 		"PhonosEngine": {
 			"value": "espeak",
@@ -70,10 +75,6 @@
 				"wikibaseIPATranscriptionProp": "P898"
 			},
 			"description": "Wikibase properties for the Wikibase API"
-		},
-		"PhonosCommonsMediaUrl": {
-			"value":  "https://commons.wikimedia.org/wiki/Special:FilePath/",
-			"description": "Commons media URL"
 		},
 		"PhonosIPARenderingEnabled": {
 			"value": true,

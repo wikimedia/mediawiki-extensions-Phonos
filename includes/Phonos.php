@@ -2,6 +2,8 @@
 namespace MediaWiki\Extension\Phonos;
 
 use Config;
+use ExtensionRegistry;
+use File;
 use JobQueueGroup;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Extension\Phonos\Engine\Engine;
@@ -10,6 +12,8 @@ use MediaWiki\Extension\Phonos\Job\PhonosIPAFilePersistJob;
 use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\TimedMediaHandler\TimedMediaHandler;
+use MediaWiki\TimedMediaHandler\WebVideoTranscode\WebVideoTranscode;
 use OOUI\HtmlSnippet;
 use OutputPage;
 use Parser;
@@ -204,7 +208,7 @@ class Phonos implements ParserFirstCallInitHook {
 		if ( $file ) {
 			$buttonConfig['data']['file'] = $file->getTitle()->getText();
 			if ( $file->getMediaType() === MEDIATYPE_AUDIO ) {
-				$buttonConfig['href'] = $file->getUrl();
+				$buttonConfig['href'] = $this->getFileUrl( $file );
 			} else {
 				$buttonConfig['data']['error'] = 'phonos-file-not-audio';
 			}
@@ -227,10 +231,13 @@ class Phonos implements ParserFirstCallInitHook {
 			$options['text'],
 			$options['lang']
 		);
+
 		// Set file URL if available.
-		if ( $wikibaseEntity->getAudioFile() ) {
-			$buttonConfig['href'] = $wikibaseEntity->getCommonsAudioFileUrl();
+		$audioFile = $wikibaseEntity->getAudioFile();
+		if ( $audioFile ) {
+			$buttonConfig['href'] = $this->getFileUrl( $audioFile );
 		}
+
 		// Set the IPA option and button config, if available.
 		if ( !$options['ipa'] ) {
 			if ( $wikibaseEntity->getIPATranscription() ) {
@@ -247,7 +254,35 @@ class Phonos implements ParserFirstCallInitHook {
 	}
 
 	/**
-	 * Push a job into the job queue and increment the statsd metric.
+	 * Get the public URL for the given File, using TimedMediaHandler to
+	 * find a transcoded MP3 source if the given File isn't already an MP3.
+	 *
+	 * If TimeMediaHandler can't find an MP3 source, the original non-MP3
+	 * file URL will be returned instead.
+	 *
+	 * @param File $file
+	 * @return string
+	 */
+	public function getFileUrl( File $file ): string {
+		$isAlreadyMP3 = $file->getMimeType() === 'audio/mpeg';
+		$isHandledByTMH = ExtensionRegistry::getInstance()->isLoaded( 'TimedMediaHandler' ) &&
+			$file->getHandler() && $file->getHandler() instanceof TimedMediaHandler;
+
+		if ( !$isAlreadyMP3 && $isHandledByTMH ) {
+			$mp3Source = array_filter( WebVideoTranscode::getSources( $file ), static function ( $source ) {
+				return isset( $source['transcodekey'] ) && $source[ 'transcodekey' ] === 'mp3';
+			} );
+			$mp3Source = reset( $mp3Source );
+			if ( isset( $mp3Source['src'] ) ) {
+				return $mp3Source[ 'src' ];
+			}
+		}
+
+		return $file->getUrl();
+	}
+
+	/**
+	 * Push a job into the job queue
 	 *
 	 * @param string $ipa
 	 * @param string $text

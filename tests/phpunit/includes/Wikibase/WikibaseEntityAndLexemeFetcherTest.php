@@ -62,6 +62,7 @@ class WikibaseEntityAndLexemeFetcherTest extends MediaWikiIntegrationTestCase {
 				}
 			} );
 
+		$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
 		$cache = new WANObjectCache( [ 'cache' => MediaWikiServices::getInstance()->getMainObjectStash() ] );
 
 		$config = new HashConfig( [
@@ -72,11 +73,10 @@ class WikibaseEntityAndLexemeFetcherTest extends MediaWikiIntegrationTestCase {
 				'wikibaseIPATranscriptionProp' => 'P898',
 			],
 			'PhonosWikibaseUrl' => 'base-url',
-			'PhonosCommonsMediaUrl' => 'commons-url',
 			'PhonosApiProxy' => false,
 		] );
 
-		$fetcher = new WikibaseEntityAndLexemeFetcher( $requestFactory, $cache, $config );
+		$fetcher = new WikibaseEntityAndLexemeFetcher( $requestFactory, $repoGroup, $cache, $config );
 		$entity = $fetcher->fetch( $id, $text, $lang );
 		$this->assertSame( $expected, $entity->getIPATranscription() );
 	}

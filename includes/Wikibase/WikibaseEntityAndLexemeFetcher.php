@@ -6,6 +6,7 @@ use Config;
 use LanguageCode;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
+use RepoGroup;
 use stdClass;
 use WANObjectCache;
 
@@ -30,11 +31,11 @@ class WikibaseEntityAndLexemeFetcher {
 	/** @var string */
 	private $wikibaseIPATranscriptionProp;
 
-	/** @var string */
-	private $commonsMediaUrl;
-
 	/** @var HttpRequestFactory */
 	private $requestFactory;
+
+	/** @var RepoGroup */
+	private $repoGroup;
 
 	/** @var WANObjectCache */
 	private $wanCache;
@@ -44,26 +45,31 @@ class WikibaseEntityAndLexemeFetcher {
 
 	/**
 	 * @param HttpRequestFactory $requestFactory
+	 * @param RepoGroup $repoGroup
 	 * @param WANObjectCache $wanCache
 	 * @param Config $config
 	 */
 	public function __construct(
 		HttpRequestFactory $requestFactory,
+		RepoGroup $repoGroup,
 		WANObjectCache $wanCache,
 		Config $config
 	) {
+		// Dependencies.
 		$this->requestFactory = $requestFactory;
-		$this->wikibaseUrl = $config->get( 'PhonosWikibaseUrl' );
+		$this->repoGroup = $repoGroup;
+		$this->wanCache = $wanCache;
 
+		// General configuration.
+		$this->wikibaseUrl = $config->get( 'PhonosWikibaseUrl' );
+		$this->apiProxy = $config->get( 'PhonosApiProxy' );
+
+		// PhonosWikibaseProperties configuration.
 		$phonosWikibaseProperties = $config->get( 'PhonosWikibaseProperties' );
 		$this->wikibasePronunciationAudioProp = $phonosWikibaseProperties['wikibasePronunciationAudioProp'];
 		$this->wikibaseLangNameProp = $phonosWikibaseProperties['wikibaseLangNameProp'];
 		$this->wikibaseIETFLangTagProp = $phonosWikibaseProperties['wikibaseIETFLangTagProp'];
 		$this->wikibaseIPATranscriptionProp = $phonosWikibaseProperties['wikibaseIPATranscriptionProp'];
-
-		$this->commonsMediaUrl = $config->get( 'PhonosCommonsMediaUrl' );
-		$this->wanCache = $wanCache;
-		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 	}
 
 	/**
@@ -92,7 +98,7 @@ class WikibaseEntityAndLexemeFetcher {
 			throw new PhonosException( 'phonos-wikibase-not-found', [ $wikibaseEntity ] );
 		}
 
-		$entity = new Entity( $this->commonsMediaUrl );
+		$entity = new Entity();
 		$audioFiles = [];
 		$ipaTranscriptions = [];
 
@@ -119,7 +125,13 @@ class WikibaseEntityAndLexemeFetcher {
 		}
 
 		$entity->setIPATranscription( $this->getClaimValueByLang( $ipaTranscriptions, $lang ) );
-		$entity->setAudioFile( $this->getClaimValueByLang( $audioFiles, $lang ) );
+		$claimValue = $this->getClaimValueByLang( $audioFiles, $lang );
+		if ( $claimValue ) {
+			$file = $this->repoGroup->findFile( $claimValue );
+			if ( $file ) {
+				$entity->setAudioFile( $file );
+			}
+		}
 
 		return $entity;
 	}
