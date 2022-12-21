@@ -25,5 +25,7 @@
 	"phonos-wikibase-not-found": "Aucun audio trouvé pour l’élément Wikibase : $1",
 	"phonos-wikibase-no-ipa": "Aucune transcription en alphabet phonétique international trouvée.",
 	"phonos-empty-file-error": "L’audio généré semble être vide. La transcription donnée en alphabet phonétique international (API) peut ne pas être valide ou n’est pas prise en charge par le moteur. L’utilisation du paramètre « $1 » peut aider.",
-	"phonos-param-error": "Soit une transcription en alphabet phonétique international, soit un fichier, soit un élément Wikibase doit être fourni."
+	"phonos-param-error": "Soit une transcription en alphabet phonétique international, soit un fichier, soit un élément Wikibase doit être fourni.",
+	"phonos-unsupported-language": "La langue « $1 » n’est pas prise en charge par Phonos.",
+	"phonos-unsupported-language-with-suggestions": "La langue « $1 » n’est pas prise en charge par Phonos. Les langues suivantes, éventuellement apparentées, sont prises en charge : $2."
 }

@@ -1,11 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Agam Riyandana",
 			"DARMAS BUDI SANTOSO",
 			"Farras"
 		]
 	},
 	"phonos-tracking-category": "Halaman yang menggunakan Phonos",
 	"phonos-tracking-category-desc": "Halaman ini menggunakan ekstensi [[:mw:Extension:Phonos|Phonos]].",
-	"phonos-empty-file-error": "The generated audio appears to be empty. The given IPA may be invalid, or the engine can't interpret it. Using the '$1' parameter may help."
+	"phonos-empty-file-error": "Audio yang dihasilkan tampaknya kosong. IPA yang diberikan mungkin tidak valid, atau tidak didukung oleh mesin. Menggunakan parameter ' $1 ' dapat membantu.",
+	"phonos-unsupported-language": "Bahasa $1 tidak didukung oleh Phonos.",
+	"phonos-unsupported-language-with-suggestions": "Bahasa $1 tidak didukung oleh Phonos. Bahasa yang mungkin terkait berikut ini didukung: $2 ."
 }
