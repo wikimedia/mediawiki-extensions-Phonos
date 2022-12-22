@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Brettchenweber"
+			"Brettchenweber",
+			"Nadjita"
 		]
 	},
 	"phonos-desc": "Bereitstellung von Text-to-Speech-Funktionen für eine Reihe von Sprachen",
@@ -25,6 +26,7 @@
 	"phonos-wikibase-no-ipa": "Keine IPA-Transkription gefunden.",
 	"phonos-empty-file-error": "Das generierte Audio scheint leer zu sein. Der angegebene IPA ist möglicherweise ungültig oder wird von dieser Engine nicht unterstützt. Die Verwendung des Parameters „$1“ kann helfen.",
 	"phonos-param-error": "Es muss entweder IPA, eine Datei oder ein Wikibase-Objekt angegeben werden.",
+	"phonos-rendering-disabled": "IPA-Rendering ist derzeit deaktiviert.",
 	"phonos-unsupported-language": "Die Sprache $1 wird von Phonos nicht unterstützt.",
-	"phonos-unsupported-language-with-suggestions": "Die Sprache $1 wird von Phonos nicht unterstützt. Die folgenden möglicherweise verwandten Sprachen werden unterstützt: $2."
+	"phonos-unsupported-language-with-suggestions": "Die Sprache $1 wird von Phonos nicht unterstützt. Die folgenden, möglicherweise verwandten, Sprachen werden unterstützt: $2."
 }
