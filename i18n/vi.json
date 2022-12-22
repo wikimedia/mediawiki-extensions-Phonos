@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nguyenphutrong2"
+		]
+	},
+	"phonos-rendering-disabled": "kết xuất IPA hiện đang bị tắt.",
+	"phonos-unsupported-language": "Ngôn ngữ $1 không được Phonos hỗ trợ.",
+	"phonos-unsupported-language-with-suggestions": "Ngôn ngữ $1 không được Phonos hỗ trợ. Các ngôn ngữ có thể liên quan sau đây được hỗ trợ: $2."
+}
