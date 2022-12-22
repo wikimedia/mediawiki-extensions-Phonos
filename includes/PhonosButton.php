@@ -19,9 +19,15 @@ class PhonosButton extends ButtonWidget {
 			// `.noexcerpt` is defined by TextExtracts
 			'noexcerpt'
 		];
+		parent::__construct( $config );
+
 		// T315404: Wrap output element in data-nosnippet
 		$this->setAttributes( [ 'data-nosnippet' => '' ] );
-		parent::__construct( $config );
+
+		// Set aria-label if it's provided.
+		if ( isset( $config['aria-label'] ) && trim( $config['aria-label'] ) !== '' ) {
+			$this->setAttributes( [ 'aria-label' => $config['aria-label'] ] );
+		}
 
 		// Change display for errors.
 		if ( isset( $config['data']['error'] ) ) {
