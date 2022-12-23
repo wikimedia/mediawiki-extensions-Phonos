@@ -4,6 +4,8 @@
 			"Nguyenphutrong2"
 		]
 	},
+	"phonos-empty-file-error": "Âm thanh được tạo dường như trống. IPA đã cho có thể không hợp lệ hoặc không được công cụ hỗ trợ. Sử dụng tham số '$1' có thể hữu ích.",
+	"phonos-param-error": "Phải cung cấp IPA, tệp hoặc mục Wikibase.",
 	"phonos-rendering-disabled": "kết xuất IPA hiện đang bị tắt.",
 	"phonos-unsupported-language": "Ngôn ngữ $1 không được Phonos hỗ trợ.",
 	"phonos-unsupported-language-with-suggestions": "Ngôn ngữ $1 không được Phonos hỗ trợ. Các ngôn ngữ có thể liên quan sau đây được hỗ trợ: $2."

@@ -26,6 +26,7 @@
 	"phonos-wikibase-no-ipa": "לא נמצא תעתיק IPA.",
 	"phonos-empty-file-error": "נראה שהצליל שחולל ריק. ייתכן שהיפא הנתון אינו תקין, או שהמנוע אינו תומך בו. שימוש בפרמטר \"$1\" עשוי לעזור.",
 	"phonos-param-error": "יש לספק יפא, קובץ, או פריט ויקיבייס.",
+	"phonos-rendering-disabled": "תיצוג יפא כבוי עכשיו.",
 	"phonos-unsupported-language": "השפה $1 אינה נתמכת בפונוס.",
 	"phonos-unsupported-language-with-suggestions": "השפה $1 אינה נתמכת בפונוס. השפות הבאות, שאולי קשורות, כן נתמכות: $2."
 }
