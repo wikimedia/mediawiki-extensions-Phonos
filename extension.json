@@ -124,6 +124,17 @@
 			"styles": [
 				"PhonosButton.less"
 			],
+			"skinStyles": {
+				"monobook": [
+					"skins/monobook.less"
+				],
+				"minerva": [
+					"skins/minerva.less"
+				],
+				"timeless": [
+					"skins/timeless.less"
+				]
+			},
 			"targets": [
 				"mobile",
 				"desktop"
