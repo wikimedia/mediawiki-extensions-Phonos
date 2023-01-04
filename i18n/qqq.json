@@ -26,7 +26,7 @@
 	"phonos-wikibase-no-ipa": "Error message displayed when a Wikibase item is found but no IPA transcription is available in the current language.",
 	"phonos-empty-file-error": "Error message displayed when a file is very small and assumed to be empty.\n\nParameters:\n* $1 — a name of a parameter (not localizable).",
 	"phonos-param-error": "Error message displayed when Phonos was not given the minimum parameters it needs.",
-	"phonos-rendering-disabled": "Error message displayed when IPA rendering is disabled on the wiki.",
+	"phonos-audio-generation-disabled": "Error message displayed when audio rendering is disabled on the wiki.",
 	"phonos-unsupported-language": "Error message displayed when a given language is not supported by Phonos.\n\nParameters:\n* $1 — Language code",
 	"phonos-unsupported-language-with-suggestions": "Error message displayed when a given language is not supported by Phonos and other languages are suggested.\n\nParameters:\n* $1 — Language code\n* $2 — List of possibly related language codes"
 }
