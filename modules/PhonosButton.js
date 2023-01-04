@@ -32,7 +32,9 @@ function PhonosButton( config ) {
 	// Add click handlers.
 	// eslint-disable-next-line no-jquery/no-global-selector
 	$( 'html' ).on( 'click', this.onHtmlClick );
-	this.connect( this, { click: this.onClick } );
+	// Remove PopupButtonWidget's handler.
+	this.off( 'click' );
+	this.connect( this, { click: this.onPhonosClick } );
 }
 
 OO.inheritClass( PhonosButton, OO.ui.PopupButtonWidget );
@@ -41,12 +43,9 @@ OO.mixinClass( PhonosButton, OO.ui.mixin.PendingElement );
 /**
  * Click handler: play or pause the audio.
  *
- * @param {Event} event
  * @return {void}
  */
-PhonosButton.prototype.onClick = function ( event ) {
-	event.preventDefault();
-
+PhonosButton.prototype.onPhonosClick = function () {
 	const startedAt = mw.now();
 	this.track( 'counter.MediaWiki.extension.Phonos.IPA.click', 1 );
 
@@ -97,10 +96,7 @@ PhonosButton.prototype.getAudioEl = function ( src ) {
 	audio.addEventListener( 'playing', () => {
 		this.setFlags( { progressive: true } );
 	} );
-	audio.addEventListener( 'paused', () => {
-		this.setFlags( { progressive: false } );
-	} );
-	audio.addEventListener( 'ended', () => {
+	audio.addEventListener( 'pause', () => {
 		this.setFlags( { progressive: false } );
 	} );
 	audio.onerror = this.handleMissingFile.bind( this );
