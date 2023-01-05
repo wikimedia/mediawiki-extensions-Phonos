@@ -19,7 +19,7 @@
 	"phonos-wikibase-no-ipa": "Prepis IPA ni bil najden.",
 	"phonos-empty-file-error": "Zdi se, da je generirani zvok prazen. Navedena transkripcija IPA je morda neveljavna ali pa je motor ne podpira. Morda lahko pomaga uporaba parametra »$1«.",
 	"phonos-param-error": "Zagotoviti je treba IPA, datoteko ali element Wikibase.",
-	"phonos-rendering-disabled": "Upodabljanje IPA je trenutno onemogočeno.",
+	"phonos-audio-generation-disabled": "Upodabljanje zvoka je trenutno onemogočeno.",
 	"phonos-unsupported-language": "Phonos ne podpira jezika $1.",
 	"phonos-unsupported-language-with-suggestions": "Phonos ne podpira jezika $1. Podprti so naslednji morda sorodni jeziki: $2."
 }

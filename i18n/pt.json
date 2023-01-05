@@ -25,7 +25,6 @@
 	"phonos-wikibase-no-ipa": "Não foi encontrada nenhuma transcrição AFI.",
 	"phonos-empty-file-error": "O áudio gerado parece estar vazio. A transcrição AFI fornecida pode ser inválida ou não é suportada pelo motor. Usar o parâmetro '$1' talvez ajude.",
 	"phonos-param-error": "Tem de ser fornecida uma transcrição AFI, um ficheiro ou um elemento Wikibase.",
-	"phonos-rendering-disabled": "A composição de transcrições AFI está atualmente desativada.",
 	"phonos-unsupported-language": "A língua $1 não é suportada pelo Phonos.",
 	"phonos-unsupported-language-with-suggestions": "A língua $1 não é suportada pelo Phonos. As seguintes línguas, que podem estar relacionadas, são suportadas: $2."
 }
