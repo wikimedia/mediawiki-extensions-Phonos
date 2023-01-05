@@ -163,7 +163,7 @@ PhonosButton.prototype.getErrorMessage = function () {
  */
 PhonosButton.prototype.handleMissingFile = function () {
 	this.popPending();
-	this.setDisabled( true );
+	this.$element.addClass( 'ext-phonos-error' );
 	this.setIcon( 'volumeOff' );
 	const $link = $( '<a>' )
 		.attr( 'href', mw.util.getUrl( mw.config.get( 'wgPageName' ), { action: 'purge' } ) )

@@ -61,13 +61,12 @@
 		padding-left: 0;
 	}
 
-	// An error means the button is disabled, and we want to show it with a solid background.
+	// Emulate the disabled look in case of an error.
 	/* stylelint-disable-next-line no-descending-specificity */
-	&.oo-ui-buttonElement-frameless.oo-ui-widget-disabled > .oo-ui-buttonElement-button,
-	&.oo-ui-buttonElement-frameless.oo-ui-widget-disabled > .oo-ui-buttonElement-button:hover {
+	&.oo-ui-buttonElement-frameless.ext-phonos-error > .oo-ui-buttonElement-button,
+	&.oo-ui-buttonElement-frameless.ext-phonos-error > .oo-ui-buttonElement-button:hover {
 		color: @wmui-color-base10;
 		background-color: @wmui-color-base80;
-		cursor: pointer;
 	}
 }
 

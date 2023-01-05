@@ -19,6 +19,13 @@ class PhonosButton extends ButtonWidget {
 			// `.noexcerpt` is defined by TextExtracts
 			'noexcerpt'
 		];
+
+		// Change display for errors.
+		if ( isset( $config['data']['error'] ) ) {
+			$config['classes'][] = 'ext-phonos-error';
+			$config['icon'] = 'volumeOff';
+		}
+
 		parent::__construct( $config );
 
 		// T315404: Wrap output element in data-nosnippet
@@ -27,12 +34,6 @@ class PhonosButton extends ButtonWidget {
 		// Set aria-label if it's provided.
 		if ( isset( $config['aria-label'] ) && trim( $config['aria-label'] ) !== '' ) {
 			$this->button->setAttributes( [ 'aria-label' => $config['aria-label'] ] );
-		}
-
-		// Change display for errors.
-		if ( isset( $config['data']['error'] ) ) {
-			$this->setDisabled( true );
-			$this->setIcon( 'volumeOff' );
 		}
 	}
 
