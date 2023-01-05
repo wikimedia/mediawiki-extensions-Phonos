@@ -28,13 +28,6 @@ function PhonosButton( config ) {
 
 	// Add any error message to the popup.
 	this.getPopup().$body.append( $( '<p>' ).append( this.getErrorMessage() ) );
-
-	// Add click handlers.
-	// eslint-disable-next-line no-jquery/no-global-selector
-	$( 'html' ).on( 'click', this.onHtmlClick );
-	// Remove PopupButtonWidget's handler.
-	this.off( 'click' );
-	this.connect( this, { click: this.onPhonosClick } );
 }
 
 OO.inheritClass( PhonosButton, OO.ui.PopupButtonWidget );
@@ -43,9 +36,14 @@ OO.mixinClass( PhonosButton, OO.ui.mixin.PendingElement );
 /**
  * Click handler: play or pause the audio.
  *
- * @return {void}
+ * @protected
+ * @fires click
+ * @return {undefined|boolean} False to prevent default if event is handled
  */
-PhonosButton.prototype.onPhonosClick = function () {
+PhonosButton.prototype.onClick = function () {
+	// Parent method
+	OO.ui.PopupButtonWidget.super.prototype.onClick.apply( this, arguments );
+
 	const startedAt = mw.now();
 	this.track( 'counter.MediaWiki.extension.Phonos.IPA.click', 1 );
 
@@ -53,13 +51,16 @@ PhonosButton.prototype.onPhonosClick = function () {
 	if ( this.getPopup().$body.text() !== '' ) {
 		this.track( 'counter.MediaWiki.extension.Phonos.IPA.error', 1 );
 		this.getPopup().toggle();
-		return;
+		return false;
+	} else {
+		// Close popup that opens by default.
+		this.getPopup().toggle( false );
 	}
 
 	// Already playing, so pause and reset to the beginning.
 	if ( this.audio && !this.audio.paused ) {
 		this.audio.pause();
-		return;
+		return false;
 	}
 
 	// Already loaded, but has ended so play again from the beginning.
@@ -68,7 +69,7 @@ PhonosButton.prototype.onPhonosClick = function () {
 		this.audio.play();
 		// Track replay clicks
 		this.track( 'counter.MediaWiki.extension.Phonos.IPA.replay', 1 );
-		return;
+		return false;
 	}
 
 	// Not loaded yet, but has a src URL so use that.
@@ -84,6 +85,7 @@ PhonosButton.prototype.onPhonosClick = function () {
 			this.track( 'timing.MediaWiki.extension.Phonos.IPA.can_play_through', finishedAt );
 		}, { once: true } );
 	}
+	return false;
 };
 
 /**
