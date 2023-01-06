@@ -46,7 +46,7 @@ class Phonos implements ParserFirstCallInitHook {
 	private $isCommandLineMode;
 
 	/** @var bool */
-	private $audioGenerationEnabled;
+	private $renderingEnabled;
 
 	/**
 	 * @param RepoGroup $repoGroup
@@ -70,7 +70,7 @@ class Phonos implements ParserFirstCallInitHook {
 		$this->statsdDataFactory = $statsdDataFactory;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->isCommandLineMode = $config->get( 'CommandLineMode' );
-		$this->audioGenerationEnabled = $config->get( 'PhonosAudioGenerationEnabled' );
+		$this->renderingEnabled = $config->get( 'PhonosIPARenderingEnabled' );
 	}
 
 	/**
@@ -174,8 +174,8 @@ class Phonos implements ParserFirstCallInitHook {
 		if ( $isPersisted ) {
 			$this->engine->updateFileExpiry( $options['ipa'], $options['text'], $options['lang'] );
 		} else {
-			if ( !$this->audioGenerationEnabled ) {
-				throw new PhonosException( 'phonos-audio-generation-disabled' );
+			if ( !$this->renderingEnabled ) {
+				throw new PhonosException( 'phonos-rendering-disabled' );
 			}
 			if ( $this->isCommandLineMode || !$parser->incrementExpensiveFunctionCount() ) {
 				// generate audio file in a job

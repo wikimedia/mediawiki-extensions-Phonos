@@ -75,9 +75,9 @@
 			"value":  "https://commons.wikimedia.org/wiki/Special:FilePath/",
 			"description": "Commons media URL"
 		},
-		"PhonosAudioGenerationEnabled": {
+		"PhonosIPARenderingEnabled": {
 			"value": true,
-			"description": "Enable rendering of audio"
+			"description": "Enable rendering of IPA"
 		},
 		"PhonosFileExpiry": {
 			"value":  "30",
