@@ -10,6 +10,7 @@
 	"phonos-tracking-category-desc": "Halaman ini menggunakan ekstensi [[:mw:Extension:Phonos|Phonos]].",
 	"phonos-empty-file-error": "Audio yang dihasilkan tampaknya kosong. IPA yang diberikan mungkin tidak valid, atau tidak didukung oleh mesin. Menggunakan parameter ' $1 ' dapat membantu.",
 	"phonos-param-error": "Baik IPA, berkas, atau item Wikibase harus disediakan.",
+	"phonos-rendering-disabled": "Perenderan IPA saat ini dinonaktifkan.",
 	"phonos-unsupported-language": "Bahasa $1 tidak didukung oleh Phonos.",
 	"phonos-unsupported-language-with-suggestions": "Bahasa $1 tidak didukung oleh Phonos. Bahasa yang mungkin terkait berikut ini didukung: $2 ."
 }

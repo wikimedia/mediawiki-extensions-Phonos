@@ -25,7 +25,7 @@
 	"phonos-wikibase-no-ipa": "Necun transcription IPA trovate.",
 	"phonos-empty-file-error": "Le audio generate pare esser vacue. Le IPA date pote esser invalide, o le motor non lo supporta. Usar le parametro '$1' pote adjutar.",
 	"phonos-param-error": "Un IPA, un file, o un elemento de Wikibase debe esser fornite.",
-	"phonos-audio-generation-disabled": "Le rendition audio es actualmente disactivate.",
+	"phonos-rendering-disabled": "Le rendition de transcriptiones in alphabeto phonetic international es actualmente disactivate.",
 	"phonos-unsupported-language": "Lingua $1 non es supportate per Phonos.",
 	"phonos-unsupported-language-with-suggestions": "Lingua $1 non es supportate per Phonos. Le sequente linguas possibilemente apparentate es supportate: $2."
 }
