@@ -23,6 +23,10 @@ function PhonosButton( config ) {
 	// T315404: Wrap output element in data-nosnippet
 	this.$element.attr( 'data-nosnippet', '' );
 
+	if ( config.ariaLabel ) {
+		this.$element.attr( 'aria-label', config.ariaLabel );
+	}
+
 	// This HTMLAudioElement will be instantiated once.
 	this.audio = null;
 
@@ -32,6 +36,15 @@ function PhonosButton( config ) {
 
 OO.inheritClass( PhonosButton, OO.ui.PopupButtonWidget );
 OO.mixinClass( PhonosButton, OO.ui.mixin.PendingElement );
+
+/**
+ * @inheritdoc
+ */
+PhonosButton.static.reusePreInfuseDOM = function ( node, config ) {
+	// Store aria-label attribute so that it can be re-added in the constructor above.
+	config.ariaLabel = node.getAttribute( 'aria-label' );
+	return config;
+};
 
 /**
  * Click handler: play or pause the audio.
