@@ -5,13 +5,15 @@
 // we also *don't* have to add a bunch of button behaviour and styles ourselves.
 .ext-phonos-PhonosButton {
 	margin: 0;
-	vertical-align: bottom;
 
 	&.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
 		left: 0;
 	}
 
+	&.oo-ui-buttonElement-frameless.oo-ui-widget-disabled,
 	&.oo-ui-buttonElement-frameless.oo-ui-buttonWidget.oo-ui-iconElement:first-child {
+		display: inline;
+		vertical-align: baseline;
 		// Avoid the default negative left margin on buttons.
 		margin-left: 0;
 	}
@@ -21,7 +23,14 @@
 		margin-right: 0;
 	}
 
+	// Hide empty labels so they don't mess up spacing with text following the button.
+	&.ext-phonos-PhonosButton-emptylabel .oo-ui-labelElement-label {
+		display: none;
+	}
+
 	&.oo-ui-buttonElement-frameless.oo-ui-buttonWidget > .oo-ui-buttonElement-button {
+		display: inline;
+		vertical-align: baseline;
 		padding: 0;
 		min-height: 22px;
 		min-width: 0;
@@ -41,18 +50,19 @@
 		}
 
 		.oo-ui-iconElement-icon {
-			float: left;
-			width: 16px;
-			height: 16px;
-			min-width: 16px;
-			min-height: 16px;
-			top: 1.5px;
+			position: relative;
+			display: inline-block;
+			width: 1em;
+			height: 1em;
+			min-width: 0;
+			min-height: 0;
+			top: 0.1em;
+			background-position: left;
 		}
 
 		.oo-ui-labelElement-label {
-			float: left;
 			font-weight: normal;
-			margin-left: 20px;
+			margin-inline-start: 0.3em;
 		}
 	}
 

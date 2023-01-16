@@ -26,6 +26,10 @@ class PhonosButton extends ButtonWidget {
 			$config['icon'] = 'volumeOff';
 		}
 
+		if ( !$config['label'] ) {
+			// Add class with which to change margins when there's no visible label.
+			$config['classes'][] = 'ext-phonos-PhonosButton-emptylabel';
+		}
 		parent::__construct( $config );
 
 		// T315404: Wrap output element in data-nosnippet
