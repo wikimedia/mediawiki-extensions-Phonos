@@ -89,6 +89,13 @@ PhonosButton.prototype.playHandler = function () {
 		// Play once after loading.
 		this.audio.addEventListener( 'canplaythrough', () => {
 			this.popPending();
+
+			// Record the duration once to reduce access to Audio API.
+			this.duration = this.audio.duration;
+			if ( this.usesAnimation ) {
+				this.$button.css( 'animation-duration', this.duration + 's' );
+			}
+
 			this.audio.play();
 			// Track completion time
 			const finishedAt = mw.now() - startedAt;
@@ -111,9 +118,24 @@ PhonosButton.prototype.getAudioEl = function ( src ) {
 	audio.addEventListener( 'pause', () => {
 		this.setFlags( { progressive: false } );
 	} );
+	if ( !this.usesAnimation ) {
+		audio.addEventListener( 'timeupdate', () => {
+			const position = ( audio.currentTime / this.duration ) * 100;
+			this.$button.css( 'background-size', position + '% 100%' );
+		} );
+	}
 	audio.onerror = this.handleMissingFile.bind( this );
 	return audio;
 };
+
+/**
+ * Whether the button should use animation. Determined by media query
+ * `(prefers-reduced-motion: reduce)`, in which case MediaWiki blocks all CSS animation.
+ *
+ * @private
+ * @property {boolean}
+ */
+PhonosButton.prototype.usesAnimation = !matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
 
 /**
  * Create and return an error message if necessary.

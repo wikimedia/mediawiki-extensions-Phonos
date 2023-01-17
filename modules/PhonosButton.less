@@ -66,6 +66,15 @@
 		}
 	}
 
+	&.oo-ui-buttonElement-frameless.oo-ui-buttonWidget.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
+		animation: phonos-playing linear;
+		background-image: linear-gradient( to right, @wmui-color-accent90 100%, transparent 100% );
+		background-repeat: no-repeat;
+		background-color: transparent;
+		// To flip it in RTL
+		background-position: left;
+	}
+
 	&.oo-ui-buttonElement-frameless.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button {
 		// Override the default left padding
 		padding-left: 0;
@@ -98,5 +107,15 @@
 
 	&.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:after {
 		border-bottom-color: @wmui-color-red90;
+	}
+}
+
+@keyframes phonos-playing {
+	from {
+		background-size: 0 100%;
+	}
+
+	to {
+		background-size: 100% 100%;
 	}
 }
