@@ -15,7 +15,7 @@
 	"phonos-purge-needed-error-link": "Osvežite stran in poskusite znova.",
 	"phonos-tracking-category": "Strani s Phonos",
 	"phonos-tracking-category-desc": "Stran uporablja razširitev [[:mw:Extension:Phonos|Phonos]].",
-	"phonos-file-not-found": "Zvočne datoteke »$1« ni bilo mogoče najti.",
+	"phonos-file-not-found": "Zvočna datoteka »$1« ni bila najdena.",
 	"phonos-file-not-audio": "Datoteka »$1« ni zvočna datoteka.",
 	"phonos-player-aria-description": "Poslušajte IPA-izgovarjavo $1.",
 	"phonos-ipa-too-long": "Transkripcija IPA je predolga za prikaz.",
