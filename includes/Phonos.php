@@ -152,7 +152,7 @@ class Phonos implements ParserFirstCallInitHook {
 			}
 
 			// Add aria-label for screenreaders.
-			$buttonConfig['aria-label'] = wfMessage( 'phonos-player-aria-description', [ $options['text'] ] )->parse();
+			$buttonConfig['aria-label'] = wfMessage( 'phonos-player-aria-description' )->parse();
 		} catch ( PhonosException $e ) {
 			$this->recordError( $e );
 			$buttonConfig['data']['error'] = $e->toString();

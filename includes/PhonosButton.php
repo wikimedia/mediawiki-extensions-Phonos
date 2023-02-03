@@ -26,7 +26,7 @@ class PhonosButton extends ButtonWidget {
 
 		// Set aria-label if it's provided.
 		if ( isset( $config['aria-label'] ) && trim( $config['aria-label'] ) !== '' ) {
-			$this->setAttributes( [ 'aria-label' => $config['aria-label'] ] );
+			$this->button->setAttributes( [ 'aria-label' => $config['aria-label'] ] );
 		}
 
 		// Change display for errors.
