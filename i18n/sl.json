@@ -17,7 +17,7 @@
 	"phonos-tracking-category-desc": "Stran uporablja razširitev [[:mw:Extension:Phonos|Phonos]].",
 	"phonos-file-not-found": "Zvočna datoteka »$1« ni bila najdena.",
 	"phonos-file-not-audio": "Datoteka »$1« ni zvočna datoteka.",
-	"phonos-player-aria-description": "Poslušajte IPA-izgovarjavo $1.",
+	"phonos-player-aria-description": "Poslušajte izgovarjavo te besede ali fraze.",
 	"phonos-ipa-too-long": "Transkripcija IPA je predolga za prikaz.",
 	"phonos-wikibase-api-error": "Ni mogoče pridobiti entitete iz Wikibase: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Neveljavna entiteta ali leksem: $1",
