@@ -4,6 +4,7 @@
 			"McDutchie"
 		]
 	},
+	"phonos-player-aria-description": "Naar de uitspraak van dit woord of deze zin luisteren.",
 	"phonos-wikibase-api-error": "Kan entiteit niet ophalen van Wikibase: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Ongeldige entiteit of ongeldig lexeem: $1",
 	"phonos-wikibase-not-found": "Geen audio gevonden voor Wikibase-item: $1"
