@@ -32,6 +32,8 @@ function PhonosButton( config ) {
 
 	// Add any error message to the popup.
 	this.getPopup().$body.append( $( '<p>' ).append( this.getErrorMessage() ) );
+
+	this.connect( this, { click: 'playHandler' } );
 }
 
 OO.inheritClass( PhonosButton, OO.ui.PopupButtonWidget );
@@ -47,26 +49,21 @@ PhonosButton.static.reusePreInfuseDOM = function ( node, config ) {
 };
 
 /**
- * Click handler: play or pause the audio.
+ * File play handler: play or pause the audio.
  *
  * @protected
- * @fires click
  * @return {undefined|boolean} False to prevent default if event is handled
  */
-PhonosButton.prototype.onClick = function () {
-	// Parent method
-	OO.ui.PopupButtonWidget.super.prototype.onClick.apply( this, arguments );
-
+PhonosButton.prototype.playHandler = function () {
 	const startedAt = mw.now();
 	this.track( 'counter.MediaWiki.extension.Phonos.IPA.click', 1 );
 
 	// Popup content exists, so no audio can be played.
 	if ( this.getPopup().$body.text() !== '' ) {
 		this.track( 'counter.MediaWiki.extension.Phonos.IPA.error', 1 );
-		this.getPopup().toggle();
 		return false;
 	} else {
-		// Close popup that opens by default.
+		// Close popup that opens by default, still needed if keyboard nav
 		this.getPopup().toggle( false );
 	}
 
