@@ -68,7 +68,7 @@
 			"description": "Wikibase URL"
 		},
 		"PhonosWikibaseProperties": {
-			"value":  {
+			"value": {
 				"wikibasePronunciationAudioProp": "P443",
 				"wikibaseLangNameProp": "P407",
 				"wikibaseIETFLangTagProp": "P305",
@@ -81,7 +81,7 @@
 			"description": "Enable rendering of IPA"
 		},
 		"PhonosFileExpiry": {
-			"value":  "30",
+			"value": "30",
 			"description": "Time in days after which files should expire, if the backend supports the 'X-Delete-At' header."
 		}
 	},
