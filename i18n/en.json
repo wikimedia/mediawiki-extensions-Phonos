@@ -16,7 +16,7 @@
 	"phonos-tracking-category-desc": "The page uses the [[:mw:Extension:Phonos|Phonos]] extension.",
 	"phonos-file-not-found": "Audio file \"$1\" not found.",
 	"phonos-file-not-audio": "File \"$1\" is not an audio file.",
-	"phonos-player-aria-description": "Listen to the pronunciation of this word or phrase.",
+	"phonos-player-aria-description": "Play audio",
 	"phonos-ipa-too-long": "IPA too long to render.",
 	"phonos-wikibase-api-error": "Unable to retrieve entity from Wikibase: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Invalid entity or lexeme: $1",
