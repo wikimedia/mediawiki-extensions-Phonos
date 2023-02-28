@@ -125,6 +125,7 @@ PhonosButton.prototype.getAudioEl = function ( src ) {
 		} );
 	}
 	audio.onerror = this.handleMissingFile.bind( this );
+	mw.hook( 'ext.Phonos.audio' ).fire( audio );
 	return audio;
 };
 
