@@ -69,8 +69,8 @@ class GoogleEngine extends Engine {
 	 * @codeCoverageIgnore
 	 * @throws PhonosException
 	 */
-	public function getAudioData( string $ipa, string $text, string $lang ): string {
-		$persistedAudio = $this->getPersistedAudio( $ipa, $text, $lang );
+	public function getAudioData( AudioParams $params ): string {
+		$persistedAudio = $this->getPersistedAudio( $params );
 		if ( $persistedAudio ) {
 			return $persistedAudio;
 		}
@@ -80,10 +80,10 @@ class GoogleEngine extends Engine {
 				'audioEncoding' => 'MP3',
 			],
 			'input' => [
-				'ssml' => trim( $this->getSsml( $ipa, $text, $lang ) ),
+				'ssml' => trim( $this->getSsml( $params ) ),
 			],
 			'voice' => [
-				'languageCode' => $lang,
+				'languageCode' => $params->getLang(),
 			],
 		];
 		$options = [
@@ -93,7 +93,7 @@ class GoogleEngine extends Engine {
 
 		$response = $this->makeGoogleRequest( 'text:synthesize', $options );
 		$audio = base64_decode( $response->audioContent );
-		$this->persistAudio( $ipa, $text, $lang, $audio );
+		$this->persistAudio( $params, $audio );
 
 		return $audio;
 	}
@@ -132,17 +132,17 @@ class GoogleEngine extends Engine {
 	/**
 	 * @inheritDoc
 	 */
-	public function getSsml( string $ipa, string $text, string $lang ): string {
+	public function getSsml( AudioParams $params ): string {
 		$ssmlDoc = new DOMDocument();
 
 		$speakNode = $ssmlDoc->createElement( 'speak' );
 		$ssmlDoc->appendChild( $speakNode );
 
-		$phonemeNode = $ssmlDoc->createElement( 'phoneme', $text );
+		$phonemeNode = $ssmlDoc->createElement( 'phoneme', $params->getText() );
 		$phonemeNode->setAttribute( 'alphabet', 'ipa' );
 
 		// Trim slashes from IPA; see T313497
-		$ipa = trim( $ipa, '/' );
+		$ipa = trim( $params->getIpa(), '/' );
 		// Replace apostrophes with U+02C8; see T313711
 		$ipa = str_replace( "'", "ˈ", $ipa );
 
