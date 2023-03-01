@@ -18,7 +18,7 @@
 	"phonos-tracking-category-desc": "Diese Seite verwendet die Erweiterung [[:mw:Extension:Phonos|Phonos]].",
 	"phonos-file-not-found": "Audiodatei „$1“ nicht gefunden.",
 	"phonos-file-not-audio": "Die Datei „$1“ ist keine Audiodatei.",
-	"phonos-player-aria-description": "Höre dir die Aussprache dieses Wortes oder Satzes an.",
+	"phonos-player-aria-description": "Audio abspielen",
 	"phonos-ipa-too-long": "IPA ist zu lang zum Rendern.",
 	"phonos-wikibase-api-error": "Eintrag kann nicht von Wikibase abgerufen werden: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Ungültiges Objekt oder Lexem: $1",

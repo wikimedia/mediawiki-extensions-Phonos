@@ -19,7 +19,7 @@
 	"phonos-tracking-category-desc": "Ces pages utilisent l’extension [[:mw:Extension:Phonos|Phonos]].",
 	"phonos-file-not-found": "Fichier audio « $1 » introuvable.",
 	"phonos-file-not-audio": "Le fichier « $1 » n’est pas un fichier audio.",
-	"phonos-player-aria-description": "Écoutez la prononciation de ce mot ou de cette expression.",
+	"phonos-player-aria-description": "Lecture audio",
 	"phonos-ipa-too-long": "Transcription en alphabet phonétique international trop longue à rendre.",
 	"phonos-wikibase-api-error": "Impossible de récupérer l’entité de Wikibase : $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Entité ou lexème invalide : $1",
