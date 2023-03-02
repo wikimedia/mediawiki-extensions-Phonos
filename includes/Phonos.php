@@ -299,7 +299,6 @@ class Phonos implements ParserFirstCallInitHook {
 
 		$job = new PhonosIPAFilePersistJob( $jobParams );
 		$this->jobQueueGroup->push( $job );
-		$this->statsdDataFactory->increment( 'extension.Phonos.job_queue.new' );
 	}
 
 	/**
