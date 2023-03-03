@@ -3,11 +3,13 @@
 		"authors": [
 			"Agam Riyandana",
 			"DARMAS BUDI SANTOSO",
-			"Farras"
+			"Farras",
+			"Veracious"
 		]
 	},
 	"phonos-tracking-category": "Halaman yang menggunakan Phonos",
 	"phonos-tracking-category-desc": "Halaman ini menggunakan ekstensi [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-player-aria-description": "Putar audio",
 	"phonos-empty-file-error": "Audio yang dihasilkan tampaknya kosong. IPA yang diberikan mungkin tidak valid, atau tidak didukung oleh mesin. Menggunakan parameter ' $1 ' dapat membantu.",
 	"phonos-param-error": "Baik IPA, berkas, atau item Wikibase harus disediakan.",
 	"phonos-rendering-disabled": "Perenderan IPA saat ini dinonaktifkan.",
