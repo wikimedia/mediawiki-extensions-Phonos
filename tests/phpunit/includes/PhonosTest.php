@@ -33,7 +33,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 				$this->createMock( FileBackendGroup::class ),
 				WANObjectCache::newEmpty(),
 				MediaWikiServices::getInstance()->getMainConfig(),
-			] )->onlyMethods( [ 'getAudioData', 'getFileUrl' ] )
+			] )->onlyMethods( [ 'getAudioData', 'getFileUrl', 'getFileStoragePath' ] )
 			->getMock();
 	}
 
@@ -142,6 +142,26 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 
 		$parserMock = $this->getParserMock();
 		$parserMock->method( 'incrementExpensiveFunctionCount' )->willReturn( true );
+
+		$args = [ 'lang' => 'en', 'text' => 'test', 'ipa' => 'tɛst' ];
+		$phonos->renderPhonos( "test", $args, $parserMock );
+	}
+
+	public function testPageProps(): void {
+		$services = MediaWikiServices::getInstance();
+		$phonos = new Phonos(
+			$services->getRepoGroup(),
+			$this->getEngineMock(),
+			$this->getWBELFMock(),
+			$this->getStatsdDataFactoryInterfaceMock(),
+			$this->getJobQueueGroupMock(),
+			$services->getMainConfig()
+		);
+
+		$parserMock = $this->getParserMock();
+		$parserMock->getOutput()
+			->expects( $this->once() )
+			->method( 'setPageProperty' );
 
 		$args = [ 'lang' => 'en', 'text' => 'test', 'ipa' => 'tɛst' ];
 		$phonos->renderPhonos( "test", $args, $parserMock );

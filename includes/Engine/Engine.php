@@ -329,18 +329,17 @@ abstract class Engine implements EngineInterface {
 	 * @param AudioParams $params
 	 * @return string
 	 */
-	private function getFileName( AudioParams $params ): string {
+	public function getFileName( AudioParams $params ): string {
 		return $this->getFileProperties( $params )['fileName'];
 	}
 
 	/**
-	 * Get the full path to the
+	 * Get the full path to the file.
 	 * @param AudioParams $params
 	 * @return string
 	 */
 	private function getFullFileStoragePath( AudioParams $params ): string {
-		return $this->getFileStoragePath( $params ) . '/' .
-			$this->getFileName( $params );
+		return $this->getFileStoragePath( $params ) . '/' . $this->getFileName( $params );
 	}
 
 	/**

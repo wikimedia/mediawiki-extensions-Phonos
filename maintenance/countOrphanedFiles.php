@@ -1,9 +1,8 @@
 <?php
 
-use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Extension\Phonos\Engine\Engine;
-use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\LBFactory;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -14,117 +13,99 @@ require_once "$IP/maintenance/Maintenance.php";
 /**
  * Maintenance script to find and optionally delete orphaned Phonos files.
  *
- * WARNING: Currently this script only runs on a single wiki, while the files are inherently global.
- * Running the script after Phonos is deployed to a wiki farm may result in unnecessary deletion
- * (and later regeneration) of files. In the future, this script may be rewritten to support
- * a wiki farm, thus ensuring any orphaned files are in fact unused.
- *
- * If installed, use the --restbase flag to point to the RESTBase page/html endpoint.
- * This will make the script much faster. Example value: "https://en.wikipedia.org/api/rest_v1/page/html/"
+ * On large wiki farms that use a config setting to control where extensions are deployed,
+ * use the --with-setting flag to indicate which setting to use for Phonos, i.e. 'wmgUsePhonos'.
+ * If not provided, the script will iterate over all sites on the farm.
  *
  * @ingroup Maintenance
  */
 class CountOrphanedFiles extends Maintenance {
 
-	/** @var HttpRequestFactory */
-	private $requestFactory;
+	/** @var LBFactory */
+	private $lbFactory;
 
-	/** @var ContentRenderer */
-	private $contentRenderer;
-
-	/** @var string */
-	private $apiProxy;
-
-	/** @var Engine */
-	private $engine;
+	/** @var SiteStore */
+	private $siteStore;
 
 	/** @var FileBackend */
 	private $backend;
 
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Find and optionally delete orphaned Phonos files.' );
+		$this->addDescription( 'Find and optionally delete orphaned Phonos files across all wikis.' );
 		$this->addOption( 'delete', 'Delete the orphaned files in addition to reporting how many there are.' );
-		$this->addOption( 'limit', 'Number of files to fetch from the wiki (default 5000).', false, true );
-		$this->addOption( 'restbase', 'URL to RESTBase page/html API, if available. This makes the script faster.' );
+		$this->addOption( 'with-setting', 'Only process wikis with this config setting.', false, true );
 		$this->requireExtension( 'Phonos' );
 	}
 
 	public function execute(): void {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
-		$this->requestFactory = $services->getHttpRequestFactory();
-		$this->apiProxy = $config->get( 'PhonosApiProxy' );
-		$this->contentRenderer = $services->getContentRenderer();
-		$this->engine = $services->get( 'Phonos.Engine' );
+		$this->lbFactory = $services->getDBLoadBalancerFactory();
+		$this->siteStore = $services->getSiteStore();
 		$this->backend = Engine::getFileBackend(
 			$services->getFileBackendGroup(),
 			$config
 		);
 
-		$usedFileUrls = $this->fetchUsedFiles();
-		$this->reportUnusedFiles( $usedFileUrls );
+		$usedFiles = [];
+		/** @var MediaWikiSite $site */
+		foreach ( $this->getSites() as $site ) {
+			$usedFiles += $this->fetchUsedFiles( $site );
+		}
+
+		$this->output( count( $usedFiles ) . " in-use files found.\n" );
+
+		$this->reportUnusedFiles( array_unique( $usedFiles ) );
+	}
+
+	/**
+	 * Get an array of all the sites we need to query.
+	 *
+	 * If the --with-setting flag is used, only sites with this setting with a truthy value will
+	 * be returned. This is useful to restrict querying to only sites with Phonos installed,
+	 * for instance on the WMF cluster where the setting would be 'wmgUsePhonos'.
+	 *
+	 * If no config setting is passed, all sites on the farm are returned.
+	 *
+	 * @return SiteList
+	 */
+	private function getSites(): SiteList {
+		$withSetting = $this->getOption( 'with-setting' );
+		/** @var MediaWikiSite[]|SiteList $sites */
+		$sites = $this->siteStore->getSites();
+		if ( $sites->isEmpty() ) {
+			// 'sites' table is probably not set up.
+			// Assume this is a MW installation and act only on the current wiki.
+			$site = new MediaWikiSite();
+			$site->setGlobalId( WikiMap::getCurrentWikiId() );
+			return new SiteList( [ $site ] );
+		}
+		if ( !$withSetting ) {
+			return $sites;
+		}
+		$conf = new SiteConfiguration();
+		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal, PhanTypeMismatchReturnReal
+		return array_filter( $sites, static function ( $site ) use ( $conf, $withSetting ) {
+			// Assumes the `site_global_key` column in the `sites` table refers to the database name.
+			return $conf->getConfig( $site->getGlobalId(), $withSetting );
+		} );
 	}
 
 	/**
 	 * Iterate through the tracking category to find all Phonos files that are in-use.
 	 *
+	 * @param MediaWikiSite $site
 	 * @return string[] Paths to the files relative to root storage path with Engine::STORAGE_PREFIX.
 	 */
-	private function fetchUsedFiles(): array {
-		// Fetch the category name via system message, as it can be overridden by sysops.
-		$categoryName = wfMessage( 'phonos-tracking-category' );
-		$category = Category::newFromName( $categoryName );
-		// Get the category members.
-		$titles = $category->getMembers( $this->getOption( 'limit', 5000 ) );
-
-		$this->output( 'Fetching in-use files from ' . iterator_count( $titles ) . " pages...\n" );
-		$usedFiles = [];
-
-		foreach ( $titles as $title ) {
-			$xml = new SimpleXMLElement( $this->getPageHtml( $title ) );
-			$elements = $xml->xpath( "//span[contains(@class, 'ext-phonos')]/a" );
-			foreach ( $elements as $element ) {
-				$href = (string)$element->attributes()->href;
-				// Ensure it's a file created by Phonos.
-				if ( strpos( $href, $this->engine->getUploadPath() ) === 0 ) {
-					$usedFiles[] = $this->normalizeFileName( $href );
-				}
-			}
-		}
-
-		$usedFiles = array_unique( $usedFiles );
-		$this->output( count( $usedFiles ) . " files found.\n" );
-
-		return $usedFiles;
-	}
-
-	/**
-	 * Get the HTML of the given page.
-	 *
-	 * @param Title $title
-	 * @return string
-	 */
-	private function getPageHtml( Title $title ): string {
-		// Use RESTBase if instructed.
-		if ( $this->getOption( 'restbase' ) ) {
-			$request = $this->requestFactory->create(
-				$this->getOption( 'restbase' ) . $title->getDBkey(),
-				[ 'proxy' => $this->apiProxy ]
-			);
-			$request->setHeader( 'accept', 'text/html' );
-			$status = $request->execute();
-			if ( !$status->isOK() ) {
-				$this->fatalError( "Could not fetch HTML for: " . $title->getDBkey() );
-			}
-			return $request->getContent();
-		}
-
-		// Parse and return the wikitext.
-		$wikiPage = new WikiPage( $title );
-		return $this->contentRenderer
-			->getParserOutput( $wikiPage->getContent(), $title )
-			->getText();
+	private function fetchUsedFiles( MediaWikiSite $site ): array {
+		$dbr = $this->lbFactory->getReplicaDatabase( $site->getGlobalId() );
+		$queryBuilder = $dbr->newSelectQueryBuilder();
+		$queryBuilder->select( 'pp_value' )
+			->from( 'page_props' )
+			->where( [ 'pp_propname' => 'phonos-files' ] );
+		$props = $queryBuilder->caller( __METHOD__ )->fetchFieldValues();
+		return array_unique( array_merge( ...array_map( 'json_decode', $props ) ) );
 	}
 
 	/**
@@ -140,7 +121,8 @@ class CountOrphanedFiles extends Maintenance {
 		foreach (
 			$this->backend->getFileList( [ 'dir' => $dir, 'adviseStat' => true ] ) as $file
 		) {
-			if ( !in_array( $file, $usedFiles ) ) {
+			$slug = basename( $file, '.mp3' );
+			if ( !in_array( $slug, $usedFiles ) ) {
 				$fullPath = $dir . '/' . $file;
 				$filesToDelete[] = [ 'op' => 'delete', 'src' => $fullPath ];
 			}
@@ -193,17 +175,6 @@ class CountOrphanedFiles extends Maintenance {
 			$this->output( "Cleaning empty directories errored.\n" );
 			$this->fatalError( $status->getWikiText( false, false, 'en' ) );
 		}
-	}
-
-	/**
-	 * Return the file name along with the two hash levels.
-	 *
-	 * @param string $input May be a URL or storage path.
-	 * @return string For example "/a/b/abc.mp3"
-	 */
-	private function normalizeFileName( string $input ): string {
-		$parts = explode( '/', $input );
-		return implode( '/', array_slice( $parts, -3 ) );
 	}
 }
 
