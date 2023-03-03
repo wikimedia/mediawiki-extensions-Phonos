@@ -39,13 +39,13 @@ class LarynxEngine extends Engine {
 	 * @codeCoverageIgnore
 	 * @throws PhonosException
 	 */
-	public function getAudioData( string $ipa, string $text, string $lang ): string {
-		$persistedAudio = $this->getPersistedAudio( $ipa, $text, $lang );
+	public function getAudioData( AudioParams $params ): string {
+		$persistedAudio = $this->getPersistedAudio( $params );
 		if ( $persistedAudio ) {
 			return $persistedAudio;
 		}
 
-		$ssml = trim( $this->getSsml( $ipa, $text, $lang ) );
+		$ssml = trim( $this->getSsml( $params ) );
 		$url = $this->apiEndpoint . '?' . http_build_query( [
 			'ssml' => true,
 			// TODO: should the voice be configurable, too?
@@ -78,7 +78,7 @@ class LarynxEngine extends Engine {
 			$out = $request->getContent();
 		}
 
-		$this->persistAudio( $ipa, $text, $lang, $out );
+		$this->persistAudio( $params, $out );
 
 		return $out;
 	}
@@ -86,15 +86,15 @@ class LarynxEngine extends Engine {
 	/**
 	 * @inheritDoc
 	 */
-	public function getSsml( string $ipa, string $text, string $lang ): string {
-		$ipa = trim( implode( ' ', mb_str_split( $ipa ) ) );
+	public function getSsml( AudioParams $params ): string {
+		$ipa = trim( implode( ' ', mb_str_split( $params->getIpa() ) ) );
 
 		$ssmlDoc = new DOMDocument( '1.0' );
 
 		$speakNode = $ssmlDoc->createElement( 'speak' );
 		$speakNode->setAttribute( 'xmlns', 'http://www.w3.org/2001/10/synthesis' );
 		$speakNode->setAttribute( 'version', '1.1' );
-		$speakNode->setAttribute( 'xml:lang', $lang );
+		$speakNode->setAttribute( 'xml:lang', $params->getLang() );
 		$ssmlDoc->appendChild( $speakNode );
 
 		/**
@@ -109,7 +109,7 @@ class LarynxEngine extends Engine {
 		$lexiconNode = $ssmlDoc->createElement( 'lexicon' );
 		$lexiconNode->setAttribute( 'alphabet', 'ipa' );
 		$lexemeNode = $ssmlDoc->createElement( 'lexeme' );
-		$graphemeNode = $ssmlDoc->createElement( 'grapheme', $text );
+		$graphemeNode = $ssmlDoc->createElement( 'grapheme', $params->getText() );
 		$lexemeNode->appendChild( $graphemeNode );
 		$phonemeNode = $ssmlDoc->createElement( 'phoneme', $ipa );
 		$lexemeNode->appendChild( $phonemeNode );
@@ -120,7 +120,7 @@ class LarynxEngine extends Engine {
 		 * Adds the following to the <speak> node:
 		 *   <w>{$text}</w>
 		 */
-		$wNode = $ssmlDoc->createElement( 'w', $text );
+		$wNode = $ssmlDoc->createElement( 'w', $params->getText() );
 		$speakNode->appendChild( $wNode );
 
 		return $ssmlDoc->saveXML();

@@ -22,6 +22,7 @@ namespace MediaWiki\Extension\Phonos\Job;
 
 use GenericParameterJob;
 use Job;
+use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\MediaWikiServices;
 
@@ -48,13 +49,14 @@ class PhonosIPAFilePersistJob extends Job implements GenericParameterJob {
 	 */
 	public function run() {
 		$engine = MediaWikiServices::getInstance()->get( 'Phonos.Engine' );
+		$params = new AudioParams(
+			$this->params['ipa'],
+			$this->params['text'],
+			$this->params['lang']
+		);
 
 		try {
-			$engine->getAudioData(
-				$this->params['ipa'],
-				$this->params['text'],
-				$this->params['lang']
-			);
+			$engine->getAudioData( $params );
 		} catch ( PhonosException $e ) {
 			$statsdDataFactory = MediaWikiServices::getInstance()->get( 'StatsdDataFactory' );
 			$key = $e->getStatsdKey();

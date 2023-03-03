@@ -6,6 +6,7 @@ use ExtensionRegistry;
 use File;
 use JobQueueGroup;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Engine\Engine;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Extension\Phonos\Job\PhonosIPAFilePersistJob;
@@ -174,9 +175,10 @@ class Phonos implements ParserFirstCallInitHook {
 	 */
 	private function handleNewFile( array $options, array &$buttonConfig, Parser $parser ): void {
 		$options['lang'] = $this->engine->checkLanguageSupport( $options['lang'] );
-		$isPersisted = $this->engine->isPersisted( $options['ipa'], $options['text'], $options['lang'] );
+		$audioParams = new AudioParams( $options['ipa'], $options['text'], $options['lang'] );
+		$isPersisted = $this->engine->isPersisted( $audioParams );
 		if ( $isPersisted ) {
-			$this->engine->updateFileExpiry( $options['ipa'], $options['text'], $options['lang'] );
+			$this->engine->updateFileExpiry( $audioParams );
 		} else {
 			if ( !$this->renderingEnabled ) {
 				throw new PhonosException( 'phonos-rendering-disabled' );
@@ -185,15 +187,11 @@ class Phonos implements ParserFirstCallInitHook {
 				// generate audio file in a job
 				$this->pushJob( $options['ipa'], $options['text'], $options['lang'] );
 			} else {
-				$this->engine->getAudioData( $options['ipa'], $options['text'], $options['lang'] );
+				$this->engine->getAudioData( $audioParams );
 			}
 		}
 		// Pass the URL to the clientside even if audio file is not ready
-		$buttonConfig['href'] = $this->engine->getFileUrl(
-			$options['ipa'],
-			$options['text'],
-			$options['lang']
-		);
+		$buttonConfig['href'] = $this->engine->getFileUrl( $audioParams );
 	}
 
 	/**

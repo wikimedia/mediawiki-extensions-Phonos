@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\Phonos;
 
+use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Engine\LarynxEngine;
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +27,7 @@ class LarynxEngineTest extends TestCase {
 				"xml:lang=\"en\"><lexicon alphabet=\"ipa\"><lexeme><grapheme>hello</grapheme>" .
 				"<phoneme>h &#x259; &#x2C8; l &#x259; &#x28A;</phoneme></lexeme></lexicon>" .
 				"<w>hello</w></speak>\n",
-			$engine->getSsml( 'həˈləʊ', 'hello', 'en' )
+			$engine->getSsml( new AudioParams( 'həˈləʊ', 'hello', 'en' ) )
 		);
 	}
 }

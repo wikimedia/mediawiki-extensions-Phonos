@@ -50,8 +50,9 @@ class EspeakEngine extends Engine {
 	 * @codeCoverageIgnore
 	 * @throws PhonosException
 	 */
-	public function getAudioData( string $ipa, string $text, string $lang ): string {
-		$persistedAudio = $this->getPersistedAudio( $ipa, $text, $lang );
+	public function getAudioData( AudioParams $params ): string {
+		$persistedAudio = $this->getPersistedAudio( $params );
+
 		if ( $persistedAudio ) {
 			return $persistedAudio;
 		}
@@ -67,7 +68,7 @@ class EspeakEngine extends Engine {
 		];
 		$out = $this->espeakCommand
 			->params( $cmdArgs )
-			->stdin( $this->getSsml( $ipa, $text, $lang ) )
+			->stdin( $this->getSsml( $params ) )
 			->execute();
 
 		if ( $out->getExitCode() !== 0 ) {
@@ -82,7 +83,7 @@ class EspeakEngine extends Engine {
 			$out = (string)$out->getStdout();
 		}
 
-		$this->persistAudio( $ipa, $text, $lang, $out );
+		$this->persistAudio( $params, $out );
 
 		return $out;
 	}
@@ -94,19 +95,19 @@ class EspeakEngine extends Engine {
 	 * It is supposed to also support SSML, but seems to ignore the phoneme 'ph' attribute
 	 * and just uses the text.
 	 */
-	public function getSsml( string $ipa, string $text, string $lang ): string {
+	public function getSsml( AudioParams $params ): string {
 		$ssmlDoc = new DOMDocument( '1.0' );
 
 		$speakNode = $ssmlDoc->createElement( 'speak' );
 		$speakNode->setAttribute( 'xmlns', 'http://www.w3.org/2001/10/synthesis' );
 		$speakNode->setAttribute( 'version', '1.1' );
-		$speakNode->setAttribute( 'xml:lang', $lang );
+		$speakNode->setAttribute( 'xml:lang', $params->getLang() );
 		$ssmlDoc->appendChild( $speakNode );
 
 		// phoneme element spec: https://www.w3.org/TR/speech-synthesis/#S3.1.10
-		$phoneme = $ssmlDoc->createElement( 'phoneme', $text );
+		$phoneme = $ssmlDoc->createElement( 'phoneme', $params->getText() );
 		$phoneme->setAttribute( 'alphabet', 'ipa' );
-		$phoneme->setAttribute( 'ph', $ipa );
+		$phoneme->setAttribute( 'ph', $params->getIpa() );
 
 		$speakNode->appendChild( $phoneme );
 

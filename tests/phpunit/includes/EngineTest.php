@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\Phonos;
 
+use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Engine\EngineInterface;
 use MediaWiki\Extension\Phonos\Engine\EspeakEngine;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
@@ -34,7 +35,7 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetPersistedAudio(): void {
-		$args = [ '/həˈvænə/', 'Havana', 'en', 'foobar' ];
+		$args = [ new AudioParams( '/həˈvænə/', 'Havana', 'en' ), 'foobar' ];
 		$this->engine->persistAudio( ...$args );
 		$this->assertSame(
 			'foobar',
@@ -43,17 +44,16 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testIsPersisted(): void {
-		$args = [ '/həˈvænə/', 'Havana', 'en', 'foobar' ];
+		$args = [ new AudioParams( '/həˈvænə/', 'Havana', 'en' ) , 'foobar' ];
 		$this->engine->persistAudio( ...$args );
 		$this->assertTrue( $this->engine->isPersisted( ...$args ) );
 	}
 
 	public function testGetFileUrl(): void {
-		$args = [ '/həˈvænə/', 'Havana', 'en' ];
 		// We know how the cache key is generated, so we know what the final URL should be.
 		$this->assertSame(
 			"{$this->uploadPath}/phonos-render/0/8/08h2h100e3dgycsfj2my0oc8ll84q3a.mp3",
-			$this->engine->getFileUrl( ...$args )
+			$this->engine->getFileUrl( new AudioParams( '/həˈvænə/', 'Havana', 'en' ) )
 		);
 	}
 

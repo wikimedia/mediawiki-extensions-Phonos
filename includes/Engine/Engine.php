@@ -143,32 +143,28 @@ abstract class Engine implements EngineInterface {
 	/**
 	 * Get the relative URL to the persisted file.
 	 *
-	 * @param string $ipa
-	 * @param string $text
-	 * @param string $lang
+	 * @param AudioParams $params
 	 * @return string
 	 */
-	public function getFileUrl( string $ipa, string $text, string $lang ): string {
-		return $this->getFileProperties( $ipa, $text, $lang )['dest_url'];
+	public function getFileUrl( AudioParams $params ): string {
+		return $this->getFileProperties( $params )['dest_url'];
 	}
 
 	/**
 	 * Persist the given audio data using the configured storage backend.
 	 *
-	 * @param string $ipa
-	 * @param string $text
-	 * @param string $lang
+	 * @param AudioParams $params
 	 * @param string $data
 	 * @return void
 	 * @throws PhonosException
 	 */
-	final public function persistAudio( string $ipa, string $text, string $lang, string $data ): void {
+	final public function persistAudio( AudioParams $params, string $data ): void {
 		if ( static::MIN_FILE_SIZE && strlen( $data ) < static::MIN_FILE_SIZE ) {
 			throw new PhonosException( 'phonos-empty-file-error', [ 'text' ] );
 		}
 
 		$status = $this->fileBackend->prepare( [
-			'dir' => $this->getFileStoragePath( $ipa, $text, $lang ),
+			'dir' => $this->getFileStoragePath( $params ),
 		] );
 		if ( !$status->isOK() ) {
 			throw new PhonosException( 'phonos-directory-error', [
@@ -178,7 +174,7 @@ abstract class Engine implements EngineInterface {
 
 		// Create the file.
 		$status = $this->fileBackend->quickCreate( [
-			'dst' => $this->getFullFileStoragePath( $ipa, $text, $lang ),
+			'dst' => $this->getFullFileStoragePath( $params ),
 			'content' => $data,
 			'overwriteSame' => true,
 			'headers' => [
@@ -196,46 +192,40 @@ abstract class Engine implements EngineInterface {
 	/**
 	 * Fetch the contents of the persisted file in the storage backend, or null if the file doesn't exist.
 	 *
-	 * @param string $ipa
-	 * @param string $text
-	 * @param string $lang
+	 * @param AudioParams $params
 	 * @return string|null base64 data, or null if the file doesn't exist.
 	 */
-	final public function getPersistedAudio( string $ipa, string $text, string $lang ): ?string {
-		if ( !$this->isPersisted( $ipa, $text, $lang ) ) {
+	final public function getPersistedAudio( AudioParams $params ): ?string {
+		if ( !$this->isPersisted( $params ) ) {
 			return null;
 		}
 		return $this->fileBackend->getFileContents( [
-			'src' => $this->getFullFileStoragePath( $ipa, $text, $lang ),
+			'src' => $this->getFullFileStoragePath( $params ),
 		] );
 	}
 
 	/**
 	 * Is there a persisted file for the given parameters?
 	 *
-	 * @param string $ipa
-	 * @param string $text
-	 * @param string $lang
+	 * @param AudioParams $params
 	 * @return bool
 	 */
-	final public function isPersisted( string $ipa, string $text, string $lang ): bool {
+	final public function isPersisted( AudioParams $params ): bool {
 		return (bool)$this->fileBackend->fileExists( [
-			'src' => $this->getFullFileStoragePath( $ipa, $text, $lang ),
+			'src' => $this->getFullFileStoragePath( $params ),
 		] );
 	}
 
 	/**
 	 * Update file expiry when supported by the file backend
 	 *
-	 * @param string $ipa
-	 * @param string $text
-	 * @param string $lang
+	 * @param AudioParams $params
 	 * @return void
 	 */
-	final public function updateFileExpiry( string $ipa, string $text, string $lang ): void {
+	final public function updateFileExpiry( AudioParams $params ): void {
 		if ( $this->fileBackend->hasFeatures( FileBackend::ATTR_HEADERS ) ) {
 			$this->fileBackend->quickDescribe( [
-				'src' => $this->getFullFileStoragePath( $ipa, $text, $lang ),
+				'src' => $this->getFullFileStoragePath( $params ),
 				'headers' => [
 					'X-Delete-At' => $this->generateExpiryTs(),
 				],
@@ -303,14 +293,16 @@ abstract class Engine implements EngineInterface {
 	/**
 	 * Get various storage properties about the persisted file.
 	 *
-	 * @param string $ipa
-	 * @param string $text
-	 * @param string $lang
+	 * @param AudioParams $params
 	 * @return string[] with keys 'dest_storage_path', 'dest_url', 'file_name'
 	 */
-	private function getFileProperties( string $ipa, string $text, string $lang ): array {
+	private function getFileProperties( AudioParams $params ): array {
 		$baseStoragePath = $this->fileBackend->getRootStoragePath() . '/' . self::STORAGE_PREFIX;
-		$cacheOptions = [ $this->engineName, $ipa, $text, $lang, self::CACHE_VERSION ];
+		$cacheOptions = [ $this->engineName,
+			$params->getIpa(),
+			$params->getText(),
+			$params->getLang(),
+			self::CACHE_VERSION ];
 		$fileCacheName = \Wikimedia\base_convert( sha1( implode( '|', $cacheOptions ) ), 16, 36, 31 );
 		$filePrefixEnd = "{$fileCacheName[0]}/{$fileCacheName[1]}";
 		$fileName = "$fileCacheName" . ( $this->storeFilesAsMp3 ? '.mp3' : '.wav' );
@@ -324,37 +316,31 @@ abstract class Engine implements EngineInterface {
 	/**
 	 * Get the internal storage path to the persisted file, whether it exists or not.
 	 *
-	 * @param string $ipa
-	 * @param string $text
-	 * @param string $lang
+	 * @param AudioParams $params
 	 * @return string
 	 */
-	private function getFileStoragePath( string $ipa, string $text, string $lang ): string {
-		return $this->getFileProperties( $ipa, $text, $lang )[ 'dest_storage_path' ];
+	private function getFileStoragePath( AudioParams $params ): string {
+		return $this->getFileProperties( $params )[ 'dest_storage_path' ];
 	}
 
 	/**
 	 * Get the unique filename for the given set of Phonos parameters, including the file extension.
 	 *
-	 * @param string $ipa
-	 * @param string $text
-	 * @param string $lang
+	 * @param AudioParams $params
 	 * @return string
 	 */
-	private function getFileName( string $ipa, string $text, string $lang ): string {
-		return $this->getFileProperties( $ipa, $text, $lang )['fileName'];
+	private function getFileName( AudioParams $params ): string {
+		return $this->getFileProperties( $params )['fileName'];
 	}
 
 	/**
 	 * Get the full path to the
-	 * @param string $ipa
-	 * @param string $text
-	 * @param string $lang
+	 * @param AudioParams $params
 	 * @return string
 	 */
-	private function getFullFileStoragePath( string $ipa, string $text, string $lang ): string {
-		return $this->getFileStoragePath( $ipa, $text, $lang ) . '/' .
-			$this->getFileName( $ipa, $text, $lang );
+	private function getFullFileStoragePath( AudioParams $params ): string {
+		return $this->getFileStoragePath( $params ) . '/' .
+			$this->getFileName( $params );
 	}
 
 	/**
