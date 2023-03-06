@@ -61,9 +61,6 @@ abstract class Engine implements EngineInterface {
 	/** @var string */
 	private $engineName;
 
-	/** @var bool */
-	protected $storeFilesAsMp3;
-
 	/** @var int Time in days we want to persist the file for */
 	protected $fileExpiry;
 
@@ -94,7 +91,6 @@ abstract class Engine implements EngineInterface {
 			$config->get( MainConfigNames::UploadPath ) . '/' . self::STORAGE_PREFIX;
 		// Using ReflectionClass to get the unqualified class name is actually faster than doing string operations.
 		$this->engineName = ( new ReflectionClass( get_class( $this ) ) )->getShortName();
-		$this->storeFilesAsMp3 = $config->get( 'PhonosStoreFilesAsMp3' );
 
 		// Only used if filebackend supports ATTR_METADATA
 		$this->fileExpiry = $config->get( 'PhonosFileExpiry' );
@@ -305,7 +301,7 @@ abstract class Engine implements EngineInterface {
 			self::CACHE_VERSION ];
 		$fileCacheName = \Wikimedia\base_convert( sha1( implode( '|', $cacheOptions ) ), 16, 36, 31 );
 		$filePrefixEnd = "{$fileCacheName[0]}/{$fileCacheName[1]}";
-		$fileName = "$fileCacheName" . ( $this->storeFilesAsMp3 ? '.mp3' : '.wav' );
+		$fileName = "$fileCacheName.mp3";
 		return [
 			'fileName' => $fileName,
 			'dest_storage_path' => "$baseStoragePath/$filePrefixEnd",

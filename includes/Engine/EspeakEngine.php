@@ -75,14 +75,9 @@ class EspeakEngine extends Engine {
 			throw new PhonosException( 'phonos-engine-error', [ 'eSpeak', $out->getStderr() ] );
 		}
 
-		if ( $this->storeFilesAsMp3 ) {
-			// TODO: The above and Engine::convertWavToMp3() should ideally be refactored into
-			//   a single shell script so that there's only one round trip to Shellbox.
-			$out = $this->convertWavToMp3( $out->getStdout() );
-		} else {
-			$out = (string)$out->getStdout();
-		}
-
+		// TODO: The above and Engine::convertWavToMp3() should ideally be refactored into
+		//   a single shell script so that there's only one round trip to Shellbox.
+		$out = $this->convertWavToMp3( $out->getStdout() );
 		$this->persistAudio( $params, $out );
 
 		return $out;
