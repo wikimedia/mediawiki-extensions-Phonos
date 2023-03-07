@@ -51,10 +51,6 @@
 			"value": "/usr/bin/espeak",
 			"description": "Path to the eSpeak executable"
 		},
-		"PhonosStoreFilesAsMp3": {
-			"value": true,
-			"description": "Store audio files as MP3"
-		},
 		"PhonosLame": {
 			"value": "/usr/bin/lame",
 			"description": "Path to the Lame executable used for converting WAV to MP3"

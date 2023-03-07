@@ -72,12 +72,7 @@ class LarynxEngine extends Engine {
 			throw new PhonosException( 'phonos-engine-error', [ 'Larynx', $error ] );
 		}
 
-		if ( $this->storeFilesAsMp3 ) {
-			$out = $this->convertWavToMp3( $request->getContent() );
-		} else {
-			$out = $request->getContent();
-		}
-
+		$out = $this->convertWavToMp3( $request->getContent() );
 		$this->persistAudio( $params, $out );
 
 		return $out;
