@@ -2,12 +2,20 @@
 	"@metadata": {
 		"authors": [
 			"Lakejason0",
-			"GuoPC"
+			"GuoPC",
+			"Lantianjialiang",
+			"Shizhao"
 		]
 	},
-	"phonos-desc": "为多种语言提供文本转语音功能",
+	"phonos-desc": "为多种语言提供文字转语音功能",
+	"phonos-error-category": "有Phonos渲染错误的页面",
+	"phonos-error-category-desc": "渲染Phonos时出错。",
+	"phonos-audio-conversion-error": "无法将音频转换为MP3:\n$1",
+	"phonos-directory-error": "无法创建存储目录$1",
+	"phonos-engine-error": "无法使用$1引擎生成音频文件：\n$2",
+	"phonos-storage-error": "未能将音频文件存储在其最终目的地：\n$1",
 	"phonos-tracking-category": "使用Phonos的页面",
-	"phonos-tracking-category-desc": "页面使用了[[:mw:Extension:Phonos|Phonos]]扩展。",
+	"phonos-tracking-category-desc": "这些页面使用了[[:mw:Extension:Phonos|Phonos]]扩展。",
 	"phonos-file-not-found": "找不到音频文件“$1”。",
 	"phonos-file-not-audio": "文件“$1”不是音频文件。"
 }
