@@ -192,6 +192,14 @@ class Phonos implements ParserFirstCallInitHook {
 		}
 		// Pass the URL to the clientside even if audio file is not ready
 		$buttonConfig['href'] = $this->engine->getFileUrl( $audioParams );
+		// Store the filename as a page prop so that we can track orphaned files (T326163).
+		// We append to the existing page prop, if it exists, since we can have multiple files per page.
+		// The database transaction shouldn't happen until the request finishes.
+		$propFiles = json_decode(
+			$parser->getOutput()->getPageProperty( 'phonos-files' ) ?? '[]'
+		);
+		$propFiles[] = basename( $this->engine->getFileName( $audioParams ), '.mp3' );
+		$parser->getOutput()->setPageProperty( 'phonos-files', json_encode( array_unique( $propFiles ) ) );
 	}
 
 	/**
