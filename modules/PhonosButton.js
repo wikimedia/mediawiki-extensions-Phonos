@@ -93,7 +93,7 @@ PhonosButton.prototype.playHandler = function () {
 			// Record the duration once to reduce access to Audio API.
 			this.duration = this.audio.duration;
 			if ( this.usesAnimation ) {
-				this.$button.css( 'animation-duration', this.duration + 's' );
+				this.$button.css( 'animation-duration', ( this.duration / this.audio.playbackRate ) + 's' );
 			}
 
 			this.audio.play();
