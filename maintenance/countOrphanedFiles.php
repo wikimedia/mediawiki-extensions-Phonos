@@ -51,7 +51,12 @@ class CountOrphanedFiles extends Maintenance {
 		$usedFiles = [];
 		/** @var MediaWikiSite $site */
 		foreach ( $this->getSites() as $site ) {
-			$usedFiles += $this->fetchUsedFiles( $site );
+			try {
+				$usedFiles += $this->fetchUsedFiles( $site );
+			} catch ( Exception $e ) {
+				$this->output( $e->getMessage() . "\n" );
+				continue;
+			}
 		}
 
 		$this->output( count( $usedFiles ) . " in-use files found.\n" );
