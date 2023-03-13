@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Deltaspace",
+			"Kareyac",
 			"Pacha Tchernof"
 		]
 	},
@@ -9,6 +10,7 @@
 	"phonos-purge-needed-error-link": "Обновите страницу и повторите попытку.",
 	"phonos-file-not-found": "Аудиофайл «$1» не найден.",
 	"phonos-file-not-audio": "Файл «$1» не является аудиофайлом.",
+	"phonos-player-aria-description": "Воспроизвести аудио",
 	"phonos-ipa-too-long": "IPA слишком длинный для отображения.",
 	"phonos-wikibase-api-error": "Не удалось получить сущность из Викибазы: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Недопустимая сущность или лексема: $1",

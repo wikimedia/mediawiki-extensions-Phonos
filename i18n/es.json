@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"AnupamM",
+			"Fitoschido",
 			"MarcoAurelio",
 			"SpikeShroom"
 		]
 	},
 	"phonos-file-not-found": "Archivo de audio \" $1 \" no encontrado.",
 	"phonos-file-not-audio": "El archivo \" $1 \" no es un archivo de audio.",
-	"phonos-player-aria-description": "Escucha la pronunciación de esta palabra o frase.",
+	"phonos-player-aria-description": "Reproducir audio",
 	"phonos-wikibase-no-ipa": "No se encontró la transcripción de IPA."
 }
