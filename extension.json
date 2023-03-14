@@ -11,7 +11,7 @@
 	"descriptionmsg": "phonos-desc",
 	"type": "parserhook",
 	"requires": {
-		"MediaWiki": ">= 1.38.0"
+		"MediaWiki": ">= 1.40.0"
 	},
 	"suggests": {
 		"extensions": {
@@ -82,7 +82,9 @@
 		}
 	},
 	"MessagesDirs": {
-		"Phonos": [ "i18n" ]
+		"Phonos": [
+			"i18n"
+		]
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "modules",
@@ -139,7 +141,11 @@
 		},
 		"ext.phonos.icons": {
 			"class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
-			"icons": [ "volumeUp", "volumeOff", "reload" ],
+			"icons": [
+				"volumeUp",
+				"volumeOff",
+				"reload"
+			],
 			"dependencies": [
 				"oojs-ui-widgets.styles",
 				"oojs-ui.styles.icons-media"
@@ -159,7 +165,14 @@
 	"HookHandlers": {
 		"PhonosHooks": {
 			"class": "MediaWiki\\Extension\\Phonos\\Phonos",
-			"services": [ "RepoGroup", "Phonos.Engine", "Phonos.Wikibase", "StatsdDataFactory", "JobQueueGroup", "MainConfig" ]
+			"services": [
+				"RepoGroup",
+				"Phonos.Engine",
+				"Phonos.Wikibase",
+				"StatsdDataFactory",
+				"JobQueueGroup",
+				"MainConfig"
+			]
 		}
 	},
 	"AutoloadNamespaces": {
