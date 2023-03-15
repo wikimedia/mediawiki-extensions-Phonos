@@ -140,9 +140,9 @@ class Phonos implements ParserFirstCallInitHook {
 			}
 
 			if ( $options['file'] ) {
-				$this->handleExistingFile( $options, $buttonConfig );
+				$this->handleExistingFile( $options, $buttonConfig, $parser );
 			} elseif ( $options['wikibase'] ) {
-				$this->handleWikibaseEntity( $options, $buttonConfig );
+				$this->handleWikibaseEntity( $options, $buttonConfig, $parser );
 			}
 
 			// If there's not yet an audio file, and no error, fetch audio from the engine.
@@ -207,8 +207,9 @@ class Phonos implements ParserFirstCallInitHook {
 	 *
 	 * @param array $options
 	 * @param array &$buttonConfig
+	 * @param Parser $parser
 	 */
-	private function handleExistingFile( array $options, array &$buttonConfig ): void {
+	private function handleExistingFile( array $options, array &$buttonConfig, Parser $parser ): void {
 		$buttonConfig['data']['file'] = $options['file'];
 		$file = $this->repoGroup->findFile( $options['file'] );
 		if ( $file ) {
@@ -218,6 +219,7 @@ class Phonos implements ParserFirstCallInitHook {
 			} else {
 				$buttonConfig['data']['error'] = 'phonos-file-not-audio';
 			}
+			$parser->getOutput()->addImage( $file->getTitle()->getDBkey() );
 		} else {
 			$buttonConfig['data']['error'] = 'phonos-file-not-found';
 		}
@@ -228,9 +230,10 @@ class Phonos implements ParserFirstCallInitHook {
 	 *
 	 * @param array &$options
 	 * @param array &$buttonConfig
+	 * @param Parser $parser
 	 * @throws PhonosException
 	 */
-	private function handleWikibaseEntity( array &$options, array &$buttonConfig ): void {
+	private function handleWikibaseEntity( array &$options, array &$buttonConfig, Parser $parser ): void {
 		// If a wikibase attribute has been provided, fetch from Wikibase.
 		$wikibaseEntity = $this->wikibaseEntityAndLexemeFetcher->fetch(
 			$options['wikibase'],
@@ -242,6 +245,7 @@ class Phonos implements ParserFirstCallInitHook {
 		$audioFile = $wikibaseEntity->getAudioFile();
 		if ( $audioFile ) {
 			$buttonConfig['href'] = $this->getFileUrl( $audioFile );
+			$parser->getOutput()->addImage( $audioFile->getTitle()->getDBkey() );
 		}
 
 		// Set the IPA option and button config, if available.
