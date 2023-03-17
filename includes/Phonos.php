@@ -58,6 +58,12 @@ class Phonos implements ParserFirstCallInitHook {
 	/** @var LoggerInterface */
 	protected $logger;
 
+	/** @var bool */
+	private $inlineAudioPlayerMode;
+
+	/** @var array */
+	private $wikibaseProperties;
+
 	/**
 	 * @param RepoGroup $repoGroup
 	 * @param Engine $engine
@@ -82,6 +88,8 @@ class Phonos implements ParserFirstCallInitHook {
 		$this->isCommandLineMode = $config->get( 'CommandLineMode' );
 		$this->renderingEnabled = $config->get( 'PhonosIPARenderingEnabled' );
 		$this->logger = LoggerFactory::getInstance( 'Phonos' );
+		$this->inlineAudioPlayerMode = $config->get( 'PhonosInlineAudioPlayerMode' );
+		$this->wikibaseProperties = $config->get( 'PhonosWikibaseProperties' );
 	}
 
 	/**
@@ -180,6 +188,14 @@ class Phonos implements ParserFirstCallInitHook {
 	 * @param Parser $parser
 	 */
 	private function handleNewFile( array $options, array &$buttonConfig, Parser $parser ): void {
+		if ( $this->inlineAudioPlayerMode ) {
+			throw new PhonosException(
+				'phonos-inline-audio-player-mode',
+				[
+					$this->wikibaseProperties[ 'wikibasePronunciationAudioProp' ]
+				]
+			);
+		}
 		$options['lang'] = $this->engine->checkLanguageSupport( $options['lang'] );
 		$audioParams = new AudioParams( $options['ipa'], $options['text'], $options['lang'] );
 		$isPersisted = $this->engine->isPersisted( $audioParams );
