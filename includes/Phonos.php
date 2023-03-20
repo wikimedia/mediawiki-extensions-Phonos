@@ -13,11 +13,13 @@ use MediaWiki\Extension\Phonos\Job\PhonosIPAFilePersistJob;
 use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\TimedMediaHandler\TimedMediaHandler;
 use MediaWiki\TimedMediaHandler\WebVideoTranscode\WebVideoTranscode;
 use OOUI\HtmlSnippet;
 use OutputPage;
 use Parser;
+use Psr\Log\LoggerInterface;
 use RepoGroup;
 
 /**
@@ -53,6 +55,9 @@ class Phonos implements ParserFirstCallInitHook {
 	/** @var bool */
 	private $renderingEnabled;
 
+	/** @var LoggerInterface */
+	protected $logger;
+
 	/**
 	 * @param RepoGroup $repoGroup
 	 * @param Engine $engine
@@ -76,6 +81,7 @@ class Phonos implements ParserFirstCallInitHook {
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->isCommandLineMode = $config->get( 'CommandLineMode' );
 		$this->renderingEnabled = $config->get( 'PhonosIPARenderingEnabled' );
+		$this->logger = LoggerFactory::getInstance( 'Phonos' );
 	}
 
 	/**
@@ -306,6 +312,13 @@ class Phonos implements ParserFirstCallInitHook {
 			'text' => $text,
 			'lang' => $lang,
 		];
+
+		$this->logger->info(
+			__METHOD__ . ' Job being created',
+			[
+				'params' => $jobParams
+			]
+		);
 
 		$job = new PhonosIPAFilePersistJob( $jobParams );
 		$this->jobQueueGroup->push( $job );

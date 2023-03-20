@@ -24,7 +24,9 @@ use GenericParameterJob;
 use Job;
 use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Psr\Log\LoggerInterface;
 
 /**
  * Generate audio file using text to speech engine
@@ -36,18 +38,34 @@ use MediaWiki\MediaWikiServices;
  * should be throttled accordingly using $wgJobBackoffThrottling
  */
 class PhonosIPAFilePersistJob extends Job implements GenericParameterJob {
+	/** @var LoggerInterface */
+	protected $logger;
+
 	/**
 	 * @inheritDoc
 	 */
 	public function __construct( array $params ) {
 		parent::__construct( 'phonosIPAFilePersist', $params );
 		$this->removeDuplicates = true;
+		$this->logger = LoggerFactory::getInstance( 'Phonos' );
+		$this->logger->info(
+			__METHOD__ . ' Job created',
+			[
+				'params' => $params
+			]
+		);
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function run() {
+		$this->logger->info(
+			__METHOD__ . ' Job being run',
+			[
+				'params' => $this->params
+			]
+		);
 		$engine = MediaWikiServices::getInstance()->get( 'Phonos.Engine' );
 		$params = new AudioParams(
 			$this->params['ipa'],
@@ -58,6 +76,13 @@ class PhonosIPAFilePersistJob extends Job implements GenericParameterJob {
 		try {
 			$engine->getAudioData( $params );
 		} catch ( PhonosException $e ) {
+			$this->logger->error(
+				__METHOD__ . ' Job failed',
+				[
+					'params' => $this->params,
+					'exception' => $e
+				]
+			);
 			$statsdDataFactory = MediaWikiServices::getInstance()->get( 'StatsdDataFactory' );
 			$key = $e->getStatsdKey();
 			$statsdDataFactory->increment( "extension.Phonos.error.$key" );
