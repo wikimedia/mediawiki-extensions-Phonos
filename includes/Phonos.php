@@ -183,6 +183,17 @@ class Phonos implements ParserFirstCallInitHook {
 		$options['lang'] = $this->engine->checkLanguageSupport( $options['lang'] );
 		$audioParams = new AudioParams( $options['ipa'], $options['text'], $options['lang'] );
 		$isPersisted = $this->engine->isPersisted( $audioParams );
+		// TODO: Remove this debug log once T325464 resolved.
+		$this->logger->debug(
+			__METHOD__ . ' debug',
+			[
+				'audioParams' => $audioParams,
+				'isPersisted' => $isPersisted,
+				'renderingEnabled' => $this->renderingEnabled,
+				'isCommandLineMode' => $this->isCommandLineMode,
+				'incrementExpensiveFunctionCount' => $parser->incrementExpensiveFunctionCount(),
+			]
+		);
 		if ( $isPersisted ) {
 			$this->engine->updateFileExpiry( $audioParams );
 		} else {
