@@ -71,7 +71,7 @@ class CountOrphanedFiles extends Maintenance {
 		/** @var MediaWikiSite $site */
 		foreach ( $this->getSites() as $site ) {
 			try {
-				$usedFiles += $this->fetchUsedFiles( $site );
+				$usedFiles = array_unique( array_merge( $usedFiles, $this->fetchUsedFiles( $site ) ) );
 			} catch ( Throwable $e ) {
 				$skippedSites++;
 				$this->error( $e->getMessage() . "\n" );
