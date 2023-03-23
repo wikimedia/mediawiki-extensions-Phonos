@@ -28,5 +28,6 @@
 	"phonos-param-error": "Es muss entweder IPA, eine Datei oder ein Wikibase-Objekt angegeben werden.",
 	"phonos-rendering-disabled": "IPA-Rendering ist derzeit deaktiviert.",
 	"phonos-unsupported-language": "Die Sprache $1 wird von Phonos nicht unterstützt.",
-	"phonos-unsupported-language-with-suggestions": "Die Sprache $1 wird von Phonos nicht unterstützt. Die folgenden, möglicherweise verwandten, Sprachen werden unterstützt: $2."
+	"phonos-unsupported-language-with-suggestions": "Die Sprache $1 wird von Phonos nicht unterstützt. Die folgenden, möglicherweise verwandten, Sprachen werden unterstützt: $2.",
+	"phonos-inline-audio-player-mode": "Im Inline-Audio-Player-Modus kann nur eine Audiodatei oder ein Wikibase-Element mit einer Aussprache-Audio-Eigenschaft ($1) bereitgestellt werden."
 }
