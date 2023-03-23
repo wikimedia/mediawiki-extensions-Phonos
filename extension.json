@@ -79,6 +79,10 @@
 		"PhonosFileExpiry": {
 			"value": "30",
 			"description": "Time in days after which files should expire, if the backend supports the 'X-Delete-At' header."
+		},
+		"PhonosInlineAudioPlayerMode": {
+			"value": false,
+			"description": "Only play audio files"
 		}
 	},
 	"MessagesDirs": {
