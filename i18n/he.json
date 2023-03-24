@@ -28,5 +28,6 @@
 	"phonos-param-error": "יש לספק יפא, קובץ, או פריט ויקיבייס.",
 	"phonos-rendering-disabled": "תיצוג יפא כבוי עכשיו.",
 	"phonos-unsupported-language": "השפה $1 אינה נתמכת בפונוס.",
-	"phonos-unsupported-language-with-suggestions": "השפה $1 אינה נתמכת בפונוס. השפות הבאות, שאולי קשורות, כן נתמכות: $2."
+	"phonos-unsupported-language-with-suggestions": "השפה $1 אינה נתמכת בפונוס. השפות הבאות, שאולי קשורות, כן נתמכות: $2.",
+	"phonos-inline-audio-player-mode": "ניתן לספק רק קובץ שמע, או פריט ויקיבייס עם מאפיין קובץ שמע של הגייה ($1), במצב נגן שמע מוטבע."
 }

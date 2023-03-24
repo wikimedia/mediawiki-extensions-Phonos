@@ -27,5 +27,6 @@
 	"phonos-param-error": "Zagotoviti je treba IPA, datoteko ali element Wikibase.",
 	"phonos-rendering-disabled": "Upodabljanje IPA je trenutno onemogočeno.",
 	"phonos-unsupported-language": "Phonos ne podpira jezika $1.",
-	"phonos-unsupported-language-with-suggestions": "Phonos ne podpira jezika $1. Podprti so naslednji morda sorodni jeziki: $2."
+	"phonos-unsupported-language-with-suggestions": "Phonos ne podpira jezika $1. Podprti so naslednji morda sorodni jeziki: $2.",
+	"phonos-inline-audio-player-mode": "V načinu znotrajvrstičnega predvajalnika zvoka je mogoče zagotoviti samo zvočno datoteko ali predmet Wikibase z lastnostjo zvoka izgovarjave ($1)."
 }
