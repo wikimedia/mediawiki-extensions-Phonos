@@ -27,5 +27,6 @@
 	"phonos-param-error": "Un IPA, un file, o un elemento de Wikibase debe esser fornite.",
 	"phonos-rendering-disabled": "Le rendition de transcriptiones in alphabeto phonetic international es actualmente disactivate.",
 	"phonos-unsupported-language": "Lingua $1 non es supportate per Phonos.",
-	"phonos-unsupported-language-with-suggestions": "Lingua $1 non es supportate per Phonos. Le sequente linguas possibilemente apparentate es supportate: $2."
+	"phonos-unsupported-language-with-suggestions": "Lingua $1 non es supportate per Phonos. Le sequente linguas possibilemente apparentate es supportate: $2.",
+	"phonos-inline-audio-player-mode": "Solmente un file audio, o un elemento Wikibase con un proprietate audio de pronunciation ($1), pote esser fornite quando se usa le reproductor audio integrate."
 }

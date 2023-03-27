@@ -18,7 +18,7 @@
 	"phonos-tracking-category-desc": "Страницата го користи додатокот [[:mw:Extension:Phonos|Фонос]].",
 	"phonos-file-not-found": "Не ја најдов звучната податотека „$1“.",
 	"phonos-file-not-audio": "Податотеката „$1“ не е звучна.",
-	"phonos-player-aria-description": "Чујте го изговорот на $1 по МФА.",
+	"phonos-player-aria-description": "Пушти снимка",
 	"phonos-ipa-too-long": "МФА е предолга за да се изведе.",
 	"phonos-wikibase-api-error": "Не можев да ја добијам единицата од Викибазата: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Неважечка единица или лексема: $1",
@@ -28,5 +28,6 @@
 	"phonos-param-error": "Мора да се укаже МФА, податотека или предмет на Викибазата.",
 	"phonos-rendering-disabled": "Исписот на МФА моментално е оневозможен.",
 	"phonos-unsupported-language": "Јазикот $1 не е поддржан од Phonos.",
-	"phonos-unsupported-language-with-suggestions": "Јазикот $1 не е поддржан од Phonos. Поддржани се следниве можеби сродни јазици: $2."
+	"phonos-unsupported-language-with-suggestions": "Јазикот $1 не е поддржан од Phonos. Поддржани се следниве можеби сродни јазици: $2.",
+	"phonos-inline-audio-player-mode": "Може да се укаже само звучна податотека или предмет од Викибазата со својство за изговорна снимка ($1), кога се работи за звукоизведувач во текст."
 }
