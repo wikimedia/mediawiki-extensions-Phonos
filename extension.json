@@ -115,10 +115,6 @@
 			"dependencies": [
 				"mediawiki.api",
 				"oojs-ui-widgets"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.phonos.styles": {
@@ -135,11 +131,7 @@
 				"timeless": [
 					"skins/timeless.less"
 				]
-			},
-			"targets": [
-				"mobile",
-				"desktop"
-			]
+			}
 		},
 		"ext.phonos.icons": {
 			"class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
@@ -147,10 +139,6 @@
 			"dependencies": [
 				"oojs-ui-widgets.styles",
 				"oojs-ui.styles.icons-media"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		}
 	},
