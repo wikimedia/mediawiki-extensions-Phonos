@@ -18,7 +18,7 @@
 	"phonos-tracking-category-desc": "Страницата го користи додатокот [[:mw:Extension:Phonos|Фонос]].",
 	"phonos-file-not-found": "Не ја најдов звучната податотека „$1“.",
 	"phonos-file-not-audio": "Податотеката „$1“ не е звучна.",
-	"phonos-player-aria-description": "Чујте го изговорот на $1 по МФА.",
+	"phonos-player-aria-description": "Пушти снимка",
 	"phonos-ipa-too-long": "МФА е предолга за да се изведе.",
 	"phonos-wikibase-api-error": "Не можев да ја добијам единицата од Викибазата: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Неважечка единица или лексема: $1",
