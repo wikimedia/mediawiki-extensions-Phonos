@@ -86,6 +86,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 			$this->getWBELFMock(),
 			$this->getStatsdDataFactoryInterfaceMock(),
 			$jobQueueGroupMock,
+			$services->getLinkRenderer(),
 			$services->getMainConfig()
 		);
 
@@ -111,6 +112,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 			$this->getWBELFMock(),
 			$this->getStatsdDataFactoryInterfaceMock(),
 			$jobQueueGroupMock,
+			$services->getLinkRenderer(),
 			$services->getMainConfig()
 		);
 
@@ -137,6 +139,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 			$this->getWBELFMock(),
 			$this->getStatsdDataFactoryInterfaceMock(),
 			$this->getJobQueueGroupMock(),
+			$services->getLinkRenderer(),
 			$services->getMainConfig()
 		);
 
@@ -155,6 +158,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 			$this->getWBELFMock(),
 			$this->getStatsdDataFactoryInterfaceMock(),
 			$this->getJobQueueGroupMock(),
+			$services->getLinkRenderer(),
 			$services->getMainConfig()
 		);
 

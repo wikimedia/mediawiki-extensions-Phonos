@@ -12,10 +12,14 @@ use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Extension\Phonos\Job\PhonosIPAFilePersistJob;
 use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
 use MediaWiki\Hook\ParserFirstCallInitHook;
+use MediaWiki\Html\Html;
+use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\TimedMediaHandler\TimedMediaHandler;
 use MediaWiki\TimedMediaHandler\WebVideoTranscode\WebVideoTranscode;
+use MediaWiki\Title\Title;
 use OOUI\HtmlSnippet;
 use OutputPage;
 use Parser;
@@ -70,6 +74,7 @@ class Phonos implements ParserFirstCallInitHook {
 	 * @param WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher
 	 * @param StatsdDataFactoryInterface $statsdDataFactory
 	 * @param JobQueueGroup $jobQueueGroup
+	 * @param LinkRenderer $linkRenderer
 	 * @param Config $config
 	 */
 	public function __construct(
@@ -78,6 +83,7 @@ class Phonos implements ParserFirstCallInitHook {
 		WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher,
 		StatsdDataFactoryInterface $statsdDataFactory,
 		JobQueueGroup $jobQueueGroup,
+		LinkRenderer $linkRenderer,
 		Config $config
 	) {
 		$this->repoGroup = $repoGroup;
@@ -85,6 +91,7 @@ class Phonos implements ParserFirstCallInitHook {
 		$this->wikibaseEntityAndLexemeFetcher = $wikibaseEntityAndLexemeFetcher;
 		$this->statsdDataFactory = $statsdDataFactory;
 		$this->jobQueueGroup = $jobQueueGroup;
+		$this->linkRenderer = $linkRenderer;
 		$this->isCommandLineMode = $config->get( 'CommandLineMode' );
 		$this->renderingEnabled = $config->get( 'PhonosIPARenderingEnabled' );
 		$this->logger = LoggerFactory::getInstance( 'Phonos' );
@@ -177,7 +184,42 @@ class Phonos implements ParserFirstCallInitHook {
 		$parser->getOutput()->setEnableOOUI( true );
 		OutputPage::setupOOUI();
 		$button = new PhonosButton( $buttonConfig );
-		return $button->toString();
+		return $button->toString() . $this->addAttributionLink( $buttonConfig );
+	}
+
+	/**
+	 * Return an attribution link if required.
+	 *
+	 * @param array $buttonConfig
+	 * @return string
+	 */
+	private function addAttributionLink( array $buttonConfig ): string {
+		if ( !isset( $buttonConfig['data']['file'] ) ) {
+			return '';
+		}
+		$file = $this->repoGroup->findFile( $buttonConfig['data']['file'] );
+		$pageReference = PageReferenceValue::localReference( NS_FILE, $buttonConfig['data']['file'] );
+
+		if ( $file ) {
+			// File exists, link to PageReference
+			$linkContent = $this->linkRenderer->makeLink(
+				$pageReference,
+				wfMessage( 'phonos-attribution-icon' )->plain()
+			);
+		} else {
+			// File does not exist, link to upload (UploadMissingFileUrl)
+			$linkContent = Linker::makeBrokenImageLinkObj(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable argument will never be null
+				Title::castFromPageReference( $pageReference ),
+				wfMessage( 'phonos-attribution-icon' )->plain()
+			);
+		}
+
+		return Html::rawElement(
+			'sup',
+			[ 'class' => 'ext-phonos-attribution' ],
+			$linkContent
+		);
 	}
 
 	/**
@@ -277,6 +319,7 @@ class Phonos implements ParserFirstCallInitHook {
 		// Set file URL if available.
 		$audioFile = $wikibaseEntity->getAudioFile();
 		if ( $audioFile ) {
+			$buttonConfig['data']['file'] = $audioFile->getTitle()->getText();
 			$buttonConfig['href'] = $this->getFileUrl( $audioFile );
 			$parser->getOutput()->addImage( $audioFile->getTitle()->getDBkey() );
 		}

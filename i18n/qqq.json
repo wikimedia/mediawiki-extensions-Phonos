@@ -30,5 +30,6 @@
 	"phonos-rendering-disabled": "Error message displayed when IPA rendering is disabled on the wiki.",
 	"phonos-unsupported-language": "Error message displayed when a given language is not supported by Phonos.\n\nParameters:\n* $1 — Language code",
 	"phonos-unsupported-language-with-suggestions": "Error message displayed when a given language is not supported by Phonos and other languages are suggested.\n\nParameters:\n* $1 — Language code\n* $2 — List of possibly related language codes",
-	"phonos-inline-audio-player-mode": "Error message displayed when Phonos is in inline audio player mode.\n\nParameters:\n* $1 — Wikibase pronunciation audio property (e.g., on Wikidata: [[:d:Q108167708]])"
+	"phonos-inline-audio-player-mode": "Error message displayed when Phonos is in inline audio player mode.\n\nParameters:\n* $1 — Wikibase pronunciation audio property (e.g., on Wikidata: [[:d:Q108167708]])",
+	"phonos-attribution-icon": "Icon or character to show for the attribution link.\n{{Optional}}"
 }
