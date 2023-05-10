@@ -2,11 +2,34 @@
 	"@metadata": {
 		"authors": [
 			"EdoAug",
-			"Gabriel Kielland"
+			"Gabriel Kielland",
+			"Jon Harald Søby"
 		]
 	},
+	"phonos": "Phonos",
+	"phonos-desc": "Tilbyr tekst-til-tale-funksjonalitet for en rekke språk",
+	"phonos-error-category": "Sider med Phonos-gjengivelsesfeil",
+	"phonos-error-category-desc": "En feil oppsto under gjengivelse av Phonos.",
+	"phonos-audio-conversion-error": "Kunne ikke konvertere lyd til MP3:\n$1",
+	"phonos-directory-error": "Kunne ikke opprette lagringsmappe $1",
+	"phonos-engine-error": "Kunne ikke generere lydfil med $1-motoren:\n$2",
+	"phonos-storage-error": "Kunne ikke lagre lydfila på endelig målsted:\n$1",
 	"phonos-purge-needed-error": "Kan ikke spille av lyd.",
 	"phonos-purge-needed-error-link": "Oppdater siden og prøv på nytt.",
+	"phonos-tracking-category": "Sider som bruker Phonos",
+	"phonos-tracking-category-desc": "Siden bruker [[:mw:Extension:Phonos|Phonos]]-utvidelsen.",
 	"phonos-file-not-found": "Fant ikke lydfilen \"$1\".",
-	"phonos-file-not-audio": "\"$1\" er ikke en lydfil."
+	"phonos-file-not-audio": "\"$1\" er ikke en lydfil.",
+	"phonos-player-aria-description": "Spill av lyd",
+	"phonos-ipa-too-long": "IPA-transkripsjonen er for lang til å gjengi.",
+	"phonos-wikibase-api-error": "Kunne ikke hente entitet fra Wikibase: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Ugyldig entitet eller leksem: $1",
+	"phonos-wikibase-not-found": "Ingen lyd funnet for Wikibase-elementet: $1",
+	"phonos-wikibase-no-ipa": "Ingen IPA-transkripsjon funnet.",
+	"phonos-empty-file-error": "Den genererte lyden ser ut til å være tom. Den gitte IPA-transkripsjonen kan vre ugyldig, eller støttes ikke av motoren. Det kan hjelpe å bruke parameteren «$1».",
+	"phonos-param-error": "Enten IPA, ei fil eller et Wikibase-element må angis.",
+	"phonos-rendering-disabled": "IPA-gjengivelse er for tiden deaktivert.",
+	"phonos-unsupported-language": "Språket $1 støttes ikke av Phonos.",
+	"phonos-unsupported-language-with-suggestions": "Språket $1 støttes ikke av Phonos. Følgende språk, som muligens er nærliggende, støttes: $2.",
+	"phonos-inline-audio-player-mode": "Kun ei lydfil, eller et Wikibase-element med en egenskap for uttalelyd ($1), kan angis i innebygd lydavspillermodus."
 }
