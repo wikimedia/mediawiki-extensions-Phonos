@@ -2,9 +2,20 @@
 	"@metadata": {
 		"authors": [
 			"EdoAug",
-			"Gabriel Kielland"
+			"Gabriel Kielland",
+			"Jon Harald Søby"
 		]
 	},
+	"phonos": "Phonos",
+	"phonos-desc": "Tilbyr tekst-til-tale-funksjonalitet for en rekke språk",
+	"phonos-error-category": "Sider med Phonos-gjengivelsesfeil",
+	"phonos-error-category-desc": "En feil oppsto under gjengivelse av Phonos.",
+	"phonos-audio-conversion-error": "Kunne ikke konvertere lyd til MP3:\n$1",
+	"phonos-directory-error": "Kunne ikke opprette lagringsmappe $1",
+	"phonos-engine-error": "Kunne ikke generere lydfil med $1-motoren:\n$2",
+	"phonos-storage-error": "Kunne ikke lagre lydfila på endelig målsted:\n$1",
+	"phonos-tracking-category": "Sider som bruker Phonos",
+	"phonos-tracking-category-desc": "Siden bruker [[:mw:Extension:Phonos|Phonos]]-utvidelsen.",
 	"phonos-file-not-found": "Fant ikke lydfilen \"$1\".",
 	"phonos-file-not-audio": "\"$1\" er ikke en lydfil."
 }
