@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Alshamiri1"
+		]
+	},
+	"phonos-desc": "توفير وظيفة تحويل النص إلى كلام لمجموعة من اللغات",
+	"phonos-audio-conversion-error": "فشل تحويل الصوت إلى MP3:! N! $1",
+	"phonos-directory-error": "فشل إنشاء دليل التخزين $1",
+	"phonos-engine-error": "فشل إنشاء ملف صوتي باستخدام المحرك $1 :! N! $2",
+	"phonos-storage-error": "فشل تخزين الملف الصوتي في وجهته النهائية:! N! $1",
+	"phonos-purge-needed-error": "تعذر تشغيل الصوت.",
+	"phonos-purge-needed-error-link": "قم بتحديث الصفحة وحاول مرة أخرى.",
+	"phonos-tracking-category": "الصفحات التي تستخدم Phonos",
+	"phonos-tracking-category-desc": "تستخدم الصفحة الامتداد [[: mw: Extension: Phonos | Phonos]].",
+	"phonos-file-not-found": "ملف الصوت \" $1 \" غير موجود.",
+	"phonos-file-not-audio": "الملف \" $1 \" ليس ملفًا صوتيًا.",
+	"phonos-player-aria-description": "تشغيل الصوت",
+	"phonos-ipa-too-long": "IPA طويل جدًا للعرض.",
+	"phonos-wikibase-api-error": "تعذر استرداد الكيان من Wikibase: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "كيان غير صالح أو صفحة: $1",
+	"phonos-wikibase-no-ipa": "لم يتم العثور على نسخ IPA.",
+	"phonos-empty-file-error": "يبدو أن الصوت الذي تم إنشاؤه فارغ. قد يكون IPA المحدد غير صالح ، أو لا يدعمه المحرك. قد يساعد استخدام المعلمة \" $1 \".",
+	"phonos-param-error": "يجب توفير إما IPA أو ملف أو عنصر Wikibase.",
+	"phonos-rendering-disabled": "عرض IPA معطل حاليًا.",
+	"phonos-unsupported-language": "اللغة $1 غير مدعومة من قبل Phonos.",
+	"phonos-unsupported-language-with-suggestions": "اللغة $1 غير مدعومة من قبل Phonos. يتم دعم اللغات التالية ذات الصلة المحتملة: $2 .",
+	"phonos-inline-audio-player-mode": "يمكن فقط توفير ملف صوتي ، أو عنصر Wikibase بخاصية النطق الصوتي ( $1 ) ، أثناء وضع مشغل الصوت المضمّن."
+}
