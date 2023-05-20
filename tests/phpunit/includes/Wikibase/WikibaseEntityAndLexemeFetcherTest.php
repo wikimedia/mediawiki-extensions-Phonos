@@ -81,7 +81,7 @@ class WikibaseEntityAndLexemeFetcherTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $entity->getIPATranscription() );
 	}
 
-	public function provideIPATranscription(): array {
+	public static function provideIPATranscription(): array {
 		return [
 
 			'simple item' => [

@@ -75,7 +75,7 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $outLang, $engine->checkLanguageSupport( $inLang ) );
 	}
 
-	public function provideCheckLanguageSupport(): array {
+	public static function provideCheckLanguageSupport(): array {
 		return [
 			'existing' => [ [ 'en', 'de' ], 'de', 'de' ],
 			'existing, case normalized' => [ [ 'aa', 'bb' ], 'BB', 'bb' ],

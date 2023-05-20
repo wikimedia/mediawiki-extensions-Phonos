@@ -45,7 +45,7 @@ class EspeakEngineTest extends TestCase {
 		$this->assertSame( $result, $engine->getLangsFromOutput( $output ) );
 	}
 
-	public function provideGetLangsFromOutput() {
+	public static function provideGetLangsFromOutput() {
 		return [
 			[
 				'
