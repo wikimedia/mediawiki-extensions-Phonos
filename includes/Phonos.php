@@ -217,7 +217,7 @@ class Phonos implements ParserFirstCallInitHook {
 
 		return Html::rawElement(
 			'sup',
-			[ 'class' => 'ext-phonos-attribution' ],
+			[ 'class' => 'ext-phonos-attribution noexcerpt' ],
 			$linkContent
 		);
 	}
