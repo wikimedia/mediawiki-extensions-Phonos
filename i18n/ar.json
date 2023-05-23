@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Alshamiri1"
+		]
+	},
+	"phonos-desc": "توفير وظيفة تحويل النص إلى كلام لمجموعة من اللغات",
+	"phonos-audio-conversion-error": "فشل تحويل الصوت إلى MP3:! N! $1",
+	"phonos-directory-error": "فشل إنشاء دليل التخزين $1",
+	"phonos-engine-error": "فشل إنشاء ملف صوتي باستخدام المحرك $1 :! N! $2",
+	"phonos-storage-error": "فشل تخزين الملف الصوتي في وجهته النهائية:! N! $1",
+	"phonos-tracking-category": "الصفحات التي تستخدم Phonos",
+	"phonos-tracking-category-desc": "تستخدم الصفحة الامتداد [[: mw: Extension: Phonos | Phonos]].",
+	"phonos-file-not-found": "ملف الصوت \" $1 \" غير موجود.",
+	"phonos-file-not-audio": "الملف \" $1 \" ليس ملفًا صوتيًا."
+}

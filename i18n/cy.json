@@ -4,6 +4,12 @@
 			"Afalau"
 		]
 	},
+	"phonos-desc": "Nodweddion testun-i-leferydd ar gyfer amrywiaeth o ieithoedd",
+	"phonos-error-category": "Tudalennau â gwallau rendro Phonos",
+	"phonos-error-category-desc": "Gwall wrth rendro Phonos.",
+	"phonos-audio-conversion-error": "Wedi methu trosi sain i MP3:\n$1",
 	"phonos-tracking-category": "Tudalennau sy'n defnyddio Phonos",
-	"phonos-tracking-category-desc": "Mae'r dudalen yn defnyddio'r estyniad [[:mw:Extension:Phonos|Phonos]]."
+	"phonos-tracking-category-desc": "Mae'r dudalen yn defnyddio'r ychwanegyn [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-file-not-found": "Heb ganfod ffeil sain \"$1\".",
+	"phonos-file-not-audio": "Nid yw'r ffeil \"$1\" yn ffeil sain."
 }
