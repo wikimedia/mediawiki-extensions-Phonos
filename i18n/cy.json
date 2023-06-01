@@ -16,5 +16,6 @@
 	"phonos-file-not-audio": "Nid yw'r ffeil \"$1\" yn ffeil sain.",
 	"phonos-player-aria-description": "Chwarae sain",
 	"phonos-ipa-too-long": "IPA yn rhy hir i'w rendro.",
+	"phonos-wikibase-invalid-entity-lexeme": "Endid neu eirem annilys: $1",
 	"phonos-unsupported-language": "Nid yw Phonos yn cefnogi $1."
 }
