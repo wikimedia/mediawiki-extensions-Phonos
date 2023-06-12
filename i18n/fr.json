@@ -30,5 +30,6 @@
 	"phonos-rendering-disabled": "Le rendu des transcriptions en alphabet phonétique international est actuellement désactivé.",
 	"phonos-unsupported-language": "La langue « $1 » n’est pas prise en charge par Phonos.",
 	"phonos-unsupported-language-with-suggestions": "La langue « $1 » n’est pas prise en charge par Phonos. Les langues suivantes, éventuellement apparentées, sont prises en charge : $2.",
-	"phonos-inline-audio-player-mode": "Seul un fichier audio ou un élément Wikibase avec une propriété ($1) de prononciation auditive peut être fourni quand on est dans le mode de lecteur audio en ligne."
+	"phonos-inline-audio-player-mode": "Seul un fichier audio ou un élément Wikibase avec une propriété ($1) de prononciation auditive peut être fourni quand on est dans le mode de lecteur audio en ligne.",
+	"phonos-attribution-icon": "ⓘ"
 }
