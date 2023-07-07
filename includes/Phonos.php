@@ -131,6 +131,8 @@ class Phonos implements ParserFirstCallInitHook {
 			'ipa' => '',
 			'wikibase' => '',
 		];
+		// Don't allow a label= attribute; see T340905#8983499
+		unset( $args['label'] );
 		$options = array_merge( $defaultOptions, $args );
 
 		$buttonLabel = $options['ipa'];
