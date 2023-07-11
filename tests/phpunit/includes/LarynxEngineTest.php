@@ -24,9 +24,8 @@ class LarynxEngineTest extends TestCase {
 		);
 		$this->assertSame(
 			"<?xml version=\"1.0\"?>\n<speak xmlns=\"http://www.w3.org/2001/10/synthesis\" version=\"1.1\" " .
-				"xml:lang=\"en\"><lexicon alphabet=\"ipa\"><lexeme><grapheme>hello</grapheme>" .
-				"<phoneme>h &#x259; &#x2C8; l &#x259; &#x28A;</phoneme></lexeme></lexicon>" .
-				"<w>hello</w></speak>\n",
+				"xml:lang=\"en\">" .
+				"<phoneme alphabet=\"ipa\" ph=\"h&#x259;&#x2C8;l&#x259;&#x28A;\"><w>hello</w></phoneme></speak>\n",
 			$engine->getSsml( new AudioParams( 'həˈləʊ', 'hello', 'en' ) )
 		);
 	}

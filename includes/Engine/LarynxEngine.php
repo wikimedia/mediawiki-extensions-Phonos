@@ -82,7 +82,8 @@ class LarynxEngine extends Engine {
 	 * @inheritDoc
 	 */
 	public function getSsml( AudioParams $params ): string {
-		$ipa = trim( implode( ' ', mb_str_split( $params->getIpa() ) ) );
+		$ipa = trim( $params->getIpa() );
+		$text = $params->getText() ?: $ipa;
 
 		$ssmlDoc = new DOMDocument( '1.0' );
 
@@ -94,29 +95,17 @@ class LarynxEngine extends Engine {
 
 		/**
 		 * Adds the following to the <speak> node:
-		 *   <lexicon alphabet="ipa">
-		 *     <lexeme>
-		 *       <grapheme>{$text}</grapheme>
-		 *       <phoneme>{$ipa}</phoneme>
-		 *     </lexeme>
-		 *   </lexicon>
+		 *   <phoneme alphabet="ipa" ph={$ipa}>
+		 *    <w>{$text} ?: {$ipa}</w>
+		 *   </phoneme>
 		 */
-		$lexiconNode = $ssmlDoc->createElement( 'lexicon' );
-		$lexiconNode->setAttribute( 'alphabet', 'ipa' );
-		$lexemeNode = $ssmlDoc->createElement( 'lexeme' );
-		$graphemeNode = $ssmlDoc->createElement( 'grapheme', $params->getText() );
-		$lexemeNode->appendChild( $graphemeNode );
-		$phonemeNode = $ssmlDoc->createElement( 'phoneme', $ipa );
-		$lexemeNode->appendChild( $phonemeNode );
-		$lexiconNode->appendChild( $lexemeNode );
-		$speakNode->appendChild( $lexiconNode );
 
-		/**
-		 * Adds the following to the <speak> node:
-		 *   <w>{$text}</w>
-		 */
-		$wNode = $ssmlDoc->createElement( 'w', $params->getText() );
-		$speakNode->appendChild( $wNode );
+		$phonemeNode = $ssmlDoc->createElement( 'phoneme' );
+		$phonemeNode->setAttribute( 'alphabet', 'ipa' );
+		$phonemeNode->setAttribute( 'ph', $ipa );
+		$wNode = $ssmlDoc->createElement( 'w', $text );
+		$phonemeNode->appendChild( $wNode );
+		$speakNode->appendChild( $phonemeNode );
 
 		return $ssmlDoc->saveXML();
 	}
