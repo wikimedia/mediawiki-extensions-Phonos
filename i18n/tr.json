@@ -1,8 +1,31 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hedda"
+			"Hedda",
+			"Joseph"
 		]
 	},
-	"phonos-desc": "Çeşitli diller için metinden konuşmaya işlevselliği sağlayın"
+	"phonos-desc": "Çeşitli diller için metinden konuşmaya işlevselliği sağlayın",
+	"phonos-error-category": "Phonos işleme hataları olan sayfalar",
+	"phonos-error-category-desc": "Phonos işlenirken bir hata oluştu.",
+	"phonos-audio-conversion-error": "Ses MP3'e dönüştürülemedi:\n$1",
+	"phonos-directory-error": "$1 depolama dizini oluşturulamadı",
+	"phonos-engine-error": "$1 motoru kullanılarak ses dosyası oluşturulamadı:\n$2",
+	"phonos-storage-error": "Ses dosyası son hedefine saklanamadı:\n$1",
+	"phonos-purge-needed-error": "Ses çalınamıyor.",
+	"phonos-purge-needed-error-link": "Sayfayı yenileyin ve tekrar deneyin.",
+	"phonos-tracking-category": "Phonos kullanan sayfalar",
+	"phonos-tracking-category-desc": "Sayfa, [[:mw:Extension:Phonos|Phonos]] uzantısını kullanıyor.",
+	"phonos-file-not-found": "\"$1\" ses dosyası bulunamadı.",
+	"phonos-file-not-audio": "\"$1\" bir ses dosyası değil.",
+	"phonos-player-aria-description": "Ses çal",
+	"phonos-ipa-too-long": "IPA işlemek için çok uzun.",
+	"phonos-wikibase-api-error": "Varlık Vikitaban'dan alınamıyor: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Geçersiz varlık ya da sözcükbirim: $1",
+	"phonos-wikibase-not-found": "Vikitaban ögesi için ses bulunamadı: $1",
+	"phonos-wikibase-no-ipa": "IPA dökümü bulunamadı.",
+	"phonos-param-error": "Ya IPA, bir dosya ya da bir Vikitaban ögesi sağlanmalıdır.",
+	"phonos-rendering-disabled": "IPA işleme şu anda devre dışı.",
+	"phonos-unsupported-language": "$1 dili Phonos tarafından desteklenmiyor.",
+	"phonos-unsupported-language-with-suggestions": "$1 dili Phonos tarafından desteklenmiyor. Aşağıdaki olası bağlantılı diller destekleniyor: $2."
 }
