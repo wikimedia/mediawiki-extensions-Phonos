@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tacsipacsi"
+		]
+	},
+	"phonos-error-category": "Lapok Phonos-feldolgozási hibákkal",
+	"phonos-error-category-desc": "Hiba történt a Phonos feldolgozása közben.",
+	"phonos-audio-conversion-error": "Nem sikerült a hangot MP3-ba konvertálni:\n$1",
+	"phonos-directory-error": "A(z) $1 tárkönyvtár létrehozása sikertelen",
+	"phonos-engine-error": "A hangfájl generálása a(z) $1 motorral sikertelen:\n$2",
+	"phonos-storage-error": "A hangfájl tárolása a végleges helyén sikertelen:\n$1",
+	"phonos-purge-needed-error": "A hang lejátszása sikertelen.",
+	"phonos-purge-needed-error-link": "Frissítsd az oldalt, és próbáld újra.",
+	"phonos-tracking-category": "Phonost használó lapok",
+	"phonos-tracking-category-desc": "A lap a [[:mw:Extension:Phonos|Phonos]] kiterjesztést használja.",
+	"phonos-file-not-found": "A(z) „$1” hangfájl nem található.",
+	"phonos-file-not-audio": "A(z) „$1” fájl nem egy hangfájl.",
+	"phonos-player-aria-description": "Hang lejátszása",
+	"phonos-ipa-too-long": "Az IPA túl hosszú a megjelenítéshez.",
+	"phonos-wikibase-api-error": "Nem sikerült lekérni az entitást a Wikibase-ből: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Érvénytelen entitás vagy lexéma: $1",
+	"phonos-wikibase-not-found": "Nem található hang a(z) $1 Wikibase-elemhez",
+	"phonos-wikibase-no-ipa": "Nem található IPA-átírás.",
+	"phonos-empty-file-error": "A generált hang üresnek tűnik. A megadott IPA érvénytelen, vagy a motor nem támogatja. A(z) „$1” paraméter használata segíthet.",
+	"phonos-param-error": "Az IPA, fájl és Wikibase-elem közül egyet meg kell adni.",
+	"phonos-rendering-disabled": "Az IPA-feldolgozás jelenleg le van tiltva.",
+	"phonos-unsupported-language": "A(z) $1 nyelvet a Phonos nem támogatja.",
+	"phonos-unsupported-language-with-suggestions": "A(z) $1 nyelvet a Phonos nem támogatja. A következő, esetleg rokon nyelvek támogatottak: $2."
+}
