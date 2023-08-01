@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Njardarlogar"
+		]
+	},
+	"phonos-file-not-found": "Fann ikkje lydfila «$1».",
+	"phonos-file-not-audio": "Fila «$1» er ikkje ei lydfil."
+}

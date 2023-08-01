@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tacsipacsi"
+		]
+	},
+	"phonos-error-category": "Lapok Phonos-feldolgozási hibákkal",
+	"phonos-error-category-desc": "Hiba történt a Phonos feldolgozása közben.",
+	"phonos-audio-conversion-error": "Nem sikerült a hangot MP3-ba konvertálni:\n$1",
+	"phonos-directory-error": "A(z) $1 tárkönyvtár létrehozása sikertelen",
+	"phonos-engine-error": "A hangfájl generálása a(z) $1 motorral sikertelen:\n$2",
+	"phonos-storage-error": "A hangfájl tárolása a végleges helyén sikertelen:\n$1",
+	"phonos-tracking-category": "Phonost használó lapok",
+	"phonos-tracking-category-desc": "A lap a [[:mw:Extension:Phonos|Phonos]] kiterjesztést használja.",
+	"phonos-file-not-found": "A(z) „$1” hangfájl nem található.",
+	"phonos-file-not-audio": "A(z) „$1” fájl nem egy hangfájl."
+}
