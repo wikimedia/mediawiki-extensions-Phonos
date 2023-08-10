@@ -21,7 +21,7 @@
 	"phonos-player-aria-description": "Ses çal",
 	"phonos-ipa-too-long": "IPA işlemek için çok uzun.",
 	"phonos-wikibase-api-error": "Varlık Vikitaban'dan alınamıyor: $1",
-	"phonos-wikibase-invalid-entity-lexeme": "Geçersiz varlık ya da sözcükbirim: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Geçersiz varlık ya da sözlükbirim: $1",
 	"phonos-wikibase-not-found": "Vikitaban ögesi için ses bulunamadı: $1",
 	"phonos-wikibase-no-ipa": "IPA dökümü bulunamadı.",
 	"phonos-param-error": "Ya IPA, bir dosya ya da bir Vikitaban ögesi sağlanmalıdır.",
