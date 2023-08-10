@@ -18,6 +18,10 @@
 			"TimedMediaHandler": ">= 0.6.0"
 		}
 	},
+	"TrackingCategories": [
+		"phonos-tracking-category",
+		"phonos-error-category"
+	],
 	"config": {
 		"PhonosEngine": {
 			"value": "espeak",
