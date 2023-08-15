@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nokeoo"
+		]
+	},
+	"phonos-desc": "Suteikia kalbos sintezės funkcionalumą skirtingomis kalbomis",
+	"phonos-error-category": "Puslapiai su Phonos atvaizdavimo klaidomis",
+	"phonos-error-category-desc": "Įvyko klaida atvaizduojant Phonos.",
+	"phonos-audio-conversion-error": "Nepavyko konvertuoti garso į MP3:\n$1",
+	"phonos-directory-error": "Nepavyko sukurti talpyklos katalogo $1",
+	"phonos-engine-error": "Nepavyko sugeneruoti garso failo naudojant $1 variklį:\n$2",
+	"phonos-storage-error": "Nepavyko patalpinti garso failo galutinėje vietoje:\n$1",
+	"phonos-tracking-category": "Puslapiai, kur naudojamas Phonos",
+	"phonos-tracking-category-desc": "Puslapis naudoja [[:mw:Extension:Phonos|Phonos]] plėtinį.",
+	"phonos-file-not-found": "Garso failas „$1“ nerastas.",
+	"phonos-file-not-audio": "Failas „$1“ nėra garso failas."
+}
