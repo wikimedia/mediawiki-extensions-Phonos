@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vriullop"
+		]
+	},
+	"phonos-desc": "Proporciona la funcionalitat de text a veu per a una sèrie de llengües",
+	"phonos-error-category": "Pàgines amb errors de renderització Phonos",
+	"phonos-error-category-desc": "S'ha produït un error en renderitzar Phonos.",
+	"phonos-audio-conversion-error": "No s'ha pogut convertir l'àudio a MP3: \n$1",
+	"phonos-directory-error": "No s'ha pogut crear el directori d'emmagatzematge $1",
+	"phonos-engine-error": "No s'ha pogut generar el fitxer d'àudio usant el motor $1: \n$2",
+	"phonos-storage-error": "No s'ha pogut emmagatzemar el fitxer d'àudio en la seva destinació final: \n$1",
+	"phonos-tracking-category": "Pàgines que utilitzen Phonos",
+	"phonos-tracking-category-desc": "La pàgina utilitza l'extensió [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-file-not-found": "No s'ha trobat el fitxer d'àudio «$1».",
+	"phonos-file-not-audio": "El fitxer «$1» no és un fitxer d'àudio."
+}
