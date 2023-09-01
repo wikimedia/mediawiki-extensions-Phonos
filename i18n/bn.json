@@ -10,6 +10,8 @@
 	"phonos-error-category": "ফোনোস রেন্ডারিং ত্রুটিসহ পাতা",
 	"phonos-error-category-desc": "ফোনোস রেন্ডার করার সময় একটি ত্রুটি হয়েছে।",
 	"phonos-audio-conversion-error": "অডিওকে এমপি৩-এ রূপান্তরকরণ ব্যর্থ হয়েছে:\n$1",
+	"phonos-directory-error": "স্টোরেজ ডিরেক্টরি $1 তৈরি করা যায়নি",
+	"phonos-engine-error": "$1 ইঞ্জিন ব্যবহার করে অডিও ফাইল তৈরি করতে ব্যর্থ হয়েছে:\n$2",
 	"phonos-purge-needed-error": "অডিও চালানো যায়নি।",
 	"phonos-purge-needed-error-link": "পাতাটি পুনঃলোড করুন ও আবার চেষ্টা করুন।",
 	"phonos-tracking-category": "ফোনোস ব্যবহার করা পাতা",
@@ -19,5 +21,7 @@
 	"phonos-player-aria-description": "অডিও চালান",
 	"phonos-ipa-too-long": "রেন্ডার করার জন্য অধ্বব খুব বড়।",
 	"phonos-param-error": "অধ্বব, ফাইল অথবা একটি উইকিবেস আইটেম প্রদান করা আবশ্যক।",
-	"phonos-unsupported-language": "$1 ভাষাটি ফোনোস দ্বারা সমর্থিত নয়।"
+	"phonos-unsupported-language": "$1 ভাষাটি ফোনোস দ্বারা সমর্থিত নয়।",
+	"phonos-unsupported-language-with-suggestions": "$1 ভাষা ফোনোস দ্বারা সমর্থিত নয়। নিম্নলিখিত সম্ভাব্য-সম্পর্কিত ভাষাগুলি সমর্থিত: $2।",
+	"phonos-attribution-icon": "ত"
 }
