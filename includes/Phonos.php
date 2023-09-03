@@ -180,6 +180,10 @@ class Phonos implements ParserFirstCallInitHook {
 		} catch ( PhonosException $e ) {
 			$this->recordError( $e );
 			$buttonConfig['data']['error'] = $e->toString();
+		}
+
+		// Errors also set outside from exceptions, add tracking for it, but it missing stats at the moment
+		if ( isset( $buttonConfig['data']['error'] ) ) {
 			$parser->addTrackingCategory( 'phonos-error-category' );
 		}
 
