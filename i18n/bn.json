@@ -10,6 +10,8 @@
 	"phonos-error-category": "ফোনোস রেন্ডারিং ত্রুটিসহ পাতা",
 	"phonos-error-category-desc": "ফোনোস রেন্ডার করার সময় একটি ত্রুটি হয়েছে।",
 	"phonos-audio-conversion-error": "অডিওকে এমপি৩-এ রূপান্তরকরণ ব্যর্থ হয়েছে:\n$1",
+	"phonos-directory-error": "স্টোরেজ ডিরেক্টরি $1 তৈরি করা যায়নি",
+	"phonos-engine-error": "$1 ইঞ্জিন ব্যবহার করে অডিও ফাইল তৈরি করতে ব্যর্থ হয়েছে:\n$2",
 	"phonos-tracking-category": "ফোনোস ব্যবহার করা পাতা",
 	"phonos-tracking-category-desc": "যে পাতাগুলি [[:mw:Extension:Phonos|ফোনোস]] এক্সটেনশন ব্যবহার করে।",
 	"phonos-file-not-found": "\"$1\" নামক অডিও ফাইলটি পাওয়া যায়নি।",
