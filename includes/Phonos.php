@@ -119,7 +119,7 @@ class Phonos implements ParserFirstCallInitHook {
 	public function renderPhonos( ?string $label, array $args, Parser $parser ): string {
 		// Add the CSS and JS
 		$parser->getOutput()->addModuleStyles( [ 'ext.phonos.styles', 'ext.phonos.icons' ] );
-		$parser->getOutput()->addModules( [ 'ext.phonos' ] );
+		$parser->getOutput()->addModules( [ 'ext.phonos.init' ] );
 		$parser->addTrackingCategory( 'phonos-tracking-category' );
 
 		// Get the named parameters and merge with defaults.
