@@ -162,14 +162,20 @@ PhonosButton.prototype.getErrorMessage = function () {
 	// If a file was given, we know this is an error specifically involving the file
 	// and we want to construct a link to the file page.
 	if ( this.phonosData.file ) {
-		const fileTitle = new mw.Title( 'File:' + this.phonosData.file );
-		const $link = $( '<a>' )
-			.attr( 'href', fileTitle.getUrl() )
-			.text( fileTitle.getMainText() );
+		let fileNameOrLink = this.phonosData.file;
+		try {
+			const fileTitle = new mw.Title( 'File:' + this.phonosData.file );
+			const $link = $( '<a>' )
+				.attr( 'href', fileTitle.getUrl() )
+				.text( fileTitle.getMainText() );
+			fileNameOrLink = $link.prop( 'outerHTML' );
+		} catch ( e ) {
+			// Use unlinked form if there's an issue constructing the link.
+		}
 		// Messages that can be used here:
 		// * phonos-file-not-found
 		// * phonos-file-not-audio
-		error = mw.message( this.phonosData.error, [ $link.prop( 'outerHTML' ) ] ).text();
+		error = mw.message( this.phonosData.error, [ fileNameOrLink ] ).text();
 	}
 
 	return error;
