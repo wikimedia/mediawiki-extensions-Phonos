@@ -99,6 +99,12 @@
 		"remoteExtPath": "Phonos/modules"
 	},
 	"ResourceModules": {
+		"ext.phonos.init": {
+			"es6": true,
+			"packageFiles": [
+				"ext.phonos.init.js"
+			]
+		},
 		"ext.phonos": {
 			"es6": true,
 			"packageFiles": [
@@ -120,7 +126,7 @@
 			],
 			"dependencies": [
 				"mediawiki.api",
-				"oojs-ui-widgets"
+				"oojs-ui-core"
 			]
 		},
 		"ext.phonos.styles": {
