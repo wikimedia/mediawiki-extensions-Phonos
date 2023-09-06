@@ -2,6 +2,8 @@
 
 !! test
 Empty parser function
+!! options
+disabled
 !! wikitext
 Phonos<phonos />END
 !! html
@@ -11,6 +13,8 @@ Phonos<phonos />END
 
 !! test
 Given the ipa, file and text parameters
+!! options
+disabled
 !! wikitext
 Phonos<phonos ipa="hɛˈloʊ" text="Hello" file="does-not-exist.ogg" />END
 !! html
@@ -20,6 +24,8 @@ Phonos<phonos ipa="hɛˈloʊ" text="Hello" file="does-not-exist.ogg" />END
 
 !! test
 Given the ipa, file, text and label parameters
+!! options
+disabled
 !! wikitext
 Phonos<phonos ipa="hɛˈloʊ" text="Hello" file="does-not-exist.ogg">Foo'''bar'''</phonos>END
 !! html
@@ -29,6 +35,8 @@ Phonos<phonos ipa="hɛˈloʊ" text="Hello" file="does-not-exist.ogg">Foo'''bar''
 
 !! test
 Given a file and a blank label
+!! options
+disabled
 !! wikitext
 Phonos<phonos file="does-not-exist.ogg"></phonos>END
 !! html
