@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"NMW03"
+		]
+	},
+	"phonos-desc": "Bir sıra dillər üçün mətndən nitqə funksiyanı təmin edir",
+	"phonos-error-category": "Phonos render xətası olan səhifələr",
+	"phonos-error-category-desc": "Phonosun renderlənməsində xəta baş verdi",
+	"phonos-audio-conversion-error": "Audionu MP3-ə çevirmək mümkün olmadı:\n$1",
+	"phonos-directory-error": "$1 yaddaş qovluğunu yaratmaq alınmadı",
+	"phonos-engine-error": "$1 mühərriki istifadə edərək audio faylı yaratmaq alınmadı:\n$2",
+	"phonos-storage-error": "Audio faylı son təyinat yerində saxlamaq alınmadı:\n$1",
+	"phonos-purge-needed-error": "Audionu oxutmaq mümkün deyil.",
+	"phonos-purge-needed-error-link": "Səhifəni yeniləyin və yenidən cəhd edin.",
+	"phonos-tracking-category": "Phonos istifadə edən səhifələr",
+	"phonos-tracking-category-desc": "Səhifə [[:mw:Extension:Phonos|Phonos]] istifadə edir.",
+	"phonos-file-not-found": "\"$1\" audio faylı tapılmadı.",
+	"phonos-file-not-audio": "\"$1\" faylı audio faylı deyil.",
+	"phonos-player-aria-description": "Audionu oxut",
+	"phonos-ipa-too-long": "IPA render etmək üçün çox uzundur.",
+	"phonos-wikibase-api-error": "Vikiverilənlərdən obyekti əldə etmək mümkün deyil: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Yanlış element və ya leksema: $1",
+	"phonos-wikibase-not-found": "$1 Vikiverilənlər elementi üçün audio tapılmadı",
+	"phonos-wikibase-no-ipa": "IPA transkripsiyası tapılmadı.",
+	"phonos-empty-file-error": "Yaradılan audio boş görünür. Verilmiş IPA etibarsız ola bilər və ya mühərrik tərəfindən dəstəklənmir. '$1' parametrindən istifadə kömək edə bilər.",
+	"phonos-param-error": "Ya IPA, ya fayl, ya da Vikiverilənlər elementi təmin edilməlidir.",
+	"phonos-rendering-disabled": "IPA renderi hal-hazırda deaktivdir.",
+	"phonos-unsupported-language": "$1 dili Phonos tərəfindən dəstəklənmir.",
+	"phonos-unsupported-language-with-suggestions": "$1 Phonos tərəfindən dəstəklənmir. Aşağıdakı əlaqəli dillər dəstəklənir: $2 ."
+}
