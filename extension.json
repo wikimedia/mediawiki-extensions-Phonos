@@ -125,6 +125,7 @@
 				"phonos-wikibase-no-ipa"
 			],
 			"dependencies": [
+				"ext.phonos.init",
 				"mediawiki.api",
 				"oojs-ui-core"
 			]
