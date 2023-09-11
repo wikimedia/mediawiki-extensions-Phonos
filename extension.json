@@ -111,6 +111,9 @@
 				"ext.phonos.js",
 				"PhonosButton.js"
 			],
+			"styles": [
+				"PhonosButton.js.less"
+			],
 			"messages": [
 				"phonos",
 				"phonos-desc",
@@ -125,9 +128,20 @@
 				"phonos-wikibase-no-ipa"
 			],
 			"dependencies": [
+				"ext.phonos.icons.js",
+				"oojs-ui-widgets.styles",
+				"oojs-ui.styles.icons-media",
+				"ext.phonos.styles",
 				"ext.phonos.init",
 				"mediawiki.api",
 				"oojs-ui-core"
+			]
+		},
+		"ext.phonos.icons.js": {
+			"class": "ResourceLoaderOOUIIconPackModule",
+			"useDataURI": false,
+			"icons": [
+				"reload"
 			]
 		},
 		"ext.phonos.styles": {
@@ -147,15 +161,11 @@
 			}
 		},
 		"ext.phonos.icons": {
-			"class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
+			"class": "ResourceLoaderOOUIIconPackModule",
+			"useDataURI": false,
 			"icons": [
 				"volumeUp",
-				"volumeOff",
-				"reload"
-			],
-			"dependencies": [
-				"oojs-ui-widgets.styles",
-				"oojs-ui.styles.icons-media"
+				"volumeOff"
 			]
 		}
 	},
