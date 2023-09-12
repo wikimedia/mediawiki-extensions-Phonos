@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"NMW03"
+		]
+	},
+	"phonos-desc": "Bir sıra dillər üçün mətndən nitqə funksiyanı təmin edir",
+	"phonos-error-category": "Phonos render xətası olan səhifələr",
+	"phonos-error-category-desc": "Phonosun renderlənməsində xəta baş verdi",
+	"phonos-audio-conversion-error": "Audionu MP3-ə çevirmək mümkün olmadı:\n$1",
+	"phonos-directory-error": "$1 yaddaş qovluğunu yaratmaq alınmadı",
+	"phonos-engine-error": "$1 mühərriki istifadə edərək audio faylı yaratmaq alınmadı:\n$2",
+	"phonos-storage-error": "Audio faylı son təyinat yerində saxlamaq alınmadı:\n$1",
+	"phonos-tracking-category": "Phonos istifadə edən səhifələr",
+	"phonos-tracking-category-desc": "Səhifə [[:mw:Extension:Phonos|Phonos]] istifadə edir.",
+	"phonos-file-not-found": "\"$1\" audio faylı tapılmadı.",
+	"phonos-file-not-audio": "\"$1\" faylı audio faylı deyil."
+}
