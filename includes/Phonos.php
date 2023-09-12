@@ -183,7 +183,6 @@ class Phonos implements ParserFirstCallInitHook {
 			$parser->addTrackingCategory( 'phonos-error-category' );
 		}
 
-		$parser->getOutput()->setEnableOOUI( true );
 		OutputPage::setupOOUI();
 		$button = new PhonosButton( $buttonConfig );
 		return $button->toString() . $this->addAttributionLink( $buttonConfig );
