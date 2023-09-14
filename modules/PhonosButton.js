@@ -25,6 +25,7 @@ function PhonosButton( config ) {
 
 	if ( config.ariaLabel ) {
 		this.$button.attr( 'aria-label', config.ariaLabel );
+		this.$button.attr( 'title', config.ariaLabel );
 	}
 
 	// This HTMLAudioElement will be instantiated once.

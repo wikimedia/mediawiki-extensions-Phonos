@@ -35,9 +35,12 @@ class PhonosButton extends ButtonWidget {
 		// T315404: Wrap output element in data-nosnippet
 		$this->setAttributes( [ 'data-nosnippet' => '' ] );
 
-		// Set aria-label if it's provided.
+		// Set aria-label if it's provided. This is also used as the tooltip.
 		if ( isset( $config['aria-label'] ) && trim( $config['aria-label'] ) !== '' ) {
-			$this->button->setAttributes( [ 'aria-label' => $config['aria-label'] ] );
+			$this->button->setAttributes( [
+				'aria-label' => $config['aria-label'],
+				'title' => $config['aria-label'],
+			] );
 		}
 	}
 
