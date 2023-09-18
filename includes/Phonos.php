@@ -180,6 +180,9 @@ class Phonos implements ParserFirstCallInitHook {
 		} catch ( PhonosException $e ) {
 			$this->recordError( $e );
 			$buttonConfig['data']['error'] = $e->toString();
+			// Tell screenreaders that there's an error, but we can't add the actual error message because it's in the
+			// client-side popup which doesn't exist here.
+			$buttonConfig['aria-label'] = wfMessage( 'phonos-aria-error' )->parse();
 		}
 
 		// Errors also set outside from exceptions, add tracking for it, but it missing stats at the moment

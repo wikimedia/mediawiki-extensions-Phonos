@@ -31,7 +31,10 @@ function PhonosButton( config ) {
 	this.audio = null;
 
 	// Add any error message to the popup.
-	this.getPopup().$body.append( $( '<p>' ).append( this.phonosData.error ) );
+	if ( this.phonosData.error ) {
+		this.getPopup().$body.append( $( '<p>' ).append( this.phonosData.error ) );
+		this.$button.attr( 'aria-describedby', this.getPopup().getBodyId() );
+	}
 
 	this.connect( this, { click: 'playHandler' } );
 }
