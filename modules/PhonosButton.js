@@ -31,7 +31,7 @@ function PhonosButton( config ) {
 	this.audio = null;
 
 	// Add any error message to the popup.
-	this.getPopup().$body.append( $( '<p>' ).append( this.getErrorMessage() ) );
+	this.getPopup().$body.append( $( '<p>' ).append( this.phonosData.error ) );
 
 	this.connect( this, { click: 'playHandler' } );
 }
@@ -137,49 +137,6 @@ PhonosButton.prototype.getAudioEl = function ( src ) {
  * @property {boolean}
  */
 PhonosButton.prototype.usesAnimation = !matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
-
-/**
- * Create and return an error message if necessary.
- *
- * @return {null|string}
- */
-PhonosButton.prototype.getErrorMessage = function () {
-	if ( !this.phonosData.error ) {
-		return null;
-	}
-
-	// Messages that can be used here:
-	// * phonos-audio-conversion-error
-	// * phonos-directory-error
-	// * phonos-engine-error
-	// * phonos-storage-error
-	// * phonos-wikibase-api-error
-	// * phonos-wikibase-invalid-entity-lexeme
-	// * phonos-wikibase-not-found
-	// * phonos-wikibase-no-ipa
-	let error = this.phonosData.error;
-
-	// If a file was given, we know this is an error specifically involving the file
-	// and we want to construct a link to the file page.
-	if ( this.phonosData.file ) {
-		let fileNameOrLink = this.phonosData.file;
-		try {
-			const fileTitle = new mw.Title( 'File:' + this.phonosData.file );
-			const $link = $( '<a>' )
-				.attr( 'href', fileTitle.getUrl() )
-				.text( fileTitle.getMainText() );
-			fileNameOrLink = $link.prop( 'outerHTML' );
-		} catch ( e ) {
-			// Use unlinked form if there's an issue constructing the link.
-		}
-		// Messages that can be used here:
-		// * phonos-file-not-found
-		// * phonos-file-not-audio
-		error = mw.message( this.phonosData.error, [ fileNameOrLink ] ).text();
-	}
-
-	return error;
-};
 
 /**
  * This is called when there's an error when attempting playback. We assume in this case

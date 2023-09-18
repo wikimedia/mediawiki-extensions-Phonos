@@ -292,17 +292,16 @@ class Phonos implements ParserFirstCallInitHook {
 	private function handleExistingFile( array $options, array &$buttonConfig, Parser $parser ): void {
 		$buttonConfig['data']['file'] = $options['file'];
 		$file = $this->repoGroup->findFile( $options['file'] );
-		if ( $file ) {
-			$buttonConfig['data']['file'] = $file->getTitle()->getText();
-			if ( $file->getMediaType() === MEDIATYPE_AUDIO ) {
-				$buttonConfig['href'] = $this->getFileUrl( $file );
-			} else {
-				$buttonConfig['data']['error'] = 'phonos-file-not-audio';
-			}
-			$parser->getOutput()->addImage( $file->getTitle()->getDBkey() );
-		} else {
-			$buttonConfig['data']['error'] = 'phonos-file-not-found';
+		$wikitextLink = '[[' . $options['file'] . ']]';
+		if ( !$file ) {
+			throw new PhonosException( 'phonos-file-not-found', [ $wikitextLink ] );
 		}
+		$buttonConfig['data']['file'] = $file->getTitle()->getText();
+		$parser->getOutput()->addImage( $file->getTitle()->getDBkey() );
+		if ( $file->getMediaType() !== MEDIATYPE_AUDIO ) {
+			throw new PhonosException( 'phonos-file-not-audio', [ $wikitextLink ] );
+		}
+		$buttonConfig['href'] = $this->getFileUrl( $file );
 	}
 
 	/**
