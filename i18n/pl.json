@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Msz2001"
+		]
+	},
+	"phonos-desc": "Zapewnia funkcję zamiany tekstu na mowę dla szeregu języków",
+	"phonos-error-category": "Strony z błędami renderowania Phonos",
+	"phonos-error-category-desc": "Wystąpił błąd podczas renderowania Phonos.",
+	"phonos-audio-conversion-error": "Nie udało się przekonwertować dźwięku na MP3:\n$1",
+	"phonos-directory-error": "Nie udało się utworzyć katalogu przechowywania $1",
+	"phonos-engine-error": "Nie udało się wygenerować pliku audio przy użyciu silnika $1:\n$2",
+	"phonos-storage-error": "Nie udało się zapisać pliku audio w miejscu docelowym:\n$1",
+	"phonos-purge-needed-error": "Nie udało się odtworzyć dźwięku.",
+	"phonos-purge-needed-error-link": "Odśwież stronę i spróbuj ponownie.",
+	"phonos-tracking-category": "Strony używające Phonos",
+	"phonos-tracking-category-desc": "Strona korzysta z rozszerzenia [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-file-not-found": "Nie odnaleziono pliku audio „$1”.",
+	"phonos-file-not-audio": "Plik „$1” nie jest plikiem audio.",
+	"phonos-player-aria-description": "Odtwórz nagranie",
+	"phonos-ipa-too-long": "Ciąg IPA jest zbyt długi do wyrenderowania.",
+	"phonos-wikibase-api-error": "Nie udało się pobrać elementu z Wikibase: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Nieprawidłowy element lub leksem: $1",
+	"phonos-wikibase-not-found": "Nie odnaleziono dźwięku dla elementu Wikibase: $1",
+	"phonos-wikibase-no-ipa": "Nie odnaleziono transkrypcji IPA.",
+	"phonos-empty-file-error": "Wygenerowany dźwięk wydaje się być pusty. Podany ciąg IPA może być nieprawidłowy lub nie jest obsługiwany przez silnik. Być użycie parametru „$1” pomoże.",
+	"phonos-param-error": "Należy podać IPA, plik lub element Wikibase.",
+	"phonos-rendering-disabled": "Renderowanie IPA jest obecnie wyłączone.",
+	"phonos-unsupported-language": "Język $1 nie jest obsługiwany przez Phonos.",
+	"phonos-unsupported-language-with-suggestions": "Język $1 nie jest obsługiwany przez Phonos. Obsługiwane są następujące, prawdopodobnie powiązane języki: $2.",
+	"phonos-inline-audio-player-mode": "W trybie kompaktowego odtwarzacza audio można wskazać wyłącznie plik audio lub element Wikibase z właściwością nagranie wymowy ($1)."
+}
