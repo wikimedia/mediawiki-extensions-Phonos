@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Msz2001"
+		]
+	},
+	"phonos-desc": "Zapewnia funkcję zamiany tekstu na mowę dla szeregu języków",
+	"phonos-error-category": "Strony z błędami renderowania Phonos",
+	"phonos-error-category-desc": "Wystąpił błąd podczas renderowania Phonos.",
+	"phonos-audio-conversion-error": "Nie udało się przekonwertować dźwięku na MP3:\n$1",
+	"phonos-directory-error": "Nie udało się utworzyć katalogu przechowywania $1",
+	"phonos-engine-error": "Nie udało się wygenerować pliku audio przy użyciu silnika $1:\n$2",
+	"phonos-storage-error": "Nie udało się zapisać pliku audio w miejscu docelowym:\n$1",
+	"phonos-tracking-category": "Strony używające Phonos",
+	"phonos-tracking-category-desc": "Strona korzysta z rozszerzenia [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-file-not-found": "Nie odnaleziono pliku audio „$1”.",
+	"phonos-file-not-audio": "Plik „$1” nie jest plikiem audio."
+}
