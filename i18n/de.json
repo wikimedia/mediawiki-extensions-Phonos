@@ -19,6 +19,7 @@
 	"phonos-file-not-found": "Audiodatei „$1“ nicht gefunden.",
 	"phonos-file-not-audio": "Die Datei „$1“ ist keine Audiodatei.",
 	"phonos-player-aria-description": "Audio abspielen",
+	"phonos-aria-error": "Audio kann nicht abgespielt werden",
 	"phonos-ipa-too-long": "IPA ist zu lang zum Rendern.",
 	"phonos-wikibase-api-error": "Eintrag kann nicht von Wikibase abgerufen werden: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Ungültiges Objekt oder Lexem: $1",

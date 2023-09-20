@@ -19,6 +19,7 @@
 	"phonos-file-not-found": "קובץ השמע \"$1\" לא נמצא.",
 	"phonos-file-not-audio": "הקובץ \"$1\" אינו קובץ שמע.",
 	"phonos-player-aria-description": "השמעה",
+	"phonos-aria-error": "לא ניתן לנגן שמע",
 	"phonos-ipa-too-long": "הכנת פלט יפ\"א לקחה יותר מדי זמן.",
 	"phonos-wikibase-api-error": "לא ניתן לאחזר ישות מוויקיבייס: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "ישות או יחידה לא בלתי־תקינה: $1",

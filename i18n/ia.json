@@ -18,6 +18,7 @@
 	"phonos-file-not-found": "File audio \"$1\" non trovate.",
 	"phonos-file-not-audio": "Le file \"$1\" non es un file audio.",
 	"phonos-player-aria-description": "Reproducer audio",
+	"phonos-aria-error": "Non pote reproducer audio",
 	"phonos-ipa-too-long": "IPA troppo longe pro visualisar.",
 	"phonos-wikibase-api-error": "Non pote recuperar le entitate de Wikibase: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Entitate o lexema non valide: $1",
