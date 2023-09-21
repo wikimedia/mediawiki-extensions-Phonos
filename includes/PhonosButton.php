@@ -14,7 +14,6 @@ class PhonosButton extends ButtonWidget {
 		$config['icon'] = 'volumeUp';
 		$config['framed'] = false;
 		$config['classes'] = [
-			'ext-phonos',
 			'ext-phonos-PhonosButton',
 			// `.noexcerpt` is defined by TextExtracts
 			'noexcerpt'

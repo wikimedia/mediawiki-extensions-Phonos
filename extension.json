@@ -146,7 +146,7 @@
 		},
 		"ext.phonos.styles": {
 			"styles": [
-				"PhonosButton.less"
+				"Phonos.less"
 			],
 			"skinStyles": {
 				"monobook": [

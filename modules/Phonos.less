@@ -1,5 +1,9 @@
 @import '../../lib/ooui/wikimedia-ui-base.less';
 
+.ext-phonos {
+	white-space: nowrap;
+}
+
 // Not strictly part of the button.
 .ext-phonos-attribution {
 	margin-inline-start: 3px;
@@ -9,10 +13,7 @@
 // We have to override a bunch of OOUI button styles, but it's worth it because
 // we also *don't* have to add a bunch of button behaviour and styles ourselves.
 .ext-phonos-PhonosButton {
-	/* stylelint-disable-next-line declaration-no-important */
-	display: inline !important;
 	margin: 0;
-	white-space: nowrap;
 
 	&.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
 		left: 0;

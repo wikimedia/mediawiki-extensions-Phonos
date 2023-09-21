@@ -192,7 +192,11 @@ class Phonos implements ParserFirstCallInitHook {
 
 		OutputPage::setupOOUI();
 		$button = new PhonosButton( $buttonConfig );
-		return $button->toString() . $this->addAttributionLink( $buttonConfig );
+		return Html::rawElement(
+			'span',
+			[ 'class' => 'ext-phonos' ],
+			$button->toString() . $this->addAttributionLink( $buttonConfig )
+		);
 	}
 
 	/**
