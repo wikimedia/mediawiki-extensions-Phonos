@@ -19,6 +19,7 @@
 	"phonos-file-not-found": "\"$1\" নামক অডিও ফাইলটি পাওয়া যায়নি।",
 	"phonos-file-not-audio": "\"$1\" ফাইলটি অডিও ফাইল নয়।",
 	"phonos-player-aria-description": "অডিও চালান",
+	"phonos-aria-error": "অডিও চালানো যায়নি।",
 	"phonos-ipa-too-long": "রেন্ডার করার জন্য অধ্বব খুব বড়।",
 	"phonos-param-error": "অধ্বব, ফাইল অথবা একটি উইকিবেস আইটেম প্রদান করা আবশ্যক।",
 	"phonos-unsupported-language": "$1 ভাষাটি ফোনোস দ্বারা সমর্থিত নয়।",

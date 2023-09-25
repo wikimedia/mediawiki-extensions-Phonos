@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Hanna Tardos",
 			"Tacsipacsi"
 		]
 	},
@@ -17,6 +18,7 @@
 	"phonos-file-not-found": "A(z) „$1” hangfájl nem található.",
 	"phonos-file-not-audio": "A(z) „$1” fájl nem egy hangfájl.",
 	"phonos-player-aria-description": "Hang lejátszása",
+	"phonos-aria-error": "A hang lejátszása sikertelen.",
 	"phonos-ipa-too-long": "Az IPA túl hosszú a megjelenítéshez.",
 	"phonos-wikibase-api-error": "Nem sikerült lekérni az entitást a Wikibase-ből: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Érvénytelen entitás vagy lexéma: $1",
