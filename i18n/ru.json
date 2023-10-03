@@ -2,9 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Deltaspace",
-			"Pacha Tchernof"
+			"Pacha Tchernof",
+			"Kareyac",
+			"Stjn"
 		]
 	},
+	"phonos-error-category": "Страницы с ошибками отображения Phonos",
+	"phonos-tracking-category": "Страницы, использующие Phonos",
 	"phonos-file-not-found": "Аудиофайл «$1» не найден.",
 	"phonos-file-not-audio": "Файл «$1» не является аудиофайлом."
 }
