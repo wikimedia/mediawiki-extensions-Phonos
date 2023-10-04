@@ -21,8 +21,10 @@
 	"phonos-player-aria-description": "অডিও চালান",
 	"phonos-aria-error": "অডিও চালানো যায়নি।",
 	"phonos-ipa-too-long": "রেন্ডার করার জন্য অধ্বব খুব বড়।",
+	"phonos-wikibase-invalid-entity-lexeme": "সত্তা বা লেক্সিম বৈধ নয়: $1",
+	"phonos-wikibase-not-found": "উইকিবেজ আইটেম $1-এর জন্য কোনও অডিও পাওয়া যায়নি",
 	"phonos-param-error": "অধ্বব, ফাইল অথবা একটি উইকিবেস আইটেম প্রদান করা আবশ্যক।",
 	"phonos-unsupported-language": "$1 ভাষাটি ফোনোস দ্বারা সমর্থিত নয়।",
 	"phonos-unsupported-language-with-suggestions": "$1 ভাষা ফোনোস দ্বারা সমর্থিত নয়। নিম্নলিখিত সম্ভাব্য-সম্পর্কিত ভাষাগুলি সমর্থিত: $2।",
-	"phonos-attribution-icon": "ত"
+	"phonos-attribution-icon": "ⓘ"
 }
