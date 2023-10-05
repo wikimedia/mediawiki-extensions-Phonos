@@ -3,11 +3,14 @@
 		"authors": [
 			"Deltaspace",
 			"Kareyac",
-			"Pacha Tchernof"
+			"Pacha Tchernof",
+			"Stjn"
 		]
 	},
+	"phonos-error-category": "Страницы с ошибками отображения Phonos",
 	"phonos-purge-needed-error": "Невозможно воспроизвести аудио.",
 	"phonos-purge-needed-error-link": "Обновите страницу и повторите попытку.",
+	"phonos-tracking-category": "Страницы, использующие Phonos",
 	"phonos-file-not-found": "Аудиофайл «$1» не найден.",
 	"phonos-file-not-audio": "Файл «$1» не является аудиофайлом.",
 	"phonos-player-aria-description": "Воспроизвести аудио",

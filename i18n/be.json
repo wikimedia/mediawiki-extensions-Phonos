@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Artsiom91"
+		]
+	},
+	"phonos-error-category": "Старонкі з памылкамі пашырэння Phonos",
+	"phonos-error-category-desc": "На старонцы адбылася памылка пры працы пашырэння Phonos.",
+	"phonos-tracking-category": "Старонкі, якія ўжываюць пашырэнне Phonos",
+	"phonos-tracking-category-desc": "На гэтых старонках выкарыстоўваецца пашырэнне [[:mw:Extension:Phonos|Phonos]]."
+}
