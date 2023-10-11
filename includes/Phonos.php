@@ -200,12 +200,13 @@ class Phonos implements ParserFirstCallInitHook {
 	}
 
 	/**
-	 * Return an attribution link if required.
+	 * Get a link to the file, or to upload if the file doesn't exist.
 	 *
 	 * @param array $buttonConfig
-	 * @return string
+	 * @param string $linkText Text to display in the link
+	 * @return string HTML
 	 */
-	private function addAttributionLink( array $buttonConfig ): string {
+	private function getFileLink( array $buttonConfig, string $linkText ): string {
 		if ( !isset( $buttonConfig['data']['file'] ) ) {
 			return '';
 		}
@@ -216,16 +217,29 @@ class Phonos implements ParserFirstCallInitHook {
 			// File exists, link to PageReference
 			$linkContent = $this->linkRenderer->makeLink(
 				$pageReference,
-				wfMessage( 'phonos-attribution-icon' )->plain()
+				$linkText
 			);
 		} else {
 			// File does not exist, link to upload (UploadMissingFileUrl)
 			$linkContent = Linker::makeBrokenImageLinkObj(
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable argument will never be null
 				Title::castFromPageReference( $pageReference ),
-				wfMessage( 'phonos-attribution-icon' )->plain()
+				$linkText
 			);
 		}
+
+		// Returns HTML
+		return $linkContent;
+	}
+
+	/**
+	 * Return an attribution link if required.
+	 *
+	 * @param array $buttonConfig
+	 * @return string
+	 */
+	private function addAttributionLink( array $buttonConfig ): string {
+		$linkContent = $this->getFileLink( $buttonConfig, wfMessage( 'phonos-attribution-icon' )->plain() );
 
 		return Html::rawElement(
 			'sup',
@@ -295,11 +309,17 @@ class Phonos implements ParserFirstCallInitHook {
 	 * @param array $options
 	 * @param array &$buttonConfig
 	 * @param Parser $parser
+	 * @throws PhonosException
 	 */
 	private function handleExistingFile( array $options, array &$buttonConfig, Parser $parser ): void {
 		$buttonConfig['data']['file'] = $options['file'];
 		$file = $this->repoGroup->findFile( $options['file'] );
-		$wikitextLink = '[[' . $options['file'] . ']]';
+		$title = Title::makeTitleSafe( NS_FILE, $options['file'] );
+		if ( !$title ) {
+			// title is malformed
+			throw new PhonosException( 'phonos-file-not-found', [ $options['file'] ] );
+		}
+		$wikitextLink = '[[:' . $title->getPrefixedText() . ']]';
 		if ( !$file ) {
 			throw new PhonosException( 'phonos-file-not-found', [ $wikitextLink ] );
 		}
