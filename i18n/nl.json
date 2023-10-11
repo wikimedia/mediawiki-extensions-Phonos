@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bdijkstra",
 			"McDutchie"
 		]
 	},
+	"phonos-error-category": "Pagina's met Phonos-renderfouten",
+	"phonos-tracking-category": "Pagina's die Phonos gebruiken",
 	"phonos-player-aria-description": "Geluid afspelen",
 	"phonos-wikibase-api-error": "Kan entiteit niet ophalen van Wikibase: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Ongeldige entiteit of ongeldig lexeem: $1",
