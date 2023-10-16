@@ -137,7 +137,7 @@ class Phonos implements ParserFirstCallInitHook {
 
 		$buttonLabel = $options['ipa'];
 		if ( $options['label'] ) {
-			$content = $parser->recursiveTagParseFully( $options['label'] );
+			$content = $parser->recursiveTagParseFully( trim( $options['label'] ) );
 			// Strip out the <p> tag that might have been added by the parser.
 			$buttonLabel = new HtmlSnippet( Parser::stripOuterParagraph( $content ) );
 		}
