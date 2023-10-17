@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bdijkstra",
+			"McDutchie"
+		]
+	},
+	"phonos-error-category": "Pagina's met Phonos-renderfouten",
+	"phonos-tracking-category": "Pagina's die Phonos gebruiken"
+}
