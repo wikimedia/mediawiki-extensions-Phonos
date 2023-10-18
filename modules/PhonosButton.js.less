@@ -1,4 +1,4 @@
-@import '../../lib/ooui/wikimedia-ui-base.less';
+@import 'mediawiki.skin.variables.less';
 
 .ext-phonos-error-popup {
 	// Error popup colors.
@@ -8,15 +8,15 @@
 	}
 
 	.oo-ui-popupWidget-popup {
-		border-color: @wmui-color-red50;
-		background-color: @wmui-color-red90;
+		background-color: @background-color-error-subtle;
+		border-color: @border-color-error;
 	}
 
 	&.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor::before {
-		border-bottom-color: @wmui-color-red50;
+		border-bottom-color: @border-color-error;
 	}
 
 	&.oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor::after {
-		border-bottom-color: @wmui-color-red90;
+		border-bottom-color: @background-color-error-subtle;
 	}
 }

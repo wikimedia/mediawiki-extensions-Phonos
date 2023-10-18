@@ -1,4 +1,4 @@
-@import '../../lib/ooui/wikimedia-ui-base.less';
+@import 'mediawiki.skin.variables.less';
 
 .ext-phonos {
 	white-space: nowrap;
@@ -46,7 +46,7 @@
 		user-select: auto;
 
 		&:hover {
-			background-color: @wmui-color-accent90;
+			background-color: @background-color-progressive-subtle;
 		}
 
 		.oo-ui-iconElement-icon {
@@ -70,7 +70,7 @@
 
 	&.oo-ui-buttonElement-frameless.oo-ui-buttonWidget.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
 		animation: phonos-playing linear;
-		background-image: linear-gradient( to right, @wmui-color-accent90 100%, transparent 100% );
+		background-image: linear-gradient( to right, @background-color-progressive-subtle 100%, transparent 100% );
 		background-repeat: no-repeat;
 		background-color: transparent;
 		// To flip it in RTL
@@ -86,8 +86,8 @@
 	/* stylelint-disable-next-line no-descending-specificity */
 	&.oo-ui-buttonElement-frameless.ext-phonos-error > .oo-ui-buttonElement-button,
 	&.oo-ui-buttonElement-frameless.ext-phonos-error > .oo-ui-buttonElement-button:hover {
-		color: @wmui-color-base10;
-		background-color: @wmui-color-base80;
+		background-color: @background-color-disabled-subtle;
+		color: @color-base;
 	}
 }
 
