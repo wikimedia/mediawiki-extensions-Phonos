@@ -34,6 +34,7 @@ function PhonosButton( config ) {
 	// Add any error message to the popup.
 	if ( this.phonosData.error ) {
 		this.getPopup().$body.append( $( '<p>' ).append( this.phonosData.error ) );
+		this.getPopup().$element.attr( 'aria-live', 'assertive' );
 		this.$button.attr( 'aria-describedby', this.getPopup().getBodyId() );
 	}
 
