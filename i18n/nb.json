@@ -21,6 +21,7 @@
 	"phonos-file-not-found": "Fant ikke lydfilen \"$1\".",
 	"phonos-file-not-audio": "\"$1\" er ikke en lydfil.",
 	"phonos-player-aria-description": "Spill av lyd",
+	"phonos-aria-error": "Kan ikke spille av lyd.",
 	"phonos-ipa-too-long": "IPA-transkripsjonen er for lang til å gjengi.",
 	"phonos-wikibase-api-error": "Kunne ikke hente entitet fra Wikibase: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Ugyldig entitet eller leksem: $1",
