@@ -155,12 +155,11 @@ PhonosButton.prototype.handleMissingFile = function () {
 	this.setIcon( 'volumeOff' );
 	const $link = $( '<a>' )
 		.attr( 'href', mw.util.getUrl( mw.config.get( 'wgPageName' ), { action: 'purge' } ) )
-		.text( mw.message( 'phonos-purge-needed-error-link' ) );
+		.text( mw.msg( 'phonos-purge-needed-error-link' ) );
 	this.getPopup().$body.append(
-		$( '<p>' ).append(
-			mw.message( 'phonos-purge-needed-error' ).escaped() + '&nbsp;',
-			$link
-		)
+		$( '<p>' )
+			.text( mw.msg( 'phonos-purge-needed-error' ) + ' ' )
+			.append( $link )
 	);
 	this.getPopup().toggle( true );
 
