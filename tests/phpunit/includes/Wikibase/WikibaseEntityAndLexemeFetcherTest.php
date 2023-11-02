@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\Phonos\Wikibase;
 
 use HashConfig;
 use MediaWiki\Http\HttpRequestFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use MWHttpRequest;
 use PHPUnit\Framework\MockObject\MockClass;
@@ -62,8 +61,8 @@ class WikibaseEntityAndLexemeFetcherTest extends MediaWikiIntegrationTestCase {
 				}
 			} );
 
-		$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
-		$cache = new WANObjectCache( [ 'cache' => MediaWikiServices::getInstance()->getMainObjectStash() ] );
+		$repoGroup = $this->getServiceContainer()->getRepoGroup();
+		$cache = new WANObjectCache( [ 'cache' => $this->getServiceContainer()->getMainObjectStash() ] );
 
 		$config = new HashConfig( [
 			'PhonosWikibaseProperties' => [

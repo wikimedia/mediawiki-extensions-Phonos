@@ -2,7 +2,6 @@
 
 use MediaWiki\Extension\Phonos\Engine\Engine;
 use MediaWiki\Http\HttpRequestFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\LBFactory;
 
@@ -55,7 +54,7 @@ class CountOrphanedFiles extends Maintenance {
 	}
 
 	public function execute(): void {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$config = $services->getMainConfig();
 		$this->requestFactory = $services->getHttpRequestFactory();
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );

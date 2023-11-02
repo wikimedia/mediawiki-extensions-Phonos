@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Extension\Phonos\Engine\Engine;
-use MediaWiki\MediaWikiServices;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
@@ -31,7 +30,7 @@ class DeleteOldPhonosFiles extends Maintenance {
 	}
 
 	public function execute(): void {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$backend = Engine::getFileBackend(
 			$services->getFileBackendGroup(),
 			$services->getMainConfig()

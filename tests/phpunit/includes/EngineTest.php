@@ -6,7 +6,6 @@ use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Engine\EngineInterface;
 use MediaWiki\Extension\Phonos\Engine\EspeakEngine;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -23,7 +22,7 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$this->engine = new EspeakEngine(
 			$services->getHttpRequestFactory(),
 			$services->getShellCommandFactory(),

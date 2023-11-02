@@ -10,7 +10,6 @@ use MediaWiki\Extension\Phonos\Engine\EngineInterface;
 use MediaWiki\Extension\Phonos\Engine\LarynxEngine;
 use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
 use MediaWiki\Http\HttpRequestFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\CommandFactory;
 use MediaWikiIntegrationTestCase;
 use Parser;
@@ -32,7 +31,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 				$this->createMock( CommandFactory::class ),
 				$this->createMock( FileBackendGroup::class ),
 				WANObjectCache::newEmpty(),
-				MediaWikiServices::getInstance()->getMainConfig(),
+				$this->getServiceContainer()->getMainConfig(),
 			] )->onlyMethods( [ 'getAudioData', 'getFileUrl', 'getFileStoragePath' ] )
 			->getMock();
 	}
@@ -72,7 +71,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( 'CommandLineMode', true );
 		$this->overrideConfigValue( 'PhonosFileBackend', false );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$jobQueueGroupMock = $this->getJobQueueGroupMock();
 		$jobQueueGroupMock->expects( $this->once() )->method( 'push' );
@@ -98,7 +97,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( 'CommandLineMode', false );
 		$this->overrideConfigValue( 'PhonosFileBackend', false );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$jobQueueGroupMock = $this->getJobQueueGroupMock();
 		$jobQueueGroupMock->expects( $this->once() )->method( 'push' );
@@ -127,7 +126,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( 'CommandLineMode', false );
 		$this->overrideConfigValue( 'PhonosFileBackend', false );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$engineMock = $this->getEngineMock();
 		$engineMock->expects( $this->once() )->method( 'getAudioData' );
@@ -151,7 +150,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testPageProps(): void {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$phonos = new Phonos(
 			$services->getRepoGroup(),
 			$this->getEngineMock(),
