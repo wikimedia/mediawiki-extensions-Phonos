@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\Phonos\Wikibase;
 
-use Config;
 use LanguageCode;
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
 use RepoGroup;

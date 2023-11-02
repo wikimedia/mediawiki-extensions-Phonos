@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\Phonos\Wikibase;
 
-use HashConfig;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Status\Status;
 use MediaWikiIntegrationTestCase;
 use MWHttpRequest;
 use PHPUnit\Framework\MockObject\MockClass;
-use Status;
 use WANObjectCache;
 
 /**

@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extension\Phonos\Engine;
 
-use Config;
 use DOMDocument;
 use FileBackendGroup;
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Shell\CommandFactory;

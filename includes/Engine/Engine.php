@@ -2,19 +2,19 @@
 
 namespace MediaWiki\Extension\Phonos\Engine;
 
-use Config;
 use FileBackend;
 use FileBackendGroup;
 use FSFileBackend;
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Status\Status;
 use NullLockManager;
 use ReflectionClass;
-use Status;
 use WANObjectCache;
 
 /**

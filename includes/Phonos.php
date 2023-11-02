@@ -1,11 +1,11 @@
 <?php
 namespace MediaWiki\Extension\Phonos;
 
-use Config;
 use ExtensionRegistry;
 use File;
 use JobQueueGroup;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Engine\Engine;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
@@ -16,12 +16,12 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\TimedMediaHandler\TimedMediaHandler;
 use MediaWiki\TimedMediaHandler\WebVideoTranscode\WebVideoTranscode;
 use MediaWiki\Title\Title;
 use OOUI\HtmlSnippet;
-use OutputPage;
 use Parser;
 use Psr\Log\LoggerInterface;
 use RepoGroup;
