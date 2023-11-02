@@ -156,7 +156,7 @@ PhonosButton.prototype.handleMissingFile = function () {
 	const $link = $( '<a>' )
 		.attr( 'href', mw.util.getUrl( mw.config.get( 'wgPageName' ), { action: 'purge' } ) )
 		.text( mw.msg( 'phonos-purge-needed-error-link' ) );
-	this.getPopup().$body.append(
+	this.getPopup().$body.empty().append(
 		$( '<p>' )
 			.text( mw.msg( 'phonos-purge-needed-error' ) + ' ' )
 			.append( $link )
