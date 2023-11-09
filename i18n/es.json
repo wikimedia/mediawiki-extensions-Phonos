@@ -5,12 +5,17 @@
 			"Fitoschido",
 			"MarcoAurelio",
 			"SpikeShroom",
-			"SRuizR"
+			"SRuizR",
+			"No se"
 		]
 	},
 	"phonos-tracking-category": "Páginas que usan Phonos",
 	"phonos-file-not-found": "Archivo de audio \" $1 \" no encontrado.",
 	"phonos-file-not-audio": "El archivo \" $1 \" no es un archivo de audio.",
 	"phonos-player-aria-description": "Reproducir audio",
-	"phonos-wikibase-no-ipa": "No se encontró la transcripción de IPA."
+	"phonos-wikibase-no-ipa": "No se encontró la transcripción de IPA.",
+	"phonos-empty-file-error": "El audio generado parece estar vacío. La IPA especificada puede no ser válida, o no es compatible con el motor. Usar el parámetro '$1' puede ayudar.",
+	"phonos-param-error": "Cualquier IPA, un archivo o un elemento de Wikibase debe ser proporcionado.",
+	"phonos-unsupported-language": "El idioma \"$1\" no es admitido por Phonos.",
+	"phonos-unsupported-language-with-suggestions": "El idioma \"$1\" no es admitido por Phonos. Los siguientes idiomas posiblemente relacionados son admitidos: $2."
 }
