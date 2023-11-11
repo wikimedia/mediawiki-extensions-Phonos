@@ -4,8 +4,8 @@
 	function phonosClickHandler( event ) {
 		// This handler is used for both click and keydown.
 		if ( event.keyCode !== undefined &&
-			event.keyCode !== OO.ui.Keys.ENTER &&
-			event.keyCode !== OO.ui.Keys.SPACE
+			event.keyCode !== 13 /* OO.ui.Keys.ENTER */ &&
+			event.keyCode !== 32 /* OO.ui.Keys.SPACE */
 		) {
 			return;
 		}
