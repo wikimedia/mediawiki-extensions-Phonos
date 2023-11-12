@@ -33,7 +33,31 @@ function PhonosButton( config ) {
 
 	// Add any error message to the popup.
 	if ( this.phonosData.error ) {
-		this.getPopup().$body.append( $( '<p>' ).append( this.phonosData.error ) );
+		this.getPopup().$body.append( $( '<p>' ).append(
+			Array.isArray( this.phonosData.error ) ?
+				// Messages that can be used here:
+				// * phonos-audio-conversion-error
+				// * phonos-directory-error
+				// * phonos-empty-file-error
+				// * phonos-engine-error
+				// * phonos-file-not-audio
+				// * phonos-file-not-found
+				// * phonos-inline-audio-player-mode
+				// * phonos-invalid-title
+				// * phonos-ipa-too-long
+				// * phonos-param-error
+				// * phonos-rendering-disabled
+				// * phonos-storage-error
+				// * phonos-unsupported-language
+				// * phonos-unsupported-language-with-suggestions
+				// * phonos-wikibase-api-error
+				// * phonos-wikibase-invalid-entity-lexeme
+				// * phonos-wikibase-no-ipa
+				// * phonos-wikibase-not-found
+				mw.message( ...this.phonosData.error ).parseDom() :
+				// Compability to old cached HTML
+				this.phonosData.error
+		) );
 		this.getPopup().$element.attr( 'aria-live', 'assertive' );
 		this.$button.attr( 'aria-describedby', this.getPopup().getBodyId() );
 	}

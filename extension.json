@@ -117,15 +117,26 @@
 			"messages": [
 				"phonos",
 				"phonos-desc",
-				"phonos-file-not-found",
-				"phonos-file-not-audio",
 				"phonos-purge-needed-error",
 				"phonos-purge-needed-error-link",
+				"phonos-audio-conversion-error",
+				"phonos-directory-error",
+				"phonos-empty-file-error",
+				"phonos-engine-error",
+				"phonos-file-not-audio",
+				"phonos-file-not-found",
+				"phonos-inline-audio-player-mode",
+				"phonos-invalid-title",
 				"phonos-ipa-too-long",
+				"phonos-param-error",
+				"phonos-rendering-disabled",
+				"phonos-storage-error",
+				"phonos-unsupported-language",
+				"phonos-unsupported-language-with-suggestions",
 				"phonos-wikibase-api-error",
 				"phonos-wikibase-invalid-entity-lexeme",
-				"phonos-wikibase-not-found",
-				"phonos-wikibase-no-ipa"
+				"phonos-wikibase-no-ipa",
+				"phonos-wikibase-not-found"
 			],
 			"dependencies": [
 				"ext.phonos.icons.js",
@@ -134,6 +145,7 @@
 				"ext.phonos.styles",
 				"ext.phonos.init",
 				"mediawiki.api",
+				"mediawiki.jqueryMsg",
 				"oojs-ui-core"
 			]
 		},

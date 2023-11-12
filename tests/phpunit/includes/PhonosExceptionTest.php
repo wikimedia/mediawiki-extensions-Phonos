@@ -11,9 +11,9 @@ use PHPUnit\Framework\TestCase;
  */
 class PhonosExceptionTest extends TestCase {
 
-	public function testToString(): void {
-		$e = new PhonosException( 'phonos-directory-error', [ 'foobar' ] );
-		$this->assertSame( 'Failed to create storage directory foobar', $e->toString() );
+	public function testGetMessageKeyAndArgs(): void {
+		$e = new PhonosException( 'phonos-directory-error', [ 'foo', 'bar' ] );
+		$this->assertSame( [ 'phonos-directory-error', 'foo', 'bar' ], $e->getMessageKeyAndArgs() );
 	}
 
 	public function testGetStatsdKey(): void {

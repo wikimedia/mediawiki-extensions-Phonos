@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\Phonos\Exception;
 
 use Exception;
-use MediaWiki\Page\PageReferenceValue;
 
 /**
  * Exception thrown when something within Phonos failed.
@@ -24,17 +23,12 @@ class PhonosException extends Exception {
 	}
 
 	/**
-	 * Returns exception messages in the wiki's content language.
+	 * Returns array with exception message key and parameters.
 	 *
-	 * @return string
+	 * @return array
 	 */
-	public function toString(): string {
-		return wfMessage( $this->getMessage(), ...$this->args )
-			->inContentLanguage()
-			// A context is needed when using wfMessage(). We use Special:Badtitle since we
-			// don't have access nor do we need the current page title for this message.
-			->page( PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle' ) )
-			->parse();
+	public function getMessageKeyAndArgs(): array {
+		return [ $this->getMessage(), ...$this->args ];
 	}
 
 	/**

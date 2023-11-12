@@ -179,7 +179,7 @@ class Phonos implements ParserFirstCallInitHook {
 			$buttonConfig['aria-label'] = wfMessage( 'phonos-player-aria-description' )->parse();
 		} catch ( PhonosException $e ) {
 			$this->recordError( $e );
-			$buttonConfig['data']['error'] = $e->toString();
+			$buttonConfig['data']['error'] = $e->getMessageKeyAndArgs();
 			// Tell screenreaders that there's an error, but we can't add the actual error message because it's in the
 			// client-side popup which doesn't exist here.
 			$buttonConfig['aria-label'] = wfMessage( 'phonos-aria-error' )->parse();
@@ -317,16 +317,15 @@ class Phonos implements ParserFirstCallInitHook {
 		$title = Title::makeTitleSafe( NS_FILE, $options['file'] );
 		if ( !$title ) {
 			// title is malformed
-			throw new PhonosException( 'phonos-file-not-found', [ $options['file'] ] );
+			throw new PhonosException( 'phonos-invalid-title', [ $options['file'] ] );
 		}
-		$wikitextLink = '[[:' . $title->getPrefixedText() . ']]';
 		if ( !$file ) {
-			throw new PhonosException( 'phonos-file-not-found', [ $wikitextLink ] );
+			throw new PhonosException( 'phonos-file-not-found', [ $title->getPrefixedText() ] );
 		}
 		$buttonConfig['data']['file'] = $file->getTitle()->getText();
 		$parser->getOutput()->addImage( $file->getTitle()->getDBkey() );
 		if ( $file->getMediaType() !== MEDIATYPE_AUDIO ) {
-			throw new PhonosException( 'phonos-file-not-audio', [ $wikitextLink ] );
+			throw new PhonosException( 'phonos-file-not-audio', [ $title->getPrefixedText() ] );
 		}
 		$buttonConfig['href'] = $this->getFileUrl( $file );
 	}
