@@ -22,12 +22,11 @@ return [
 		);
 	},
 	'Phonos.Wikibase' => static function ( MediaWikiServices $services ): WikibaseEntityAndLexemeFetcher {
-		$config = $services->getMainConfig();
 		return new WikibaseEntityAndLexemeFetcher(
 			$services->getHttpRequestFactory(),
 			$services->getRepoGroup(),
 			$services->getMainWANObjectCache(),
-			$config
+			$services->getMainConfig()
 		);
 	},
 ];

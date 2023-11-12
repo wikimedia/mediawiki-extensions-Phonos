@@ -30,9 +30,9 @@ class GoogleEngineTest extends TestCase {
 
 	public function testGetSsml(): void {
 		$this->assertSame(
-			"<speak><phoneme alphabet=\"ipa\" " .
-				"ph=\"&#x2C8;h&#x28C;s&#x259;n &#x2C8;m&#x26A;nh&#x251;&#x2D0;(d)&#x292;\">" .
-				"Hasan Minhaj</phoneme></speak>",
+			'<speak><phoneme alphabet="ipa" ' .
+				'ph="&#x2C8;h&#x28C;s&#x259;n &#x2C8;m&#x26A;nh&#x251;&#x2D0;(d)&#x292;">' .
+				'Hasan Minhaj</phoneme></speak>',
 			$this->engine->getSsml( new AudioParams( "/'hʌsən 'mɪnhɑː(d)ʒ/", 'Hasan Minhaj', 'en' ) )
 		);
 	}

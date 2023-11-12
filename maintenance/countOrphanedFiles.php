@@ -78,8 +78,8 @@ class CountOrphanedFiles extends Maintenance {
 			}
 		}
 
-		$msg = count( $usedFiles ) . " in-use files found." .
-			( $skippedSites > 0 ? " $skippedSites sites skipped due to errors." : "" );
+		$msg = count( $usedFiles ) . ' in-use files found.' .
+			( $skippedSites > 0 ? " $skippedSites sites skipped due to errors." : '' );
 		$this->output( "$msg\n" );
 
 		$this->reportUnusedFiles( array_unique( $usedFiles ) );
