@@ -19,14 +19,14 @@ class DeleteOldPhonosFiles extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( "Deletes old Phonos files from storage" );
+		$this->addDescription( 'Deletes old Phonos files from storage' );
 		$this->addOption(
-			"date",
+			'date',
 			'Delete Phonos files that were created before this date (e.g. 20220101000000)',
 			true,
 			true
 		);
-		$this->requireExtension( "Phonos" );
+		$this->requireExtension( 'Phonos' );
 	}
 
 	public function execute(): void {

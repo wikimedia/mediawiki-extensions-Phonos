@@ -90,7 +90,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$args = [ 'lang' => 'en', 'text' => 'test', 'ipa' => 'tɛst' ];
-		$phonos->renderPhonos( "test", $args, $this->getParserMock() );
+		$phonos->renderPhonos( 'test', $args, $this->getParserMock() );
 	}
 
 	public function testCreateJobWhenExpensiveFunctionCountHitsLimit(): void {
@@ -119,7 +119,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 		$parserMock->method( 'incrementExpensiveFunctionCount' )->willReturn( false );
 
 		$args = [ 'lang' => 'en', 'text' => 'test', 'ipa' => 'tɛst' ];
-		$phonos->renderPhonos( "test", $args, $parserMock );
+		$phonos->renderPhonos( 'test', $args, $parserMock );
 	}
 
 	public function testPersistAudioSynchronously(): void {
@@ -146,7 +146,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 		$parserMock->method( 'incrementExpensiveFunctionCount' )->willReturn( true );
 
 		$args = [ 'lang' => 'en', 'text' => 'test', 'ipa' => 'tɛst' ];
-		$phonos->renderPhonos( "test", $args, $parserMock );
+		$phonos->renderPhonos( 'test', $args, $parserMock );
 	}
 
 	public function testPageProps(): void {
@@ -167,6 +167,6 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 			->method( 'setPageProperty' );
 
 		$args = [ 'lang' => 'en', 'text' => 'test', 'ipa' => 'tɛst' ];
-		$phonos->renderPhonos( "test", $args, $parserMock );
+		$phonos->renderPhonos( 'test', $args, $parserMock );
 	}
 }

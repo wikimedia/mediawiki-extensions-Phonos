@@ -102,9 +102,9 @@ class WikibaseEntityAndLexemeFetcher {
 		$audioFiles = [];
 		$ipaTranscriptions = [];
 
-		if ( $item->type === "lexeme" ) {
+		if ( $item->type === 'lexeme' ) {
 			// If lexeme, we need the $text representation for the audio file
-			if ( $text === "" ) {
+			if ( $text === '' ) {
 				return $entity;
 			}
 			$itemForms = $item->forms;
@@ -184,7 +184,7 @@ class WikibaseEntityAndLexemeFetcher {
 	 * @throws PhonosException
 	 */
 	private function fetchWikibaseItem( string $wikibaseEntity ): ?stdClass {
-		$url = $this->wikibaseUrl . "Special:EntityData/" . $wikibaseEntity . ".json";
+		$url = $this->wikibaseUrl . "Special:EntityData/$wikibaseEntity.json";
 		$options = [
 			'method' => 'GET'
 		];
