@@ -4,7 +4,8 @@
 			"GuoPC",
 			"Lakejason0",
 			"Lantianjialiang",
-			"Shizhao"
+			"Shizhao",
+			"沈澄心"
 		]
 	},
 	"phonos-desc": "为多种语言提供文字转语音功能",
@@ -21,6 +22,7 @@
 	"phonos-file-not-found": "找不到音频文件“$1”。",
 	"phonos-file-not-audio": "文件“$1”不是音频文件。",
 	"phonos-player-aria-description": "播放音频",
+	"phonos-aria-error": "无法播放音频",
 	"phonos-ipa-too-long": "IPA太长无法渲染。",
 	"phonos-wikibase-api-error": "无法从Wikibase检索实体： $1",
 	"phonos-wikibase-invalid-entity-lexeme": "无效实体或词素：$1",
