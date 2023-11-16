@@ -155,6 +155,9 @@ PhonosButton.prototype.getAudioEl = function ( src ) {
 	}
 	audio.onerror = this.handleMissingFile.bind( this );
 	mw.hook( 'ext.Phonos.audio' ).fire( audio );
+	// Load the src, as this is not automatic on all user-agents.
+	// This will in turn trigger 'canplaythrough'
+	audio.load();
 	return audio;
 };
 

@@ -10,6 +10,9 @@
 			return;
 		}
 		event.preventDefault();
+		const el = document.createElement( 'audio' );
+		el.src = mw.config.get( 'wgExtensionAssetsPath' ) + '/TimedMediaHandler/resources/silence.mp3';
+		el.play();
 		mw.loader.using( 'ext.phonos' ).then( function () {
 			const buttonElement = event.target.closest( '.ext-phonos-PhonosButton' );
 			const button = OO.ui.infuse( buttonElement );
