@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ted Masters"
+		]
+	},
+	"phonos-error-category": "Страници с грешки във визуализирането на Phonos",
+	"phonos-error-category-desc": "Има грешка във визуализирането на Phonos.",
+	"phonos-tracking-category": "Страници, използващи Phonos",
+	"phonos-tracking-category-desc": "Страницата използва [[:mw:Extension:Phonos|разширението Phonos]]."
+}

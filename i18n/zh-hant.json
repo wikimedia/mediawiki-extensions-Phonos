@@ -9,5 +9,5 @@
 	"phonos-tracking-category": "使用 Phonos 的頁面",
 	"phonos-tracking-category-desc": "這些頁面使用 [[:mw:Extension:Phonos|Phonos]] 擴充。",
 	"phonos-file-not-found": "找不到音訊檔案「$1」。請再試一次。",
-	"phonos-player-aria-description": "正在聆聽「$1」的IPA發音。"
+	"phonos-player-aria-description": "播放音訊"
 }
