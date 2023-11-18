@@ -320,12 +320,18 @@ class Phonos implements ParserFirstCallInitHook {
 			throw new PhonosException( 'phonos-invalid-title', [ $options['file'] ] );
 		}
 		if ( !$file ) {
-			throw new PhonosException( 'phonos-file-not-found', [ $title->getPrefixedText() ] );
+			throw new PhonosException( 'phonos-file-not-found', [
+				Linker::getUploadUrl( $title ),
+				$title->getText()
+			] );
 		}
 		$buttonConfig['data']['file'] = $file->getTitle()->getText();
 		$parser->getOutput()->addImage( $file->getTitle()->getDBkey() );
 		if ( $file->getMediaType() !== MEDIATYPE_AUDIO ) {
-			throw new PhonosException( 'phonos-file-not-audio', [ $title->getPrefixedText() ] );
+			throw new PhonosException( 'phonos-file-not-audio', [
+				$title->getPrefixedText(),
+				$title->getText()
+			] );
 		}
 		$buttonConfig['href'] = $this->getFileUrl( $file );
 	}
