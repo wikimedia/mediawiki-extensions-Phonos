@@ -207,9 +207,6 @@ class Phonos implements ParserFirstCallInitHook {
 	 * @return string HTML
 	 */
 	private function getFileLink( array $buttonConfig, string $linkText ): string {
-		if ( !isset( $buttonConfig['data']['file'] ) ) {
-			return '';
-		}
 		$file = $this->repoGroup->findFile( $buttonConfig['data']['file'] );
 		$pageReference = PageReferenceValue::localReference( NS_FILE, $buttonConfig['data']['file'] );
 
@@ -239,6 +236,9 @@ class Phonos implements ParserFirstCallInitHook {
 	 * @return string
 	 */
 	private function addAttributionLink( array $buttonConfig ): string {
+		if ( !isset( $buttonConfig['data']['file'] ) ) {
+			return '';
+		}
 		$linkContent = $this->getFileLink( $buttonConfig, wfMessage( 'phonos-attribution-icon' )->plain() );
 
 		return Html::rawElement(
