@@ -5,6 +5,15 @@
 			"McDutchie"
 		]
 	},
+	"phonos-desc": "Voorziet in tekst-naar-spraak-functionaliteit voor een reeks talen",
 	"phonos-error-category": "Pagina's met Phonos-renderfouten",
-	"phonos-tracking-category": "Pagina's die Phonos gebruiken"
+	"phonos-error-category-desc": "Er is een fout opgetreden bij het renderen van Phonos.",
+	"phonos-audio-conversion-error": "Kan audio niet naar MP3 converteren:\n$1",
+	"phonos-directory-error": "Kan opslagmap $1 niet aanmaken",
+	"phonos-engine-error": "Kan geen audiobestand genereren met de $1-engine:\n$2",
+	"phonos-storage-error": "Kan het audiobestand niet opslaan op de eindbestemming:\n$1",
+	"phonos-tracking-category": "Pagina's die Phonos gebruiken",
+	"phonos-tracking-category-desc": "De pagina gebruikt de uitbreiding [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-file-not-found": "Audiobestand “$1” niet gevonden.",
+	"phonos-file-not-audio": "Bestand “$1” is geen audiobestand."
 }
