@@ -5,10 +5,30 @@
 			"Bdijkstra"
 		]
 	},
+	"phonos-desc": "Voorziet in tekst-naar-spraak-functionaliteit voor een reeks talen",
 	"phonos-error-category": "Pagina's met Phonos-renderfouten",
+	"phonos-error-category-desc": "Er is een fout opgetreden bij het renderen van Phonos.",
+	"phonos-audio-conversion-error": "Kan audio niet naar MP3 converteren:\n$1",
+	"phonos-directory-error": "Kan opslagmap $1 niet aanmaken",
+	"phonos-engine-error": "Kan geen audiobestand genereren met de $1-engine:\n$2",
+	"phonos-storage-error": "Kan het audiobestand niet opslaan op de eindbestemming:\n$1",
+	"phonos-purge-needed-error": "Kan geen audio afspelen.",
+	"phonos-purge-needed-error-link": "Vernieuw de pagina en probeer het opnieuw.",
 	"phonos-tracking-category": "Pagina's die Phonos gebruiken",
+	"phonos-tracking-category-desc": "De pagina gebruikt de uitbreiding [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-file-not-found": "Audiobestand “$1” niet gevonden.",
+	"phonos-file-not-audio": "Bestand “$1” is geen audiobestand.",
 	"phonos-player-aria-description": "Geluid afspelen",
+	"phonos-aria-error": "Kan geen audio afspelen",
+	"phonos-ipa-too-long": "IPA te lang om weer te geven.",
 	"phonos-wikibase-api-error": "Kan entiteit niet ophalen van Wikibase: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Ongeldige entiteit of ongeldig lexeem: $1",
-	"phonos-wikibase-not-found": "Geen audio gevonden voor Wikibase-item: $1"
+	"phonos-wikibase-not-found": "Geen audio gevonden voor Wikibase-item: $1",
+	"phonos-wikibase-no-ipa": "Geen IPA-transcriptie gevonden.",
+	"phonos-empty-file-error": "De gegenereerde audio lijkt leeg te zijn. De opgegeven IPA is mogelijk ongeldig of wordt niet ondersteund door de engine. Het gebruik van de parameter ‘$1’ kan helpen.",
+	"phonos-param-error": "Er moet een IPA, een bestand of een Wikibase-item worden opgegeven.",
+	"phonos-rendering-disabled": "IPA-weergave is momenteel uitgeschakeld.",
+	"phonos-unsupported-language": "De taal ‘$1’ wordt niet ondersteund door Phonos.",
+	"phonos-unsupported-language-with-suggestions": "De taal ‘$1’ wordt niet ondersteund door Phonos. De volgende mogelijk verwante talen worden ondersteund: $2.",
+	"phonos-inline-audio-player-mode": "Alleen een audiobestand of een Wikibase-item met de eigenschap ‘uitspraakbestand’ ($1) kan worden geleverd in de modus ingebedde audiospeler."
 }
