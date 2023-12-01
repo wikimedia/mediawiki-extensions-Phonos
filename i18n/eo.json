@@ -14,7 +14,7 @@
 	"phonos-purge-needed-error": "Ne eblas ludi audion.",
 	"phonos-purge-needed-error-link": "Refreŝigu la paĝon kaj provu denove.",
 	"phonos-tracking-category": "Paĝoj kiuj uzas Phonos",
-	"phonos-tracking-category-desc": "La paĝo uzas la etendaĵon [[:mw:Etendaĵo:Phonos|Phonos]].",
+	"phonos-tracking-category-desc": "La paĝo uzas la etendaĵon [[:mw:Extension:Phonos|Phonos]].",
 	"phonos-file-not-found": "Sondosiero \"$1\" ne trovita.",
 	"phonos-file-not-audio": "Dosiero \"$1\" ne estas sondosiero.",
 	"phonos-player-aria-description": "Ludu aŭdion",
