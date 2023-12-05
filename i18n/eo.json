@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ziko"
+		]
+	},
+	"phonos-desc": "Provizu tekst-al-parolan funkciecon por gamo da lingvoj",
+	"phonos-error-category": "Paĝoj kun eraroj de bildigo de Phonos",
+	"phonos-error-category-desc": "Okazis eraro dum la bildigo de Phonos.",
+	"phonos-audio-conversion-error": "Malsukcesis transformi aŭdion al MP3:\n$1",
+	"phonos-directory-error": "Malsukcesis krei stokan dosierujon $1",
+	"phonos-engine-error": "Malsukcesis generi sondosieron per la $1-motoro:\n$2",
+	"phonos-storage-error": "Malsukcesis stoki sondosieron en ĝia fina celloko:\n$1",
+	"phonos-tracking-category": "Paĝoj kiuj uzas Phonos",
+	"phonos-tracking-category-desc": "La paĝo uzas la etendaĵon [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-file-not-found": "Sondosiero \"$1\" ne trovita.",
+	"phonos-file-not-audio": "Dosiero \"$1\" ne estas sondosiero."
+}

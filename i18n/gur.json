@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Akakiiri"
+		]
+	},
+	"phonos-error-category": "Pɛga n tari 'phonos rendering' tuure duma",
+	"phonos-error-category-desc": "Tuure n boni deti ti 'rendering phonos' la.",
+	"phonos-audio-conversion-error": "A kakɛ ni mɛ ti a tulege 'audio' le de ŋMp3:\n$1",
+	"phonos-directory-error": "Kakɛ ti a maalɛ 'storage directory' $1",
+	"phonos-engine-error": "Kakɛ ti maalɛ 'audio'' faali dikera $1 'engin': $2"
+}

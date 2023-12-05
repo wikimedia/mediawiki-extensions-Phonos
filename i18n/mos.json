@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Soumaya"
+		]
+	},
+	"phonos-desc": "Sõng-y tɩ y bãng goam sẽn yaa to-to wã",
+	"phonos-error-category": "Pags nins sẽn tar Phonos sẽn maand yel-wẽnã",
+	"phonos-error-category-desc": "B sẽn da maand a Phonos wã, b paama yel-wẽnd n kɩt tɩ b lebg-a.",
+	"phonos-audio-conversion-error": "Pa tõog n lebg audio n lebg MP3: $1",
+	"phonos-directory-error": "Pa tõog n naan zĩ-gũud sõor ye $1",
+	"phonos-engine-error": "D pa tõog n tall kaset-faayã n tũnug ne $1 motorã ye: $2",
+	"phonos-storage-error": "Pa tõog n tall kaset-rãmb a sẽn dat n deegẽ ye: $1",
+	"phonos-tracking-category": "Pages using Phonos",
+	"phonos-tracking-category-desc": "Sebrã tũnugda ne [[:mw:Extension:Phonos.",
+	"phonos-file-not-found": "D pa yãend \"$1\" kaset faayã ye.",
+	"phonos-file-not-audio": "\"$1\" pa kaset-bi-bi-kãng ye."
+}
