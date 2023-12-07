@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Domo John"
+			"Domo John",
+			"Joachim Yirkang"
 		]
 	},
+	"phonos-invalid-title": "Yieloŋ gane \"$1\" a yelzu ba toŋ na.",
+	"phonos-file-not-found": "Yieloŋ gane \"[[$1]]\" ba kyɛbe.",
+	"phonos-file-not-audio": "Gampɛle \"[[$1]]\" ba e yieloŋ gane.",
 	"phonos-player-aria-description": "Ŋmɛ yelkyɛllaa"
 }

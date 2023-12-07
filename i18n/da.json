@@ -10,8 +10,8 @@
 	"phonos-audio-conversion-error": "Kunne ikke konvertere lyd til MP3:\n $1",
 	"phonos-directory-error": "Kunne ikke oprette folderen $1 til uddata.",
 	"phonos-tracking-category": "Sider, der bruger Phonos",
-	"phonos-file-not-found": "Lydfilen \" $1 \" blev ikke fundet.",
-	"phonos-file-not-audio": "Filen \" $1 \" er ikke en lydfil.",
+	"phonos-file-not-found": "Lydfilen \" [[$1]] \" blev ikke fundet.",
+	"phonos-file-not-audio": "Filen \" [[$1]] \" er ikke en lydfil.",
 	"phonos-player-aria-description": "Afspil lyd",
 	"phonos-aria-error": "Kan ikke afspille lyd",
 	"phonos-ipa-too-long": "IPA er for lang til at blive vist."

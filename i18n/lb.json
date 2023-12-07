@@ -5,5 +5,6 @@
 			"Volvox"
 		]
 	},
-	"phonos-tracking-category": "Säiten, déi Phonos benotzen"
+	"phonos-tracking-category": "Säiten, déi Phonos benotzen",
+	"phonos-file-not-found": "Audiodatei „[[$1]]“ net fonnt."
 }

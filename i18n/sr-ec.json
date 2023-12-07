@@ -4,5 +4,7 @@
 			"Milicevic01"
 		]
 	},
-	"phonos-purge-needed-error-link": "Освежите страницу и покушајте поново."
+	"phonos-purge-needed-error-link": "Освежите страницу и покушајте поново.",
+	"phonos-file-not-found": "Аудио датотека „[[$1]]” није пронађена.",
+	"phonos-file-not-audio": "Датотека „[[$1]]” није аудио датотека."
 }
