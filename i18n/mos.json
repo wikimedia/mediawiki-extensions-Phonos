@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Soumaya"
+		]
+	},
+	"phonos-desc": "Sõng-y tɩ y bãng goam sẽn yaa to-to wã",
+	"phonos-error-category": "Pags nins sẽn tar Phonos sẽn maand yel-wẽnã",
+	"phonos-error-category-desc": "B sẽn da maand a Phonos wã, b paama yel-wẽnd n kɩt tɩ b lebg-a.",
+	"phonos-audio-conversion-error": "Pa tõog n lebg audio n lebg MP3: $1",
+	"phonos-directory-error": "Pa tõog n naan zĩ-gũud sõor ye $1",
+	"phonos-engine-error": "D pa tõog n tall kaset-faayã n tũnug ne $1 motorã ye: $2",
+	"phonos-storage-error": "Pa tõog n tall kaset-rãmb a sẽn dat n deegẽ ye: $1",
+	"phonos-purge-needed-error": "Pa tõe n wʋms ye.",
+	"phonos-purge-needed-error-link": "Bao n leoke.",
+	"phonos-tracking-category": "Pages using Phonos",
+	"phonos-tracking-category-desc": "Sebrã tũnugda ne [[:mw:Extension:Phonos.",
+	"phonos-player-aria-description": "Sõng-y n wʋme",
+	"phonos-ipa-too-long": "IPA wã kaoosame tɩ pa tõe n tall n kõ ye.",
+	"phonos-wikibase-api-error": "Pa tõe n paam bũmb ning sẽn be Wikibase wã pʋgẽ ye: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Bõn-kalemdã sẽn pa zemsã: $1",
+	"phonos-wikibase-not-found": "Pa yãend sõsg sẽn gomd Wikibase wã yell ye: $1",
+	"phonos-wikibase-no-ipa": "B pa yãt a IPA sõss ye.",
+	"phonos-empty-file-error": "B sẽn tall kasetã wõnda pa tar bũmb ye. A sã n pa rat n maan woto, a tõe n kɩtame tɩ b pa le tõe n maan bũmb ning sẽn yaa sõma ye. Sõngda ne '$1' paramɛtre.",
+	"phonos-param-error": "Yaa tɩlɛ tɩ b kõ-yã IPA, faayl bɩ Wikibase sõor.",
+	"phonos-rendering-disabled": "IPA sẽn maandã pa le tõe n maan ye.",
+	"phonos-unsupported-language": "Pa Phonos n sõngd tɩ b gomd buud-gomd $1 ye.",
+	"phonos-unsupported-language-with-suggestions": "Pa Phonos n sõngd tɩ b gomd buud-gomd $1 ye. Yaa buud-goam nins sẽn tõe n wa be ne-bã n deegame: $2."
+}

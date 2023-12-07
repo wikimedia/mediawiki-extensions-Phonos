@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ziko"
+		]
+	},
+	"phonos-desc": "Provizu tekst-al-parolan funkciecon por gamo da lingvoj",
+	"phonos-error-category": "Paĝoj kun eraroj de bildigo de Phonos",
+	"phonos-error-category-desc": "Okazis eraro dum la bildigo de Phonos.",
+	"phonos-audio-conversion-error": "Malsukcesis transformi aŭdion al MP3:\n$1",
+	"phonos-directory-error": "Malsukcesis krei stokan dosierujon $1",
+	"phonos-engine-error": "Malsukcesis generi sondosieron per la $1-motoro:\n$2",
+	"phonos-storage-error": "Malsukcesis stoki sondosieron en ĝia fina celloko:\n$1",
+	"phonos-purge-needed-error": "Ne eblas ludi audion.",
+	"phonos-purge-needed-error-link": "Refreŝigu la paĝon kaj provu denove.",
+	"phonos-tracking-category": "Paĝoj kiuj uzas Phonos",
+	"phonos-tracking-category-desc": "La paĝo uzas la etendaĵon [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-player-aria-description": "Ludu aŭdion",
+	"phonos-ipa-too-long": "IPA tro longa por redoni.",
+	"phonos-wikibase-api-error": "Ne eblas preni enton el Vikibazo: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Nevalida ento aŭ leksemo: $1",
+	"phonos-wikibase-not-found": "Neniu aŭdio trovita por Vikibaza ero: $1",
+	"phonos-wikibase-no-ipa": "Neniu IPA-transskribo trovita.",
+	"phonos-empty-file-error": "La generita audio ŝajnas esti malplena. La donita IPA povas esti malvalida, aŭ ne estas subtenata de la motoro. Uzado de la parametro '$1' povas helpi.",
+	"phonos-param-error": "Aŭ IPA, dosiero aŭ Vikibaza objekto devas esti provizita.",
+	"phonos-rendering-disabled": "IPA-bildado estas nuntempe malŝaltita.",
+	"phonos-unsupported-language": "Lingvo $1 ne estas subtenata de Phonos.",
+	"phonos-unsupported-language-with-suggestions": "Lingvo $1 ne estas subtenata de Phonos. La jenaj eble rilataj lingvoj estas subtenataj: $2."
+}
