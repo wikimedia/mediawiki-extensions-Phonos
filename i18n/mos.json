@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Abdul Fatawu 352",
 			"Soumaya"
 		]
 	},
@@ -15,6 +16,7 @@
 	"phonos-purge-needed-error-link": "Bao n leoke.",
 	"phonos-tracking-category": "Pages using Phonos",
 	"phonos-tracking-category-desc": "Sebrã tũnugda ne [[:mw:Extension:Phonos|Phonos]]",
+	"phonos-invalid-title": "Sõng-rãmb faayl \"$1\" yaa yʋy sẽn pa zems ye.",
 	"phonos-file-not-found": "D pa yãend \"[[$1]]\" kaset faayã ye.",
 	"phonos-file-not-audio": "\"[[$1]]\" pa kaset-bi-bi-kãng ye.",
 	"phonos-player-aria-description": "Sõng-y n wʋme",
