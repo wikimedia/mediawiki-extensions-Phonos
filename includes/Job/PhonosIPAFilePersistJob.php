@@ -75,7 +75,11 @@ class PhonosIPAFilePersistJob extends Job implements GenericParameterJob {
 
 		try {
 			$engine->getAudioData( $params );
+			$engine->clearError( $params );
+
 		} catch ( PhonosException $e ) {
+			$engine->setError( $params, $e->getMessageKeyAndArgs() );
+
 			$this->logger->error(
 				__METHOD__ . ' Job failed',
 				[

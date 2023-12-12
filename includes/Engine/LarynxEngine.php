@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\Phonos\Engine;
 
+use BagOStuff;
 use DOMDocument;
 use FileBackendGroup;
 use MediaWiki\Config\Config;
@@ -19,6 +20,7 @@ class LarynxEngine extends Engine {
 	 * @param HttpRequestFactory $requestFactory
 	 * @param CommandFactory $commandFactory
 	 * @param FileBackendGroup $fileBackendGroup
+	 * @param BagOStuff $stash
 	 * @param WANObjectCache $wanCache
 	 * @param Config $config
 	 */
@@ -26,10 +28,11 @@ class LarynxEngine extends Engine {
 		HttpRequestFactory $requestFactory,
 		CommandFactory $commandFactory,
 		FileBackendGroup $fileBackendGroup,
+		BagOStuff $stash,
 		WANObjectCache $wanCache,
 		Config $config
 	) {
-		parent::__construct( $requestFactory, $commandFactory, $fileBackendGroup, $wanCache, $config );
+		parent::__construct( $requestFactory, $commandFactory, $fileBackendGroup, $stash, $wanCache, $config );
 		$this->apiEndpoint = $config->get( 'PhonosApiEndpointLarynx' );
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 	}

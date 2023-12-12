@@ -23,6 +23,7 @@ class GoogleEngineTest extends TestCase {
 			$services->getHttpRequestFactory(),
 			$services->getShellCommandFactory(),
 			$services->getFileBackendGroup(),
+			$services->getMainObjectStash(),
 			$services->getMainWANObjectCache(),
 			$services->getMainConfig()
 		);
