@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"NMW03"
+			"NMW03",
+			"Wertuose"
 		]
 	},
 	"phonos-desc": "Bir sıra dillər üçün mətndən nitqə funksiyanı təmin edir",
@@ -15,7 +16,7 @@
 	"phonos-purge-needed-error-link": "Səhifəni yeniləyin və yenidən cəhd edin.",
 	"phonos-tracking-category": "Phonos istifadə edən səhifələr",
 	"phonos-tracking-category-desc": "Səhifə [[:mw:Extension:Phonos|Phonos]] istifadə edir.",
-	"phonos-file-not-found": "\"[[$1]]\" audio faylı tapılmadı.",
+	"phonos-file-not-found": "\"[[$1]]\" adlı audiofayl tapılmadı.",
 	"phonos-file-not-audio": "\"[[$1]]\" faylı audio faylı deyil.",
 	"phonos-player-aria-description": "Audionu oxut",
 	"phonos-ipa-too-long": "IPA render etmək üçün çox uzundur.",
