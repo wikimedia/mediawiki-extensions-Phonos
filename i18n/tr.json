@@ -19,6 +19,7 @@
 	"phonos-file-not-found": "\"$1\" ses dosyası bulunamadı.",
 	"phonos-file-not-audio": "\"$1\" bir ses dosyası değil.",
 	"phonos-player-aria-description": "Ses çal",
+	"phonos-aria-error": "Ses çalınamıyor",
 	"phonos-ipa-too-long": "IPA işlemek için çok uzun.",
 	"phonos-wikibase-api-error": "Varlık Vikitaban'dan alınamıyor: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Geçersiz varlık ya da sözlükbirim: $1",
