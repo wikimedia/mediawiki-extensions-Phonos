@@ -18,6 +18,7 @@
 	"phonos-purge-needed-error-link": "Oppdater siden og prøv på nytt.",
 	"phonos-tracking-category": "Sider som bruker Phonos",
 	"phonos-tracking-category-desc": "Siden bruker [[:mw:Extension:Phonos|Phonos]]-utvidelsen.",
+	"phonos-invalid-title": "Lydfila «$1» er en ugyldig tittel.",
 	"phonos-file-not-found": "Fant ikke lydfilen \"[[$1]]\".",
 	"phonos-file-not-audio": "\"[[$1]]\" er ikke en lydfil.",
 	"phonos-player-aria-description": "Spill av lyd",
