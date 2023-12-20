@@ -54,9 +54,6 @@ class Phonos implements ParserFirstCallInitHook {
 	private $jobQueueGroup;
 
 	/** @var bool */
-	private $isCommandLineMode;
-
-	/** @var bool */
 	private $renderingEnabled;
 
 	/** @var LoggerInterface */
@@ -92,7 +89,6 @@ class Phonos implements ParserFirstCallInitHook {
 		$this->statsdDataFactory = $statsdDataFactory;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->linkRenderer = $linkRenderer;
-		$this->isCommandLineMode = $config->get( 'CommandLineMode' );
 		$this->renderingEnabled = $config->get( 'PhonosIPARenderingEnabled' );
 		$this->logger = LoggerFactory::getInstance( 'Phonos' );
 		$this->inlineAudioPlayerMode = $config->get( 'PhonosInlineAudioPlayerMode' );
@@ -267,28 +263,23 @@ class Phonos implements ParserFirstCallInitHook {
 		$options['lang'] = $this->engine->checkLanguageSupport( $options['lang'] );
 		$audioParams = new AudioParams( $options['ipa'], $options['text'], $options['lang'] );
 		$isPersisted = $this->engine->isPersisted( $audioParams );
-		// TODO: Remove this debug log once T325464 resolved.
-		$this->logger->debug(
-			__METHOD__ . ' debug',
-			[
-				'audioParams' => $audioParams,
-				'isPersisted' => $isPersisted,
-				'renderingEnabled' => $this->renderingEnabled,
-				'isCommandLineMode' => $this->isCommandLineMode,
-				'incrementExpensiveFunctionCount' => $parser->incrementExpensiveFunctionCount(),
-			]
-		);
 		if ( $isPersisted ) {
 			$this->engine->updateFileExpiry( $audioParams );
 		} else {
 			if ( !$this->renderingEnabled ) {
 				throw new PhonosException( 'phonos-rendering-disabled' );
 			}
-			if ( $this->isCommandLineMode || !$parser->incrementExpensiveFunctionCount() ) {
+			if (
+				// Generate immediately on "interactive" parses to surface any error messages to the user.
+				// HACK: getRenderReason() is intended for logging and debugging only.
+				// This should instead always use the job queue (T353783).
+				in_array( $parser->getOptions()->getRenderReason(), [ 'page-view', 'page-preview', 'api-parse' ] ) &&
+				$parser->incrementExpensiveFunctionCount()
+			) {
+				$this->engine->getAudioData( $audioParams );
+			} else {
 				// generate audio file in a job
 				$this->pushJob( $options['ipa'], $options['text'], $options['lang'] );
-			} else {
-				$this->engine->getAudioData( $audioParams );
 			}
 		}
 		// Pass the URL to the clientside even if audio file is not ready

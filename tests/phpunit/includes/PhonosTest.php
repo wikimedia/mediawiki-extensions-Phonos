@@ -14,6 +14,7 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Shell\CommandFactory;
 use MediaWikiIntegrationTestCase;
 use Parser;
+use ParserOptions;
 use WANObjectCache;
 
 /**
@@ -40,18 +41,22 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 		return $this->createPartialMock( JobQueueGroup::class, [ 'push' ] );
 	}
 
-	protected function getParserMock(): Parser {
+	protected function getParserMock( $renderReason = 'page-view' ): Parser {
+		$parserOptions = $this->createMock( ParserOptions::class );
 		$parserOutput = $this->createMock( ParserOutput::class );
 		$parserLanguage = $this->createMock( Language::class );
 		$parser = $this->getMockBuilder( Parser::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [
+				'getOptions',
 				'getOutput',
 				'getContentLanguage',
 				'addTrackingCategory',
 				'incrementExpensiveFunctionCount',
 				'recursiveTagParseFully',
 		] )->getMock();
+		$parser->method( 'getOptions' )->willReturn( $parserOptions );
+		$parserOptions->method( 'getRenderReason' )->willReturn( $renderReason );
 		$parser->method( 'getOutput' )->willReturn( $parserOutput );
 		$parser->method( 'getContentLanguage' )->willReturn( $parserLanguage );
 		$parser->method( 'recursiveTagParseFully' )->willReturn( '' );
@@ -68,7 +73,6 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testCreateJobWhenInCliMode(): void {
-		$this->overrideConfigValue( 'CommandLineMode', true );
 		$this->overrideConfigValue( 'PhonosFileBackend', false );
 
 		$services = $this->getServiceContainer();
@@ -90,11 +94,10 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$args = [ 'lang' => 'en', 'text' => 'test', 'ipa' => 'tɛst' ];
-		$phonos->renderPhonos( 'test', $args, $this->getParserMock() );
+		$phonos->renderPhonos( 'test', $args, $this->getParserMock( 'some-job-or-another' ) );
 	}
 
 	public function testCreateJobWhenExpensiveFunctionCountHitsLimit(): void {
-		$this->overrideConfigValue( 'CommandLineMode', false );
 		$this->overrideConfigValue( 'PhonosFileBackend', false );
 
 		$services = $this->getServiceContainer();
@@ -123,7 +126,6 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testPersistAudioSynchronously(): void {
-		$this->overrideConfigValue( 'CommandLineMode', false );
 		$this->overrideConfigValue( 'PhonosFileBackend', false );
 
 		$services = $this->getServiceContainer();
