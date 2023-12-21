@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"AntanO",
 			"Siddhan"
 		]
 	},
-	"phonos-tracking-category": "புகைப்படங்களை பயண்படுத்தும் பக்கங்கள்",
-	"phonos-tracking-category-desc": "இந்த பக்கம் [[:mw:Extension:Phonos|Phonos]] நீட்டிப்பை பயண்படுத்துகிறது."
+	"phonos-tracking-category": "பேச்சுக் கோப்புள்ள பக்கங்கள்",
+	"phonos-tracking-category-desc": "இந்த பக்கம் [[:mw:Extension:Phonos|பேச்சு]] நீட்டிப்பை பயண்படுத்துகிறது."
 }
