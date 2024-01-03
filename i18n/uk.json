@@ -1,8 +1,32 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ата"
+			"Ата",
+			"MonX94"
 		]
 	},
-	"phonos-desc": "Надає функцію перетворення тексту в мовлення для ряду мов"
+	"phonos-desc": "Надає функцію перетворення тексту в мовлення для ряду мов",
+	"phonos-error-category": "Сторінки з помилками відображення Phonos",
+	"phonos-error-category-desc": "При відображенні Phonos сталася помилка.",
+	"phonos-audio-conversion-error": "Не вдалося перетворити аудіо в MP3:\n $1",
+	"phonos-directory-error": "Не вдалося створити каталог зберігання $1",
+	"phonos-engine-error": "Не вдалося створити аудіофайл за допомогою рушія $1:\n $2",
+	"phonos-storage-error": "Не вдалося зберегти аудіофайл у кінцевому місці призначення:\n $1",
+	"phonos-purge-needed-error": "Неможливо відтворити аудіо.",
+	"phonos-purge-needed-error-link": "Оновіть сторінку та повторіть спробу.",
+	"phonos-tracking-category": "Сторінки, що використовують Phonos",
+	"phonos-tracking-category-desc": "Сторінка використовує розширення [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-player-aria-description": "Відтворити аудіо",
+	"phonos-aria-error": "Неможливо відтворити аудіо.",
+	"phonos-ipa-too-long": "Текст МФА задовгий для рендерингу у вигляді аудіо.",
+	"phonos-wikibase-api-error": "Неможливо отримати сутність із Wikibase: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Недійсна сутність або лексема: $1",
+	"phonos-wikibase-not-found": "Не знайдено аудіо для елемента Wikibase: $1",
+	"phonos-wikibase-no-ipa": "Транскрипції МФА не знайдено.",
+	"phonos-empty-file-error": "Згенероване аудіо схоже, не має змісту. Вхідні дані МФА можуть бути недійсними або не підтримуватися системою. Використання параметра «$1» може допомогти.",
+	"phonos-param-error": "Необхідно надати транскрипцію МФА, файл або елемент Wikibase.",
+	"phonos-rendering-disabled": "Відтворення МФА наразі вимкнено.",
+	"phonos-unsupported-language": "Phonos не підтримує мову $1.",
+	"phonos-unsupported-language-with-suggestions": "Phonos не підтримує мову $1. Підтримуються такі, можливо, пов’язані мови: $2.",
+	"phonos-inline-audio-player-mode": "У режимі вбудованого аудіопрогравача можна надати лише аудіофайл або елемент Wikibase із властивістю звуку вимови ($1)."
 }
