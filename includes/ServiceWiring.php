@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Extension\Phonos\Engine\EngineInterface;
 use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
 use MediaWiki\MediaWikiServices;

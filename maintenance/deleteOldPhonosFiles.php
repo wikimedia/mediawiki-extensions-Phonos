@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Extension\Phonos\Engine\Engine;
+use MediaWiki\Status\Status;
 
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {

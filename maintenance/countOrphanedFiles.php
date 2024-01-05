@@ -2,6 +2,10 @@
 
 use MediaWiki\Extension\Phonos\Engine\Engine;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Site\MediaWikiSite;
+use MediaWiki\Site\SiteList;
+use MediaWiki\Site\SiteStore;
+use MediaWiki\Status\Status;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\LBFactory;
 
