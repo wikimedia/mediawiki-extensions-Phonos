@@ -1,9 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ата"
+			"Ата",
+			"MonX94"
 		]
 	},
 	"phonos-desc": "Надає функцію перетворення тексту в мовлення для ряду мов",
-	"phonos-tracking-category": "Сторінки, що використовують Phonos"
+	"phonos-error-category": "Сторінки з помилками відображення Phonos",
+	"phonos-error-category-desc": "При відображенні Phonos сталася помилка.",
+	"phonos-audio-conversion-error": "Не вдалося перетворити аудіо в MP3:\n $1",
+	"phonos-directory-error": "Не вдалося створити каталог зберігання $1",
+	"phonos-engine-error": "Не вдалося створити аудіофайл за допомогою рушія $1:\n $2",
+	"phonos-storage-error": "Не вдалося зберегти аудіофайл у кінцевому місці призначення:\n $1",
+	"phonos-tracking-category": "Сторінки, що використовують Phonos",
+	"phonos-tracking-category-desc": "Сторінка використовує розширення [[:mw:Extension:Phonos|Phonos]]."
 }
