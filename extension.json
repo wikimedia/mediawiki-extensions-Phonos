@@ -148,7 +148,7 @@
 			]
 		},
 		"ext.phonos.icons.js": {
-			"class": "ResourceLoaderOOUIIconPackModule",
+			"class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
 			"useDataURI": false,
 			"icons": [
 				"reload"
@@ -171,7 +171,7 @@
 			}
 		},
 		"ext.phonos.icons": {
-			"class": "ResourceLoaderOOUIIconPackModule",
+			"class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
 			"useDataURI": false,
 			"icons": [
 				"volumeUp",
