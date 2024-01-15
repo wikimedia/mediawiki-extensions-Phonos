@@ -15,7 +15,7 @@
 	"phonos-purge-needed-error-link": "Refresca le pagina e tenta lo de novo.",
 	"phonos-tracking-category": "Paginas que usa Phonos",
 	"phonos-tracking-category-desc": "Le pagina usa le extension [[:mw:Extension:Phonos|Phonos]].",
-	"phonos-invalid-title": "Le nomine del file audio “$1” es un titulo non valide.",
+	"phonos-invalid-title": "Le file audio “$1” ha un titulo non valide.",
 	"phonos-file-not-found": "File audio \"[[$1]]\" non trovate.",
 	"phonos-file-not-audio": "Le file \"[[$1]]\" non es un file audio.",
 	"phonos-player-aria-description": "Reproducer audio",
