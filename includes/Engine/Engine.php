@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\Phonos\Engine;
 
+use BagOStuff;
 use FileBackend;
 use FileBackendGroup;
 use FSFileBackend;
@@ -64,6 +65,8 @@ abstract class Engine implements EngineInterface {
 	/** @var int Time in days we want to persist the file for */
 	protected $fileExpiry;
 
+	private BagOStuff $stash;
+
 	/** @var WANObjectCache */
 	protected $wanCache;
 
@@ -71,6 +74,7 @@ abstract class Engine implements EngineInterface {
 	 * @param HttpRequestFactory $requestFactory
 	 * @param CommandFactory $commandFactory
 	 * @param FileBackendGroup $fileBackendGroup
+	 * @param BagOStuff $stash
 	 * @param WANObjectCache $wanCache
 	 * @param Config $config
 	 */
@@ -78,12 +82,14 @@ abstract class Engine implements EngineInterface {
 		HttpRequestFactory $requestFactory,
 		CommandFactory $commandFactory,
 		FileBackendGroup $fileBackendGroup,
+		BagOStuff $stash,
 		WANObjectCache $wanCache,
 		Config $config
 	) {
 		$this->requestFactory = $requestFactory;
 		$this->commandFactory = $commandFactory;
 		$this->fileBackend = self::getFileBackend( $fileBackendGroup, $config );
+		$this->stash = $stash;
 		$this->wanCache = $wanCache;
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 		$this->lamePath = $config->get( 'PhonosLame' );
@@ -210,6 +216,45 @@ abstract class Engine implements EngineInterface {
 		return (bool)$this->fileBackend->fileExists( [
 			'src' => $this->getFullFileStoragePath( $params ),
 		] );
+	}
+
+	/**
+	 * Get the previous error recorded for the given parameters.
+	 *
+	 * @param AudioParams $params
+	 * @return ?array Message key and parameters, or null if no error
+	 */
+	final public function getError( AudioParams $params ): ?array {
+		return $this->stash->get(
+			$this->stash->makeKey( 'phonos', 'engine-error',
+				$params->getIpa(), $params->getText(), $params->getLang() )
+		) ?: null;
+	}
+
+	/**
+	 * Record the error encountered for the given parameters.
+	 *
+	 * @param AudioParams $params
+	 * @param array $error Message key and parameters
+	 */
+	final public function setError( AudioParams $params, array $error ): void {
+		$this->stash->set(
+			$this->stash->makeKey( 'phonos', 'engine-error',
+				$params->getIpa(), $params->getText(), $params->getLang() ),
+			$error
+		);
+	}
+
+	/**
+	 * Clear the previous error recorded for the given parameters.
+	 *
+	 * @param AudioParams $params
+	 */
+	final public function clearError( AudioParams $params ): void {
+		$this->stash->delete(
+			$this->stash->makeKey( 'phonos', 'engine-error',
+				$params->getIpa(), $params->getText(), $params->getLang() )
+		);
 	}
 
 	/**

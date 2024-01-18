@@ -269,18 +269,10 @@ class Phonos implements ParserFirstCallInitHook {
 			if ( !$this->renderingEnabled ) {
 				throw new PhonosException( 'phonos-rendering-disabled' );
 			}
-			if (
-				// Generate immediately on "interactive" parses to surface any error messages to the user.
-				// HACK: getRenderReason() is intended for logging and debugging only.
-				// This should instead always use the job queue (T353783).
-				in_array( $parser->getOptions()->getRenderReason(), [ 'page-view', 'page-preview', 'api-parse' ] ) &&
-				$parser->incrementExpensiveFunctionCount()
-			) {
-				$this->engine->getAudioData( $audioParams );
-			} else {
-				// generate audio file in a job
-				$this->pushJob( $options['ipa'], $options['text'], $options['lang'] );
-			}
+			// Generate audio file in a job, so that the parser doesn't have to wait for it, similar to
+			// image thumbnails (T325464#9400171). Using jobs also allows controlling the execution rate
+			// to avoid hitting backend rate limits (T318086).
+			$this->pushJob( $options['ipa'], $options['text'], $options['lang'] );
 		}
 		// Pass the URL to the clientside even if audio file is not ready
 		$buttonConfig['href'] = $this->engine->getFileUrl( $audioParams );
@@ -292,6 +284,14 @@ class Phonos implements ParserFirstCallInitHook {
 		);
 		$propFiles[] = basename( $this->engine->getFileName( $audioParams ), '.mp3' );
 		$parser->getOutput()->setPageProperty( 'phonos-files', json_encode( array_unique( $propFiles ) ) );
+
+		$previousError = $this->engine->getError( $audioParams );
+		if ( $previousError ) {
+			// If the job failed the last time, assume it's going to fail again, and display its error
+			// message. There should be a way to do this without parsing the page again…
+			$key = array_shift( $previousError );
+			throw new PhonosException( $key, $previousError );
+		}
 	}
 
 	/**
