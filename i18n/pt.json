@@ -15,9 +15,11 @@
 	"phonos-purge-needed-error-link": "Refresque a página e tente novamente.",
 	"phonos-tracking-category": "Páginas que usam Phonos",
 	"phonos-tracking-category-desc": "A página usa a extensão [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-invalid-title": "O ficheiro de áudio \"$1\" tem um título inválido.",
 	"phonos-file-not-found": "O ficheiro de áudio \"[[$1]]\" não foi encontrado.",
 	"phonos-file-not-audio": "O ficheiro \"[[$1]]\" não é um ficheiro de áudio.",
-	"phonos-player-aria-description": "Ouça a pronunciação AFI (transcrição com o alfabeto fonético internacional) de $1.",
+	"phonos-player-aria-description": "Reproduzir áudio",
+	"phonos-aria-error": "Não é possível reproduzir o áudio",
 	"phonos-ipa-too-long": "A transcrição AFI é demasiado longa para fazer a composição.",
 	"phonos-wikibase-api-error": "Não foi possível obter a entidade da wiki Wikibase: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Entidade ou lexema inválidos: $1",
@@ -27,5 +29,6 @@
 	"phonos-param-error": "Tem de ser fornecida uma transcrição AFI, um ficheiro ou um elemento Wikibase.",
 	"phonos-rendering-disabled": "A composição de transcrições AFI está atualmente desativada.",
 	"phonos-unsupported-language": "A língua $1 não é suportada pelo Phonos.",
-	"phonos-unsupported-language-with-suggestions": "A língua $1 não é suportada pelo Phonos. As seguintes línguas, que podem estar relacionadas, são suportadas: $2."
+	"phonos-unsupported-language-with-suggestions": "A língua $1 não é suportada pelo Phonos. As seguintes línguas, que podem estar relacionadas, são suportadas: $2.",
+	"phonos-inline-audio-player-mode": "Só um ficheiro de áudio ou um elemento Wikibase com uma propriedade de áudio de pronunciação ($1) podem ser fornecidos no modo de reprodução de áudio em linha."
 }
