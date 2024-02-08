@@ -218,8 +218,8 @@ PhonosButton.prototype.handleMissingFile = function () {
 PhonosButton.prototype.track = function ( baseMetricName, value ) {
 	const dbName = mw.config.get( 'wgDBname' );
 	const lang = mw.config.get( 'wgContentLanguage' );
-	mw.track( `${baseMetricName}.by_wiki.${dbName}`, value );
-	mw.track( `${baseMetricName}.by_lang.${lang}`, value );
+	mw.track( `${ baseMetricName }.by_wiki.${ dbName }`, value );
+	mw.track( `${ baseMetricName }.by_lang.${ lang }`, value );
 };
 
 module.exports = PhonosButton;
