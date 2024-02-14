@@ -5,5 +5,7 @@
 		]
 	},
 	"phonos-error-category": "Síður með Phonos-birtingarvillur",
-	"phonos-tracking-category": "Síður sem nota Phonos"
+	"phonos-error-category-desc": "Villa kom upp við birtingu á Phonos.",
+	"phonos-tracking-category": "Síður sem nota Phonos",
+	"phonos-tracking-category-desc": "Síðan notar [[:mw:Extension:Phonos|Phonos]]-viðbótina."
 }
