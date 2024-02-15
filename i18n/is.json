@@ -4,8 +4,8 @@
 			"Stefán Örvar Sigmundsson"
 		]
 	},
-	"phonos-error-category": "Síður með Phonos-birtingarvillur",
-	"phonos-error-category-desc": "Villa kom upp við birtingu á Phonos.",
+	"phonos-error-category": "Síður með Phonos-myndgerðarvillur",
+	"phonos-error-category-desc": "Villa kom upp við myndgerð á Phonos.",
 	"phonos-tracking-category": "Síður sem nota Phonos",
 	"phonos-tracking-category-desc": "Síðan notar [[:mw:Extension:Phonos|Phonos]]-viðbótina."
 }
