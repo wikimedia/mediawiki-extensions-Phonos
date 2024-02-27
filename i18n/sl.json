@@ -23,7 +23,7 @@
 	"phonos-wikibase-invalid-entity-lexeme": "Neveljavna entiteta ali leksem: $1",
 	"phonos-wikibase-not-found": "Ni najdenega zvoka za predmet Wikibase: $1",
 	"phonos-wikibase-no-ipa": "Prepis IPA ni bil najden.",
-	"phonos-empty-file-error": "Zdi se, da je generirani zvok prazen. Navedena transkripcija IPA je morda neveljavna ali pa je motor ne podpira. Mogoče lahko pomaga uporaba parametra »$1«.",
+	"phonos-empty-file-error": "Zdi se, da je generirani zvok prazen. Navedena transkripcija IPA je morda neveljavna ali pa je pogon ne podpira. Mogoče lahko pomaga uporaba parametra »$1«.",
 	"phonos-param-error": "Zagotoviti je treba IPA, datoteko ali element Wikibase.",
 	"phonos-rendering-disabled": "Upodabljanje IPA je trenutno onemogočeno.",
 	"phonos-unsupported-language": "Phonos ne podpira jezika $1.",
