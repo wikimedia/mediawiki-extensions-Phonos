@@ -7,5 +7,6 @@
 	},
 	"phonos-tracking-category": "Säiten, déi Phonos benotzen",
 	"phonos-invalid-title": "D'Audiodatei „$1“ huet een ongültegen Titel.",
-	"phonos-file-not-found": "Audiodatei „[$1 $2]“ net fonnt."
+	"phonos-file-not-found": "Audiodatei „[$1 $2]“ net fonnt.",
+	"phonos-file-not-audio": "D'Datei „[[$1|$2]]“ ass keng Audiodatei."
 }
