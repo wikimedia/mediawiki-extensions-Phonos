@@ -44,7 +44,7 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testIsPersisted(): void {
-		$args = [ new AudioParams( '/həˈvænə/', 'Havana', 'en' ) , 'foobar' ];
+		$args = [ new AudioParams( '/həˈvænə/', 'Havana', 'en' ), 'foobar' ];
 		$this->engine->persistAudio( ...$args );
 		$this->assertTrue( $this->engine->isPersisted( ...$args ) );
 	}
