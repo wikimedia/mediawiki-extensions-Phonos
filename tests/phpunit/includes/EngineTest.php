@@ -29,6 +29,7 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 			$services->getFileBackendGroup(),
 			$services->getMainObjectStash(),
 			$services->getMainWANObjectCache(),
+			$services->getContentLanguage(),
 			$services->getMainConfig()
 		);
 		$this->uploadPath = $services->getMainConfig()->get( 'UploadPath' );

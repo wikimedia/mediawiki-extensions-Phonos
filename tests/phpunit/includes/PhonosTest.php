@@ -33,6 +33,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 				$this->createMock( FileBackendGroup::class ),
 				new EmptyBagOStuff(),
 				WANObjectCache::newEmpty(),
+				$this->getServiceContainer()->getContentLanguage(),
 				$this->getServiceContainer()->getMainConfig(),
 			] )->onlyMethods( [ 'getAudioData', 'getFileUrl', 'getFileStoragePath' ] )
 			->getMock();

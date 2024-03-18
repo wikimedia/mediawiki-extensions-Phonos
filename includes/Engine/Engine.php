@@ -6,12 +6,12 @@ use BagOStuff;
 use FileBackend;
 use FileBackendGroup;
 use FSFileBackend;
+use Language;
 use MediaWiki\Config\Config;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Status\Status;
 use NullLockManager;
@@ -70,12 +70,16 @@ abstract class Engine implements EngineInterface {
 	/** @var WANObjectCache */
 	protected $wanCache;
 
+	/** @var Language */
+	private $contentLanguage;
+
 	/**
 	 * @param HttpRequestFactory $requestFactory
 	 * @param CommandFactory $commandFactory
 	 * @param FileBackendGroup $fileBackendGroup
 	 * @param BagOStuff $stash
 	 * @param WANObjectCache $wanCache
+	 * @param Language $contentLanguage
 	 * @param Config $config
 	 */
 	public function __construct(
@@ -84,6 +88,7 @@ abstract class Engine implements EngineInterface {
 		FileBackendGroup $fileBackendGroup,
 		BagOStuff $stash,
 		WANObjectCache $wanCache,
+		Language $contentLanguage,
 		Config $config
 	) {
 		$this->requestFactory = $requestFactory;
@@ -91,6 +96,7 @@ abstract class Engine implements EngineInterface {
 		$this->fileBackend = self::getFileBackend( $fileBackendGroup, $config );
 		$this->stash = $stash;
 		$this->wanCache = $wanCache;
+		$this->contentLanguage = $contentLanguage;
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 		$this->lamePath = $config->get( 'PhonosLame' );
 		$this->uploadPath = $config->get( 'PhonosPath' ) ?:
@@ -304,7 +310,7 @@ abstract class Engine implements EngineInterface {
 		if ( count( $suggestions ) === 0 ) {
 			throw new PhonosException( 'phonos-unsupported-language', [ $lang ] );
 		} else {
-			$suggestionList = MediaWikiServices::getInstance()->getContentLanguage()->listToText( $suggestions );
+			$suggestionList = $this->contentLanguage->listToText( $suggestions );
 			throw new PhonosException( 'phonos-unsupported-language-with-suggestions', [ $lang, $suggestionList ] );
 		}
 	}
