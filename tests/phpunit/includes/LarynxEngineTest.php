@@ -4,17 +4,16 @@ namespace MediaWiki\Extension\Phonos;
 
 use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Engine\LarynxEngine;
-use MediaWiki\MediaWikiServices;
-use PHPUnit\Framework\TestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Extension\Phonos\Engine\LarynxEngine
  * @group Phonos
  */
-class LarynxEngineTest extends TestCase {
+class LarynxEngineTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetSsml(): void {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$engine = new LarynxEngine(
 			$services->getHttpRequestFactory(),
 			$services->getShellCommandFactory(),

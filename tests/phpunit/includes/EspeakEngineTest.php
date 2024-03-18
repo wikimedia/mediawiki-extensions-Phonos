@@ -4,17 +4,16 @@ namespace MediaWiki\Extension\Phonos;
 
 use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Engine\EspeakEngine;
-use MediaWiki\MediaWikiServices;
-use PHPUnit\Framework\TestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group Phonos
  * @covers \MediaWiki\Extension\Phonos\Engine\EspeakEngine
  */
-class EspeakEngineTest extends TestCase {
+class EspeakEngineTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetSsml(): void {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$engine = new EspeakEngine(
 			$services->getHttpRequestFactory(),
 			$services->getShellCommandFactory(),
@@ -35,7 +34,7 @@ class EspeakEngineTest extends TestCase {
 	 * @dataProvider provideGetLangsFromOutput
 	 */
 	public function testGetLangsFromOutput( string $output, array $result ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$engine = new EspeakEngine(
 			$services->getHttpRequestFactory(),
 			$services->getShellCommandFactory(),

@@ -5,20 +5,19 @@ namespace MediaWiki\Extension\Phonos;
 use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Engine\GoogleEngine;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
-use MediaWiki\MediaWikiServices;
-use PHPUnit\Framework\TestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group Phonos
  * @covers \MediaWiki\Extension\Phonos\Engine\GoogleEngine
  */
-class GoogleEngineTest extends TestCase {
+class GoogleEngineTest extends MediaWikiIntegrationTestCase {
 
 	/** @var GoogleEngine */
 	private $engine;
 
 	public function setUp(): void {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$this->engine = new GoogleEngine(
 			$services->getHttpRequestFactory(),
 			$services->getShellCommandFactory(),
