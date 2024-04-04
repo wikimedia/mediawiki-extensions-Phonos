@@ -20,6 +20,7 @@ class EspeakEngineTest extends MediaWikiIntegrationTestCase {
 			$services->getFileBackendGroup(),
 			$services->getMainObjectStash(),
 			$services->getMainWANObjectCache(),
+			$services->getContentLanguage(),
 			$services->getMainConfig()
 		);
 		$this->assertSame(
@@ -41,6 +42,7 @@ class EspeakEngineTest extends MediaWikiIntegrationTestCase {
 			$services->getFileBackendGroup(),
 			$services->getMainObjectStash(),
 			$services->getMainWANObjectCache(),
+			$services->getContentLanguage(),
 			$services->getMainConfig()
 		);
 		$this->assertSame( $result, $engine->getLangsFromOutput( $output ) );

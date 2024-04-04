@@ -24,6 +24,7 @@ class GoogleEngineTest extends MediaWikiIntegrationTestCase {
 			$services->getFileBackendGroup(),
 			$services->getMainObjectStash(),
 			$services->getMainWANObjectCache(),
+			$services->getContentLanguage(),
 			$services->getMainConfig()
 		);
 	}

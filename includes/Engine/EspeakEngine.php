@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\Phonos\Engine;
 use BagOStuff;
 use DOMDocument;
 use FileBackendGroup;
+use Language;
 use MediaWiki\Config\Config;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
@@ -29,6 +30,7 @@ class EspeakEngine extends Engine {
 	 * @param FileBackendGroup $fileBackendGroup
 	 * @param BagOStuff $stash
 	 * @param WANObjectCache $wanCache
+	 * @param Language $contentLanguage
 	 * @param Config $config
 	 */
 	public function __construct(
@@ -37,9 +39,18 @@ class EspeakEngine extends Engine {
 		FileBackendGroup $fileBackendGroup,
 		BagOStuff $stash,
 		WANObjectCache $wanCache,
+		Language $contentLanguage,
 		Config $config
 	) {
-		parent::__construct( $requestFactory, $commandFactory, $fileBackendGroup, $stash, $wanCache, $config );
+		parent::__construct(
+			$requestFactory,
+			$commandFactory,
+			$fileBackendGroup,
+			$stash,
+			$wanCache,
+			$contentLanguage,
+			$config
+		);
 		$this->espeakPath = $config->get( 'PhonosEspeak' );
 		$this->espeakCommand = $this->commandFactory
 			->createBoxed( 'phonos' )
