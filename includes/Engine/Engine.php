@@ -73,6 +73,9 @@ abstract class Engine implements EngineInterface {
 	/** @var Language */
 	private $contentLanguage;
 
+	/** @var Config */
+	protected $config;
+
 	/**
 	 * @param HttpRequestFactory $requestFactory
 	 * @param CommandFactory $commandFactory
@@ -97,6 +100,7 @@ abstract class Engine implements EngineInterface {
 		$this->stash = $stash;
 		$this->wanCache = $wanCache;
 		$this->contentLanguage = $contentLanguage;
+		$this->config = $config;
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 		$this->lamePath = $config->get( 'PhonosLame' );
 		$this->uploadPath = $config->get( 'PhonosPath' ) ?:
@@ -106,7 +110,11 @@ abstract class Engine implements EngineInterface {
 
 		// Only used if filebackend supports ATTR_METADATA
 		$this->fileExpiry = $config->get( 'PhonosFileExpiry' );
+
+		$this->register();
 	}
+
+	abstract protected function register(): void;
 
 	/**
 	 * Get either the configured FileBackend, or create a Phonos-specific FSFileBackend.

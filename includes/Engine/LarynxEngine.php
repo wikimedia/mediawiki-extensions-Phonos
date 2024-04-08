@@ -2,50 +2,16 @@
 
 namespace MediaWiki\Extension\Phonos\Engine;
 
-use BagOStuff;
 use DOMDocument;
-use FileBackendGroup;
-use Language;
-use MediaWiki\Config\Config;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
-use MediaWiki\Http\HttpRequestFactory;
-use MediaWiki\Shell\CommandFactory;
-use WANObjectCache;
 
 class LarynxEngine extends Engine {
 
 	/** @var string */
 	protected $apiEndpoint;
 
-	/**
-	 * @param HttpRequestFactory $requestFactory
-	 * @param CommandFactory $commandFactory
-	 * @param FileBackendGroup $fileBackendGroup
-	 * @param BagOStuff $stash
-	 * @param WANObjectCache $wanCache
-	 * @param Language $contentLanguage
-	 * @param Config $config
-	 */
-	public function __construct(
-		HttpRequestFactory $requestFactory,
-		CommandFactory $commandFactory,
-		FileBackendGroup $fileBackendGroup,
-		BagOStuff $stash,
-		WANObjectCache $wanCache,
-		Language $contentLanguage,
-		Config $config
-	) {
-		parent::__construct(
-			$requestFactory,
-			$commandFactory,
-			$fileBackendGroup,
-			$stash,
-			$wanCache,
-			$contentLanguage,
-			$config
-		);
-		$this->apiEndpoint = $config->get( 'PhonosApiEndpointLarynx' );
-		$this->apiProxy = $config->get( 'PhonosApiProxy' );
+	protected function register(): void {
+		$this->apiEndpoint = $this->config->get( 'PhonosApiEndpointLarynx' );
 	}
 
 	/**
