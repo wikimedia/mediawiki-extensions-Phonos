@@ -4,6 +4,7 @@
 			"Ykhwong"
 		]
 	},
+	"phonos-desc": "다양한 언어에 대한 텍스트 음성 변환 기능을 제공합니다",
 	"phonos-error-category": "포노스 렌더링 오류가 있는 문서",
 	"phonos-error-category-desc": "포노스를 렌더링하는 동안 오류가 있었습니다.",
 	"phonos-tracking-category": "포노스를 사용하는 문서",
