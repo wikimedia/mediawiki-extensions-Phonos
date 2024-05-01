@@ -1,11 +1,32 @@
 {
 	"@metadata": {
 		"authors": [
-			"Artsiom91"
+			"Artsiom91",
+			"Maistar"
 		]
 	},
+	"phonos-desc": "Прапануе функцыю пераўтварэння тэксту ў маўленне для шэрагу моў",
 	"phonos-error-category": "Старонкі з памылкамі пашырэння Phonos",
 	"phonos-error-category-desc": "На старонцы адбылася памылка пры працы пашырэння Phonos.",
+	"phonos-audio-conversion-error": "Не магу ператварыць аўдыё ў MP3:\n$1",
+	"phonos-directory-error": "Не магу стварыць каталог захоўвання $1",
+	"phonos-engine-error": "Не магу стварыць аўдыяфайл з дапамогай рухавічка $1:\n$2",
+	"phonos-storage-error": "Не магу захаваць аўдыяфайл у канцавым месцы:\n$1",
+	"phonos-purge-needed-error": "Не магу прайграць аўдыя.",
+	"phonos-purge-needed-error-link": "Абнавіце старонку і паспрабуйце зноў.",
 	"phonos-tracking-category": "Старонкі, якія ўжываюць пашырэнне Phonos",
-	"phonos-tracking-category-desc": "На гэтых старонках выкарыстоўваецца пашырэнне [[:mw:Extension:Phonos|Phonos]]."
+	"phonos-tracking-category-desc": "На гэтых старонках выкарыстоўваецца пашырэнне [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-player-aria-description": "Слухаць аўдыё",
+	"phonos-aria-error": "Не магу прайграць аўдыя",
+	"phonos-ipa-too-long": "МФА задоўгі, каб адлюстраваць.",
+	"phonos-wikibase-api-error": "Не магу атрымаць аб'ект з Wikibase: $1.",
+	"phonos-wikibase-invalid-entity-lexeme": "Хібны аб'ект ці лексема: $1",
+	"phonos-wikibase-not-found": "Няма аудыя для элемента Wikibase: $1",
+	"phonos-wikibase-no-ipa": "МФА-транскрыпцыя не знойдзена.",
+	"phonos-empty-file-error": "Створанае аўдыя здаецца пустым. Дадзены МФА можа быць хібным, ці не падтрымваецца рухавічком. Даданне параметра «$1» можа дапамагчы.",
+	"phonos-param-error": "Патрэбна падаць МФА, файл ці элемент Wikibase.",
+	"phonos-rendering-disabled": "Рэндэрынг МФА цяпер адключаны.",
+	"phonos-unsupported-language": "Phonos не падтрымлівае мову $1.",
+	"phonos-unsupported-language-with-suggestions": "Phonos не ведае мову $1. Падтрыманыя наступныя, магчыма, родныя мовы: $2.",
+	"phonos-inline-audio-player-mode": "У рэжыме ўбудаванага аўдыяплэера можна падаць толькі аўдыяфайл ці элемент Wikibase з уласцівасцю вымовы ($1)."
 }
