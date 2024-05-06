@@ -1,8 +1,36 @@
 {
 	"@metadata": {
 		"authors": [
+			"Hakimi97",
 			"Tofeiku"
 		]
 	},
-	"phonos-player-aria-description": "Mainkan audio"
+	"phonos": "Phonos",
+	"phonos-desc": "Menyediakan kefungsian teks-ke-tutur untuk pelbagai bahasa",
+	"phonos-error-category": "Laman dengan ralat terapan Phonos",
+	"phonos-error-category-desc": "Terdapat ralat semasa menerap Phonos.",
+	"phonos-audio-conversion-error": "Gagal menukar audio kepada MP3:\n$1",
+	"phonos-directory-error": "Gagal mencipta direktori storan $1",
+	"phonos-engine-error": "Gagal menjana fail audio menggunakan enjin $1:\n$2",
+	"phonos-storage-error": "Gagal menyimpan fail audio di destinasi terakhirnya:\n$1",
+	"phonos-purge-needed-error": "Tidak dapat memainkan audio.",
+	"phonos-purge-needed-error-link": "Muat semula laman dan cuba lagi.",
+	"phonos-tracking-category": "Laman yang menggunakan Phonos",
+	"phonos-tracking-category-desc": "Laman ini menggunakan sambungan [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-invalid-title": "Fail audio \"$1\" mempunyai tajuk yang tidak sah.",
+	"phonos-file-not-found": "Fail audio \"[$1 $2]\" tidak ditemui.",
+	"phonos-file-not-audio": "Fail \"[[$1|$2]]\" bukan sebuah fail audio.",
+	"phonos-player-aria-description": "Mainkan audio",
+	"phonos-aria-error": "Tidak dapat memainkan audio",
+	"phonos-ipa-too-long": "AFA terlalu panjang untuk diterap.",
+	"phonos-wikibase-api-error": "Tidak berupaya mendapatkan entiti daripada Wikibase semula: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Entiti atau leksem yang tidak sah: $1",
+	"phonos-wikibase-not-found": "Tiada audio ditemui untuk item Wikibase: $1",
+	"phonos-wikibase-no-ipa": "Tiada transkripsi AFA ditemui.",
+	"phonos-empty-file-error": "Audio yang dijana nampaknya kosong. AFA yang diberikan mungkin tidak sah, atau tidak disokong oleh enjin. Penggunaan parameter '$1' mungkin membantu.",
+	"phonos-param-error": "Sama ada AFA, fail atau item Wikibase mesti disediakan.",
+	"phonos-rendering-disabled": "Terapan AFA dilumpuhkan buat masa ini.",
+	"phonos-unsupported-language": "Bahasa $1 tidak disokong oleh Phonos.",
+	"phonos-unsupported-language-with-suggestions": "Bahasa $1 tidak disokong oleh Phonos. Berikut merupakan bahasa yang disokong dan mungkin berkaitan: $2.",
+	"phonos-inline-audio-player-mode": "Hanya fail audio, atau item Wikibase dengan ciri audio sebutan ($1), boleh disediakan semasa dalam mod pemain audio dalam baris."
 }
