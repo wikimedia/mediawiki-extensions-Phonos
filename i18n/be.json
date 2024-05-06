@@ -1,11 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"Artsiom91"
+			"Artsiom91",
+			"Maistar"
 		]
 	},
+	"phonos-desc": "Прапануе функцыю пераўтварэння тэксту ў маўленне для шэрагу моў",
 	"phonos-error-category": "Старонкі з памылкамі пашырэння Phonos",
 	"phonos-error-category-desc": "На старонцы адбылася памылка пры працы пашырэння Phonos.",
+	"phonos-audio-conversion-error": "Не магу ператварыць аўдыё ў MP3:\n$1",
+	"phonos-directory-error": "Не магу стварыць каталог захоўвання $1",
+	"phonos-engine-error": "Не магу стварыць аўдыяфайл з дапамогай рухавічка $1:\n$2",
+	"phonos-storage-error": "Не магу захаваць аўдыяфайл у канцавым месцы:\n$1",
 	"phonos-tracking-category": "Старонкі, якія ўжываюць пашырэнне Phonos",
 	"phonos-tracking-category-desc": "На гэтых старонках выкарыстоўваецца пашырэнне [[:mw:Extension:Phonos|Phonos]]."
 }
