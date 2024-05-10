@@ -12,11 +12,8 @@ use WANObjectCache;
  */
 class EspeakEngine extends Engine {
 
-	/** @var string */
-	protected $espeakPath;
-
-	/** @var BoxedCommand */
-	protected $espeakCommand;
+	protected string $espeakPath;
+	protected BoxedCommand $espeakCommand;
 
 	protected function register(): void {
 		$this->espeakPath = $this->config->get( 'PhonosEspeak' );

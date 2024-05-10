@@ -41,50 +41,32 @@ abstract class Engine implements EngineInterface {
 	/** @var string Prefix directory name when persisting files to storage. */
 	public const STORAGE_PREFIX = 'phonos-render';
 
-	/** @var HttpRequestFactory */
-	protected $requestFactory;
+	protected HttpRequestFactory $requestFactory;
 
-	/** @var CommandFactory */
-	protected $commandFactory;
+	protected CommandFactory $commandFactory;
 
-	/** @var FileBackend */
-	protected $fileBackend;
+	protected FileBackend $fileBackend;
 
-	/** @var string */
+	/** @var string|false */
 	protected $apiProxy;
 
-	/** @var string */
-	protected $lamePath;
+	protected string $lamePath;
 
-	/** @var string */
-	protected $uploadPath;
+	protected string $uploadPath;
 
-	/** @var string */
-	private $engineName;
+	private string $engineName;
 
-	/** @var int Time in days we want to persist the file for */
+	/** @var int|string Time in days we want to persist the file for */
 	protected $fileExpiry;
 
 	private BagOStuff $stash;
 
-	/** @var WANObjectCache */
-	protected $wanCache;
+	protected WANObjectCache $wanCache;
 
-	/** @var Language */
-	private $contentLanguage;
+	private Language $contentLanguage;
 
-	/** @var Config */
-	protected $config;
+	protected Config $config;
 
-	/**
-	 * @param HttpRequestFactory $requestFactory
-	 * @param CommandFactory $commandFactory
-	 * @param FileBackendGroup $fileBackendGroup
-	 * @param BagOStuff $stash
-	 * @param WANObjectCache $wanCache
-	 * @param Language $contentLanguage
-	 * @param Config $config
-	 */
 	public function __construct(
 		HttpRequestFactory $requestFactory,
 		CommandFactory $commandFactory,

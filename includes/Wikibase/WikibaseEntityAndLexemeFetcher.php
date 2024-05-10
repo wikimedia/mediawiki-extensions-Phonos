@@ -16,39 +16,18 @@ use WANObjectCache;
  */
 class WikibaseEntityAndLexemeFetcher {
 
-	/** @var string */
-	private $wikibaseUrl;
+	private string $wikibaseUrl;
+	private string $wikibasePronunciationAudioProp;
+	private string $wikibaseLangNameProp;
+	private string $wikibaseIETFLangTagProp;
+	private string $wikibaseIPATranscriptionProp;
+	private HttpRequestFactory $requestFactory;
+	private RepoGroup $repoGroup;
+	private WANObjectCache $wanCache;
 
-	/** @var string */
-	private $wikibasePronunciationAudioProp;
-
-	/** @var string */
-	private $wikibaseLangNameProp;
-
-	/** @var string */
-	private $wikibaseIETFLangTagProp;
-
-	/** @var string */
-	private $wikibaseIPATranscriptionProp;
-
-	/** @var HttpRequestFactory */
-	private $requestFactory;
-
-	/** @var RepoGroup */
-	private $repoGroup;
-
-	/** @var WANObjectCache */
-	private $wanCache;
-
-	/** @var string */
+	/** @var string|false */
 	private $apiProxy;
 
-	/**
-	 * @param HttpRequestFactory $requestFactory
-	 * @param RepoGroup $repoGroup
-	 * @param WANObjectCache $wanCache
-	 * @param Config $config
-	 */
 	public function __construct(
 		HttpRequestFactory $requestFactory,
 		RepoGroup $repoGroup,

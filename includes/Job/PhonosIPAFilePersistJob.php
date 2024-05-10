@@ -40,9 +40,7 @@ use Psr\Log\LoggerInterface;
 class PhonosIPAFilePersistJob extends Job {
 	private Engine $engine;
 	private StatsdDataFactoryInterface $statsdDataFactory;
-
-	/** @var LoggerInterface */
-	protected $logger;
+	protected LoggerInterface $logger;
 
 	/**
 	 * @inheritDoc

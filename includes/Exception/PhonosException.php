@@ -10,8 +10,7 @@ use Exception;
  */
 class PhonosException extends Exception {
 
-	/** @var array */
-	private $args;
+	private array $args;
 
 	/**
 	 * @param string $message Message key of error message.

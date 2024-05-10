@@ -29,19 +29,12 @@ require_once "$IP/maintenance/Maintenance.php";
  */
 class CountOrphanedFiles extends Maintenance {
 
-	/** @var HttpRequestFactory */
-	private $requestFactory;
+	private HttpRequestFactory $requestFactory;
+	private LBFactory $lbFactory;
+	private SiteStore $siteStore;
+	private FileBackend $backend;
 
-	/** @var LBFactory */
-	private $lbFactory;
-
-	/** @var SiteStore */
-	private $siteStore;
-
-	/** @var FileBackend */
-	private $backend;
-
-	/** @var string */
+	/** @var string|false */
 	private $apiProxy;
 
 	public function __construct() {

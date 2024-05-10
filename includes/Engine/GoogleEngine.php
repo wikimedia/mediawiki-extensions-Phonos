@@ -9,11 +9,8 @@ use WANObjectCache;
 
 class GoogleEngine extends Engine {
 
-	/** @var string */
-	protected $apiEndpoint;
-
-	/** @var string */
-	protected $apiKey;
+	protected string $apiEndpoint;
+	protected string $apiKey;
 
 	/**
 	 * @var int
