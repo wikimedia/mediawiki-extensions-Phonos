@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hakimi97",
+			"Tofeiku"
+		]
+	},
+	"phonos": "Phonos",
+	"phonos-desc": "Menyediakan kefungsian teks-ke-tutur untuk pelbagai bahasa",
+	"phonos-error-category": "Laman dengan ralat terapan Phonos",
+	"phonos-error-category-desc": "Terdapat ralat semasa menerap Phonos.",
+	"phonos-audio-conversion-error": "Gagal menukar audio kepada MP3:\n$1",
+	"phonos-directory-error": "Gagal mencipta direktori storan $1",
+	"phonos-engine-error": "Gagal menjana fail audio menggunakan enjin $1:\n$2",
+	"phonos-storage-error": "Gagal menyimpan fail audio di destinasi terakhirnya:\n$1",
+	"phonos-tracking-category": "Laman yang menggunakan Phonos",
+	"phonos-tracking-category-desc": "Laman ini menggunakan sambungan [[:mw:Extension:Phonos|Phonos]]."
+}
