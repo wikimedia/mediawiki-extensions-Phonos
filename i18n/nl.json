@@ -15,7 +15,7 @@
 	"phonos-purge-needed-error": "Kan geen audio afspelen.",
 	"phonos-purge-needed-error-link": "Vernieuw de pagina en probeer het opnieuw.",
 	"phonos-tracking-category": "Pagina's die Phonos gebruiken",
-	"phonos-tracking-category-desc": "De pagina gebruikt de uitbreiding [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-tracking-category-desc": "De pagina gebruikt de uitbreiding [https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
 	"phonos-invalid-title": "Het audio-bestand “$1” heeft een ongeldige titel.",
 	"phonos-file-not-found": "Audiobestand “[$1 $2]” niet gevonden.",
 	"phonos-file-not-audio": "Bestand “[[$1|$2]]” is geen audiobestand.",

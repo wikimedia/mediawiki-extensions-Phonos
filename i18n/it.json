@@ -7,7 +7,7 @@
 	},
 	"phonos-error-category": "Pagine con errori di conversione audio di Phonos",
 	"phonos-tracking-category": "Pagine che utilizzano Phonos",
-	"phonos-tracking-category-desc": "Pagine che utilizzano l'estensione [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-tracking-category-desc": "Pagine che utilizzano l'estensione [https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
 	"phonos-file-not-found": "File audio \"[$1 $2]\" non trovato.",
 	"phonos-file-not-audio": "Il file \"[[$1|$2]]\" non è un file audio.",
 	"phonos-player-aria-description": "Riproduci audio",

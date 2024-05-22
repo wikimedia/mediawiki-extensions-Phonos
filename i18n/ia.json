@@ -14,7 +14,7 @@
 	"phonos-purge-needed-error": "Non pote reproducer audio.",
 	"phonos-purge-needed-error-link": "Refresca le pagina e tenta lo de novo.",
 	"phonos-tracking-category": "Paginas que usa Phonos",
-	"phonos-tracking-category-desc": "Le pagina usa le extension [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-tracking-category-desc": "Le pagina usa le extension [https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
 	"phonos-invalid-title": "Le file audio “$1” ha un titulo non valide.",
 	"phonos-file-not-found": "File audio “[$1 $2]” non trovate",
 	"phonos-file-not-audio": "Le file “[[$1|$2]]” non es un file audio.",
