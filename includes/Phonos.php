@@ -18,11 +18,11 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Parser\Parser;
 use MediaWiki\TimedMediaHandler\TimedMediaHandler;
 use MediaWiki\TimedMediaHandler\WebVideoTranscode\WebVideoTranscode;
 use MediaWiki\Title\Title;
 use OOUI\HtmlSnippet;
-use Parser;
 use Psr\Log\LoggerInterface;
 use RepoGroup;
 

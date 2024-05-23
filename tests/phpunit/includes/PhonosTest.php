@@ -11,10 +11,10 @@ use MediaWiki\Extension\Phonos\Engine\EngineInterface;
 use MediaWiki\Extension\Phonos\Engine\LarynxEngine;
 use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Shell\CommandFactory;
 use MediaWikiIntegrationTestCase;
-use Parser;
 use WANObjectCache;
 
 /**
