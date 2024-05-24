@@ -18,7 +18,7 @@
 	"phonos-purge-needed-error": "无法播放音频。",
 	"phonos-purge-needed-error-link": "刷新页面并重试。",
 	"phonos-tracking-category": "使用Phonos的页面",
-	"phonos-tracking-category-desc": "这些页面使用了[[:mw:Extension:Phonos|Phonos]]扩展。",
+	"phonos-tracking-category-desc": "这些页面使用了[https://www.mediawiki.org/wiki/Extension:Phonos Phonos]扩展。",
 	"phonos-invalid-title": "音频文件“$1”的标题无效。",
 	"phonos-file-not-found": "找不到音频文件“[$1 $2]”。",
 	"phonos-file-not-audio": "文件“[[$1|$2]]”不是音频文件。",
