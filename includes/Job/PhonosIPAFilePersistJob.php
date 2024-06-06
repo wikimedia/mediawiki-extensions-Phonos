@@ -20,12 +20,12 @@
 
 namespace MediaWiki\Extension\Phonos\Job;
 
-use GenericParameterJob;
 use Job;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Extension\Phonos\Engine\AudioParams;
+use MediaWiki\Extension\Phonos\Engine\Engine;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -37,15 +37,24 @@ use Psr\Log\LoggerInterface;
  * Some external services like Google have a rate limit and so this job
  * should be throttled accordingly using $wgJobBackoffThrottling
  */
-class PhonosIPAFilePersistJob extends Job implements GenericParameterJob {
+class PhonosIPAFilePersistJob extends Job {
+	private Engine $engine;
+	private StatsdDataFactoryInterface $statsdDataFactory;
+
 	/** @var LoggerInterface */
 	protected $logger;
 
 	/**
 	 * @inheritDoc
 	 */
-	public function __construct( array $params ) {
+	public function __construct(
+		array $params,
+		Engine $engine,
+		StatsdDataFactoryInterface $statsdDataFactory
+	) {
 		parent::__construct( 'phonosIPAFilePersist', $params );
+		$this->engine = $engine;
+		$this->statsdDataFactory = $statsdDataFactory;
 		$this->removeDuplicates = true;
 		$this->logger = LoggerFactory::getInstance( 'Phonos' );
 		$this->logger->info(
@@ -66,7 +75,6 @@ class PhonosIPAFilePersistJob extends Job implements GenericParameterJob {
 				'params' => $this->params
 			]
 		);
-		$engine = MediaWikiServices::getInstance()->get( 'Phonos.Engine' );
 		$params = new AudioParams(
 			$this->params['ipa'],
 			$this->params['text'],
@@ -74,11 +82,11 @@ class PhonosIPAFilePersistJob extends Job implements GenericParameterJob {
 		);
 
 		try {
-			$engine->getAudioData( $params );
-			$engine->clearError( $params );
+			$this->engine->getAudioData( $params );
+			$this->engine->clearError( $params );
 
 		} catch ( PhonosException $e ) {
-			$engine->setError( $params, $e->getMessageKeyAndArgs() );
+			$this->engine->setError( $params, $e->getMessageKeyAndArgs() );
 
 			$this->logger->error(
 				__METHOD__ . ' Job failed',
@@ -87,9 +95,8 @@ class PhonosIPAFilePersistJob extends Job implements GenericParameterJob {
 					'exception' => $e
 				]
 			);
-			$statsdDataFactory = MediaWikiServices::getInstance()->get( 'StatsdDataFactory' );
 			$key = $e->getStatsdKey();
-			$statsdDataFactory->increment( "extension.Phonos.error.$key" );
+			$this->statsdDataFactory->increment( "extension.Phonos.error.$key" );
 
 			throw $e;
 		}

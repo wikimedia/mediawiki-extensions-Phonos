@@ -203,7 +203,14 @@
 		"MediaWiki\\Extension\\Phonos\\": "includes/"
 	},
 	"JobClasses": {
-		"phonosIPAFilePersist": "MediaWiki\\Extension\\Phonos\\Job\\PhonosIPAFilePersistJob"
+		"phonosIPAFilePersist": {
+			"class": "MediaWiki\\Extension\\Phonos\\Job\\PhonosIPAFilePersistJob",
+			"services": [
+				"Phonos.Engine",
+				"StatsdDataFactory"
+			],
+			"needsPage": false
+		}
 	},
 	"ServiceWiringFiles": [
 		"includes/ServiceWiring.php"
