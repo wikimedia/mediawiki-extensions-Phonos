@@ -10,7 +10,7 @@
 			return;
 		}
 		event.preventDefault();
-		mw.loader.using( 'ext.phonos' ).then( function () {
+		mw.loader.using( 'ext.phonos' ).then( () => {
 			const buttonElement = event.target.closest( '.ext-phonos-PhonosButton' );
 			const button = OO.ui.infuse( buttonElement );
 			button.focus();
@@ -20,7 +20,7 @@
 		} );
 	}
 
-	mw.hook( 'wikipage.content' ).add( function ( $content ) {
+	mw.hook( 'wikipage.content' ).add( ( $content ) => {
 		$content.find( '.ext-phonos-PhonosButton .oo-ui-buttonElement-button' ).each( function () {
 			this.addEventListener( 'click', phonosClickHandler );
 			this.addEventListener( 'keydown', phonosClickHandler );
