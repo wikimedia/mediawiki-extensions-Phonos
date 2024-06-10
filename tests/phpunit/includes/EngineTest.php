@@ -14,11 +14,8 @@ use MediaWikiIntegrationTestCase;
  */
 class EngineTest extends MediaWikiIntegrationTestCase {
 
-	/** @var EngineInterface */
-	private $engine;
-
-	/** @var string */
-	private $uploadPath;
+	private EngineInterface $engine;
+	private string $uploadPath;
 
 	public function setUp(): void {
 		parent::setUp();

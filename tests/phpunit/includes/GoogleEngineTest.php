@@ -13,8 +13,7 @@ use MediaWikiIntegrationTestCase;
  */
 class GoogleEngineTest extends MediaWikiIntegrationTestCase {
 
-	/** @var GoogleEngine */
-	private $engine;
+	private GoogleEngine $engine;
 
 	public function setUp(): void {
 		$services = $this->getServiceContainer();

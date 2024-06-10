@@ -7,8 +7,7 @@ use MediaWiki\Extension\Phonos\Exception\PhonosException;
 
 class LarynxEngine extends Engine {
 
-	/** @var string */
-	protected $apiEndpoint;
+	protected string $apiEndpoint;
 
 	protected function register(): void {
 		$this->apiEndpoint = $this->config->get( 'PhonosApiEndpointLarynx' );

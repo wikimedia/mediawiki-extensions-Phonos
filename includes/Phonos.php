@@ -35,45 +35,17 @@ use RepoGroup;
  */
 class Phonos implements ParserFirstCallInitHook {
 
-	/** @var RepoGroup */
-	protected $repoGroup;
+	protected RepoGroup $repoGroup;
+	protected LinkRenderer $linkRenderer;
+	protected Engine $engine;
+	protected WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher;
+	private StatsdDataFactoryInterface $statsdDataFactory;
+	private JobQueueGroup $jobQueueGroup;
+	private bool $renderingEnabled;
+	protected LoggerInterface $logger;
+	private bool $inlineAudioPlayerMode;
+	private array $wikibaseProperties;
 
-	/** @var LinkRenderer */
-	protected $linkRenderer;
-
-	/** @var Engine */
-	protected $engine;
-
-	/** @var WikibaseEntityAndLexemeFetcher */
-	protected $wikibaseEntityAndLexemeFetcher;
-
-	/** @var StatsdDataFactoryInterface */
-	private $statsdDataFactory;
-
-	/** @var JobQueueGroup */
-	private $jobQueueGroup;
-
-	/** @var bool */
-	private $renderingEnabled;
-
-	/** @var LoggerInterface */
-	protected $logger;
-
-	/** @var bool */
-	private $inlineAudioPlayerMode;
-
-	/** @var array */
-	private $wikibaseProperties;
-
-	/**
-	 * @param RepoGroup $repoGroup
-	 * @param Engine $engine
-	 * @param WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher
-	 * @param StatsdDataFactoryInterface $statsdDataFactory
-	 * @param JobQueueGroup $jobQueueGroup
-	 * @param LinkRenderer $linkRenderer
-	 * @param Config $config
-	 */
 	public function __construct(
 		RepoGroup $repoGroup,
 		Engine $engine,
