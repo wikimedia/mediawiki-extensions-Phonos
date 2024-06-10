@@ -70,7 +70,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testCreateJob(): void {
-		$this->overrideConfigValue( 'PhonosFileBackend', false );
+		$this->overrideConfigValue( 'PhonosFileBackend', null );
 
 		$services = $this->getServiceContainer();
 

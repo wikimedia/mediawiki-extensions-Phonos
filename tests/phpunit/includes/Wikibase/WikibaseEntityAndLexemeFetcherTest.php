@@ -72,7 +72,7 @@ class WikibaseEntityAndLexemeFetcherTest extends MediaWikiIntegrationTestCase {
 				'wikibaseIPATranscriptionProp' => 'P898',
 			],
 			'PhonosWikibaseUrl' => 'base-url',
-			'PhonosApiProxy' => false,
+			'PhonosApiProxy' => null,
 		] );
 
 		$fetcher = new WikibaseEntityAndLexemeFetcher( $requestFactory, $repoGroup, $cache, $config );

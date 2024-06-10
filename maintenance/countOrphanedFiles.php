@@ -35,9 +35,7 @@ class CountOrphanedFiles extends Maintenance {
 	private LBFactory $lbFactory;
 	private SiteLookup $siteLookup;
 	private FileBackend $backend;
-
-	/** @var string|false */
-	private $apiProxy;
+	private ?string $apiProxy;
 
 	public function __construct() {
 		parent::__construct();
@@ -56,7 +54,7 @@ class CountOrphanedFiles extends Maintenance {
 		$services = $this->getServiceContainer();
 		$config = $services->getMainConfig();
 		$this->requestFactory = $services->getHttpRequestFactory();
-		$this->apiProxy = $config->get( 'PhonosApiProxy' );
+		$this->apiProxy = $config->get( 'PhonosApiProxy' ) ?: null;
 		$this->lbFactory = $services->getDBLoadBalancerFactory();
 		$this->siteLookup = $services->getSiteLookup();
 		$this->backend = Engine::getFileBackend(

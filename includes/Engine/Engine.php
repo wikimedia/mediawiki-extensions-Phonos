@@ -43,8 +43,7 @@ abstract class Engine implements EngineInterface {
 
 	protected readonly FileBackend $fileBackend;
 
-	/** @var string|false */
-	protected $apiProxy;
+	protected readonly ?string $apiProxy;
 
 	protected readonly string $lamePath;
 
@@ -52,8 +51,8 @@ abstract class Engine implements EngineInterface {
 
 	private readonly string $engineName;
 
-	/** @var int|string Time in days we want to persist the file for */
-	protected $fileExpiry;
+	/** Time in days we want to persist the file for */
+	protected readonly int $fileExpiry;
 
 	public function __construct(
 		protected readonly HttpRequestFactory $requestFactory,
@@ -65,7 +64,7 @@ abstract class Engine implements EngineInterface {
 		protected readonly Config $config,
 	) {
 		$this->fileBackend = self::getFileBackend( $fileBackendGroup, $config );
-		$this->apiProxy = $config->get( 'PhonosApiProxy' );
+		$this->apiProxy = $config->get( 'PhonosApiProxy' ) ?: null;
 		$this->lamePath = $config->get( 'PhonosLame' );
 		$this->uploadPath = $config->get( 'PhonosPath' ) ?:
 			$config->get( MainConfigNames::UploadPath ) . '/' . self::STORAGE_PREFIX;
@@ -73,7 +72,7 @@ abstract class Engine implements EngineInterface {
 		$this->engineName = ( new ReflectionClass( get_class( $this ) ) )->getShortName();
 
 		// Only used if filebackend supports ATTR_METADATA
-		$this->fileExpiry = $config->get( 'PhonosFileExpiry' );
+		$this->fileExpiry = (int)$config->get( 'PhonosFileExpiry' );
 
 		$this->register();
 	}

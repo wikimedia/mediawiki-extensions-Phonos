@@ -40,15 +40,15 @@
 			"description": "API key for the Google Cloud Text-to-speech API"
 		},
 		"PhonosApiProxy": {
-			"value": false,
+			"value": null,
 			"description": "HTTP proxy to use for API requests"
 		},
 		"PhonosFileBackend": {
-			"value": false,
+			"value": null,
 			"description": "Which backend to use for file caching"
 		},
 		"PhonosFileBackendDirectory": {
-			"value": false,
+			"value": null,
 			"description": "Custom public directory to store persisted Phonos audio"
 		},
 		"PhonosEspeak": {
@@ -60,7 +60,7 @@
 			"description": "Path to the Lame executable used for converting WAV to MP3"
 		},
 		"PhonosPath": {
-			"value": false,
+			"value": null,
 			"description": "Relative URL path to where Phonos files are publicly available"
 		},
 		"PhonosWikibaseUrl": {
@@ -81,7 +81,7 @@
 			"description": "Enable rendering of IPA"
 		},
 		"PhonosFileExpiry": {
-			"value": "30",
+			"value": 30,
 			"description": "Time in days after which files should expire, if the backend supports the 'X-Delete-At' header."
 		},
 		"PhonosInlineAudioPlayerMode": {

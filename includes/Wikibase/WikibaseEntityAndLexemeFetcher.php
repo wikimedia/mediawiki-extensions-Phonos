@@ -21,9 +21,7 @@ class WikibaseEntityAndLexemeFetcher {
 	private readonly string $wikibaseLangNameProp;
 	private readonly string $wikibaseIETFLangTagProp;
 	private readonly string $wikibaseIPATranscriptionProp;
-
-	/** @var string|false */
-	private $apiProxy;
+	private readonly ?string $apiProxy;
 
 	public function __construct(
 		private readonly HttpRequestFactory $requestFactory,
@@ -33,7 +31,7 @@ class WikibaseEntityAndLexemeFetcher {
 	) {
 		// General configuration.
 		$this->wikibaseUrl = $config->get( 'PhonosWikibaseUrl' );
-		$this->apiProxy = $config->get( 'PhonosApiProxy' );
+		$this->apiProxy = $config->get( 'PhonosApiProxy' ) ?: null;
 
 		// PhonosWikibaseProperties configuration.
 		$phonosWikibaseProperties = $config->get( 'PhonosWikibaseProperties' );
