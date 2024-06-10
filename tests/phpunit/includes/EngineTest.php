@@ -6,6 +6,7 @@ use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Engine\EngineInterface;
 use MediaWiki\Extension\Phonos\Engine\EspeakEngine;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -29,7 +30,7 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 			$services->getContentLanguage(),
 			$services->getMainConfig()
 		);
-		$this->uploadPath = $services->getMainConfig()->get( 'UploadPath' );
+		$this->uploadPath = $services->getMainConfig()->get( MainConfigNames::UploadPath );
 	}
 
 	public function testGetPersistedAudio(): void {
