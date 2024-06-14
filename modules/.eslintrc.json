@@ -1,12 +1,11 @@
 {
 	"root": true,
 	"extends": [
-		"wikimedia/client-es6",
+		"wikimedia/client",
 		"wikimedia/mediawiki",
 		"wikimedia/jquery"
 	],
-	"rules": {
-		"no-implicit-globals": "off",
-		"no-jquery/no-extend": "warn"
+	"parserOptions": {
+		"sourceType": "commonjs"
 	}
 }

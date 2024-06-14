@@ -7,7 +7,7 @@
  */
 function PhonosButton( config ) {
 	// Parent constructor.
-	PhonosButton.super.call( this, $.extend( {
+	PhonosButton.super.call( this, Object.assign( {
 		$overlay: true,
 		popup: {
 			classes: [ 'ext-phonos-error-popup' ],
