@@ -18,6 +18,7 @@
 	"phonos-file-not-found": "Nie odnaleziono pliku audio „$1”.",
 	"phonos-file-not-audio": "Plik „$1” nie jest plikiem audio.",
 	"phonos-player-aria-description": "Odtwórz nagranie",
+	"phonos-aria-error": "Nie udało się odtworzyć dźwięku",
 	"phonos-ipa-too-long": "Ciąg IPA jest zbyt długi do wyrenderowania.",
 	"phonos-wikibase-api-error": "Nie udało się pobrać elementu z Wikibase: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Nieprawidłowy element lub leksem: $1",
