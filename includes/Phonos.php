@@ -158,12 +158,11 @@ class Phonos implements ParserFirstCallInitHook {
 			$parser->addTrackingCategory( 'phonos-error-category' );
 		}
 
-		// FIXME: Use Codex button (T359605)
 		OutputPage::setupOOUI();
 		$button = new PhonosButton( $buttonConfig );
 		return Html::rawElement(
 			'span',
-			[ 'class' => 'ext-phonos skin-invert' ],
+			[ 'class' => 'ext-phonos' ],
 			$button->toString() . $this->addAttributionLink( $buttonConfig )
 		);
 	}
