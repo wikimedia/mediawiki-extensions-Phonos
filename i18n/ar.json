@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Alshamiri1",
-			"LaMagiaaa"
+			"LaMagiaaa",
+			"Hubaishan"
 		]
 	},
 	"phonos-desc": "توفير وظيفة تحويل النص إلى كلام لمجموعة من اللغات",
@@ -19,7 +20,7 @@
 	"phonos-player-aria-description": "تشغيل الصوت",
 	"phonos-ipa-too-long": "IPA طويل جدًا للعرض.",
 	"phonos-wikibase-api-error": "تعذر استرداد الكيان من Wikibase: $1",
-	"phonos-wikibase-invalid-entity-lexeme": "كيان غير صالح أو صفحة: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "كيان أو مفردة غير صالحين: $1",
 	"phonos-wikibase-not-found": "لم يتم العثور على صوت لعنصر Wikibase: $1",
 	"phonos-wikibase-no-ipa": "لم يتم العثور على نسخ IPA.",
 	"phonos-empty-file-error": "يبدو أن الصوت الذي تم إنشاؤه فارغ. قد يكون IPA المحدد غير صالح ، أو لا يدعمه المحرك. قد يساعد استخدام المعلمة \" $1 \".",
