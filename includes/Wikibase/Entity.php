@@ -10,9 +10,9 @@ use File;
  */
 class Entity {
 
-	private ?File $audioFile;
+	private ?File $audioFile = null;
 
-	private ?string $ipaTranscription;
+	private ?string $ipaTranscription = null;
 
 	public function setAudioFile( ?File $audioFile ): void {
 		$this->audioFile = $audioFile;
