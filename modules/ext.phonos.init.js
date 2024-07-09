@@ -20,11 +20,13 @@
 		} );
 	}
 
-	mw.hook( 'wikipage.content' ).add( ( $content ) => {
+	function phonosClickHandlers( $content ) {
 		$content.find( '.ext-phonos-PhonosButton .oo-ui-buttonElement-button' ).each( function () {
 			this.addEventListener( 'click', phonosClickHandler );
 			this.addEventListener( 'keydown', phonosClickHandler );
 		} );
-	} );
+	}
 
+	mw.hook( 'wikipage.content' ).add( phonosClickHandlers );
+	mw.hook( 'wikipage.indicators' ).add( phonosClickHandlers );
 }() );
