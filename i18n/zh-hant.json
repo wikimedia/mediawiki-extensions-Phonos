@@ -6,6 +6,12 @@
 		]
 	},
 	"phonos-desc": "為多種語言提供文字轉語音功能",
+	"phonos-error-category": "Phonos 呈現錯誤的頁面",
+	"phonos-error-category-desc": "呈現 Phonos 時發生錯誤。",
+	"phonos-audio-conversion-error": "無法將音訊轉換成 MP3：\n$1",
+	"phonos-directory-error": "無法建立儲存目錄「$1」。",
+	"phonos-engine-error": "無法使用$1引擎來產生音訊檔案：\n$2",
+	"phonos-storage-error": "未能將音訊檔案儲存在最終目的位置：\n$1",
 	"phonos-tracking-category": "使用 Phonos 的頁面",
 	"phonos-tracking-category-desc": "這些頁面使用 [[:mw:Extension:Phonos|Phonos]] 擴充。",
 	"phonos-file-not-found": "找不到音訊檔案「$1」。請再試一次。",
