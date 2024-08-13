@@ -12,7 +12,7 @@
 	"phonos-storage-error": "Failed to store audio file in its final destination:\n$1",
 	"phonos-purge-needed-error": "Unable to play audio.",
 	"phonos-purge-needed-error-link": "Refresh the page and try again.",
-	"phonos-tracking-category": "Pages that use Phonos",
+	"phonos-tracking-category": "Pages using the Phonos extension",
 	"phonos-tracking-category-desc": "The page uses the [https://www.mediawiki.org/wiki/Extension:Phonos Phonos] extension.",
 	"phonos-invalid-title": "Audio file \"$1\" has an invalid title.",
 	"phonos-file-not-found": "Audio file \"[$1 $2]\" not found.",
