@@ -14,7 +14,7 @@
 	"phonos-storage-error": "Audiodatei konnte nicht am endgültigen Zielort gespeichert werden:\n$1",
 	"phonos-purge-needed-error": "Audio kann nicht wiedergegeben werden.",
 	"phonos-purge-needed-error-link": "Aktualisiere die Seite und versuche es erneut.",
-	"phonos-tracking-category": "Seiten, die Phonos verwenden",
+	"phonos-tracking-category": "Seiten, die die Phonos-Erweiterung verwenden",
 	"phonos-tracking-category-desc": "Diese Seite verwendet die Erweiterung [https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
 	"phonos-invalid-title": "Die Audiodatei „$1“ hat einen ungültigen Titel.",
 	"phonos-file-not-found": "Audiodatei „[$1 $2]“ nicht gefunden.",
