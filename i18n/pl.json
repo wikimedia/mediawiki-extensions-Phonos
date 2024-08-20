@@ -13,7 +13,7 @@
 	"phonos-storage-error": "Nie udało się zapisać pliku audio w miejscu docelowym:\n$1",
 	"phonos-purge-needed-error": "Nie udało się odtworzyć dźwięku.",
 	"phonos-purge-needed-error-link": "Odśwież stronę i spróbuj ponownie.",
-	"phonos-tracking-category": "Strony używające Phonos",
+	"phonos-tracking-category": "Strony używające rozszerzenia Phonos",
 	"phonos-tracking-category-desc": "Strona korzysta z rozszerzenia [https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
 	"phonos-invalid-title": "Plik audio „$1” ma nieprawidłowy tytuł.",
 	"phonos-file-not-found": "Nie odnaleziono pliku audio „[$1 $2]”.",

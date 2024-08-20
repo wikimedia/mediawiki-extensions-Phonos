@@ -13,7 +13,7 @@
 	"phonos-storage-error": "No s'ha pogut emmagatzemar el fitxer d'àudio en la seva destinació final: \n$1",
 	"phonos-purge-needed-error": "No es pot reproduir l'àudio.",
 	"phonos-purge-needed-error-link": "Actualitzeu la pàgina i torneu-ho a provar.",
-	"phonos-tracking-category": "Pàgines que utilitzen Phonos",
+	"phonos-tracking-category": "Pàgines que utilitzen l'extensió Phonos",
 	"phonos-tracking-category-desc": "La pàgina utilitza l'extensió [[:mw:Extension:Phonos|Phonos]].",
 	"phonos-file-not-found": "No s'ha trobat el fitxer d'àudio «[$1 $2]».",
 	"phonos-file-not-audio": "El fitxer «[[$1|$2]]» no és un fitxer d'àudio.",
