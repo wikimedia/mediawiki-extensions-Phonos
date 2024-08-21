@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"-jem-",
 			"AnupamM",
 			"Fitoschido",
 			"MarcoAurelio",
@@ -9,7 +10,7 @@
 			"SpikeShroom"
 		]
 	},
-	"phonos-tracking-category": "Páginas que usan Phonos",
+	"phonos-tracking-category": "Páginas que usan la extensión Phonos",
 	"phonos-file-not-found": "Archivo de audio \" [$1 $2] \" no encontrado.",
 	"phonos-file-not-audio": "El archivo \" [[$1|$2]] \" no es un archivo de audio.",
 	"phonos-player-aria-description": "Reproducir audio",
