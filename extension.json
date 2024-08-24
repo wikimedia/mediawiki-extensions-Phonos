@@ -11,7 +11,7 @@
 	"descriptionmsg": "phonos-desc",
 	"type": "parserhook",
 	"requires": {
-		"MediaWiki": ">= 1.42"
+		"MediaWiki": ">= 1.43"
 	},
 	"suggests": {
 		"extensions": {
