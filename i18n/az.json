@@ -16,7 +16,7 @@
 	"phonos-storage-error": "Audio faylı son təyinat yerində saxlamaq alınmadı:\n$1",
 	"phonos-purge-needed-error": "Audionu oxutmaq mümkün deyil.",
 	"phonos-purge-needed-error-link": "Səhifəni yeniləyin və yenidən cəhd edin.",
-	"phonos-tracking-category": "Phonos istifadə edən səhifələr",
+	"phonos-tracking-category": "Phonos uzantısından istifadə edən səhifələr",
 	"phonos-tracking-category-desc": "[https://www.mediawiki.org/wiki/Extension:Phonos Phonos] istifadə edən səhifələr.",
 	"phonos-invalid-title": "\"$1\" audio faylının yanlış başlığı var.",
 	"phonos-file-not-found": "\"[$1 $2]\" adlı audiofayl tapılmadı.",
