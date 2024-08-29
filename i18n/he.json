@@ -14,7 +14,7 @@
 	"phonos-storage-error": "אחסון קובץ השמע ביעד הסופי נכשל:\n$1",
 	"phonos-purge-needed-error": "לא ניתן לנגן שמע.",
 	"phonos-purge-needed-error-link": "נא לרענן את הדף ולנסות שוב.",
-	"phonos-tracking-category": "דפים המשתמשים בהרחבה Phonos",
+	"phonos-tracking-category": "דפים שמשתמשים בהרחבה Phonos",
 	"phonos-tracking-category-desc": "הדפים האלה משתמשים בהרחבה [:https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
 	"phonos-invalid-title": "לקובץ השמע \"$1\" יש כותרת בלתי־תקינה.",
 	"phonos-file-not-found": "קובץ השמע \"[$1 $2]\" לא נמצא.",
