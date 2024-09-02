@@ -7,7 +7,7 @@
 	"phonos-desc": "Võimaldab mitmetes keeltes teksti kõneks teisendada.",
 	"phonos-error-category": "Phonose viimistlemistõrkega leheküljed",
 	"phonos-error-category-desc": "Phonose viimistlemise juures esines tõrge.",
-	"phonos-tracking-category": "Phonost kasutavad leheküljed",
+	"phonos-tracking-category": "Tarkvaralisa Phonos kasutavad leheküljed",
 	"phonos-tracking-category-desc": "Lehekülg kasutab tarkvaralisa [https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
 	"phonos-player-aria-description": "Esita heli",
 	"phonos-aria-error": "Ei saa heli esitada"
