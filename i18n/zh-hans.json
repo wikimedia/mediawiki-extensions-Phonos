@@ -17,7 +17,7 @@
 	"phonos-storage-error": "未能将音频文件存储在其最终目的地：\n$1",
 	"phonos-purge-needed-error": "无法播放音频。",
 	"phonos-purge-needed-error-link": "刷新页面并重试。",
-	"phonos-tracking-category": "使用Phonos的页面",
+	"phonos-tracking-category": "使用Phonos扩展的页面",
 	"phonos-tracking-category-desc": "这些页面使用了[https://www.mediawiki.org/wiki/Extension:Phonos Phonos]扩展。",
 	"phonos-invalid-title": "音频文件“$1”的标题无效。",
 	"phonos-file-not-found": "找不到音频文件“[$1 $2]”。",
