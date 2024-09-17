@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Extension\Phonos\Wikibase;
 
-use LanguageCode;
 use MediaWiki\Config\Config;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Language\LanguageCode;
 use RepoGroup;
 use stdClass;
 use WANObjectCache;

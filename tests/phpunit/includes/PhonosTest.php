@@ -2,20 +2,20 @@
 
 namespace MediaWiki\Extension\Phonos;
 
-use EmptyBagOStuff;
-use FileBackendGroup;
 use JobQueueGroup;
-use Language;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Extension\Phonos\Engine\EngineInterface;
 use MediaWiki\Extension\Phonos\Engine\LarynxEngine;
 use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
+use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Language\Language;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Shell\CommandFactory;
 use MediaWikiIntegrationTestCase;
 use WANObjectCache;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 
 /**
  * @group Phonos
