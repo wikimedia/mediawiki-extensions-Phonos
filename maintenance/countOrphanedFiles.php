@@ -150,7 +150,8 @@ class CountOrphanedFiles extends Maintenance {
 			[
 				'proxy' => $this->apiProxy,
 				'followRedirects' => true
-			]
+			],
+			__METHOD__
 		);
 		$status = $request->execute();
 		if ( !$status->isOK() ) {
