@@ -5,5 +5,26 @@
 		]
 	},
 	"phonos-desc": "Tarjoaa tekstinlukijaominaisuuden monille kielille",
-	"phonos-tracking-category": "Phonosia käyttävät sivut"
+	"phonos-error-category": "Sivut, joissa on Phonosin renderöintivirheitä",
+	"phonos-error-category-desc": "Virhe Phonosin renderöinnissä.",
+	"phonos-audio-conversion-error": "Äänen muuntaminen MP3:ksi epäonnistui:\n$1",
+	"phonos-purge-needed-error": "Äänen toisto ei onnistu.",
+	"phonos-purge-needed-error-link": "Päivitä sivu ja yritä uudelleen.",
+	"phonos-tracking-category": "Phonosia käyttävät sivut",
+	"phonos-invalid-title": "Äänitiedostolla ”$1” on virheellinen nimi.",
+	"phonos-file-not-found": "Äänitiedostoa ”[$1 $2]” ei löytynyt.",
+	"phonos-file-not-audio": "Tiedosto ”[[$1|$2]]” ei ole äänitiedosto.",
+	"phonos-player-aria-description": "Toista ääni",
+	"phonos-aria-error": "Äänen toisto ei onnistu",
+	"phonos-ipa-too-long": "IPA liian pitkä renderöitäväksi.",
+	"phonos-wikibase-api-error": "Entiteetin nouto Wikibasesta epäonnistui: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Virheellinen entiteetti tai lekseemi: $1",
+	"phonos-wikibase-not-found": "Wikibase-kohteelle ei löytynyt audiota: $1",
+	"phonos-wikibase-no-ipa": "IPA-transkriptiota ei löytynyt.",
+	"phonos-empty-file-error": "Luotu ääni näyttää olevan tyhjä. Annettu IPA saattaa olla virheellinen tai moottori ei tue sitä. Parametrin ”$1” käyttäminen saattaa auttaa.",
+	"phonos-param-error": "Joko IPA, tiedosto tai Wikibase-kohde tulee antaa.",
+	"phonos-rendering-disabled": "IPA-renderöinti on tällä hetkellä poissa käytöstä.",
+	"phonos-unsupported-language": "Phonos ei tue kieltä $1.",
+	"phonos-unsupported-language-with-suggestions": "Phonos ei tue kieltä $1. Seuraavia mahdollisesti liittyviä kieliä tuetaan: $2.",
+	"phonos-inline-audio-player-mode": "Vain äänitiedosto tai Wikibase-kohde, jossa on ääninäyte-ominaisuus ($1), voidaan antaa, kun Phonos on upotetussa toistintilassa."
 }
