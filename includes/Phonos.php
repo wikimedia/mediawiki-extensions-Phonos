@@ -18,6 +18,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\TimedMediaHandler\TimedMediaHandler;
 use MediaWiki\TimedMediaHandler\WebVideoTranscode\WebVideoTranscode;
@@ -86,8 +87,9 @@ class Phonos implements ParserFirstCallInitHook {
 	 */
 	public function renderPhonos( ?string $label, array $args, Parser $parser ): string {
 		// Add the CSS and JS
-		$parser->getOutput()->addModuleStyles( [ 'ext.phonos.styles', 'ext.phonos.icons' ] );
-		$parser->getOutput()->addModules( [ 'ext.phonos.init' ] );
+		$parserOutput = $parser->getOutput();
+		$parserOutput->addModuleStyles( [ 'ext.phonos.styles', 'ext.phonos.icons' ] );
+		$parserOutput->addModules( [ 'ext.phonos.init' ] );
 		$parser->addTrackingCategory( 'phonos-tracking-category' );
 
 		// Get the named parameters and merge with defaults.
@@ -131,16 +133,16 @@ class Phonos implements ParserFirstCallInitHook {
 			}
 
 			if ( $options['file'] ) {
-				$this->handleExistingFile( $options, $buttonConfig, $parser );
+				$this->handleExistingFile( $options, $buttonConfig, $parserOutput );
 			} elseif ( $options['wikibase'] ) {
-				$this->handleWikibaseEntity( $options, $buttonConfig, $parser );
+				$this->handleWikibaseEntity( $options, $buttonConfig, $parserOutput );
 			}
 
 			// If there's not yet an audio file, and no error, fetch audio from the engine.
 			if ( !isset( $buttonConfig['href'] ) && !isset( $buttonConfig['data']['error'] )
 				&& is_string( $options['ipa'] ) && $options['ipa']
 			) {
-				$this->handleNewFile( $options, $buttonConfig, $parser );
+				$this->handleNewFile( $options, $buttonConfig, $parserOutput );
 			}
 
 			// Add aria-label for screenreaders. This is also used as the tooltip.
@@ -221,9 +223,9 @@ class Phonos implements ParserFirstCallInitHook {
 	 *
 	 * @param array $options
 	 * @param array &$buttonConfig
-	 * @param Parser $parser
+	 * @param ParserOutput $parserOutput
 	 */
-	private function handleNewFile( array $options, array &$buttonConfig, Parser $parser ): void {
+	private function handleNewFile( array $options, array &$buttonConfig, ParserOutput $parserOutput ): void {
 		if ( $this->inlineAudioPlayerMode ) {
 			throw new PhonosException(
 				'phonos-inline-audio-player-mode',
@@ -252,10 +254,10 @@ class Phonos implements ParserFirstCallInitHook {
 		// We append to the existing page prop, if it exists, since we can have multiple files per page.
 		// The database transaction shouldn't happen until the request finishes.
 		$propFiles = json_decode(
-			$parser->getOutput()->getPageProperty( 'phonos-files' ) ?? '[]'
+			$parserOutput->getPageProperty( 'phonos-files' ) ?? '[]'
 		);
 		$propFiles[] = basename( $this->engine->getFileName( $audioParams ), '.mp3' );
-		$parser->getOutput()->setPageProperty( 'phonos-files', json_encode( array_unique( $propFiles ) ) );
+		$parserOutput->setPageProperty( 'phonos-files', json_encode( array_unique( $propFiles ) ) );
 
 		$previousError = $this->engine->getError( $audioParams );
 		if ( $previousError ) {
@@ -271,10 +273,10 @@ class Phonos implements ParserFirstCallInitHook {
 	 *
 	 * @param array $options
 	 * @param array &$buttonConfig
-	 * @param Parser $parser
+	 * @param ParserOutput $parserOutput
 	 * @throws PhonosException
 	 */
-	private function handleExistingFile( array $options, array &$buttonConfig, Parser $parser ): void {
+	private function handleExistingFile( array $options, array &$buttonConfig, ParserOutput $parserOutput ): void {
 		$buttonConfig['data']['file'] = $options['file'];
 		$file = $this->repoGroup->findFile( $options['file'] );
 		$title = Title::makeTitleSafe( NS_FILE, $options['file'] );
@@ -289,7 +291,7 @@ class Phonos implements ParserFirstCallInitHook {
 			] );
 		}
 		$buttonConfig['data']['file'] = $file->getTitle()->getText();
-		$parser->getOutput()->addImage( $file->getTitle()->getDBkey() );
+		$parserOutput->addImage( $file->getTitle()->getDBkey() );
 		if ( $file->getMediaType() !== MEDIATYPE_AUDIO ) {
 			throw new PhonosException( 'phonos-file-not-audio', [
 				$title->getPrefixedText(),
@@ -304,10 +306,10 @@ class Phonos implements ParserFirstCallInitHook {
 	 *
 	 * @param array &$options
 	 * @param array &$buttonConfig
-	 * @param Parser $parser
+	 * @param ParserOutput $parserOutput
 	 * @throws PhonosException
 	 */
-	private function handleWikibaseEntity( array &$options, array &$buttonConfig, Parser $parser ): void {
+	private function handleWikibaseEntity( array &$options, array &$buttonConfig, ParserOutput $parserOutput ): void {
 		// If a wikibase attribute has been provided, fetch from Wikibase.
 		$wikibaseEntity = $this->wikibaseEntityAndLexemeFetcher->fetch(
 			$options['wikibase'],
@@ -320,7 +322,7 @@ class Phonos implements ParserFirstCallInitHook {
 		if ( $audioFile ) {
 			$buttonConfig['data']['file'] = $audioFile->getTitle()->getText();
 			$buttonConfig['href'] = $this->getFileUrl( $audioFile );
-			$parser->getOutput()->addImage( $audioFile->getTitle()->getDBkey() );
+			$parserOutput->addImage( $audioFile->getTitle()->getDBkey() );
 		}
 
 		// Set the IPA option and button config, if available.
