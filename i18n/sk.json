@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Spider 001757"
+		]
+	},
+	"phonos": "Phonos",
+	"phonos-desc": "Poskytnite funkciu prevodu textu na reč pre rôzne jazyky",
+	"phonos-error-category": "Stránky s chybami vo vykresľovaní rozšírenia Phonos",
+	"phonos-error-category-desc": "Pri vykresľovaní rozšírenia Phonos sa vyskytla chyba.",
+	"phonos-audio-conversion-error": "Nepodarilo sa previesť zvuk na MP3:\n$1",
+	"phonos-purge-needed-error": "Zvuk sa nedá prehrať.",
+	"phonos-purge-needed-error-link": "Obnovte stránku a skúste to znova.",
+	"phonos-tracking-category": "Stránky využívajúce rozšírenie Phonos",
+	"phonos-tracking-category-desc": "Stránka používa rozšírenie [https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
+	"phonos-invalid-title": "Zvukový súbor „$1“ má neplatný názov.",
+	"phonos-file-not-found": "Zvukový súbor „[$1 $2]“ sa nenašiel.",
+	"phonos-file-not-audio": "Súbor „[[$1|$2]]“ nie je zvukový súbor.",
+	"phonos-player-aria-description": "Prehrať zvuk",
+	"phonos-aria-error": "Zvuk sa nedá prehrať",
+	"phonos-ipa-too-long": "IPA je príliš dlhá na vykreslenie.",
+	"phonos-attribution-icon": "ⓘ"
+}

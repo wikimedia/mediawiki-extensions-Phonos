@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Kly",
-			"Winston Sung"
+			"Winston Sung",
+			"列维劳德"
 		]
 	},
 	"phonos-desc": "為多種語言提供文字轉語音功能",
@@ -14,7 +15,7 @@
 	"phonos-storage-error": "未能將音訊檔案儲存在最終目的位置：\n$1",
 	"phonos-purge-needed-error": "無法播放音訊。",
 	"phonos-purge-needed-error-link": "請重整頁面後再試一次。",
-	"phonos-tracking-category": "使用 Phonos 的頁面",
+	"phonos-tracking-category": "使用 Phonos 擴充功能的頁面",
 	"phonos-tracking-category-desc": "這些頁面使用 [https://www.mediawiki.org/wiki/Extension:Phonos Phonos] 擴充。",
 	"phonos-invalid-title": "音訊檔案「$1」帶有無效標題。",
 	"phonos-file-not-found": "找不到音訊檔案「[$1 $2]」。請再試一次。",
