@@ -1,7 +1,6 @@
 <?php
 namespace MediaWiki\Extension\Phonos;
 
-use ExtensionRegistry;
 use File;
 use JobQueueGroup;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
@@ -19,6 +18,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\TimedMediaHandler\TimedMediaHandler;
 use MediaWiki\TimedMediaHandler\WebVideoTranscode\WebVideoTranscode;
 use MediaWiki\Title\Title;

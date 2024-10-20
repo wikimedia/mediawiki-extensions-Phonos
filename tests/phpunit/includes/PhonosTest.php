@@ -14,8 +14,8 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Shell\CommandFactory;
 use MediaWikiIntegrationTestCase;
-use WANObjectCache;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * @group Phonos

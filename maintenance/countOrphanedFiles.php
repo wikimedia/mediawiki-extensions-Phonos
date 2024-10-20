@@ -2,11 +2,13 @@
 
 use MediaWiki\Extension\Phonos\Engine\Engine;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Site\MediaWikiSite;
 use MediaWiki\Site\SiteList;
 use MediaWiki\Site\SiteStore;
 use MediaWiki\Status\Status;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\Rdbms\LBFactory;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

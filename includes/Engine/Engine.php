@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\Phonos\Engine;
 
-use FSFileBackend;
 use MediaWiki\Config\Config;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\FileBackend\FileBackendGroup;
@@ -14,9 +13,10 @@ use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Status\Status;
 use NullLockManager;
 use ReflectionClass;
-use WANObjectCache;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\FSFileBackend;
 use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * Contains logic common to all Engines.

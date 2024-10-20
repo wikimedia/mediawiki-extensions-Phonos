@@ -8,7 +8,7 @@ use MediaWiki\Status\Status;
 use MediaWikiIntegrationTestCase;
 use MWHttpRequest;
 use PHPUnit\Framework\MockObject\MockClass;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * @group Phonos

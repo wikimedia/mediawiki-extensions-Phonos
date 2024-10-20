@@ -5,7 +5,7 @@ namespace MediaWiki\Extension\Phonos\Engine;
 use DOMDocument;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use Shellbox\Command\BoxedCommand;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * @link http://espeak.sourceforge.net/

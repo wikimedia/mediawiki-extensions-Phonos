@@ -8,7 +8,7 @@ use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Language\LanguageCode;
 use RepoGroup;
 use stdClass;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * Wikibase item fetcher for Phonos

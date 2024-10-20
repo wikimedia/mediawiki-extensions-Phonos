@@ -5,7 +5,7 @@ namespace MediaWiki\Extension\Phonos\Engine;
 use DOMDocument;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use stdClass;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 class GoogleEngine extends Engine {
 
