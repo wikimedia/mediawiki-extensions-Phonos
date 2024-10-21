@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Spider 001757"
+		]
+	},
+	"phonos": "Phonos",
+	"phonos-desc": "Poskytnite funkciu prevodu textu na reč pre rôzne jazyky",
+	"phonos-error-category": "Stránky s chybami vo vykresľovaní rozšírenia Phonos",
+	"phonos-error-category-desc": "Pri vykresľovaní rozšírenia Phonos sa vyskytla chyba.",
+	"phonos-audio-conversion-error": "Nepodarilo sa previesť zvuk na MP3:\n$1"
+}
