@@ -2,7 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
-			"Verdy p"
+			"Verdy p",
+			"Goombiis",
+			"Mahabarata",
+			"SleaY"
 		]
 	},
 	"phonos": "Phonos",
@@ -17,6 +20,7 @@
 	"phonos-purge-needed-error-link": "Actualisez la page et essayez à nouveau.",
 	"phonos-tracking-category": "Pages utilisant Phonos",
 	"phonos-tracking-category-desc": "Ces pages utilisent l’extension [[:mw:Extension:Phonos|Phonos]].",
+	"phonos-invalid-title": "Le fichier audio « $1 » a un titre non valide.",
 	"phonos-file-not-found": "Fichier audio « [$1 $2] » introuvable.",
 	"phonos-file-not-audio": "Le fichier « [[$1|$2]] » n’est pas un fichier audio.",
 	"phonos-player-aria-description": "Lecture audio",
