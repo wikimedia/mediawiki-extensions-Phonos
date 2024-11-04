@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Brettchenweber"
+			"Brettchenweber",
+			"Nadjita"
 		]
 	},
 	"phonos-desc": "Bereitstellung von Text-to-Speech-Funktionen für eine Reihe von Sprachen",
