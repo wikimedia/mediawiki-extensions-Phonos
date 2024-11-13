@@ -3,14 +3,15 @@
 		"authors": [
 			"Alshamiri1",
 			"Hubaishan",
-			"LaMagiaaa"
+			"LaMagiaaa",
+			"Meno25"
 		]
 	},
 	"phonos-desc": "توفير وظيفة تحويل النص إلى كلام لمجموعة من اللغات",
-	"phonos-audio-conversion-error": "فشل تحويل الصوت إلى MP3:! N! $1",
+	"phonos-audio-conversion-error": "فشل تحويل الصوت إلى MP3:\n $1",
 	"phonos-directory-error": "فشل إنشاء دليل التخزين $1",
-	"phonos-engine-error": "فشل إنشاء ملف صوتي باستخدام المحرك $1 :! N! $2",
-	"phonos-storage-error": "فشل تخزين الملف الصوتي في وجهته النهائية:! N! $1",
+	"phonos-engine-error": "فشل في إنشاء ملف صوتي باستخدام محرك $1 :\n $2",
+	"phonos-storage-error": "فشل تخزين ملف الصوت في وجهته النهائية:\n $1",
 	"phonos-purge-needed-error": "تعذر تشغيل الصوت.",
 	"phonos-purge-needed-error-link": "قم بتحديث الصفحة وحاول مرة أخرى.",
 	"phonos-tracking-category": "الصفحات التي تستخدم Phonos",
