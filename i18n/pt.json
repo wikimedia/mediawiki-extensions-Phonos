@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"Mbs262"
 		]
 	},
 	"phonos-desc": "Fornecer funcionalidade de conversão de texto em fala para uma variedade de línguas",
