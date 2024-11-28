@@ -8,6 +8,7 @@
 		]
 	},
 	"phonos-desc": "توفير وظيفة تحويل النص إلى كلام لمجموعة من اللغات",
+	"phonos-error-category": "الصفحات التي تحتوي على أخطاء في عرض الفونوس",
 	"phonos-error-category-desc": "حدث خطأ أثناء عرض Phonos.",
 	"phonos-audio-conversion-error": "فشل تحويل الصوت إلى MP3:\n $1",
 	"phonos-directory-error": "فشل إنشاء دليل التخزين $1",
