@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"phonos-desc": "Proporciona funcións de conversión de texto a voz para unha variedade de idiomas",
+	"phonos-error-category": "Páxinas con erros de renderización de Phonos",
+	"phonos-error-category-desc": "Produciuse un erro ao renderizar Phonos.",
+	"phonos-audio-conversion-error": "Produciuse un erro ao converter o son a MP3:\n$1",
+	"phonos-directory-error": "Produciuse un erro ao crear o directorio de almacenamento \"$1\"",
+	"phonos-engine-error": "Produciuse un erro ao xerar o ficheiro de son usando o motor $1:\n$2",
+	"phonos-storage-error": "Produciuse un erro ao almacenar o ficheiro de son no seu destino final:\n$1",
+	"phonos-purge-needed-error": "Non se pode reproducir o son.",
+	"phonos-purge-needed-error-link": "Actualiza a páxina e inténtao de novo.",
+	"phonos-invalid-title": "O ficheiro de son \"$1\" ten un título inválido.",
+	"phonos-file-not-found": "Non se atopou o ficheiro de son \"[$1 $2]\".",
+	"phonos-file-not-audio": "O ficheiro \"[[$1|$2]]\" non é un ficheiro de son.",
+	"phonos-player-aria-description": "Reproducir o son",
+	"phonos-aria-error": "Non se pode reproducir o son",
+	"phonos-ipa-too-long": "A transcrición no Alfabeto Fonético Internacional (AFI) tardou demasiado en renderizar.",
+	"phonos-wikibase-api-error": "Non se puido recuperar a entidade de Wikibase: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Entidade ou lexema non válido: $1",
+	"phonos-wikibase-not-found": "Non se atopou ningún son para o elemento de Wikibase: $1",
+	"phonos-wikibase-no-ipa": "Non se atopou ningunha transcrición no Alfabeto Fonético Internacional (AFI).",
+	"phonos-empty-file-error": "O son xerado semella estar baleiro. Seica a transcrición achegada no Alfabeto Fonético Internacional (AFI) non é válida ou non está soportada polo motor. Usar o parámetro \"$1\" pode ser de axuda.",
+	"phonos-param-error": "Cómpre proporcionar unha transcrición no Alfabeto Fonético Internacional (AFI), un ficheiro ou un elemento de Wikibase.",
+	"phonos-rendering-disabled": "Nestes intres a renderización no Alfabeto Fonético Internacional (AFI) está desactivada.",
+	"phonos-unsupported-language": "Phonos non admite o idioma $1.",
+	"phonos-unsupported-language-with-suggestions": "Phonos non admite o idioma $1. Admítense os seguintes idiomas, que posiblemente estean relacionados: $2.",
+	"phonos-inline-audio-player-mode": "Só se pode proporcionar un ficheiro de son ou un elemento de Wikibase cunha propiedade de pronuncia sonora ($1) cando está activo o modo reprodutor de son en liña."
+}
