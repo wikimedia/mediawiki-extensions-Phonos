@@ -16,7 +16,7 @@
 	"phonos-storage-error": "Kunne ikke lagre lydfila på endelig målsted:\n$1",
 	"phonos-purge-needed-error": "Kan ikke spille av lyd.",
 	"phonos-purge-needed-error-link": "Oppdater siden og prøv på nytt.",
-	"phonos-tracking-category": "Sider som bruker Phonos",
+	"phonos-tracking-category": "Sider som bruker Phonos-utvidelsen",
 	"phonos-tracking-category-desc": "Siden bruker [https://www.mediawiki.org/wiki/Extension:Phonos Phonos]-utvidelsen.",
 	"phonos-invalid-title": "Lydfila «$1» har en ugyldig tittel.",
 	"phonos-file-not-found": "Lydfila «[$1 $2]» ble ikke funnet.",
