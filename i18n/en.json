@@ -30,5 +30,6 @@
 	"phonos-unsupported-language": "Language $1 is not supported by Phonos.",
 	"phonos-unsupported-language-with-suggestions": "Language $1 is not supported by Phonos. The following possibly-related languages are supported: $2.",
 	"phonos-inline-audio-player-mode": "Only an audio file, or a Wikibase item with a pronunciation audio ($1) property, can be provided whilst in inline audio player mode.",
-	"phonos-attribution-icon": "ⓘ"
+	"phonos-attribution-icon": "ⓘ",
+	"phonos-button-classes": "noexcerpt"
 }

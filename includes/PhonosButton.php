@@ -13,11 +13,11 @@ class PhonosButton extends ButtonWidget {
 		$config['infusable'] = true;
 		$config['icon'] = 'volumeUp';
 		$config['framed'] = false;
-		$config['classes'] = [
-			'ext-phonos-PhonosButton',
-			// `.noexcerpt` is defined by TextExtracts
-			'noexcerpt'
-		];
+
+		if ( !isset( $config['classes'] ) ) {
+			$config['classes'] = [];
+		}
+		$config['classes'][] = 'ext-phonos-PhonosButton';
 
 		// Change display for errors.
 		if ( isset( $config['data']['error'] ) ) {

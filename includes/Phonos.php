@@ -100,6 +100,7 @@ class Phonos implements ParserFirstCallInitHook {
 			'label' => $label ?: '',
 			'ipa' => '',
 			'wikibase' => '',
+			'class' => wfMessage( 'phonos-button-classes' )->inContentLanguage()->parse(),
 		];
 		// Don't allow a label= attribute; see T340905#8983499
 		unset( $args['label'] );
@@ -111,6 +112,10 @@ class Phonos implements ParserFirstCallInitHook {
 			// Strip out the <p> tag that might have been added by the parser.
 			$buttonLabel = new HtmlSnippet( Parser::stripOuterParagraph( $content ) );
 		}
+		// Split the class attribute into an array of classes and drop any empty classes.
+		$buttonClasses = explode( ' ', $options['class'] );
+		$buttonClasses = array_values( array_filter( $buttonClasses, 'strlen' ) );
+
 		$buttonConfig = [
 			'label' => $buttonLabel,
 			'data' => [
@@ -119,6 +124,7 @@ class Phonos implements ParserFirstCallInitHook {
 				'lang' => $options['lang'],
 				'wikibase' => $options['wikibase']
 			],
+			'classes' => $buttonClasses,
 		];
 
 		try {
