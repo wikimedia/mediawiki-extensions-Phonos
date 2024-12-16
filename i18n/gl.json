@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"phonos-desc": "Proporciona funcións de conversión de texto a voz para unha variedade de idiomas",
+	"phonos-error-category": "Páxinas con erros de renderización de Phonos",
+	"phonos-error-category-desc": "Produciuse un erro ao renderizar Phonos.",
+	"phonos-audio-conversion-error": "Produciuse un erro ao converter o son a MP3:\n$1",
+	"phonos-directory-error": "Produciuse un erro ao crear o directorio de almacenamento \"$1\"",
+	"phonos-engine-error": "Produciuse un erro ao xerar o ficheiro de son usando o motor $1:\n$2",
+	"phonos-storage-error": "Produciuse un erro ao almacenar o ficheiro de son no seu destino final:\n$1"
+}
