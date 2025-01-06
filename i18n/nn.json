@@ -1,9 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"Njardarlogar"
+			"Njardarlogar",
+			"Ranveig"
 		]
 	},
+	"phonos-desc": "Tilbyr tekst-til-tale-funksjonalitet for ei rekkje språk",
+	"phonos-error-category": "Sider med Phonos-visingsfeil",
+	"phonos-error-category-desc": "Der oppstod ein feil under vising av Phonos.",
+	"phonos-audio-conversion-error": "Kunne ikkje konvertera lyd til MP3:\n$1",
+	"phonos-directory-error": "Kunne ikkje oppretta lagringsmappa $1",
+	"phonos-engine-error": "Kunne ikkje generera lydfil med $1-motoren:\n$2",
+	"phonos-storage-error": "Kunne ikkje lagra lydfila på endeleg målstad:\n$1",
 	"phonos-file-not-found": "Fann ikkje lydfila «$1».",
 	"phonos-file-not-audio": "Fila «$1» er ikkje ei lydfil."
 }
