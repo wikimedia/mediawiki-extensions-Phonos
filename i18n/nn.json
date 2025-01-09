@@ -1,10 +1,33 @@
 {
 	"@metadata": {
 		"authors": [
-			"Njardarlogar"
+			"Njardarlogar",
+			"Ranveig"
 		]
 	},
-	"phonos-file-not-found": "Fann ikkje lydfila «[$1 $2]».",
+	"phonos-desc": "Tilbyr tekst-til-tale-funksjonalitet for ei rekkje språk",
+	"phonos-error-category": "Sider med Phonos-visingsfeil",
+	"phonos-error-category-desc": "Der oppstod ein feil under vising av Phonos.",
+	"phonos-audio-conversion-error": "Kunne ikkje konvertera lyd til MP3:\n$1",
+	"phonos-directory-error": "Kunne ikkje oppretta lagringsmappa $1",
+	"phonos-engine-error": "Kunne ikkje generera lydfil med $1-motoren:\n$2",
+	"phonos-storage-error": "Kunne ikkje lagra lydfila på endeleg målstad:\n$1",
+	"phonos-purge-needed-error": "Kan ikkje spela av lyd.",
+	"phonos-purge-needed-error-link": "Oppdater sida og prøv på nytt.",
+	"phonos-invalid-title": "Lydfila «$1» har ein ugyldig tittel.",
+	"phonos-file-not-found": "Lydfila «[$1 $2]» vart ikkje funnen.",
 	"phonos-file-not-audio": "Fila «[[$1|$2]]» er ikkje ei lydfil.",
-	"phonos-player-aria-description": "Spel av lyd"
+	"phonos-player-aria-description": "Spel av lyd",
+	"phonos-aria-error": "Kan ikkje spela av lyd.",
+	"phonos-ipa-too-long": "IPA er for lang til å visast.",
+	"phonos-wikibase-api-error": "Kunne ikkje henta objekt frå Wikibase: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Ugyldig objekt eller leksem: $1",
+	"phonos-wikibase-not-found": "Ingen lyd funnen for Wikibase-objektet: $1",
+	"phonos-wikibase-no-ipa": "Ingen IPA-transkripsjon funnen.",
+	"phonos-empty-file-error": "Den genererte lyden ser ut til å vera tom. Den gitte IPA-transkripsjonen kan vera ugyldig, eller ikkje støtta av motoren. Det kan hjelpa å bruka parameteren «$1».",
+	"phonos-param-error": "Ein må oppgje anten IPA, ei fil eller eit Wikibase-objekt.",
+	"phonos-rendering-disabled": "IPA-attgjeving er for tida deaktivert.",
+	"phonos-unsupported-language": "Språket $1 er ikkje støtta av Phonos.",
+	"phonos-unsupported-language-with-suggestions": "Språket $1er ikkje støtta av Phonos. Følgjande språk, som kanskje er nærliggjande, er støtta: $2.",
+	"phonos-inline-audio-player-mode": "Berre ei lydfil, eller eit Wikibase-objekt med ein eigenskap for uttalelyd ($1), kan oppgjevast i innebygd lydavspelarmodus."
 }
