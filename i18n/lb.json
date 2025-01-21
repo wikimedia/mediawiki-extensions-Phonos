@@ -5,9 +5,13 @@
 			"Volvox"
 		]
 	},
+	"phonos-purge-needed-error-link": "Luet d'Säit nei a probéiert nach eng Kéier.",
 	"phonos-tracking-category": "Säiten, déi d'Phonos-Erweiderung benotzen",
 	"phonos-tracking-category-desc": "Dës Säit benotzt d'[https://www.mediawiki.org/wiki/Extension:Phonos Phonos]-Erweiderung.",
 	"phonos-invalid-title": "D'Audiodatei „$1“ huet een ongültegen Titel.",
 	"phonos-file-not-found": "Audiodatei „[$1 $2]“ net fonnt.",
-	"phonos-file-not-audio": "D'Datei „[[$1|$2]]“ ass keng Audiodatei."
+	"phonos-file-not-audio": "D'Datei „[[$1|$2]]“ ass keng Audiodatei.",
+	"phonos-wikibase-invalid-entity-lexeme": "Ongülteg Entitéit oder Lexeem: $1",
+	"phonos-wikibase-no-ipa": "Keng IPA-Transkriptioun fonnt.",
+	"phonos-unsupported-language": "D'Sprooch $1 gëtt net vu Phonos ënnerstëtzt."
 }
