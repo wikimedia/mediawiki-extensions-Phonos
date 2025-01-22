@@ -5,5 +5,9 @@
 			"Volvox"
 		]
 	},
-	"phonos-tracking-category": "Säiten, déi Phonos benotzen"
+	"phonos-purge-needed-error-link": "Luet d'Säit nei a probéiert nach eng Kéier.",
+	"phonos-tracking-category": "Säiten, déi Phonos benotzen",
+	"phonos-wikibase-invalid-entity-lexeme": "Ongülteg Entitéit oder Lexeem: $1",
+	"phonos-wikibase-no-ipa": "Keng IPA-Transkriptioun fonnt.",
+	"phonos-unsupported-language": "D'Sprooch $1 gëtt net vu Phonos ënnerstëtzt."
 }
