@@ -7,9 +7,17 @@
 			"SRuizR",
 			"SpikeShroom",
 			"-jem-",
-			"No se"
+			"No se",
+			"Dgstranz"
 		]
 	},
+	"phonos-desc": "Proporciona una funcionalidad de texto a voz para una variedad de idiomas.",
+	"phonos-error-category": "Páginas con errores de representación de Phonos",
+	"phonos-error-category-desc": "Hubo un error al representar Phonos.",
+	"phonos-audio-conversion-error": "No se pudo convertir audio a MP3: $1",
+	"phonos-directory-error": "No se pudo crear el directorio de almacenamiento $1",
+	"phonos-engine-error": "No se pudo generar el archivo de audio mediante el motor $1: $2",
+	"phonos-storage-error": "No se pudo almacenar el archivo de audio en su destino final: $1",
 	"phonos-tracking-category": "Páginas que usan Phonos",
 	"phonos-file-not-found": "Archivo de audio \" $1 \" no encontrado.",
 	"phonos-file-not-audio": "El archivo \" $1 \" no es un archivo de audio."
