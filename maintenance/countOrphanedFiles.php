@@ -5,7 +5,7 @@ use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Site\MediaWikiSite;
 use MediaWiki\Site\SiteList;
-use MediaWiki\Site\SiteStore;
+use MediaWiki\Site\SiteLookup;
 use MediaWiki\Status\Status;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\FileBackend\FileBackend;
@@ -33,7 +33,7 @@ class CountOrphanedFiles extends Maintenance {
 
 	private HttpRequestFactory $requestFactory;
 	private LBFactory $lbFactory;
-	private SiteStore $siteStore;
+	private SiteLookup $siteLookup;
 	private FileBackend $backend;
 
 	/** @var string|false */
@@ -58,7 +58,7 @@ class CountOrphanedFiles extends Maintenance {
 		$this->requestFactory = $services->getHttpRequestFactory();
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 		$this->lbFactory = $services->getDBLoadBalancerFactory();
-		$this->siteStore = $services->getSiteStore();
+		$this->siteLookup = $services->getSiteLookup();
 		$this->backend = Engine::getFileBackend(
 			$services->getFileBackendGroup(),
 			$config
@@ -96,7 +96,7 @@ class CountOrphanedFiles extends Maintenance {
 			$sites = new SiteList();
 			foreach ( $wikis as $wiki ) {
 				/** @var MediaWikiSite $site */
-				$site = $this->siteStore->getSite( $wiki );
+				$site = $this->siteLookup->getSite( $wiki );
 				// @phan-suppress-next-line PhanTypeMismatchArgumentSuperType
 				if ( $site && $this->isExtensionInstalled( $site ) ) {
 					$sites->setSite( $site );
@@ -105,7 +105,7 @@ class CountOrphanedFiles extends Maintenance {
 				}
 			}
 		} else {
-			$sites = $this->siteStore->getSites();
+			$sites = $this->siteLookup->getSites();
 		}
 
 		if ( $sites->isEmpty() ) {
