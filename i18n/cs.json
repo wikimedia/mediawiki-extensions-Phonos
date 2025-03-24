@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mormegil"
+		]
+	},
+	"phonos-desc": "Poskytuje funkce převodu textu na řeč pro řadu jazyků",
+	"phonos-error-category": "Stránky s chybami při vykreslování Phonos",
+	"phonos-error-category-desc": "Při vykreslování Phonos došlo k chybě."
+}
