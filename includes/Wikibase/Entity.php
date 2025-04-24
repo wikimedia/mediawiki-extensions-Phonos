@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\Phonos\Wikibase;
 
-use File;
+use MediaWiki\FileRepo\File\File;
 
 /**
  * Value class for storing Wikibase data.

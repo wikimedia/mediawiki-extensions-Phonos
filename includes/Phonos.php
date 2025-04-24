@@ -1,8 +1,6 @@
 <?php
 namespace MediaWiki\Extension\Phonos;
 
-use File;
-use JobQueueGroup;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\Config;
 use MediaWiki\Extension\Phonos\Engine\AudioParams;
@@ -10,8 +8,11 @@ use MediaWiki\Extension\Phonos\Engine\Engine;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
 use MediaWiki\Extension\Phonos\Job\PhonosIPAFilePersistJob;
 use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Html\Html;
+use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
@@ -25,7 +26,6 @@ use MediaWiki\TimedMediaHandler\WebVideoTranscode\WebVideoTranscode;
 use MediaWiki\Title\Title;
 use OOUI\HtmlSnippet;
 use Psr\Log\LoggerInterface;
-use RepoGroup;
 
 /**
  * Phonos extension

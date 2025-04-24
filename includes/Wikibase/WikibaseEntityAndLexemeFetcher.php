@@ -4,9 +4,9 @@ namespace MediaWiki\Extension\Phonos\Wikibase;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Language\LanguageCode;
-use RepoGroup;
 use stdClass;
 use Wikimedia\ObjectCache\WANObjectCache;
 
