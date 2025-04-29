@@ -5,9 +5,6 @@
 		"wikimedia/mediawiki",
 		"wikimedia/jquery"
 	],
-	"parserOptions": {
-		"sourceType": "commonjs"
-	},
 	"rules": {
 		"no-jquery/no-done-fail": "warn"
 	}
