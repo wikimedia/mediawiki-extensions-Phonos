@@ -66,7 +66,7 @@ class EngineTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideCheckLanguageSupport()
+	 * @dataProvider provideCheckLanguageSupport
 	 */
 	public function testCheckLanguageSupport( $langs, $inLang, $outLang ) {
 		$engine = $this->createPartialMock( EspeakEngine::class, [ 'getSupportedLanguages' ] );
