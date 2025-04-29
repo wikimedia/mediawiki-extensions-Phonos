@@ -32,7 +32,7 @@ class WikibaseEntityAndLexemeFetcherTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideIPATranscription()
+	 * @dataProvider provideIPATranscription
 	 */
 	public function testIPATranscription(
 		string $lang, string $text, string $id, array $entityData, ?string $expected
