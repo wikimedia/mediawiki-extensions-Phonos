@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"phonos-purge-needed-error-link": "Osvežite stranicu i pokušajte ponovo.",
+	"phonos-file-not-found": "Audio datoteka „[$1 $2]” nije pronađena.",
+	"phonos-file-not-audio": "Datoteka „[[$1|$2]]” nije audio datoteka."
+}
