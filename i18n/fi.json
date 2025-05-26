@@ -8,5 +8,7 @@
 	"phonos-error-category": "Sivut, joissa on Phonosin renderöintivirheitä",
 	"phonos-error-category-desc": "Virhe Phonosin renderöinnissä.",
 	"phonos-audio-conversion-error": "Äänen muuntaminen MP3:ksi epäonnistui:\n$1",
+	"phonos-directory-error": "Tallennushakemiston $1 luominen epäonnistui",
+	"phonos-storage-error": "Äänitiedoston tallentaminen lopulliseen kohteeseen epäonnistui:\n$1",
 	"phonos-tracking-category": "Phonosia käyttävät sivut"
 }
