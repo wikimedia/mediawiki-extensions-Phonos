@@ -95,6 +95,7 @@ class EspeakEngine extends Engine {
 		return $this->wanCache->getWithSetCallback(
 			$this->wanCache->makeKey( 'phonos-espeak-langs', $this->espeakPath ),
 			WANObjectCache::TTL_MONTH,
+			/** @throws PhonosException */
 			function () {
 				$out = $this->espeakCommand
 					->params( [ $this->espeakPath, '--voices' ] )

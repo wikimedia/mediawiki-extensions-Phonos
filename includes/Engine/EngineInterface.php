@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extension\Phonos\Engine;
 
+use MediaWiki\Extension\Phonos\Exception\PhonosException;
+
 interface EngineInterface {
 
 	/**
@@ -24,6 +26,7 @@ interface EngineInterface {
 	 * Get a list of languages supported by this engine.
 	 *
 	 * @return string[]|null Array of IETF language codes, or null if any language is supported.
+	 * @throws PhonosException
 	 */
 	public function getSupportedLanguages(): ?array;
 }

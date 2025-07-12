@@ -230,6 +230,7 @@ class Phonos implements ParserFirstCallInitHook {
 	 * @param array $options
 	 * @param array &$buttonConfig
 	 * @param ParserOutput $parserOutput
+	 * @throws PhonosException
 	 */
 	private function handleNewFile( array $options, array &$buttonConfig, ParserOutput $parserOutput ): void {
 		if ( $this->inlineAudioPlayerMode ) {

@@ -138,7 +138,7 @@ class CountOrphanedFiles extends Maintenance {
 
 		try {
 			$apiRoot = $site->getFileUrl( 'api.php' );
-		} catch ( RuntimeException $e ) {
+		} catch ( RuntimeException ) {
 			$this->fatalError( "file_path not specified in the sites table for wiki '$wiki'.\n" );
 		}
 
