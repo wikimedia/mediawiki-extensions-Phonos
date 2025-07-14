@@ -5,6 +5,7 @@
 			"Nguyenphutrong2"
 		]
 	},
+	"phonos-tracking-category": "Trang sử dụng phần mở rộng Phonos",
 	"phonos-empty-file-error": "Âm thanh được tạo dường như trống. IPA đã cho có thể không hợp lệ hoặc không được công cụ hỗ trợ. Sử dụng tham số '$1' có thể hữu ích.",
 	"phonos-param-error": "Phải cung cấp cách phát âm theo bảng mẫu tự ngữ âm quốc tế (IPA), tập tin, hoặc khoản mục Wikibase.",
 	"phonos-rendering-disabled": "kết xuất IPA hiện đang bị tắt.",
