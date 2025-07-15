@@ -3,14 +3,11 @@
 namespace MediaWiki\Extension\Phonos\Engine;
 
 class AudioParams {
-	private string $lang;
-	private string $text;
-	private string $ipa;
-
-	public function __construct( string $ipa, string $text, string $lang ) {
-		$this->ipa = $ipa;
-		$this->text = $text;
-		$this->lang = $lang;
+	public function __construct(
+		private readonly string $ipa,
+		private readonly string $text,
+		private readonly string $lang,
+	) {
 	}
 
 	public function getLang(): string {

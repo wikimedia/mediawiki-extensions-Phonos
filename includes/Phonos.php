@@ -36,32 +36,20 @@ use Psr\Log\LoggerInterface;
  */
 class Phonos implements ParserFirstCallInitHook {
 
-	protected RepoGroup $repoGroup;
-	protected LinkRenderer $linkRenderer;
-	protected Engine $engine;
-	protected WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher;
-	private StatsdDataFactoryInterface $statsdDataFactory;
-	private JobQueueGroup $jobQueueGroup;
-	private bool $renderingEnabled;
-	protected LoggerInterface $logger;
-	private bool $inlineAudioPlayerMode;
-	private array $wikibaseProperties;
+	private readonly bool $renderingEnabled;
+	protected readonly LoggerInterface $logger;
+	private readonly bool $inlineAudioPlayerMode;
+	private readonly array $wikibaseProperties;
 
 	public function __construct(
-		RepoGroup $repoGroup,
-		Engine $engine,
-		WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher,
-		StatsdDataFactoryInterface $statsdDataFactory,
-		JobQueueGroup $jobQueueGroup,
-		LinkRenderer $linkRenderer,
-		Config $config
+		protected readonly RepoGroup $repoGroup,
+		protected readonly Engine $engine,
+		protected readonly WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher,
+		private readonly StatsdDataFactoryInterface $statsdDataFactory,
+		private readonly JobQueueGroup $jobQueueGroup,
+		protected readonly LinkRenderer $linkRenderer,
+		Config $config,
 	) {
-		$this->repoGroup = $repoGroup;
-		$this->engine = $engine;
-		$this->wikibaseEntityAndLexemeFetcher = $wikibaseEntityAndLexemeFetcher;
-		$this->statsdDataFactory = $statsdDataFactory;
-		$this->jobQueueGroup = $jobQueueGroup;
-		$this->linkRenderer = $linkRenderer;
 		$this->renderingEnabled = $config->get( 'PhonosIPARenderingEnabled' );
 		$this->logger = LoggerFactory::getInstance( 'Phonos' );
 		$this->inlineAudioPlayerMode = $config->get( 'PhonosInlineAudioPlayerMode' );

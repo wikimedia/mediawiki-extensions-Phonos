@@ -38,21 +38,17 @@ use Psr\Log\LoggerInterface;
  * should be throttled accordingly using $wgJobBackoffThrottling
  */
 class PhonosIPAFilePersistJob extends Job {
-	private Engine $engine;
-	private StatsdDataFactoryInterface $statsdDataFactory;
-	protected LoggerInterface $logger;
+	protected readonly LoggerInterface $logger;
 
 	/**
 	 * @inheritDoc
 	 */
 	public function __construct(
 		array $params,
-		Engine $engine,
-		StatsdDataFactoryInterface $statsdDataFactory
+		private readonly Engine $engine,
+		private readonly StatsdDataFactoryInterface $statsdDataFactory,
 	) {
 		parent::__construct( 'phonosIPAFilePersist', $params );
-		$this->engine = $engine;
-		$this->statsdDataFactory = $statsdDataFactory;
 		$this->removeDuplicates = true;
 		$this->logger = LoggerFactory::getInstance( 'Phonos' );
 		$this->logger->info(

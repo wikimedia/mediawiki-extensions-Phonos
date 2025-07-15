@@ -10,15 +10,15 @@ use Exception;
  */
 class PhonosException extends Exception {
 
-	private array $args;
-
 	/**
 	 * @param string $message Message key of error message.
 	 * @param array $args Parameters to pass to the message.
 	 */
-	public function __construct( string $message, array $args = [] ) {
+	public function __construct(
+		string $message,
+		private readonly array $args = [],
+	) {
 		parent::__construct( $message );
-		$this->args = $args;
 	}
 
 	/**

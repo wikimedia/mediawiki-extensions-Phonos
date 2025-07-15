@@ -16,29 +16,21 @@ use Wikimedia\ObjectCache\WANObjectCache;
  */
 class WikibaseEntityAndLexemeFetcher {
 
-	private string $wikibaseUrl;
-	private string $wikibasePronunciationAudioProp;
-	private string $wikibaseLangNameProp;
-	private string $wikibaseIETFLangTagProp;
-	private string $wikibaseIPATranscriptionProp;
-	private HttpRequestFactory $requestFactory;
-	private RepoGroup $repoGroup;
-	private WANObjectCache $wanCache;
+	private readonly string $wikibaseUrl;
+	private readonly string $wikibasePronunciationAudioProp;
+	private readonly string $wikibaseLangNameProp;
+	private readonly string $wikibaseIETFLangTagProp;
+	private readonly string $wikibaseIPATranscriptionProp;
 
 	/** @var string|false */
 	private $apiProxy;
 
 	public function __construct(
-		HttpRequestFactory $requestFactory,
-		RepoGroup $repoGroup,
-		WANObjectCache $wanCache,
-		Config $config
+		private readonly HttpRequestFactory $requestFactory,
+		private readonly RepoGroup $repoGroup,
+		private readonly WANObjectCache $wanCache,
+		Config $config,
 	) {
-		// Dependencies.
-		$this->requestFactory = $requestFactory;
-		$this->repoGroup = $repoGroup;
-		$this->wanCache = $wanCache;
-
 		// General configuration.
 		$this->wikibaseUrl = $config->get( 'PhonosWikibaseUrl' );
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
