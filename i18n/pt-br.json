@@ -4,5 +4,12 @@
 			"Eduardoaddad",
 			"Fernando Leite De Oliveira"
 		]
-	}
+	},
+	"phonos-desc": "Fornecer funcionalidade de conversão de texto em fala para uma variedade de idiomas",
+	"phonos-error-category": "Páginas com erros de composição do Phonos",
+	"phonos-error-category-desc": "Ocorreu um erro ao fazer a composição do Phonos.",
+	"phonos-audio-conversion-error": "Falha na conversão de áudio para MP3:\n$1",
+	"phonos-directory-error": "Não foi possível criar o diretório de armazenamento $1",
+	"phonos-engine-error": "Não foi possível gerar o arquivo de áudio usando o motor $1:\n$2",
+	"phonos-storage-error": "Não foi possível armazenar o arquivo de áudio no seu destino final:\n$1"
 }
