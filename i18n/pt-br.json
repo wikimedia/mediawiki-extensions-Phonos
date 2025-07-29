@@ -5,7 +5,31 @@
 			"Fernando Leite De Oliveira"
 		]
 	},
+	"phonos-desc": "Fornecer funcionalidade de conversão de texto em fala para uma variedade de idiomas",
+	"phonos-error-category": "Páginas com erros de composição do Phonos",
+	"phonos-error-category-desc": "Ocorreu um erro ao fazer a composição do Phonos.",
+	"phonos-audio-conversion-error": "Falha na conversão de áudio para MP3:\n$1",
+	"phonos-directory-error": "Não foi possível criar o diretório de armazenamento $1",
+	"phonos-engine-error": "Não foi possível gerar o arquivo de áudio usando o motor $1:\n$2",
+	"phonos-storage-error": "Não foi possível armazenar o arquivo de áudio no seu destino final:\n$1",
+	"phonos-purge-needed-error": "Não é possível reproduzir o áudio.",
+	"phonos-purge-needed-error-link": "Refresque a página e tente novamente.",
+	"phonos-tracking-category": "Páginas que utilizam a extensão Phonos",
+	"phonos-tracking-category-desc": "A página utiliza a extensão [https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
+	"phonos-invalid-title": "O arquivo de áudio \"$1\" tem um título inválido.",
+	"phonos-file-not-found": "O arquivo de áudio \"[$1 $2]\" não foi encontrado.",
+	"phonos-file-not-audio": "O arquivo \"[[$1|$2]]\" não é um ficheiro de áudio.",
 	"phonos-player-aria-description": "Tocar áudio",
+	"phonos-aria-error": "Não é possível reproduzir o áudio",
+	"phonos-ipa-too-long": "A transcrição AFI é muito longa para fazer a composição.",
+	"phonos-wikibase-api-error": "Não foi possível obter a entidade da wiki Wikibase: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Entidade ou lexema inválidos: $1",
+	"phonos-wikibase-not-found": "Não foi encontrado nenhum áudio para o elemento Wikibase: $1",
 	"phonos-wikibase-no-ipa": "Não foi encontrada nenhuma transcrição AFI.",
-	"phonos-empty-file-error": "O áudio gerado parece estar vazio. A transcrição AFI fornecida pode ser inválida ou não é suportada pelo motor. Usar o parâmetro '$1' talvez ajude."
+	"phonos-empty-file-error": "O áudio gerado parece estar vazio. A transcrição AFI fornecida pode ser inválida ou não é suportada pelo motor. Usar o parâmetro '$1' talvez ajude.",
+	"phonos-param-error": "Tem de ser fornecida uma transcrição AFI, um arquivo ou um elemento Wikibase.",
+	"phonos-rendering-disabled": "A composição de transcrições AFI está atualmente desativada.",
+	"phonos-unsupported-language": "O idioma $1 não é suportado pelo Phonos.",
+	"phonos-unsupported-language-with-suggestions": "O idioma $1 não é suportado pelo Phonos. Os seguintes idiomas, que podem estar relacionados, são suportados: $2.",
+	"phonos-inline-audio-player-mode": "Só um arquivo de áudio ou um elemento Wikibase com uma propriedade de áudio de pronunciação ($1) podem ser fornecidos no modo de reprodução de áudio em linha."
 }
