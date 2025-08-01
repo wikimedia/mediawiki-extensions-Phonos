@@ -75,13 +75,13 @@ class EspeakEngine extends Engine {
 		$speakNode = $ssmlDoc->createElement( 'speak' );
 		$speakNode->setAttribute( 'xmlns', 'http://www.w3.org/2001/10/synthesis' );
 		$speakNode->setAttribute( 'version', '1.1' );
-		$speakNode->setAttribute( 'xml:lang', $params->getLang() );
+		$speakNode->setAttribute( 'xml:lang', $params->lang );
 		$ssmlDoc->appendChild( $speakNode );
 
 		// phoneme element spec: https://www.w3.org/TR/speech-synthesis/#S3.1.10
-		$phoneme = $ssmlDoc->createElement( 'phoneme', $params->getText() );
+		$phoneme = $ssmlDoc->createElement( 'phoneme', $params->text );
 		$phoneme->setAttribute( 'alphabet', 'ipa' );
-		$phoneme->setAttribute( 'ph', $params->getIpa() );
+		$phoneme->setAttribute( 'ph', $params->ipa );
 
 		$speakNode->appendChild( $phoneme );
 

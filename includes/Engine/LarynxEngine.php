@@ -61,15 +61,15 @@ class LarynxEngine extends Engine {
 	 * @inheritDoc
 	 */
 	public function getSsml( AudioParams $params ): string {
-		$ipa = trim( $params->getIpa() );
-		$text = $params->getText() ?: $ipa;
+		$ipa = trim( $params->ipa );
+		$text = $params->text ?: $ipa;
 
 		$ssmlDoc = new DOMDocument( '1.0' );
 
 		$speakNode = $ssmlDoc->createElement( 'speak' );
 		$speakNode->setAttribute( 'xmlns', 'http://www.w3.org/2001/10/synthesis' );
 		$speakNode->setAttribute( 'version', '1.1' );
-		$speakNode->setAttribute( 'xml:lang', $params->getLang() );
+		$speakNode->setAttribute( 'xml:lang', $params->lang );
 		$ssmlDoc->appendChild( $speakNode );
 
 		/**

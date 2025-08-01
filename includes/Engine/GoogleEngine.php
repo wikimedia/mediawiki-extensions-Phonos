@@ -62,7 +62,7 @@ class GoogleEngine extends Engine {
 				'ssml' => trim( $this->getSsml( $params ) ),
 			],
 			'voice' => [
-				'languageCode' => $params->getLang(),
+				'languageCode' => $params->lang,
 			],
 		];
 		$options = [
@@ -117,11 +117,11 @@ class GoogleEngine extends Engine {
 		$speakNode = $ssmlDoc->createElement( 'speak' );
 		$ssmlDoc->appendChild( $speakNode );
 
-		$phonemeNode = $ssmlDoc->createElement( 'phoneme', $params->getText() );
+		$phonemeNode = $ssmlDoc->createElement( 'phoneme', $params->text );
 		$phonemeNode->setAttribute( 'alphabet', 'ipa' );
 
 		// Trim slashes from IPA; see T313497
-		$ipa = trim( $params->getIpa(), '/' );
+		$ipa = trim( $params->ipa, '/' );
 		// Replace apostrophes with U+02C8; see T313711
 		$ipa = str_replace( "'", "ˈ", $ipa );
 

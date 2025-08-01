@@ -223,7 +223,7 @@ abstract class Engine implements EngineInterface {
 	final public function getError( AudioParams $params ): ?array {
 		return $this->stash->get(
 			$this->stash->makeKey( 'phonos', 'engine-error',
-				$params->getIpa(), $params->getText(), $params->getLang() )
+				$params->ipa, $params->text, $params->lang )
 		) ?: null;
 	}
 
@@ -236,7 +236,7 @@ abstract class Engine implements EngineInterface {
 	final public function setError( AudioParams $params, array $error ): void {
 		$this->stash->set(
 			$this->stash->makeKey( 'phonos', 'engine-error',
-				$params->getIpa(), $params->getText(), $params->getLang() ),
+				$params->ipa, $params->text, $params->lang ),
 			$error
 		);
 	}
@@ -249,7 +249,7 @@ abstract class Engine implements EngineInterface {
 	final public function clearError( AudioParams $params ): void {
 		$this->stash->delete(
 			$this->stash->makeKey( 'phonos', 'engine-error',
-				$params->getIpa(), $params->getText(), $params->getLang() )
+				$params->ipa, $params->text, $params->lang )
 		);
 	}
 
@@ -336,9 +336,9 @@ abstract class Engine implements EngineInterface {
 	private function getFileProperties( AudioParams $params ): array {
 		$baseStoragePath = $this->fileBackend->getRootStoragePath() . '/' . self::STORAGE_PREFIX;
 		$cacheOptions = [ $this->engineName,
-			$params->getIpa(),
-			$params->getText(),
-			$params->getLang(),
+			$params->ipa,
+			$params->text,
+			$params->lang,
 			self::CACHE_VERSION ];
 		$fileCacheName = \Wikimedia\base_convert( sha1( implode( '|', $cacheOptions ) ), 16, 36, 31 );
 		$filePrefixEnd = "{$fileCacheName[0]}/{$fileCacheName[1]}";
