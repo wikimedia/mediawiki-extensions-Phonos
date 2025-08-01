@@ -41,48 +41,30 @@ abstract class Engine implements EngineInterface {
 	/** @var string Prefix directory name when persisting files to storage. */
 	public const STORAGE_PREFIX = 'phonos-render';
 
-	protected HttpRequestFactory $requestFactory;
-
-	protected CommandFactory $commandFactory;
-
-	protected FileBackend $fileBackend;
+	protected readonly FileBackend $fileBackend;
 
 	/** @var string|false */
 	protected $apiProxy;
 
-	protected string $lamePath;
+	protected readonly string $lamePath;
 
-	protected string $uploadPath;
+	protected readonly string $uploadPath;
 
-	private string $engineName;
+	private readonly string $engineName;
 
 	/** @var int|string Time in days we want to persist the file for */
 	protected $fileExpiry;
 
-	private BagOStuff $stash;
-
-	protected WANObjectCache $wanCache;
-
-	private Language $contentLanguage;
-
-	protected Config $config;
-
 	public function __construct(
-		HttpRequestFactory $requestFactory,
-		CommandFactory $commandFactory,
+		protected readonly HttpRequestFactory $requestFactory,
+		protected readonly CommandFactory $commandFactory,
 		FileBackendGroup $fileBackendGroup,
-		BagOStuff $stash,
-		WANObjectCache $wanCache,
-		Language $contentLanguage,
-		Config $config
+		private readonly BagOStuff $stash,
+		protected readonly WANObjectCache $wanCache,
+		private readonly Language $contentLanguage,
+		protected readonly Config $config,
 	) {
-		$this->requestFactory = $requestFactory;
-		$this->commandFactory = $commandFactory;
 		$this->fileBackend = self::getFileBackend( $fileBackendGroup, $config );
-		$this->stash = $stash;
-		$this->wanCache = $wanCache;
-		$this->contentLanguage = $contentLanguage;
-		$this->config = $config;
 		$this->apiProxy = $config->get( 'PhonosApiProxy' );
 		$this->lamePath = $config->get( 'PhonosLame' );
 		$this->uploadPath = $config->get( 'PhonosPath' ) ?:
