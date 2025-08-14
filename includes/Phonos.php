@@ -21,7 +21,6 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Registration\ExtensionRegistry;
-use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\TimedMediaHandler\TimedMediaHandler;
 use MediaWiki\TimedMediaHandler\WebVideoTranscode\WebVideoTranscode;
 use MediaWiki\Title\Title;
@@ -400,24 +399,5 @@ class Phonos implements ParserFirstCallInitHook {
 	private function recordError( PhonosException $e ): void {
 		$key = $e->getStatsdKey();
 		$this->statsdDataFactory->increment( "extension.Phonos.error.$key" );
-	}
-
-	public static function onRegistration( array $extInfo, SettingsBuilder $settings ) {
-		$config = $settings->getConfig();
-		if ( $config->get( 'PhonosApiProxy' ) === false ) {
-			wfDeprecated( '"false" as value in $wgPhonosApiProxy', '1.45' );
-		}
-		if ( $config->get( 'PhonosFileBackend' ) === false ) {
-			wfDeprecated( '"false" as value in $wgPhonosFileBackend', '1.45' );
-		}
-		if ( $config->get( 'PhonosFileBackendDirectory' ) === false ) {
-			wfDeprecated( '"false" as value in $wgPhonosFileBackendDirectory', '1.45' );
-		}
-		if ( $config->get( 'PhonosPath' ) === false ) {
-			wfDeprecated( '"false" as value in $wgPhonosPath', '1.45' );
-		}
-		if ( is_string( $config->get( 'PhonosFileExpiry' ) ) ) {
-			wfDeprecated( 'type string in $wgPhonosFileExpiry', '1.45' );
-		}
 	}
 }

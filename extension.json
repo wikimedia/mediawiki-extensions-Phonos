@@ -22,7 +22,6 @@
 		"phonos-tracking-category",
 		"phonos-error-category"
 	],
-	"callback": "MediaWiki\\Extension\\Phonos\\Phonos::onRegistration",
 	"config": {
 		"PhonosEngine": {
 			"value": "espeak",
