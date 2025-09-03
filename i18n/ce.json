@@ -4,5 +4,31 @@
 			"Умар"
 		]
 	},
-	"phonos-player-aria-description": "Аудио латайе"
+	"phonos-desc": "Текст-озе йоккху функционал дӀайалар масех меттанашна",
+	"phonos-error-category": "Phonos гайтарехь гӀалаташ долу агӀонаш",
+	"phonos-error-category-desc": "Phonos рендеринг йеш гӀалат даьлла.",
+	"phonos-audio-conversion-error": "Аудио → MP3 хийца аьтто ца баьлла:\n$1",
+	"phonos-directory-error": "Лармин каталог кхолла аьтто ца баьлла $1",
+	"phonos-engine-error": "$1 гӀоьнца аудиофайл генераци йан аьтто ца баьлла:\n$2",
+	"phonos-storage-error": "Аудиофайл шен чаккхенан меттигехь Ӏалашйан аьтто ца баьлла:\n$1",
+	"phonos-purge-needed-error": "Аудио лато аьтто бац.",
+	"phonos-purge-needed-error-link": "АгӀо карла а йаьккхина, йуха хьажа.",
+	"phonos-tracking-category": "Phonos шордар лелош йолу агӀонаш",
+	"phonos-tracking-category-desc": "АгӀонан тӀехь лелайо [https://www.mediawiki.org/wiki/Extension:Phonos Phonos] шордар.",
+	"phonos-invalid-title": "«$1» аудиофайлан нийса йоцу цӀе йу.",
+	"phonos-file-not-found": "Аудиофайл \"[$1 $2]\" ца карийна.",
+	"phonos-file-not-audio": "«[[$1|$2]]» файл — аудиофайл йац.",
+	"phonos-player-aria-description": "Аудио латайе",
+	"phonos-aria-error": "Аудио лато аьтто бац",
+	"phonos-ipa-too-long": "IPA гайта тӀехь йеха йу.",
+	"phonos-wikibase-api-error": "Викибазера дух схьаэца аьтто ца баьлла: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Нийса йоцу дух йа лексема: $1",
+	"phonos-wikibase-not-found": "Аудио ца карийна Викибазан элементанна: $1",
+	"phonos-wikibase-no-ipa": "IPA транскрипци ца карийна.",
+	"phonos-empty-file-error": "Генераци йина аудио йаьсса санна хетало. Делла IPA нийса ца хила тарло, йа моторо ловш ца хила тарло. '$1' параметр лелоро гӀо дан мега.",
+	"phonos-param-error": "ДӀайала йеза IPA, файл йа Викибазан элемент.",
+	"phonos-rendering-disabled": "IPA рендеринг карарчу хенахь дӀайайина йу.",
+	"phonos-unsupported-language": "$1 мотт лелош бац Phonos тӀехь.",
+	"phonos-unsupported-language-with-suggestions": "$1 мотт лелош бац Phonos тӀехь. Хила тарлуш долу уьйр йолу меттанаш лелош ду: $2.",
+	"phonos-inline-audio-player-mode": "Аудиофайл бен, йа Викибазан элемент бен йац аларан аудио ($1) башхалла йолуш, дӀайала йиш йу рогӀера аудио плеер рожехь йолуш."
 }
