@@ -192,14 +192,20 @@ PhonosButton.prototype.handleMissingFile = function () {
 	$link.on( 'click', ( e ) => {
 		this.setIcon( 'reload' );
 		e.preventDefault();
-		mw.loader.using( 'mediawiki.api' ).done( () => {
+		mw.loader.using( 'mediawiki.api' ).then( () => {
 			new mw.Api().post( {
 				action: 'purge',
 				pageids: mw.config.get( 'wgArticleId' )
-			} ).always( () => {
-				// The browser *should* bring the user back to the same scroll position.
-				location.reload();
-			} );
+			} ).then(
+				() => {
+					// The browser *should* bring the user back to the same scroll position.
+					location.reload();
+				},
+				() => {
+					// Also reload on failure.
+					location.reload();
+				}
+			);
 		} );
 	} );
 };
