@@ -3,5 +3,12 @@
 		"authors": [
 			"Умар"
 		]
-	}
+	},
+	"phonos-desc": "Текст-озе йоккху функционал дӀайалар масех меттанашна",
+	"phonos-error-category": "Phonos гайтарехь гӀалаташ долу агӀонаш",
+	"phonos-error-category-desc": "Phonos рендеринг йеш гӀалат даьлла.",
+	"phonos-audio-conversion-error": "Аудио → MP3 хийца аьтто ца баьлла:\n$1",
+	"phonos-directory-error": "Лармин каталог кхолла аьтто ца баьлла $1",
+	"phonos-engine-error": "$1 гӀоьнца аудиофайл генераци йан аьтто ца баьлла:\n$2",
+	"phonos-storage-error": "Аудиофайл шен чаккхенан меттигехь Ӏалашйан аьтто ца баьлла:\n$1"
 }
