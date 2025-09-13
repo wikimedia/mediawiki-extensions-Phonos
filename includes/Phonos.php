@@ -1,4 +1,13 @@
 <?php
+
+/**
+ * Phonos extension
+ *
+ * @file
+ * @ingroup Extensions
+ * @license GPL-2.0-or-later
+ */
+
 namespace MediaWiki\Extension\Phonos;
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
@@ -27,13 +36,6 @@ use MediaWiki\Title\Title;
 use OOUI\HtmlSnippet;
 use Psr\Log\LoggerInterface;
 
-/**
- * Phonos extension
- *
- * @file
- * @ingroup Extensions
- * @license GPL-2.0-or-later
- */
 class Phonos implements ParserFirstCallInitHook {
 
 	private readonly bool $renderingEnabled;
