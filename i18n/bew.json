@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jawadywn"
+		]
+	},
+	"phonos": "Phonos",
+	"phonos-desc": "Ngederakin peranti tuker tulisan-ke-bebunyian bakal seabrek basa",
+	"phonos-error-category": "Halaman dengen pampangan Phonos ngablu",
+	"phonos-error-category-desc": "Ada nyang ngablu pas mampangin Phonos.",
+	"phonos-audio-conversion-error": "Gagal ngerobah bebunyian ke MP3:\n$1",
+	"phonos-tracking-category": "Halaman dengen perintilan Phonos",
+	"phonos-tracking-category-desc": "Ni halaman ada maké perintilan [https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
+	"phonos-player-aria-description": "Puter bebunyian",
+	"phonos-aria-error": "Kaga' bisa muter bebunyian",
+	"phonos-ipa-too-long": "HPA kepanjangan bakal dipampangin.",
+	"phonos-param-error": "Mao HPA, kè', gepokan, kè', barang Wikibase, kè', atu diantéronya kudu ada.",
+	"phonos-rendering-disabled": "Pampangan HPA lagi dimatiin.",
+	"phonos-unsupported-language": "Basa $1 kaga' disokong ama Phonos."
+}
