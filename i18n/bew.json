@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jawadywn"
+		]
+	},
+	"phonos": "Phonos",
+	"phonos-desc": "Ngederakin peranti tuker tulisan-ke-bebunyian bakal seabrek basa",
+	"phonos-error-category": "Halaman dengen pampangan Phonos ngablu",
+	"phonos-error-category-desc": "Ada nyang ngablu pas mampangin Phonos.",
+	"phonos-audio-conversion-error": "Gagal ngerobah bebunyian ke MP3:\n$1"
+}
