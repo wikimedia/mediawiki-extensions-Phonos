@@ -9,12 +9,19 @@
 	"phonos-error-category": "Halaman dengen pampangan Phonos ngablu",
 	"phonos-error-category-desc": "Ada nyang ngablu pas mampangin Phonos.",
 	"phonos-audio-conversion-error": "Gagal ngerobah bebunyian ke MP3:\n$1",
-	"phonos-tracking-category": "Halaman nyang maké perintilan Phonos",
-	"phonos-tracking-category-desc": "Ni halaman ada maké perintilan [https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
+	"phonos-tracking-category": "Halaman nyang maké ata-été Phonos",
+	"phonos-tracking-category-desc": "Ni halaman ada maké ata-été [https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
+	"phonos-invalid-title": "Gepokan bebunyian \" $1 \" ngelah nama nyang kaga' aci.",
+	"phonos-file-not-found": "Gepokan bebunyian \"[ $1 $2 ]\" kaga' ketemu.",
+	"phonos-file-not-audio": "Gepokan \"[[ $1 | $2 ]]\" bukan gepokan bebunyian.",
 	"phonos-player-aria-description": "Puter bebunyian",
 	"phonos-aria-error": "Kaga' bisa muter bebunyian",
 	"phonos-ipa-too-long": "HPA kepanjangan bakal dipampangin.",
+	"phonos-wikibase-api-error": "Kaga' bisa nyomot isian deri Wikibase: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Isian atawa lèksèm nyang kaga' aci: $1",
+	"phonos-wikibase-not-found": "Kaga' ada bebunyian nyang diketemuin bakal barang Wikibase: $1",
 	"phonos-param-error": "Mao HPA, kè', gepokan, kè', barang Wikibase, kè', atu diantéronya kudu ada.",
 	"phonos-rendering-disabled": "Pampangan HPA lagi dimatiin.",
-	"phonos-unsupported-language": "Basa $1 kaga' disokong ama Phonos."
+	"phonos-unsupported-language": "Basa $1 kaga' disokong ama Phonos.",
+	"phonos-unsupported-language-with-suggestions": "Basa $1 kaga' disokong ama Phonos. Ni basa nyang mentak masing juntrungan ada disokong: $2 ."
 }
