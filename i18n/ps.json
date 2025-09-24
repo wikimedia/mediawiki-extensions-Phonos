@@ -9,6 +9,8 @@
 	"phonos-error-category-desc": "د فونوس په وړاندې‌کولو کې یوه تېروتنه وشوه.",
 	"phonos-audio-conversion-error": "غږ اېم‌پي‌تري ته اړولو کې پاتې راغی: $1",
 	"phonos-directory-error": "د $1 خونديتابه لارښود جوړولو کې پاتې راغی",
+	"phonos-engine-error": "د $1 اېنجن کارولو سره د غږيزې دوتنې زېږولو کې پاتې راغی: $2",
 	"phonos-purge-needed-error": "غږ نشي غږول‌کېدای.",
-	"phonos-player-aria-description": "غږ غږول"
+	"phonos-player-aria-description": "غږ غږول",
+	"phonos-aria-error": "غږ نشي غږول‌کېدای."
 }

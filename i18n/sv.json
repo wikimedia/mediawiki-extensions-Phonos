@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sabelöga"
+			"Sabelöga",
+			"Nirmos (Wikimedia)"
 		]
 	},
 	"phonos-desc": "Tillhandahåller text-till-tal-funktionalitet för ett antal språk",
@@ -17,7 +18,7 @@
 	"phonos-tracking-category-desc": "Sidan använder [[:mw:Extension:Phonos|Phonos]]-tillägg.",
 	"phonos-file-not-found": "Ljudfilen \"[$1 $2]\" hittades inte.",
 	"phonos-file-not-audio": "Filen \"[[$1|$2]]\" är ingen ljudfil.",
-	"phonos-player-aria-description": "Lyssna på IPA-uttalet av $1.",
+	"phonos-player-aria-description": "Spela upp ljud",
 	"phonos-ipa-too-long": "IPA är för lång för att rendera.",
 	"phonos-wikibase-api-error": "Det gick inte att hämta entitet från Wikibase: $1",
 	"phonos-wikibase-invalid-entity-lexeme": "Ogiltig entitet eller lexem: $1",
