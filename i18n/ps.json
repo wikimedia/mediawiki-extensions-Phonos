@@ -8,5 +8,6 @@
 	"phonos-error-category": "هغه پاڼې چې د فونوس وړاندې‌کولو تېروتنې لري",
 	"phonos-error-category-desc": "د فونوس په وړاندې‌کولو کې یوه تېروتنه وشوه.",
 	"phonos-audio-conversion-error": "غږ اېم‌پي‌تري ته اړولو کې پاتې راغی: $1",
-	"phonos-directory-error": "د $1 خونديتابه لارښود جوړولو کې پاتې راغی"
+	"phonos-directory-error": "د $1 خونديتابه لارښود جوړولو کې پاتې راغی",
+	"phonos-engine-error": "د $1 اېنجن کارولو سره د غږيزې دوتنې زېږولو کې پاتې راغی: $2"
 }
