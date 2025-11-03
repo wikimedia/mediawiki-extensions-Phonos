@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Eleman",
 			"Hedda",
-			"Joseph"
+			"Joseph",
+			"SaldırganSincap"
 		]
 	},
 	"phonos-desc": "Çeşitli diller için metinden konuşmaya işlevselliği sağlayın",
@@ -14,10 +16,10 @@
 	"phonos-storage-error": "Ses dosyası son hedefine saklanamadı:\n$1",
 	"phonos-purge-needed-error": "Ses çalınamıyor.",
 	"phonos-purge-needed-error-link": "Sayfayı yenileyin ve tekrar deneyin.",
-	"phonos-tracking-category": "Phonos kullanan sayfalar",
-	"phonos-tracking-category-desc": "Sayfa, [[:mw:Extension:Phonos|Phonos]] uzantısını kullanıyor.",
-	"phonos-invalid-title": "\"$1\" ses dosyası geçersiz bir başlık.",
-	"phonos-file-not-found": "\"[$1 $2]\" ses dosyası bulunamadı.",
+	"phonos-tracking-category": "Phonos uzantısını kullanan sayfalar",
+	"phonos-tracking-category-desc": "Sayfa, [https://www.mediawiki.org/wiki/Extension:Phonos Phonos] uzantısını kullanıyor.",
+	"phonos-invalid-title": "\"$1\" adlı ses dosyasının başlığı geçersiz.",
+	"phonos-file-not-found": "\"[$1 $2]\" adlı ses dosyası bulunamadı.",
 	"phonos-file-not-audio": "\"[[$1|$2]]\" bir ses dosyası değil.",
 	"phonos-player-aria-description": "Ses çal",
 	"phonos-aria-error": "Ses çalınamıyor",
@@ -26,8 +28,10 @@
 	"phonos-wikibase-invalid-entity-lexeme": "Geçersiz varlık ya da sözlükbirim: $1",
 	"phonos-wikibase-not-found": "Vikitaban ögesi için ses bulunamadı: $1",
 	"phonos-wikibase-no-ipa": "IPA dökümü bulunamadı.",
+	"phonos-empty-file-error": "Oluşturulan ses dosyası boş görünüyor. Belirtilen IPA geçersiz olabilir veya motor tarafından desteklenmiyor olabilir. '$1' parametresini kullanmak yardımcı olabilir.",
 	"phonos-param-error": "Ya IPA, bir dosya ya da bir Vikitaban ögesi sağlanmalıdır.",
 	"phonos-rendering-disabled": "IPA işleme şu anda devre dışı.",
 	"phonos-unsupported-language": "$1 dili Phonos tarafından desteklenmiyor.",
-	"phonos-unsupported-language-with-suggestions": "$1 dili Phonos tarafından desteklenmiyor. Aşağıdaki olası bağlantılı diller destekleniyor: $2."
+	"phonos-unsupported-language-with-suggestions": "$1 dili Phonos tarafından desteklenmiyor. Aşağıdaki olası bağlantılı diller destekleniyor: $2.",
+	"phonos-inline-audio-player-mode": "Satır içi ses oynatıcısı modundayken yalnızca bir ses dosyası veya telaffuz sesi ($1) özelliğine sahip bir Wikibase ögesi sağlanabilir."
 }
