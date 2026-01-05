@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Sabelöga",
-			"Nirmos (Wikimedia)"
+			"Nirmos (Wikimedia)",
+			"Stefan2255"
 		]
 	},
 	"phonos-desc": "Tillhandahåller text-till-tal-funktionalitet för ett antal språk",
