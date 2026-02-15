@@ -112,7 +112,7 @@ class WikibaseEntityAndLexemeFetcher {
 		foreach ( $claims as $claim ) {
 			$qualLangs = $claim->qualifiers->{$this->wikibaseLangNameProp} ?? [];
 			foreach ( $qualLangs as $qualLang ) {
-				$langId = $qualLang->datavalue->value->id ?? false;
+				$langId = $qualLang->datavalue->value->id ?? null;
 				if ( $langId ) {
 					$langCode = $this->getCachedLanguageEntityCode( $langId );
 					if ( $langCode === $normalizedLang ) {
@@ -124,11 +124,7 @@ class WikibaseEntityAndLexemeFetcher {
 		return null;
 	}
 
-	/**
-	 * @param string $IETFLangEntity
-	 * @return string|false
-	 */
-	private function getCachedLanguageEntityCode( string $IETFLangEntity ) {
+	private function getCachedLanguageEntityCode( string $IETFLangEntity ): ?string {
 		return $this->wanCache->getWithSetCallback(
 			$this->wanCache->makeKey( 'IETF-lang', $IETFLangEntity ),
 			WANObjectCache::TTL_INDEFINITE,
@@ -136,9 +132,9 @@ class WikibaseEntityAndLexemeFetcher {
 				$langEntity = $this->fetchWikibaseItem( $IETFLangEntity );
 				if ( $langEntity ) {
 					return $langEntity->claims->{$this->wikibaseIETFLangTagProp}[0]->mainsnak->datavalue->value
-						?? false;
+						?? null;
 				}
-				return false;
+				return null;
 			}
 		);
 	}
