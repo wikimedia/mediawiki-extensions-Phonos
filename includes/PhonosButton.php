@@ -45,8 +45,6 @@ class PhonosButton extends ButtonWidget {
 
 	/**
 	 * The class name of the JavaScript version of this widget.
-	 *
-	 * @return string
 	 */
 	protected function getJavaScriptClassName(): string {
 		return 'mw.Phonos.PhonosButton';

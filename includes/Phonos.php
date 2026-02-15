@@ -69,11 +69,6 @@ class Phonos implements ParserFirstCallInitHook {
 	/**
 	 * Convert phonos magic word to HTML
 	 * <phonos ipa="/həˈləʊ/" text="hello" file="foo.ogg" language="en" wikibase="Q23501">Hello!</phonos>
-	 *
-	 * @param string|null $label
-	 * @param array $args
-	 * @param Parser $parser
-	 * @return string
 	 */
 	public function renderPhonos( ?string $label, array $args, Parser $parser ): string {
 		// Add the CSS and JS
@@ -197,9 +192,6 @@ class Phonos implements ParserFirstCallInitHook {
 
 	/**
 	 * Return an attribution link if required.
-	 *
-	 * @param array $buttonConfig
-	 * @return string
 	 */
 	private function addAttributionLink( array $buttonConfig ): string {
 		if ( !isset( $buttonConfig['data']['file'] ) ) {
@@ -343,9 +335,6 @@ class Phonos implements ParserFirstCallInitHook {
 	 *
 	 * If TimeMediaHandler can't find an MP3 source, the original non-MP3
 	 * file URL will be returned instead.
-	 *
-	 * @param File $file
-	 * @return string
 	 */
 	public function getFileUrl( File $file ): string {
 		$isAlreadyMP3 = $file->getMimeType() === 'audio/mpeg';
@@ -367,12 +356,6 @@ class Phonos implements ParserFirstCallInitHook {
 
 	/**
 	 * Push a job into the job queue
-	 *
-	 * @param string $ipa
-	 * @param string $text
-	 * @param string $lang
-	 *
-	 * @return void
 	 */
 	private function pushJob( string $ipa, string $text, string $lang ): void {
 		$jobParams = [
@@ -394,9 +377,6 @@ class Phonos implements ParserFirstCallInitHook {
 
 	/**
 	 * Record exceptions that we capture and their types into statsd.
-	 *
-	 * @param PhonosException $e
-	 * @return void
 	 */
 	private function recordError( PhonosException $e ): void {
 		$key = $e->getStatsdKey();

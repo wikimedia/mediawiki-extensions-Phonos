@@ -42,10 +42,6 @@ class WikibaseEntityAndLexemeFetcher {
 	}
 
 	/**
-	 * @param string $wikibaseEntity
-	 * @param string $text
-	 * @param string $lang
-	 * @return Entity
 	 * @throws PhonosException
 	 */
 	public function fetch(
@@ -178,10 +174,6 @@ class WikibaseEntityAndLexemeFetcher {
 		return $content->entities->{$wikibaseEntity} ?? null;
 	}
 
-	/**
-	 * @param string $wikibaseEntity
-	 * @return bool
-	 */
 	private function isValidEntityOrLexeme( string $wikibaseEntity ): bool {
 		return preg_match( '/^[QL][0-9]+$/i', $wikibaseEntity );
 	}

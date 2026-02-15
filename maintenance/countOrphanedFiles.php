@@ -84,8 +84,6 @@ class CountOrphanedFiles extends Maintenance {
 
 	/**
 	 * Get an array of all the sites we need to query.
-	 *
-	 * @return SiteList
 	 */
 	private function getSites(): SiteList {
 		$wikisOption = $this->getOption( 'wikis' );
@@ -121,9 +119,6 @@ class CountOrphanedFiles extends Maintenance {
 
 	/**
 	 * Query API:Siteinfo to determine if Phonos is installed on the given Site.
-	 *
-	 * @param MediaWikiSite $site
-	 * @return bool
 	 */
 	private function isExtensionInstalled( MediaWikiSite $site ): bool {
 		$wiki = $site->getGlobalId();
@@ -187,8 +182,6 @@ class CountOrphanedFiles extends Maintenance {
 
 	/**
 	 * Reports the number of unused files in storage, optionally deleting them as well.
-	 *
-	 * @param array $usedFiles
 	 */
 	private function reportUnusedFiles( array $usedFiles ): void {
 		$this->output( "Finding unused files in storage...\n" );
@@ -220,9 +213,6 @@ class CountOrphanedFiles extends Maintenance {
 	/**
 	 * Delete the given files within the given directory.
 	 * This operation is batched for performance reasons.
-	 *
-	 * @param string $dir
-	 * @param array $files
 	 */
 	private function deleteFiles( string $dir, array $files ): void {
 		$this->output( "Deleting files from storage...\n" );

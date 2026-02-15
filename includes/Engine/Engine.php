@@ -82,9 +82,6 @@ abstract class Engine implements EngineInterface {
 	/**
 	 * Get either the configured FileBackend, or create a Phonos-specific FSFileBackend.
 	 *
-	 * @param FileBackendGroup $fileBackendGroup
-	 * @param Config $config
-	 * @return FileBackend
 	 * @codeCoverageIgnore
 	 */
 	public static function getFileBackend( FileBackendGroup $fileBackendGroup, Config $config ): FileBackend {
@@ -121,9 +118,6 @@ abstract class Engine implements EngineInterface {
 
 	/**
 	 * Get the relative URL to the persisted file.
-	 *
-	 * @param AudioParams $params
-	 * @return string
 	 */
 	public function getFileUrl( AudioParams $params ): string {
 		return $this->getFileProperties( $params )['dest_url'];
@@ -132,9 +126,6 @@ abstract class Engine implements EngineInterface {
 	/**
 	 * Persist the given audio data using the configured storage backend.
 	 *
-	 * @param AudioParams $params
-	 * @param string $data
-	 * @return void
 	 * @throws PhonosException
 	 */
 	final public function persistAudio( AudioParams $params, string $data ): void {
@@ -185,9 +176,6 @@ abstract class Engine implements EngineInterface {
 
 	/**
 	 * Is there a persisted file for the given parameters?
-	 *
-	 * @param AudioParams $params
-	 * @return bool
 	 */
 	final public function isPersisted( AudioParams $params ): bool {
 		return (bool)$this->fileBackend->fileExists( [
@@ -236,9 +224,6 @@ abstract class Engine implements EngineInterface {
 
 	/**
 	 * Update file expiry when supported by the file backend
-	 *
-	 * @param AudioParams $params
-	 * @return void
 	 */
 	final public function updateFileExpiry( AudioParams $params ): void {
 		if ( $this->fileBackend->hasFeatures( FileBackend::ATTR_HEADERS ) ) {
@@ -289,8 +274,6 @@ abstract class Engine implements EngineInterface {
 	/**
 	 * Convert the given WAV data into MP3.
 	 *
-	 * @param string $data
-	 * @return string
 	 * @throws PhonosException
 	 */
 	final public function convertWavToMp3( string $data ): string {
@@ -333,9 +316,6 @@ abstract class Engine implements EngineInterface {
 
 	/**
 	 * Get the internal storage path to the persisted file, whether it exists or not.
-	 *
-	 * @param AudioParams $params
-	 * @return string
 	 */
 	private function getFileStoragePath( AudioParams $params ): string {
 		return $this->getFileProperties( $params )[ 'dest_storage_path' ];
@@ -343,9 +323,6 @@ abstract class Engine implements EngineInterface {
 
 	/**
 	 * Get the unique filename for the given set of Phonos parameters, including the file extension.
-	 *
-	 * @param AudioParams $params
-	 * @return string
 	 */
 	public function getFileName( AudioParams $params ): string {
 		return $this->getFileProperties( $params )['fileName'];
@@ -353,8 +330,6 @@ abstract class Engine implements EngineInterface {
 
 	/**
 	 * Get the full path to the file.
-	 * @param AudioParams $params
-	 * @return string
 	 */
 	private function getFullFileStoragePath( AudioParams $params ): string {
 		return $this->getFileStoragePath( $params ) . '/' . $this->getFileName( $params );
@@ -363,7 +338,6 @@ abstract class Engine implements EngineInterface {
 	/**
 	 * Generate file expiry with some deviations
 	 * to minimize flooding on object expiration
-	 * @return int
 	 */
 	private function generateExpiryTs(): int {
 		// convert days to seconds

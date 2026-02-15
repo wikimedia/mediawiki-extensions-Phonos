@@ -23,8 +23,6 @@ class PhonosException extends Exception {
 
 	/**
 	 * Returns array with exception message key and parameters.
-	 *
-	 * @return array
 	 */
 	public function getMessageKeyAndArgs(): array {
 		return [ $this->getMessage(), ...$this->args ];
@@ -32,8 +30,6 @@ class PhonosException extends Exception {
 
 	/**
 	 * Key for use in statsd metrics, where hyphens aren't allowed.
-	 *
-	 * @return string
 	 */
 	public function getStatsdKey(): string {
 		return str_replace( '-', '_', $this->getMessage() );

@@ -8,17 +8,11 @@ interface EngineInterface {
 
 	/**
 	 * Get SSML.
-	 *
-	 * @param AudioParams $params
-	 * @return string
 	 */
 	public function getSsml( AudioParams $params ): string;
 
 	/**
 	 * Get rendered audio for the given IPA string.
-	 *
-	 * @param AudioParams $params
-	 * @return string
 	 */
 	public function getAudioData( AudioParams $params ): string;
 
