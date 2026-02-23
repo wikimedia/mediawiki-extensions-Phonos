@@ -9,6 +9,7 @@ use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Output\StreamFile;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Status\Status;
 use NullLockManager;
@@ -109,9 +110,9 @@ abstract class Engine implements EngineInterface {
 			'lockManager' => new NullLockManager( [] ),
 			'fileMode' => 0777,
 			'directoryMode' => 0777,
-			'obResetFunc' => 'wfResetOutputBuffers',
-			'streamMimeFunc' => [ 'StreamFile', 'contentTypeFromPath' ],
-			'statusWrapper' => [ 'Status', 'wrap' ],
+			'obResetFunc' => wfResetOutputBuffers( ... ),
+			'streamMimeFunc' => StreamFile::contentTypeFromPath( ... ),
+			'statusWrapper' => Status::wrap( ... ),
 			'logger' => LoggerFactory::getInstance( 'phonos' ),
 		] );
 	}
