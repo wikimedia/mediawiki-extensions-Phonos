@@ -87,7 +87,7 @@ class WikibaseEntityAndLexemeFetcherTest extends MediaWikiIntegrationTestCase {
 				'lang' => 'no',
 				'text' => 'Hello',
 				'id' => 'Q1',
-				'entity_data' => [
+				'entityData' => [
 					'type' => 'entity',
 					'claims' => [
 						'P898' => [
@@ -109,7 +109,7 @@ class WikibaseEntityAndLexemeFetcherTest extends MediaWikiIntegrationTestCase {
 				'lang' => 'en',
 				'text' => 'Hello',
 				'id' => 'Q1',
-				'entity_data' => [
+				'entityData' => [
 					'type' => 'entity',
 					'claims' => [
 						'P898' => [
@@ -131,7 +131,7 @@ class WikibaseEntityAndLexemeFetcherTest extends MediaWikiIntegrationTestCase {
 				'lang' => 'en',
 				'text' => 'Hello',
 				'id' => 'Q1',
-				'entity_data' => [
+				'entityData' => [
 					'type' => 'entity',
 					'claims' => [
 						'P898' => [
