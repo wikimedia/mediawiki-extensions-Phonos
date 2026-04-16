@@ -12,10 +12,10 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Output\StreamFile;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Status\Status;
-use NullLockManager;
 use ReflectionClass;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFileBackend;
+use Wikimedia\LockManager\NullLockManager;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 

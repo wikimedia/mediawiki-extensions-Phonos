@@ -4,9 +4,9 @@ namespace MediaWiki\Extension\Phonos\Wikibase;
 
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Http\MWHttpRequest;
 use MediaWiki\Status\Status;
 use MediaWikiIntegrationTestCase;
-use MWHttpRequest;
 use PHPUnit\Framework\MockObject\MockClass;
 use Wikimedia\ObjectCache\WANObjectCache;
 
