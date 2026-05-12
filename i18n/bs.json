@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Srđan"
+		]
+	},
+	"phonos-purge-needed-error": "Ne mogu reproducirati zvuk.",
+	"phonos-purge-needed-error-link": "Osvježite stranicu i pokušajte ponovo."
+}
