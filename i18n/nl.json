@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Bdijkstra",
-			"McDutchie"
+			"McDutchie",
+			"Siebrand"
 		]
 	},
 	"phonos-desc": "Voorziet in tekst-naar-spraak-functionaliteit voor een reeks talen",
@@ -23,7 +24,7 @@
 	"phonos-aria-error": "Kan geen audio afspelen",
 	"phonos-ipa-too-long": "IPA te lang om weer te geven.",
 	"phonos-wikibase-api-error": "Kan entiteit niet ophalen van Wikibase: $1",
-	"phonos-wikibase-invalid-entity-lexeme": "Ongeldige entiteit of ongeldig lexeem: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Onjuiste entiteit of onjuist lexeem: $1",
 	"phonos-wikibase-not-found": "Geen audio gevonden voor Wikibase-item: $1",
 	"phonos-wikibase-no-ipa": "Geen IPA-transcriptie gevonden.",
 	"phonos-empty-file-error": "De gegenereerde audio lijkt leeg te zijn. De opgegeven IPA is mogelijk ongeldig of wordt niet ondersteund door de engine. Het gebruik van de parameter ‘$1’ kan helpen.",
