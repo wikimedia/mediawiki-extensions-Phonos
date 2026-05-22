@@ -27,7 +27,7 @@
 	"phonos-wikibase-invalid-entity-lexeme": "Onjuiste entiteit of onjuist lexeem: $1",
 	"phonos-wikibase-not-found": "Geen audio gevonden voor Wikibase-item: $1",
 	"phonos-wikibase-no-ipa": "Geen IPA-transcriptie gevonden.",
-	"phonos-empty-file-error": "De gegenereerde audio lijkt leeg te zijn. De opgegeven IPA is mogelijk ongeldig of wordt niet ondersteund door de engine. Het gebruik van de parameter ‘$1’ kan helpen.",
+	"phonos-empty-file-error": "De gegenereerde audio lijkt leeg te zijn. De opgegeven IPA is mogelijk incorrect of wordt niet ondersteund door de engine. Het gebruik van de parameter ‘$1’ kan helpen.",
 	"phonos-param-error": "Er moet een IPA, een bestand of een Wikibase-item worden opgegeven.",
 	"phonos-rendering-disabled": "IPA-weergave is momenteel uitgeschakeld.",
 	"phonos-unsupported-language": "De taal ‘$1’ wordt niet ondersteund door Phonos.",
