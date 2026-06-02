@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"phonos-desc": "Bixi shaqada qoraal-u-akhrinta codka ee luqado kala duwan",
+	"phonos-error-category": "Bogagga leh khaladaadka soo bandhigista Phonos",
+	"phonos-error-category-desc": "Waxaa dhacay khalad intii lagu jiray soo bandhigista Phonos.",
+	"phonos-audio-conversion-error": "Ku guuldareysatay in codka loo beddelo MP3:\n$1",
+	"phonos-directory-error": "Ku guuldareysatay in la abuuro galka kaydinta $1",
+	"phonos-engine-error": "Ku guuldareysatay in faylka codka lagu abuuro $1 matoorka:\n$2",
+	"phonos-storage-error": "Ku guuldareysatay in faylka codka lagu kaydiyo goobtiisa ugu dambeysa:\n$1",
+	"phonos-purge-needed-error": "Lama ciyaari karo codka.",
+	"phonos-purge-needed-error-link": "Cusboonaysii bogga oo mar kale isku day.",
+	"phonos-tracking-category": "Bogagga isticmaalaya kordhinta Phonos",
+	"phonos-tracking-category-desc": "Boggan wuxuu isticmaalaa kordhinta [https://www.mediawiki.org/wiki/Extension:Phonos Phonos].",
+	"phonos-invalid-title": "Faylka codka \"$1\" wuxuu leeyahay cinwaan aan sax ahayn.",
+	"phonos-file-not-found": "Faylka codka \"[$1 $2]\" lama helin.",
+	"phonos-file-not-audio": "Faylka \"[[$1|$2]]\" ma aha fayl cod ah.",
+	"phonos-player-aria-description": "Ciyaar codka",
+	"phonos-aria-error": "Lama ciyaari karo codka.",
+	"phonos-ipa-too-long": "IPA-ga aad ayuu u dheer yahay in la soo bandhigo.",
+	"phonos-wikibase-api-error": "Lama soo heli karo hay’adda Wikibase: $1",
+	"phonos-wikibase-invalid-entity-lexeme": "Shay ama lexeme aan sax ahayn: $1",
+	"phonos-wikibase-not-found": "Cod lama helin shayga Wikibase: $1",
+	"phonos-wikibase-no-ipa": "Lama helin qoraal IPA ah.",
+	"phonos-empty-file-error": "Codka la sameeyay wuxuu u muuqdaa mid madhan. IPA-ga la bixiyay wuu khaldan yahay ama matoorku ma taageerayo. Isticmaalka '$1' ayaa laga yaabaa inuu caawiyo.",
+	"phonos-param-error": "Waa in la bixiyo IPA, fayl, ama shay Wikibase.",
+	"phonos-rendering-disabled": "Hadda IPA soo bandhigista waa la joojiyay.",
+	"phonos-unsupported-language": "Luqadda $1 laguma taageero Phonos.",
+	"phonos-unsupported-language-with-suggestions": "Luqadda $1 laguma taageero Phonos. Luqadaha suurtagalka ah ee la xiriira ee la taageero waa: $2.",
+	"phonos-inline-audio-player-mode": "Kaliya fayl cod ah, ama shay Wikibase oo leh hanti cod ku dhawaaqid ($1), ayaa la bixin karaa marka lagu jiro habka ciyaaryahanka codka ee khadka ah."
+}
