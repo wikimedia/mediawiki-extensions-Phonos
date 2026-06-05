@@ -2,7 +2,11 @@
 	"manifest_version": 2,
 	"name": "Phonos",
 	"author": [
-		"[https://meta.wikimedia.org/wiki/Community_Tech#Team Wikimedia Community Tech Team]"
+		"Sammy Fox",
+		"MusikAnimal",
+		"Sam Wilson",
+		"Harumi Monroy",
+		"Dayllan Maza"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:Phonos",
 	"version": "0.1.0",
