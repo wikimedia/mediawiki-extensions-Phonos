@@ -63,7 +63,7 @@ class Phonos implements ParserFirstCallInitHook {
 	 * @param Parser $parser
 	 */
 	public function onParserFirstCallInit( $parser ) {
-		$parser->setHook( 'phonos', [ $this, 'renderPhonos' ] );
+		$parser->setHook( 'phonos', $this->renderPhonos( ... ) );
 	}
 
 	/**
