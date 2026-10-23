@@ -2,6 +2,9 @@
 
 .ext-phonos {
 	white-space: nowrap;
+	// Isolate the button and the attribution link from the surrounding text, so that
+	// they are always laid out in the direction of the content they appear in (T335559).
+	unicode-bidi: isolate;
 }
 
 // Make the button look better as an inline text component.
