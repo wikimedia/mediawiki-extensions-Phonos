@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Extension\Phonos\Job;
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Engine\Engine;
 use MediaWiki\Extension\Phonos\Exception\PhonosException;
@@ -46,7 +45,6 @@ class PhonosIPAFilePersistJob extends Job {
 	public function __construct(
 		array $params,
 		private readonly Engine $engine,
-		private readonly StatsdDataFactoryInterface $statsdDataFactory,
 	) {
 		parent::__construct( 'phonosIPAFilePersist', $params );
 		$this->removeDuplicates = true;
@@ -89,8 +87,6 @@ class PhonosIPAFilePersistJob extends Job {
 					'exception' => $e
 				]
 			);
-			$key = $e->getStatsdKey();
-			$this->statsdDataFactory->increment( "extension.Phonos.error.$key" );
 
 			throw $e;
 		}
