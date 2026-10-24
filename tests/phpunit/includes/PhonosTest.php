@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\Phonos;
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Extension\Phonos\Engine\EngineInterface;
 use MediaWiki\Extension\Phonos\Engine\LarynxEngine;
 use MediaWiki\Extension\Phonos\Wikibase\WikibaseEntityAndLexemeFetcher;
@@ -65,10 +64,6 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 		return $this->createMock( WikibaseEntityAndLexemeFetcher::class );
 	}
 
-	protected function getStatsdDataFactoryInterfaceMock(): StatsdDataFactoryInterface {
-		return $this->createMock( StatsdDataFactoryInterface::class );
-	}
-
 	public function testCreateJob(): void {
 		$this->overrideConfigValue( 'PhonosFileBackend', null );
 
@@ -84,7 +79,6 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 			$services->getRepoGroup(),
 			$engineMock,
 			$this->getWBELFMock(),
-			$this->getStatsdDataFactoryInterfaceMock(),
 			$jobQueueGroupMock,
 			$services->getLinkRenderer(),
 			$services->getMainConfig()
@@ -100,7 +94,6 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 			$services->getRepoGroup(),
 			$this->getEngineMock(),
 			$this->getWBELFMock(),
-			$this->getStatsdDataFactoryInterfaceMock(),
 			$this->getJobQueueGroupMock(),
 			$services->getLinkRenderer(),
 			$services->getMainConfig()

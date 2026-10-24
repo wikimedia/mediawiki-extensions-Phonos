@@ -10,7 +10,6 @@
 
 namespace MediaWiki\Extension\Phonos;
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\Config;
 use MediaWiki\Extension\Phonos\Engine\AudioParams;
 use MediaWiki\Extension\Phonos\Engine\Engine;
@@ -47,7 +46,6 @@ class Phonos implements ParserFirstCallInitHook {
 		protected readonly RepoGroup $repoGroup,
 		protected readonly Engine $engine,
 		protected readonly WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher,
-		private readonly StatsdDataFactoryInterface $statsdDataFactory,
 		private readonly JobQueueGroup $jobQueueGroup,
 		protected readonly LinkRenderer $linkRenderer,
 		Config $config,
@@ -139,7 +137,6 @@ class Phonos implements ParserFirstCallInitHook {
 			// Add aria-label for screenreaders. This is also used as the tooltip.
 			$buttonConfig['aria-label'] = wfMessage( 'phonos-player-aria-description' )->parse();
 		} catch ( PhonosException $e ) {
-			$this->recordError( $e );
 			$buttonConfig['data']['error'] = $e->getMessageKeyAndArgs();
 			// Tell screenreaders that there's an error, but we can't add the actual error message because it's in the
 			// client-side popup which doesn't exist here.
@@ -371,15 +368,7 @@ class Phonos implements ParserFirstCallInitHook {
 			]
 		);
 
-		$job = new PhonosIPAFilePersistJob( $jobParams, $this->engine, $this->statsdDataFactory );
+		$job = new PhonosIPAFilePersistJob( $jobParams, $this->engine );
 		$this->jobQueueGroup->push( $job );
-	}
-
-	/**
-	 * Record exceptions that we capture and their types into statsd.
-	 */
-	private function recordError( PhonosException $e ): void {
-		$key = $e->getStatsdKey();
-		$this->statsdDataFactory->increment( "extension.Phonos.error.$key" );
 	}
 }

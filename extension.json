@@ -196,7 +196,6 @@
 				"RepoGroup",
 				"Phonos.Engine",
 				"Phonos.Wikibase",
-				"StatsdDataFactory",
 				"JobQueueGroup",
 				"LinkRenderer",
 				"MainConfig"
@@ -210,8 +209,7 @@
 		"phonosIPAFilePersist": {
 			"class": "MediaWiki\\Extension\\Phonos\\Job\\PhonosIPAFilePersistJob",
 			"services": [
-				"Phonos.Engine",
-				"StatsdDataFactory"
+				"Phonos.Engine"
 			],
 			"needsPage": false
 		}
