@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sławobóg"
+		]
+	},
+	"phonos-error-category": "Starnë z felama renderowaniô Phonos",
+	"phonos-purge-needed-error": "Nie ùdało sã òdtwòrzëc zwãkù",
+	"phonos-tracking-category": "Starnë ùżiwającé rozszérzwieniô Phonos",
+	"phonos-file-not-found": "Lopk aùdio „[$1 $2]” nie òstôł nalazłi",
+	"phonos-player-aria-description": "Òdtwòrzë nagranié"
+}
