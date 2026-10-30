@@ -22,7 +22,7 @@ use Wikimedia\ObjectCache\WANObjectCache;
  */
 class PhonosTest extends MediaWikiIntegrationTestCase {
 
-	protected function getEngineMock(): EngineInterface {
+	private function getEngineMock(): EngineInterface {
 		// because of static methods (getFileBackend) in Engine we need to mock
 		// FileBackendGroup
 		return $this->getMockBuilder( LarynxEngine::class )
@@ -38,11 +38,11 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 	}
 
-	protected function getJobQueueGroupMock(): JobQueueGroup {
+	private function getJobQueueGroupMock(): JobQueueGroup {
 		return $this->createPartialMock( JobQueueGroup::class, [ 'push' ] );
 	}
 
-	protected function getParserMock(): Parser {
+	private function getParserMock(): Parser {
 		$parserOutput = $this->createMock( ParserOutput::class );
 		$parserLanguage = $this->createMock( Language::class );
 		$parser = $this->getMockBuilder( Parser::class )
@@ -60,7 +60,7 @@ class PhonosTest extends MediaWikiIntegrationTestCase {
 		return $parser;
 	}
 
-	protected function getWBELFMock(): WikibaseEntityAndLexemeFetcher {
+	private function getWBELFMock(): WikibaseEntityAndLexemeFetcher {
 		return $this->createMock( WikibaseEntityAndLexemeFetcher::class );
 	}
 

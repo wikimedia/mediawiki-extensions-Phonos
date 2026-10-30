@@ -38,16 +38,16 @@ use Psr\Log\LoggerInterface;
 class Phonos implements ParserFirstCallInitHook {
 
 	private readonly bool $renderingEnabled;
-	protected readonly LoggerInterface $logger;
+	private readonly LoggerInterface $logger;
 	private readonly bool $inlineAudioPlayerMode;
 	private readonly array $wikibaseProperties;
 
 	public function __construct(
-		protected readonly RepoGroup $repoGroup,
-		protected readonly Engine $engine,
-		protected readonly WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher,
+		private readonly RepoGroup $repoGroup,
+		private readonly Engine $engine,
+		private readonly WikibaseEntityAndLexemeFetcher $wikibaseEntityAndLexemeFetcher,
 		private readonly JobQueueGroup $jobQueueGroup,
-		protected readonly LinkRenderer $linkRenderer,
+		private readonly LinkRenderer $linkRenderer,
 		Config $config,
 	) {
 		$this->renderingEnabled = $config->get( 'PhonosIPARenderingEnabled' );

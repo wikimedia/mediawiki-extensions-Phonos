@@ -37,7 +37,7 @@ use Psr\Log\LoggerInterface;
  * should be throttled accordingly using $wgJobBackoffThrottling
  */
 class PhonosIPAFilePersistJob extends Job {
-	protected readonly LoggerInterface $logger;
+	private readonly LoggerInterface $logger;
 
 	/**
 	 * @inheritDoc
