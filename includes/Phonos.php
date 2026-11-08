@@ -97,7 +97,7 @@ class Phonos implements ParserFirstCallInitHook {
 		}
 		// Split the class attribute into an array of classes and drop any empty classes.
 		$buttonClasses = explode( ' ', $options['class'] );
-		$buttonClasses = array_values( array_filter( $buttonClasses, 'strlen' ) );
+		$buttonClasses = array_values( array_filter( $buttonClasses, static fn ( string $str ) => $str !== '' ) );
 
 		$buttonConfig = [
 			'label' => $buttonLabel,

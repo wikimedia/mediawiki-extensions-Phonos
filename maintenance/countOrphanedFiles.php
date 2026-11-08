@@ -177,7 +177,7 @@ class CountOrphanedFiles extends Maintenance {
 			->from( 'page_props' )
 			->where( [ 'pp_propname' => 'phonos-files' ] );
 		$props = $queryBuilder->caller( __METHOD__ )->fetchFieldValues();
-		return array_unique( array_merge( ...array_map( 'json_decode', $props ) ) );
+		return array_unique( array_merge( ...array_map( json_decode( ... ), $props ) ) );
 	}
 
 	/**
