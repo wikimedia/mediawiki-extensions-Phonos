@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Dj",
 			"Hanna Tardos",
 			"Tacsipacsi"
 		]
 	},
+	"phonos-desc": "Szövegfelolvasási funkció biztosítása különböző nyelveken",
 	"phonos-error-category": "Lapok Phonos-feldolgozási hibákkal",
 	"phonos-error-category-desc": "Hiba történt a Phonos feldolgozása közben.",
 	"phonos-audio-conversion-error": "Nem sikerült a hangot MP3-ba konvertálni:\n$1",
@@ -13,8 +15,9 @@
 	"phonos-storage-error": "A hangfájl tárolása a végleges helyén sikertelen:\n$1",
 	"phonos-purge-needed-error": "A hang lejátszása sikertelen.",
 	"phonos-purge-needed-error-link": "Frissítsd az oldalt, és próbáld újra.",
-	"phonos-tracking-category": "Phonost használó lapok",
-	"phonos-tracking-category-desc": "A lap a [[:mw:Extension:Phonos|Phonos]] kiterjesztést használja.",
+	"phonos-tracking-category": "A Phonos kiterjesztést használó lapok",
+	"phonos-tracking-category-desc": "A lap a [https://www.mediawiki.org/wiki/Extension:Phonos Phonos] kiterjesztést használja.",
+	"phonos-invalid-title": "A(z) „$1” hangfájl címe érvénytelen.",
 	"phonos-file-not-found": "A(z) „[$1 $2]” hangfájl nem található.",
 	"phonos-file-not-audio": "A(z) „[[$1|$2]]” fájl nem egy hangfájl.",
 	"phonos-player-aria-description": "Hang lejátszása",
@@ -28,5 +31,6 @@
 	"phonos-param-error": "Az IPA, fájl és Wikibase-elem közül egyet meg kell adni.",
 	"phonos-rendering-disabled": "Az IPA-feldolgozás jelenleg le van tiltva.",
 	"phonos-unsupported-language": "A(z) $1 nyelvet a Phonos nem támogatja.",
-	"phonos-unsupported-language-with-suggestions": "A(z) $1 nyelvet a Phonos nem támogatja. A következő, esetleg rokon nyelvek támogatottak: $2."
+	"phonos-unsupported-language-with-suggestions": "A(z) $1 nyelvet a Phonos nem támogatja. A következő, esetleg rokon nyelvek támogatottak: $2.",
+	"phonos-inline-audio-player-mode": "A beágyazott hanglejátszó módjában csak hangfájl vagy kiejtési hanganyagot ($1) tartalmazó tulajdonsággal rendelkező Wikibase-elem adható meg."
 }
